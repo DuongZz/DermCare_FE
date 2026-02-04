@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 255 255 255;
+  --foreground: 18 24 38;
+  --primary: 15 156 216;
+  --primary-foreground: 255 255 255;
+  --muted: 241 245 249;
+  --muted-foreground: 100 116 139;
+  --border: 226 232 240;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-white text-slate-900 antialiased;
+}
+
+.page-shell {
+  @apply min-h-screen bg-gradient-to-b from-dermcare-light to-white;
+}
+
+.card-elevated {
+  @apply bg-white shadow-soft border border-slate-100 rounded-2xl;
+}
