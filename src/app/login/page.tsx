@@ -14,7 +14,7 @@ export default function LoginPage() {
     return (
         <div className="flex min-h-screen">
             {/* Left side - Branding/Hero */}
-            <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-dermcare to-dermcare-dark p-12 items-center justify-center relative overflow-hidden">
+            <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-dermcare to-dermcare-dark p-12 pl-20 items-center justify-center relative overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.15),_transparent_60%)]" />
                 <div className="relative z-10 text-white space-y-6 max-w-md">
                     <Link href="/" className="inline-block">
@@ -58,7 +58,7 @@ export default function LoginPage() {
                     <div className="lg:hidden mb-8 text-center">
                         <Link href="/" className="inline-block">
                             <Image
-                                src="/logo_dermcare.png"
+                                src="/logo_dermcare.jpg"
                                 alt="Dermcare"
                                 width={650}
                                 height={180}

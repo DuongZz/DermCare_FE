@@ -23,12 +23,12 @@ export default function RootLayout({
               <div className="flex items-center gap-3">
                 <Link href="/" className="cursor-pointer">
                   <Image
-                    src="/logo_dermcare.png"
+                    src="/logo_dermcare.jpg"
                     alt="Dermcare - Phòng khám da liễu trực tuyến"
                     width={650}
                     height={180}
                     priority
-                    className="h-16 w-32"
+                    className="h-20 w-auto"
                   />
                 </Link>
                 <span className="sr-only">
@@ -39,9 +39,9 @@ export default function RootLayout({
                 <a href="#services" className="hover:text-dermcare">
                   Dịch vụ
                 </a>
-                <a href="#doctors" className="hover:text-dermcare">
+                <Link href="/doctors" className="hover:text-dermcare">
                   Bác sĩ
-                </a>
+                </Link>
                 <a href="#how-it-works" className="hover:text-dermcare">
                   Cách hoạt động
                 </a>
