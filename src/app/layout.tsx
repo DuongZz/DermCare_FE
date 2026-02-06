@@ -39,11 +39,17 @@ export default function RootLayout({
                 <a href="#services" className="hover:text-dermcare">
                   Dịch vụ
                 </a>
-                <Link href="/doctors" className="hover:text-dermcare">
+                <a href="#doctors" className="hover:text-dermcare">
                   Bác sĩ
-                </Link>
-                <a href="#how-it-works" className="hover:text-dermcare">
-                  Cách hoạt động
+                </a>
+                <a href="#about" className="hover:text-dermcare">
+                  Về chúng tôi
+                </a>
+                <a href="#reviews" className="hover:text-dermcare">
+                  Đánh giá
+                </a>
+                <a href="#partners" className="hover:text-dermcare">
+                  Hợp tác
                 </a>
               </nav>
               <div className="flex items-center gap-3">

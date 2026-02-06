@@ -81,8 +81,8 @@ function RootLayout({ children }) {
                                             lineNumber: 39,
                                             columnNumber: 17
                                         }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
-                                            href: "/doctors",
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                            href: "#doctors",
                                             className: "hover:text-dermcare",
                                             children: "Bác sĩ"
                                         }, void 0, false, {
@@ -91,12 +91,30 @@ function RootLayout({ children }) {
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                            href: "#how-it-works",
+                                            href: "#about",
                                             className: "hover:text-dermcare",
-                                            children: "Cách hoạt động"
+                                            children: "Về chúng tôi"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/layout.tsx",
                                             lineNumber: 45,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                            href: "#reviews",
+                                            className: "hover:text-dermcare",
+                                            children: "Đánh giá"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/layout.tsx",
+                                            lineNumber: 48,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                            href: "#partners",
+                                            className: "hover:text-dermcare",
+                                            children: "Hợp tác"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/layout.tsx",
+                                            lineNumber: 51,
                                             columnNumber: 17
                                         }, this)
                                     ]
@@ -114,7 +132,7 @@ function RootLayout({ children }) {
                                             children: "Đăng nhập"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/layout.tsx",
-                                            lineNumber: 50,
+                                            lineNumber: 56,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -122,13 +140,13 @@ function RootLayout({ children }) {
                                             children: "Đặt lịch ngay"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/layout.tsx",
-                                            lineNumber: 56,
+                                            lineNumber: 62,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/layout.tsx",
-                                    lineNumber: 49,
+                                    lineNumber: 55,
                                     columnNumber: 15
                                 }, this)
                             ]
@@ -147,7 +165,7 @@ function RootLayout({ children }) {
                         children: children
                     }, void 0, false, {
                         fileName: "[project]/src/app/layout.tsx",
-                        lineNumber: 62,
+                        lineNumber: 68,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
@@ -163,7 +181,7 @@ function RootLayout({ children }) {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/layout.tsx",
-                                    lineNumber: 65,
+                                    lineNumber: 71,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -175,7 +193,7 @@ function RootLayout({ children }) {
                                             children: "Chính sách bảo mật"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/layout.tsx",
-                                            lineNumber: 67,
+                                            lineNumber: 73,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -184,24 +202,24 @@ function RootLayout({ children }) {
                                             children: "Điều khoản sử dụng"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/layout.tsx",
-                                            lineNumber: 70,
+                                            lineNumber: 76,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/layout.tsx",
-                                    lineNumber: 66,
+                                    lineNumber: 72,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/layout.tsx",
-                            lineNumber: 64,
+                            lineNumber: 70,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/layout.tsx",
-                        lineNumber: 63,
+                        lineNumber: 69,
                         columnNumber: 11
                     }, this)
                 ]
@@ -2836,14 +2854,7 @@ function getImageProps(imgProps) {
                 ("TURBOPACK compile-time value", 384)
             ]),
             "qualities": ("TURBOPACK compile-time value", [
-                ("TURBOPACK compile-time value", 75),
-                ("TURBOPACK compile-time value", 70),
-                ("TURBOPACK compile-time value", 70),
-                ("TURBOPACK compile-time value", 70),
-                ("TURBOPACK compile-time value", 70),
-                ("TURBOPACK compile-time value", 70),
-                ("TURBOPACK compile-time value", 70),
-                ("TURBOPACK compile-time value", 70)
+                ("TURBOPACK compile-time value", 75)
             ]),
             "path": ("TURBOPACK compile-time value", "/_next/image"),
             "loader": ("TURBOPACK compile-time value", "default"),
