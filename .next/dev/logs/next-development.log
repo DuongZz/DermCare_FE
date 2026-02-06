@@ -1,8 +1,6 @@
-[00:00:02.236] Server  LOG     ✓ Ready in 1592ms
-[00:00:08.171] Server  ERROR   ⨯ "The requested resource isn't a valid image for" "/logo_dermcare.png" "received" null
-[00:00:08.236] Server  ERROR   Error: The requested resource isn't a valid image.
-[00:00:08.728] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:09.000] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:02.139] Server  LOG     ✓ Ready in 1479ms
+[00:00:07.565] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:07.826] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -37,150 +35,31 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:00:09.322] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:11:38.675] Server  LOG     ✓ Compiled in 307ms
-[00:13:00.947] Server  LOG     ✓ Compiled in 333ms
-[00:13:02.943] Server  LOG     ✓ Compiled in 125ms
-[00:18:35.773] Server  LOG     ✓ Compiled in 84ms
-[00:20:13.240] Server  LOG     ✓ Compiled in 225ms
-[01:25:38.702] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:25:38.703] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[01:25:39.306] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[02:09:04.593] Server  LOG     ✓ Compiled in 272ms
-[02:49:14.815] Server  LOG     ✓ Compiled in 1035ms
-[02:49:14.828] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[02:49:16.786] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:49:18.164] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[02:56:50.765] Server  LOG     ✓ Compiled in 116ms
-[02:56:56.924] Server  LOG     ✓ Compiled in 41ms
-[02:57:43.598] Server  LOG     ✓ Compiled in 39ms
-[02:58:10.344] Server  LOG     ✓ Compiled in 44ms
-[02:58:26.099] Server  LOG     ✓ Compiled in 39ms
-[02:58:38.243] Server  LOG     ✓ Compiled in 37ms
-[02:58:47.988] Server  LOG     ✓ Compiled in 31ms
-[02:58:54.929] Server  LOG     ✓ Compiled in 52ms
-[02:59:07.916] Server  LOG     ✓ Compiled in 39ms
-[02:59:49.505] Server  LOG     ✓ Compiled in 47ms
-[02:59:53.801] Server  LOG     ✓ Compiled in 31ms
-[03:00:12.096] Server  LOG     ✓ Compiled in 39ms
-[03:00:23.440] Server  LOG     ✓ Compiled in 31ms
-[03:00:38.228] Server  LOG     ✓ Compiled in 32ms
-[03:00:56.190] Server  LOG     ✓ Compiled in 36ms
-[03:01:00.195] Server  LOG     ✓ Compiled in 27ms
-[03:01:19.083] Server  LOG     ✓ Compiled in 34ms
-[03:01:32.083] Server  LOG     ✓ Compiled in 30ms
-[03:01:48.775] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:01:48.775] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[03:01:49.111] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/doctors" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[03:02:32.663] Server  LOG     ✓ Compiled in 1770ms
-[03:02:34.162] Browser WARN    Image with src "/yen.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:02:35.615] Server  ERROR   ⨯ "The requested resource isn't a valid image for" "/khue.jpg" "received" null
-[03:02:36.169] Browser WARN    Image with src "/duongtro.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:02:36.169] Browser WARN    Image with src "/duong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:02:36.169] Browser WARN    Image with src "/ganarcho.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:02:37.160] Browser WARN    Image with src "/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:02:37.160] Browser WARN    Image with src "/hiepdan.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:02:53.800] Server  LOG     ✓ Compiled in 44ms
-[03:02:54.753] Browser WARN    Image with src "/khuebeo.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:08.170] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[00:05:04.452] Server  LOG     ✓ Compiled in 66ms
+[00:06:43.662] Server  LOG     ✓ Compiled in 68ms
+[00:09:24.615] Browser WARN    Image with src "/duongtro.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:09:24.615] Browser WARN    Image with src "/yen.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:09:24.615] Browser WARN    Image with src "/khuebeo.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:09:24.616] Browser WARN    Image with src "/duong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:09:24.616] Browser WARN    Image with src "/ganarcho.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:09:24.616] Browser WARN    Image with src "/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:09:24.616] Browser WARN    Image with src "/hiepdan.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:10:22.808] Server  LOG     ✓ Compiled in 65ms
+[00:42:03.196] Server  LOG     ✓ Compiled in 171ms
+[00:42:34.400] Server  LOG     ✓ Compiled in 459ms
+[00:45:01.503] Server  LOG     ✓ Compiled in 61ms
+[02:49:49.793] Server  LOG     ✓ Compiled in 255ms
+[02:51:18.098] Server  LOG     ✓ Compiled in 153ms
+[02:51:58.912] Server  LOG     ✓ Compiled in 162ms
+[02:53:53.391] Server  LOG     ✓ Compiled in 129ms
+[02:54:09.548] Server  LOG     ✓ Compiled in 227ms
+[02:55:36.969] Server  LOG     ✓ Compiled in 237ms
+[02:57:21.577] Server  LOG     ✓ Compiled in 90ms
+[02:57:48.656] Server  LOG     ✓ Compiled in 98ms
+[02:59:42.454] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[02:59:53.323] Server  LOG     ✓ Compiled in 179ms
+[03:00:58.082] Server  LOG     ✓ Compiled in 83ms
+[03:02:42.893] Server  LOG     ✓ Compiled in 261ms
+[03:04:02.662] Server  LOG     ✓ Compiled in 62ms
+[03:05:12.564] Server  LOG     ✓ Compiled in 90ms
