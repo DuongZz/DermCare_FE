@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import ClientLayout from "@/components/ClientLayout";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,64 +18,100 @@ export default function RootLayout({
     <html lang="vi">
       <body className="page-shell">
         <div className="flex min-h-screen flex-col">
-          <header className="sticky top-0 z-50 border-b border-slate-100 bg-white">
-            <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2">
-              <div className="flex items-center gap-3">
-                <Link href="/" className="cursor-pointer">
-                  <Image
-                    src="/logo_dermcare.jpg"
-                    alt="Dermcare - Phòng khám da liễu trực tuyến"
-                    width={650}
-                    height={180}
-                    priority
-                    className="h-20 w-auto"
-                  />
-                </Link>
-                <span className="sr-only">
-                  Dermcare - Phòng khám da liễu trực tuyến
-                </span>
-              </div>
-              <nav className="hidden gap-6 text-sm text-slate-600 md:flex">
-                <a href="#services" className="hover:text-dermcare">
-                  Dịch vụ
-                </a>
-                <a href="#doctors" className="hover:text-dermcare">
-                  Bác sĩ
-                </a>
-                <a href="#about" className="hover:text-dermcare">
-                  Về chúng tôi
-                </a>
-                <a href="#reviews" className="hover:text-dermcare">
-                  Đánh giá
-                </a>
-                <a href="#partners" className="hover:text-dermcare">
-                  Hợp tác
-                </a>
-              </nav>
-              <div className="flex items-center gap-3">
-                <Link
-                  href="/login"
-                  className="hidden rounded-full border border-slate-200 px-4 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50 md:inline-flex"
-                >
-                  Đăng nhập
-                </Link>
-                <button className="inline-flex rounded-full bg-dermcare px-4 py-1.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark">
-                  Đặt lịch ngay
-                </button>
+          <ClientLayout>{children}</ClientLayout>
+          <footer id="footer" className="border-t border-slate-200 bg-slate-50">
+            {/* Main Footer Content */}
+            <div className="mx-auto max-w-7xl px-4 py-12">
+              <div className="grid gap-8 md:grid-cols-4">
+                {/* Brand Column */}
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <img
+                      src="/logo.jpg"
+                      alt="Dermcare"
+                      className="h-10 w-10 rounded-full"
+                    />
+                    <div>
+                      <div className="text-lg font-bold text-dermcare">Dermcare</div>
+                      <div className="text-xs text-slate-500">Hệ thống phòng khám</div>
+                    </div>
+                  </div>
+                  <p className="text-sm text-slate-600">
+                    Nền tảng chăm sóc da liễu trực tuyến với công nghệ AI tiên tiến
+                  </p>
+                </div>
+
+                {/* Quick Links */}
+                <div>
+                  <h3 className="mb-4 font-semibold text-slate-900">Liên kết</h3>
+                  <ul className="space-y-2 text-sm text-slate-600">
+                    <li>
+                      <a href="#services" className="hover:text-dermcare">Dịch vụ</a>
+                    </li>
+                    <li>
+                      <a href="#doctors" className="hover:text-dermcare">Bác sĩ</a>
+                    </li>
+                    <li>
+                      <a href="#about" className="hover:text-dermcare">Về chúng tôi</a>
+                    </li>
+                    <li>
+                      <a href="#reviews" className="hover:text-dermcare">Đánh giá</a>
+                    </li>
+                    <li>
+                      <a href="#partners" className="hover:text-dermcare">Đối tác</a>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Contact Info */}
+                <div>
+                  <h3 className="mb-4 font-semibold text-slate-900">Liên hệ</h3>
+                  <ul className="space-y-2 text-sm text-slate-600">
+                    <li className="flex items-start gap-2">
+                      <span>📧</span>
+                      <span>dermcareservice@gmail.com</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span>📞</span>
+                      <span>0943192828</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span>📍</span>
+                      <span>Thành phố Hà Nội, Việt Nam</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Social & Legal */}
+                <div>
+                  <h3 className="mb-4 font-semibold text-slate-900">Theo dõi</h3>
+                  <div className="flex gap-4 mb-6">
+                    <a href="#" className="text-2xl hover:text-dermcare transition">
+                      <span>📘</span>
+                    </a>
+                    <a href="#" className="text-2xl hover:text-dermcare transition">
+                      <span>📷</span>
+                    </a>
+                    <a href="#" className="text-2xl hover:text-dermcare transition">
+                      <span>🐦</span>
+                    </a>
+                  </div>
+                  <div className="space-y-2 text-sm text-slate-600">
+                    <a href="#" className="block hover:text-dermcare">
+                      Chính sách bảo mật
+                    </a>
+                    <a href="#" className="block hover:text-dermcare">
+                      Điều khoản sử dụng
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-          </header>
-          <main className="flex-1">{children}</main>
-          <footer className="border-t border-slate-100 bg-white py-6">
-            <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 text-xs text-slate-500 sm:flex-row">
-              <span>© {new Date().getFullYear()} Dermcare. All rights reserved.</span>
-              <div className="flex gap-4">
-                <a href="#" className="hover:text-dermcare">
-                  Chính sách bảo mật
-                </a>
-                <a href="#" className="hover:text-dermcare">
-                  Điều khoản sử dụng
-                </a>
+
+            {/* Copyright Bar */}
+            <div className="border-t border-slate-200 bg-white py-4">
+              <div className="mx-auto max-w-7xl px-4 text-center text-sm text-slate-500">
+                © {new Date().getFullYear()} Dermcare. All rights reserved.
               </div>
             </div>
           </footer>

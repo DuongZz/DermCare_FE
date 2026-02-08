@@ -4,6 +4,13 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 60px;
+  /* Offset for fixed header */
+}
+
+/* Sections with anchor links need scroll margin */
+section[id] {
+  scroll-margin-top: 60px;
 }
 
 :root {

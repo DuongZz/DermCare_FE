@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function HomePage() {
-  // TODO: Replace with real auth state from context/session
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn } = useAuth();
 
   return (
     <div className="flex flex-col">
@@ -77,8 +77,6 @@ export default function HomePage() {
                     Tư vấn với trợ lý ảo
                   </h4>
                   <p className="text-sm leading-relaxed text-dermcare-light">
-                    <strong>Dermcare Artificial Intelligence Recognition Assistant</strong>
-                    <br />
                     Trợ lý AI thông minh, sẵn sàng tư vấn và chẩn đoán sơ bộ
                     bệnh da của bạn 24/7
                   </p>
@@ -100,61 +98,34 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* CTA */}
-                {isLoggedIn ? (
-                  <Link
-                    href="/ai-chat"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-base font-semibold text-dermcare shadow-lg transition hover:bg-slate-50"
-                  >
-                    <span>Bắt đầu chat với DARA</span>
-                    <svg
-                      className="h-5 w-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                      />
-                    </svg>
-                  </Link>
-                ) : (
-                  <Link
-                    href="/login"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-base font-semibold text-dermcare shadow-lg transition hover:bg-slate-50"
-                  >
-                    <span>Đăng nhập để bắt đầu</span>
-                    <svg
-                      className="h-5 w-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-                      />
-                    </svg>
-                  </Link>
-                )}
-
-                <div className="text-center">
-                  <p className="text-sm font-semibold text-white">
-                    Miễn phí 100%
-                  </p>
+                {/* CTA - Chat Input */}
+                <div>
                   {isLoggedIn ? (
-                    <p className="mt-1 text-xs text-dermcare-light">
-                      Bắt đầu chat ngay - Không giới hạn
-                    </p>
+                    <>
+                      <Link
+                        href="/chat"
+                        className="flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-semibold text-dermcare transition hover:bg-dermcare-light"
+                      >
+                        <span>Bắt đầu chẩn đoán bệnh</span>
+                        <span>🔬</span>
+                      </Link>
+                      <p className="mt-2 text-center text-xs text-dermcare-light">
+                        Nhấn để bắt đầu tư vấn với AI 💬
+                      </p>
+                    </>
                   ) : (
-                    <p className="mt-1 text-xs text-dermcare-light">
-                      Chỉ cần đăng ký tài khoản và bắt đầu
-                    </p>
+                    <>
+                      <Link
+                        href="/login"
+                        className="flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-semibold text-dermcare transition hover:bg-dermcare-light"
+                      >
+                        <span>Bắt đầu chẩn đoán bệnh</span>
+                        <span>🔬</span>
+                      </Link>
+                      <p className="mt-2 text-center text-xs text-dermcare-light">
+                        Chỉ cần đăng ký tài khoản và bắt đầu
+                      </p>
+                    </>
                   )}
                 </div>
               </div>
@@ -373,7 +344,7 @@ export default function HomePage() {
       </section>
 
       {/* SPECIALTIES */}
-      <section className="bg-slate-50 px-4 py-16">
+      <section id="specialties" className="bg-slate-50 px-4 py-16">
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 text-center">
             <h2 className="mb-3 text-3xl font-bold text-slate-900 md:text-4xl">
@@ -421,93 +392,34 @@ export default function HomePage() {
             <div id="specialties-scroll" className="overflow-x-auto pb-4 scrollbar-hide">
               <div className="flex gap-4 pb-2">
                 {[
-                  { icon: "🔥", name: "Viêm da & Eczema", accuracy: 99, doctors: 8, cases: "15K+" },
-                  { icon: "💢", name: "Mụn trứng cá", accuracy: 98, doctors: 6, cases: "12K+" },
-                  { icon: "⚠️", name: "Ung thư da", accuracy: 96, doctors: 4, cases: "3K+" },
-                  { icon: "🍄", name: "Nấm da", accuracy: 97, doctors: 7, cases: "8K+" },
-                  { icon: "🌸", name: "Vẩy nến", accuracy: 98, doctors: 5, cases: "5K+" },
-                  { icon: "✨", name: "Thẩm mỹ da", accuracy: 95, doctors: 10, cases: "20K+" },
-                  { icon: "🌿", name: "Da nhạy cảm", accuracy: 97, doctors: 8, cases: "10K+" },
-                  { icon: "⚡", name: "Zona & Herpes", accuracy: 95, doctors: 3, cases: "4K+" },
+                  { icon: "🔥", name: "Viêm da & Eczema" },
+                  { icon: "💢", name: "Mụn trứng cá" },
+                  { icon: "⚠️", name: "Ung thư da" },
+                  { icon: "🍄", name: "Nấm da" },
+                  { icon: "🌸", name: "Vẩy nến" },
+                  { icon: "✨", name: "Thẩm mỹ da" },
+                  { icon: "🌿", name: "Da nhạy cảm" },
+                  { icon: "⚡", name: "Zona & Herpes" },
+                  { icon: "🧴", name: "Rụng tóc" },
+                  { icon: "💅", name: "Bệnh móng" },
                 ].map((specialty, idx) => (
                   <div
                     key={idx}
-                    className="group min-w-[260px] rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-dermcare hover:shadow-lg"
+                    className="group min-w-[180px] rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-dermcare hover:shadow-lg cursor-pointer"
                   >
                     {/* Icon */}
-                    <div className="mb-4 text-5xl">{specialty.icon}</div>
+                    {/* Icon */}
+                    <div className="mb-3 flex items-center justify-center text-5xl">
+                      {specialty.icon}
+                    </div>
 
                     {/* Name */}
-                    <h3 className="mb-3 text-lg font-bold text-slate-900">
+                    <h3 className="text-center font-semibold text-slate-900">
                       {specialty.name}
                     </h3>
-
-                    {/* Accuracy */}
-                    <div className="mb-4 rounded-lg bg-dermcare/10 px-3 py-2">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-medium text-slate-600">
-                          Độ chính xác AI
-                        </span>
-                        <span className="text-xl font-bold text-dermcare">
-                          {specialty.accuracy}%
-                        </span>
-                      </div>
-                      {/* Progress bar */}
-                      <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
-                        <div
-                          className="h-full bg-dermcare transition-all"
-                          style={{ width: `${specialty.accuracy}%` }}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Stats */}
-                    <div className="space-y-2 text-sm text-slate-600">
-                      <div className="flex items-center justify-between">
-                        <span>👨‍⚕️ Bác sĩ</span>
-                        <span className="font-semibold text-slate-900">
-                          {specialty.doctors} BS
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span>📊 Ca đã phân tích</span>
-                        <span className="font-semibold text-slate-900">
-                          {specialty.cases}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Button */}
-                    <button className="mt-4 w-full rounded-lg bg-slate-100 py-2 text-sm font-semibold text-slate-700 transition hover:bg-dermcare hover:text-white">
-                      Xem chi tiết
-                    </button>
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* STATS & TRUST SIGNALS */}
-      <section id="about" className="bg-white px-4 py-12">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-8 text-center sm:grid-cols-2 lg:grid-cols-4">
-            <div>
-              <p className="mb-2 text-4xl font-bold text-dermcare">12+</p>
-              <p className="text-sm text-slate-600">Bác sĩ chuyên khoa</p>
-            </div>
-            <div>
-              <p className="mb-2 text-4xl font-bold text-dermcare">12.5K+</p>
-              <p className="text-sm text-slate-600">Ca khám thành công</p>
-            </div>
-            <div>
-              <p className="mb-2 text-4xl font-bold text-dermcare">4.9/5.0</p>
-              <p className="text-sm text-slate-600">Đánh giá trung bình</p>
-            </div>
-            <div>
-              <p className="mb-2 text-4xl font-bold text-dermcare">&lt;5 phút</p>
-              <p className="text-sm text-slate-600">Thời gian chờ</p>
             </div>
           </div>
         </div>
