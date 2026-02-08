@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///D:/Code/Dermcare-FE/src/app/chat/layout.tsx"],"sourcesContent":["export default function ChatLayout({\r\n    children,\r\n}: {\r\n    children: React.ReactNode;\r\n}) {\r\n    return children;\r\n}\r\n"],"names":[],"mappings":";;;;AAAe,SAAS,WAAW,EAC/B,QAAQ,EAGX;IACG,OAAO;AACX"}}]
+}

@@ -3,6 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
+import BookingModal from "@/components/BookingModal";
 
 // Mock data - sẽ thay bằng API call sau này
 interface Doctor {
@@ -125,7 +128,11 @@ const MOCK_DOCTORS: Doctor[] = [
 ];
 
 export default function DoctorsPage() {
+    const router = useRouter();
+    const { isLoggedIn } = useAuth();
     const [selectedSpecialty, setSelectedSpecialty] = useState("all");
+    const [showBookingModal, setShowBookingModal] = useState(false);
+    const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
 
     // Filter doctors based on selected specialty
     const filteredDoctors =
@@ -134,6 +141,19 @@ export default function DoctorsPage() {
             : MOCK_DOCTORS.filter((doctor) =>
                 doctor.specialty.includes(selectedSpecialty)
             );
+
+    const handleBookClick = (doctor: Doctor) => {
+        // Check if user is logged in
+        if (!isLoggedIn) {
+            // Redirect to login if not authenticated
+            router.push("/login");
+            return;
+        }
+
+        // If logged in, show booking modal
+        setSelectedDoctor(doctor);
+        setShowBookingModal(true);
+    };
 
     return (
         <div className="mx-auto max-w-7xl px-4 py-8 md:py-12">
@@ -240,7 +260,10 @@ export default function DoctorsPage() {
                                 </div>
 
                                 {/* Action Button */}
-                                <button className="mt-4 w-full rounded-lg bg-dermcare py-2.5 text-sm font-semibold text-white transition hover:bg-dermcare-dark">
+                                <button
+                                    onClick={() => handleBookClick(doctor)}
+                                    className="mt-4 w-full rounded-lg bg-dermcare py-2.5 text-sm font-semibold text-white transition hover:bg-dermcare-dark"
+                                >
                                     Đặt lịch khám
                                 </button>
                             </div>
@@ -266,6 +289,22 @@ export default function DoctorsPage() {
                         </button>
                     </div>
                 </div>
+            )}
+
+            {/* Booking Modal */}
+            {selectedDoctor && (
+                <BookingModal
+                    isOpen={showBookingModal}
+                    onClose={() => {
+                        setShowBookingModal(false);
+                        setSelectedDoctor(null);
+                    }}
+                    doctor={{
+                        name: selectedDoctor.name,
+                        specialty: selectedDoctor.hospital,
+                        avatar: selectedDoctor.image
+                    }}
+                />
             )}
         </div>
     );
