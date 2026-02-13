@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function Header() {
-    const { isLoggedIn, setIsLoggedIn } = useAuth();
+    const { isLoggedIn, user, logout } = useAuth();
     const [showUserMenu, setShowUserMenu] = useState(false);
 
     return (
@@ -92,7 +92,7 @@ export default function Header() {
                                     className="flex items-center gap-2 rounded-full border border-slate-200 p-1 pr-3 hover:bg-slate-50 transition"
                                 >
                                     <div className="h-8 w-8 rounded-full bg-gradient-to-br from-dermcare to-blue-500 flex items-center justify-center text-white font-semibold text-sm">
-                                        U
+                                        {user?.fullName?.charAt(0).toUpperCase() || "U"}
                                     </div>
                                     <svg
                                         className={`h-4 w-4 text-slate-600 transition ${showUserMenu ? 'rotate-180' : ''}`}
@@ -108,8 +108,8 @@ export default function Header() {
                                 {showUserMenu && (
                                     <div className="absolute right-0 mt-2 w-56 rounded-xl border border-slate-200 bg-white shadow-lg py-2">
                                         <div className="px-4 py-3 border-b border-slate-100">
-                                            <p className="text-sm font-semibold text-slate-900">Người dùng</p>
-                                            <p className="text-xs text-slate-500">user@example.com</p>
+                                            <p className="text-sm font-semibold text-slate-900 truncate">{user?.fullName || "Người dùng"}</p>
+                                            <p className="text-xs text-slate-500 truncate">{user?.email || "Chưa cập nhật email"}</p>
                                         </div>
                                         <Link
                                             href="/profile"
@@ -134,7 +134,7 @@ export default function Header() {
                                         </Link>
                                         <div className="border-t border-slate-100 mt-2 pt-2">
                                             <button
-                                                onClick={() => setIsLoggedIn(false)}
+                                                onClick={() => logout()}
                                                 className="flex w-full items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50"
                                             >
                                                 <span>🚪</span>
@@ -148,14 +148,6 @@ export default function Header() {
                     )}
                 </div>
             </div>
-
-            {/* Dev Toggle Button - Remove in production */}
-            <button
-                onClick={() => setIsLoggedIn(!isLoggedIn)}
-                className="fixed bottom-4 right-4 rounded-full bg-slate-900 px-4 py-2 text-xs text-white shadow-lg hover:bg-slate-700 z-50"
-            >
-                Toggle Login ({isLoggedIn ? 'Logged In' : 'Logged Out'})
-            </button>
         </header>
     );
 }

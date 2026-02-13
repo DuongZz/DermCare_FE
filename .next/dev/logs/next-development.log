@@ -1,6 +1,7 @@
-[00:00:02.477] Server  LOG     ✓ Ready in 1787ms
-[00:00:06.805] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:07.550] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:02.430] Server  LOG     ✓ Ready in 1765ms
+[00:00:54.490] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:54.490] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[00:00:55.300] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -18,7 +19,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -28,88 +29,6 @@ It can also happen if the client has a browser extension installed which messes 
                       <link>
                       <script>
                       <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[00:00:07.771] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:01:09.267] Server  LOG     ✓ Compiled in 2.9s
-[00:02:56.114] Server  LOG     ✓ Compiled in 372ms
-[00:04:22.211] Server  LOG     ✓ Compiled in 349ms
-[01:15:21.016] Server  LOG     ✓ Compiled in 642ms
-[01:20:33.522] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:20:33.969] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
--                         className="mdl-js"
-                        >
-                  ...
-
-[01:22:00.316] Server  LOG     ✓ Compiled in 113ms
-[01:26:57.074] Server  LOG     ✓ Compiled in 422ms
-[01:32:25.600] Server  LOG     ✓ Compiled in 124ms
-[01:52:31.669] Server  LOG     ✓ Compiled in 148ms
-[01:54:02.319] Server  LOG     ✓ Compiled in 94ms
-[02:36:10.920] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:36:11.588] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
                       <script>
                       <RootLayout>
                         <html
@@ -118,12 +37,13 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[02:36:11.777] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[02:38:04.102] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[02:40:39.137] Server  LOG     ✓ Compiled in 201ms
-[02:41:03.883] Server  LOG     ✓ Compiled in 1035ms
-[02:41:05.757] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:41:07.046] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:55.300] Browser LOG     AuthContext: initializing auth...
+[00:00:55.300] Browser LOG     [API Request] No Token attached
+[00:00:55.300] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:00:55.300] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:247:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:375:30)","status":401}
+[00:01:17.946] Server  LOG     ✓ Compiled in 776ms
+[00:04:40.498] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:41.218] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -159,9 +79,26 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[02:41:12.310] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[02:41:32.875] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:41:33.133] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:04:41.218] Browser LOG     AuthContext: initializing auth...
+[00:04:41.218] Browser LOG     [API Request] No Token attached
+[00:04:41.218] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:04:41.218] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7861:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8379:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9185:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:247:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:375:30)","status":401}
+[00:04:41.545] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[00:04:42.503] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:07:32.469] Server  LOG     ✓ Compiled in 956ms
+[00:08:17.204] Server  LOG     ○ Compiling /forgot-password ...
+[00:09:12.393] Server  LOG     ✓ Compiled in 2.3s
+[00:13:04.354] Server  LOG     ✓ Compiled in 778ms
+[00:13:26.058] Browser LOG     Failed to initialize reCAPTCHA Enterprise config. Triggering the reCAPTCHA v2 verification.
+[00:13:27.154] Browser ERROR   {}
+[00:14:07.626] Browser ERROR   unhandledRejection: "Timeout"
+[00:14:23.770] Server  LOG     ✓ Compiled in 530ms
+[00:14:52.244] Browser LOG     Failed to initialize reCAPTCHA Enterprise config. Triggering the reCAPTCHA v2 verification.
+[00:14:52.776] Browser ERROR   {"code":"auth/billing-not-enabled","customData":{},"name":"FirebaseError"}
+[00:15:37.928] Server  LOG     ✓ Compiled in 525ms
+[00:16:18.832] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:18.832] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[00:16:20.514] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -179,7 +116,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/profile" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -197,331 +134,2702 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[02:41:33.419] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[02:41:54.251] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[02:42:43.011] Server  LOG     ✓ Compiled in 142ms
-[02:42:43.103] Server  LOG     ✓ Compiled in 153ms
-[02:44:51.519] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:44:51.899] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:16:20.514] Browser LOG     AuthContext: initializing auth...
+[00:16:20.514] Browser LOG     [API Request] No Token attached
+[00:16:20.514] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:16:20.514] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7861:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8379:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9185:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:247:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:375:30)","status":401}
+[00:33:30.576] Server  ERROR   ⨯ ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
 
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
 
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/appointments" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[02:44:53.040] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[02:45:06.223] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[02:46:00.477] Server  LOG     ✓ Compiled in 154ms
-[02:47:10.402] Browser WARN    Image with src "/yen.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:47:10.403] Browser WARN    Image with src "/khuebeo.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:47:10.403] Browser WARN    Image with src "/duongtro.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:47:10.403] Browser WARN    Image with src "/duong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:47:10.403] Browser WARN    Image with src "/ganarcho.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:47:10.403] Browser WARN    Image with src "/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:47:10.403] Browser WARN    Image with src "/hiepdan.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:47:59.380] Server  LOG     ✓ Compiled in 111ms
-[02:50:41.266] Server  LOG     ✓ Compiled in 329ms
-[02:51:31.519] Server  LOG     ✓ Compiled in 145ms
-[02:51:42.411] Server  LOG     ✓ Compiled in 70ms
-[02:51:52.395] Server  LOG     ✓ Compiled in 153ms
-[02:52:11.423] Server  LOG     ✓ Compiled in 51ms
-[02:52:33.721] Server  LOG     ✓ Compiled in 64ms
-[02:52:42.576] Server  LOG     ✓ Compiled in 53ms
-[02:53:08.274] Server  LOG     ✓ Compiled in 205ms
-[02:53:09.802] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:53:11.043] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/doctors" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[02:53:23.359] Browser WARN    Image with src "/yen.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:53:23.359] Browser WARN    Image with src "/duong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:53:23.359] Browser WARN    Image with src "/yen.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[02:53:23.359] Browser WARN    Image with src "/duongtro.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:53:23.359] Browser WARN    Image with src "/khuebeo.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:53:23.359] Browser WARN    Image with src "/ganarcho.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:53:23.359] Browser WARN    Image with src "/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:53:23.359] Browser WARN    Image with src "/hiepdan.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:55:48.723] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:55:48.723] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[02:55:49.087] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/doctors" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[02:55:49.087] Browser WARN    Image with src "/yen.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:55:49.087] Browser WARN    Image with src "/duong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:55:49.087] Browser WARN    Image with src "/duongtro.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:55:49.087] Browser WARN    Image with src "/khuebeo.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:55:49.087] Browser WARN    Image with src "/ganarcho.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:55:49.087] Browser WARN    Image with src "/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:55:49.087] Browser WARN    Image with src "/hiepdan.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[02:55:56.715] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[02:56:44.900] Server  LOG     ✓ Compiled in 663ms
-[02:56:53.780] Server  LOG     ✓ Compiled in 118ms
-[02:57:08.574] Server  LOG     ✓ Compiled in 367ms
-[03:01:40.154] Server  LOG     ✓ Compiled in 929ms
-[03:01:41.042] Browser ERROR   ./src/app/doctors/page.tsx:147:11
-Ecmascript file had an error
-  145 |
-  146 |     // Filter doctors based on selected specialty
-> 147 |     const filteredDoctors =
-      |           ^^^^^^^^^^^^^^^
-  148 |         selectedSpecialty === "all"
-  149 |             ? MOCK_DOCTORS
-  150 |             : MOCK_DOCTORS.filter((doctor) =>
-
-the name `filteredDoctors` is defined multiple times
 
 Import traces:
   Client Component Browser:
-    ./src/app/doctors/page.tsx [Client Component Browser]
-    ./src/app/doctors/page.tsx [Server Component]
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
 
   Client Component SSR:
-    ./src/app/doctors/page.tsx [Client Component SSR]
-    ./src/app/doctors/page.tsx [Server Component]
-[03:01:52.590] Server  LOG     ✓ Compiled in 77ms
-[03:02:07.400] Server  LOG     ✓ Compiled in 84ms
-[03:02:18.138] Server  LOG     ✓ Compiled in 79ms
-[03:02:18.244] Browser ERROR   ./src/app/doctors/page.tsx:283:9
-Parsing ecmascript source code failed
-  281 |         </div>
-  282 |
-> 283 |         {/* Booking Modal */ }
-      |         ^
-  284 |     {
-  285 |         selectedDoctor && (
-  286 |             <BookingModal
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
 
-Expected ',', got '{'
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:30.594] Server  ERROR   ⨯ ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
 
 Import traces:
   Client Component Browser:
-    ./src/app/doctors/page.tsx [Client Component Browser]
-    ./src/app/doctors/page.tsx [Server Component]
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
 
   Client Component SSR:
-    ./src/app/doctors/page.tsx [Client Component SSR]
-    ./src/app/doctors/page.tsx [Server Component]
-[03:02:23.844] Browser ERROR   ./src/app/doctors/page.tsx:283:9
-Parsing ecmascript source code failed
-  281 |         </div>
-  282 |
-> 283 |         {/* Booking Modal */ }
-      |         ^
-  284 |     {
-  285 |         selectedDoctor && (
-  286 |             <BookingModal
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
 
-Expected ',', got '{'
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:30.603] Server  ERROR   ⨯ ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
 
 Import traces:
   Client Component Browser:
-    ./src/app/doctors/page.tsx [Client Component Browser]
-    ./src/app/doctors/page.tsx [Server Component]
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
 
   Client Component SSR:
-    ./src/app/doctors/page.tsx [Client Component SSR]
-    ./src/app/doctors/page.tsx [Server Component]
-[03:02:26.659] Browser ERROR   ./src/app/doctors/page.tsx:283:9
-Parsing ecmascript source code failed
-  281 |         </div>
-  282 |
-> 283 |         {/* Booking Modal */ }
-      |         ^
-  284 |     {
-  285 |         selectedDoctor && (
-  286 |             <BookingModal
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
 
-Expected ',', got '{'
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:30.607] Server  ERROR   ⨯ ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
 
 Import traces:
   Client Component Browser:
-    ./src/app/doctors/page.tsx [Client Component Browser]
-    ./src/app/doctors/page.tsx [Server Component]
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
 
   Client Component SSR:
-    ./src/app/doctors/page.tsx [Client Component SSR]
-    ./src/app/doctors/page.tsx [Server Component]
-[03:02:26.743] Server  LOG     ○ Compiling /_error ...
-[03:02:27.053] Browser ERROR   ./src/app/doctors/page.tsx:283:9
-Parsing ecmascript source code failed
-  281 |         </div>
-  282 |
-> 283 |         {/* Booking Modal */ }
-      |         ^
-  284 |     {
-  285 |         selectedDoctor && (
-  286 |             <BookingModal
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
 
-Expected ',', got '{'
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:30.626] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
 
 Import traces:
   Client Component Browser:
-    ./src/app/doctors/page.tsx [Client Component Browser]
-    ./src/app/doctors/page.tsx [Server Component]
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
 
   Client Component SSR:
-    ./src/app/doctors/page.tsx [Client Component SSR]
-    ./src/app/doctors/page.tsx [Server Component]
-[03:02:29.135] Browser ERROR   uncaughtError: Error: ./src/app/doctors/page.tsx:283:9
-Parsing ecmascript source code failed
-  281 |         </div>
-  282 |
-> 283 |         {/* Booking Modal */ }
-      |         ^
-  284 |     {
-  285 |         selectedDoctor && (
-  286 |             <BookingModal
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
 
-Expected ',', got '{'
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:30.633] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
 
 Import traces:
   Client Component Browser:
-    ./src/app/doctors/page.tsx [Client Component Browser]
-    ./src/app/doctors/page.tsx [Server Component]
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
 
   Client Component SSR:
-    ./src/app/doctors/page.tsx [Client Component SSR]
-    ./src/app/doctors/page.tsx [Server Component]
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
 
 
-[03:02:29.573] Browser ERROR   ./src/app/doctors/page.tsx:283:9
-Parsing ecmascript source code failed
-  281 |         </div>
-  282 |
-> 283 |         {/* Booking Modal */ }
-      |         ^
-  284 |     {
-  285 |         selectedDoctor && (
-  286 |             <BookingModal
+[00:33:30.639] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
 
-Expected ',', got '{'
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
 
 Import traces:
   Client Component Browser:
-    ./src/app/doctors/page.tsx [Client Component Browser]
-    ./src/app/doctors/page.tsx [Server Component]
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
 
   Client Component SSR:
-    ./src/app/doctors/page.tsx [Client Component SSR]
-    ./src/app/doctors/page.tsx [Server Component]
-[03:02:29.573] Browser ERROR   ./src/app/doctors/page.tsx:283:9
-Parsing ecmascript source code failed
-  281 |         </div>
-  282 |
-> 283 |         {/* Booking Modal */ }
-      |         ^
-  284 |     {
-  285 |         selectedDoctor && (
-  286 |             <BookingModal
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
 
-Expected ',', got '{'
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:30.643] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
 
 Import traces:
   Client Component Browser:
-    ./src/app/doctors/page.tsx [Client Component Browser]
-    ./src/app/doctors/page.tsx [Server Component]
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
 
   Client Component SSR:
-    ./src/app/doctors/page.tsx [Client Component SSR]
-    ./src/app/doctors/page.tsx [Server Component]
-[03:02:38.068] Server  LOG     ✓ Compiled in 90ms
-[03:02:39.338] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:02:40.053] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:30.666] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:30.672] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:30.677] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:30.681] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:30.686] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:30.690] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:30.695] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:30.697] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:30.715] Server  LOG     ✓ Compiled in 1301ms
+[00:33:31.521] Browser ERROR   ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:31.521] Browser ERROR   ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:34.516] Browser ERROR   ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:34.516] Browser ERROR   ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:35.097] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.109] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.121] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.127] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.139] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.147] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.153] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.161] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.167] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.182] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.187] Server  ERROR   ⨯ ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.190] Server  ERROR   ⨯ ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.199] Server  ERROR   ⨯ ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.207] Server  ERROR   ⨯ ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.218] Server  ERROR   ⨯ ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.223] Server  ERROR   ⨯ ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.233] Server  ERROR   ⨯ ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.236] Server  ERROR   ⨯ ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.240] Server  ERROR   ⨯ ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.244] Server  ERROR   ⨯ ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.261] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.268] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.274] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.281] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.287] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.294] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.308] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.314] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.321] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.329] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.341] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.350] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.389] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.411] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.417] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.421] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.428] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.433] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.444] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:35.461] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:36.020] Server  LOG     ✓ Compiled in 884ms
+[00:33:36.525] Browser ERROR   ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:36.525] Browser ERROR   ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:36.525] Browser ERROR   ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:36.525] Browser ERROR   ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:36.525] Browser ERROR   ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:36.525] Browser ERROR   ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:36.525] Browser ERROR   ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:36.525] Browser ERROR   ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:36.525] Browser ERROR   ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:36.525] Browser ERROR   ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:36.525] Browser ERROR   ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:36.525] Browser ERROR   ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:36.525] Browser ERROR   ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:36.525] Browser ERROR   ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:36.525] Browser ERROR   ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:36.525] Browser ERROR   ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:37.513] Browser ERROR   ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:37.513] Browser ERROR   ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:37.513] Browser ERROR   ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:37.513] Browser ERROR   ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:37.513] Browser ERROR   ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:37.513] Browser ERROR   ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:37.513] Browser ERROR   ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:37.513] Browser ERROR   ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:38.482] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:38.486] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:38.490] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:38.494] Server  ERROR   ⨯ ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:38.498] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:38.504] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:38.510] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:38.514] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:38.520] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:38.525] Server  ERROR   ⨯ ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:33:38.535] Server  LOG     ✓ Compiled in 1544ms
+[00:33:39.509] Browser ERROR   ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:39.509] Browser ERROR   ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:39.509] Browser ERROR   ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:33:39.509] Browser ERROR   ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:35:33.782] Server  LOG     ✓ Compiled in 79ms
+[00:35:34.517] Browser ERROR   ./src/app/login/page.tsx:9:1
+Module not found: Can't resolve '@/lib/firebase'
+   7 | import { login } from "@/services/authService";
+   8 | import { useAuth } from "@/contexts/AuthContext";
+>  9 | import { auth } from '@/lib/firebase';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:35:34.517] Browser ERROR   ./src/app/login/page.tsx:10:1
+Module not found: Can't resolve 'firebase/auth'
+   8 | import { useAuth } from "@/contexts/AuthContext";
+   9 | import { auth } from '@/lib/firebase';
+> 10 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  11 | import apiClient from '@/lib/apiClient';
+  12 |
+  13 | type AuthMode = "login" | "forgot-password";
+
+Import traces:
+  Client Component Browser:
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:35:34.517] Browser ERROR   ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:35:34.517] Browser ERROR   ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:35:34.517] Browser ERROR   ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:35:34.517] Browser ERROR   ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:35:46.193] Browser ERROR   ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:35:46.193] Browser ERROR   ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:35:48.820] Browser ERROR   uncaughtError: Error: ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:35:49.088] Browser ERROR   ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:35:49.088] Browser ERROR   ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:35:49.336] Browser ERROR   ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:35:49.336] Browser ERROR   ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:37:31.978] Browser ERROR   uncaughtError: Error: ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:37:32.444] Browser ERROR   ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:37:32.445] Browser ERROR   ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:37:32.445] Browser ERROR   ./src/app/forgot-password/page.tsx:3:1
+Module not found: Can't resolve '@/lib/firebase'
+  1 | 'use client';
+  2 | import { useState, useEffect } from 'react';
+> 3 | import { auth } from '@/lib/firebase';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+
+Import map: aliased to relative './src/lib/firebase' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:37:32.445] Browser ERROR   ./src/app/forgot-password/page.tsx:4:1
+Module not found: Can't resolve 'firebase/auth'
+  2 | import { useState, useEffect } from 'react';
+  3 | import { auth } from '@/lib/firebase';
+> 4 | import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import apiClient from '@/lib/apiClient';
+  6 | import { useRouter } from 'next/navigation';
+  7 |
+
+Import traces:
+  Client Component Browser:
+    ./src/app/forgot-password/page.tsx [Client Component Browser]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/forgot-password/page.tsx [Client Component SSR]
+    ./src/app/forgot-password/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:39:07.686] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:39:07.686] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/shared/lib/router/router.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:39:07.687] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:39:07.699] Server  LOG     ✓ Compiled in 167ms
+[00:39:09.415] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:39:10.555] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -557,464 +2865,12 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[03:03:04.140] Server  LOG     ✓ Compiled in 62ms
-[03:03:17.798] Server  LOG     ✓ Compiled in 110ms
-[03:03:19.407] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:03:20.060] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[03:03:58.650] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[03:03:58.970] Browser WARN    Image with src "/duong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:03:58.970] Browser WARN    Image with src "/duongtro.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:03:58.970] Browser WARN    Image with src "/yen.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:03:58.970] Browser WARN    Image with src "/khuebeo.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:03:58.970] Browser WARN    Image with src "/ganarcho.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:03:58.971] Browser WARN    Image with src "/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:03:58.971] Browser WARN    Image with src "/hiepdan.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:09:10.817] Server  LOG     ✓ Compiled in 395ms
-[03:09:10.929] Browser ERROR   ./src/app/page.tsx:179:18
-Parsing ecmascript source code failed
-  177 |                   </svg>
-  178 |                 </Link>
-> 179 |                 )}
-      |                  ^
-  180 |
-  181 |                 <div className="text-center">
-  182 |                   <p className="text-sm font-semibold text-white">
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/app/page.tsx [Client Component Browser]
-    ./src/app/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/page.tsx [Client Component SSR]
-    ./src/app/page.tsx [Server Component]
-[03:21:54.189] Server  LOG     ✓ Compiled in 115ms
-[03:22:28.037] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:22:28.037] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[03:22:28.365] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[03:22:32.934] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[03:23:24.814] Server  LOG     ✓ Compiled in 82ms
-[03:25:30.082] Server  LOG     ✓ Compiled in 70ms
-[04:20:01.216] Server  LOG     ✓ Compiled in 966ms
-[04:20:05.114] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:20:05.115] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[04:20:06.157] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[04:20:16.150] Server  LOG     ✓ Compiled in 154ms
-[04:20:17.081] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:20:18.056] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[04:20:28.229] Server  LOG     ✓ Compiled in 75ms
-[04:25:35.031] Server  LOG     ✓ Compiled in 585ms
-[04:49:17.646] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:49:18.378] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[04:49:18.601] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[04:49:26.064] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:49:26.064] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[04:49:26.346] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[04:50:15.237] Server  LOG     ✓ Compiled in 228ms
-[06:01:29.580] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[06:01:35.630] Browser WARN    Image with src "/khuebeo.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[06:01:35.630] Browser WARN    Image with src "/yen.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[06:01:35.630] Browser WARN    Image with src "/ganarcho.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[06:01:35.630] Browser WARN    Image with src "/duongtro.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[06:01:35.630] Browser WARN    Image with src "/duong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[06:01:35.630] Browser WARN    Image with src "/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[06:01:35.630] Browser WARN    Image with src "/hiepdan.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[06:03:29.314] Server  LOG     ✓ Compiled in 1095ms
-[06:04:27.655] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[06:04:27.655] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/chat" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[06:04:27.655] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[06:04:28.865] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[06:05:51.763] Server  LOG     ✓ Compiled in 281ms
-[06:05:51.922] Server  LOG     ✓ Compiled in 196ms
-[06:07:47.518] Server  LOG     ✓ Compiled in 144ms
-[06:09:03.115] Server  LOG     ✓ Compiled in 47ms
-[06:10:09.226] Server  LOG     ✓ Compiled in 125ms
-[06:11:19.296] Server  LOG     ✓ Compiled in 303ms
-[06:11:20.497] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[06:11:20.497] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[06:11:20.721] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/chat" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[06:11:50.538] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[06:11:50.538] Browser WARN    Image with src "/yen.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[06:11:50.538] Browser WARN    Image with src "/duong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[06:11:50.538] Browser WARN    Image with src "/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[06:11:50.538] Browser WARN    Image with src "/ganarcho.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[06:11:50.538] Browser WARN    Image with src "/khuebeo.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[06:11:50.538] Browser WARN    Image with src "/duongtro.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[06:11:50.538] Browser WARN    Image with src "/hiepdan.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[06:13:31.171] Server  LOG     ✓ Compiled in 173ms
-[06:15:45.150] Server  LOG     ✓ Compiled in 109ms
-[06:15:46.042] Browser ERROR   ./src/app/chat/page.tsx:294:1
-Parsing ecmascript source code failed
-  292 |             </div>
-  293 |             );
-> 294 | }
-      | ^
-  295 |
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/app/chat/page.tsx [Client Component Browser]
-    ./src/app/chat/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/chat/page.tsx [Client Component SSR]
-    ./src/app/chat/page.tsx [Server Component]
-[06:16:03.043] Browser ERROR   ./src/app/chat/page.tsx:303:1
-Parsing ecmascript source code failed
-  301 |             </div>
-  302 |             );
-> 303 | }
-      | ^
-  304 |
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/app/chat/page.tsx [Client Component Browser]
-    ./src/app/chat/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/chat/page.tsx [Client Component SSR]
-    ./src/app/chat/page.tsx [Server Component]
-[06:16:19.042] Browser ERROR   ./src/app/chat/page.tsx:303:1
-Parsing ecmascript source code failed
-  301 |             </div>
-  302 |             );
-> 303 | }
-      | ^
-  304 |
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/app/chat/page.tsx [Client Component Browser]
-    ./src/app/chat/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/chat/page.tsx [Client Component SSR]
-    ./src/app/chat/page.tsx [Server Component]
-[06:16:32.663] Browser ERROR   ./src/app/chat/page.tsx:303:1
-Parsing ecmascript source code failed
-  301 |             </div>
-  302 |             );
-> 303 | }
-      | ^
-  304 |
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/app/chat/page.tsx [Client Component Browser]
-    ./src/app/chat/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/chat/page.tsx [Client Component SSR]
-    ./src/app/chat/page.tsx [Server Component]
-[06:16:43.874] Server  LOG     ✓ Compiled in 147ms
-[06:16:44.056] Browser ERROR   ./src/app/chat/page.tsx:303:10
-Parsing ecmascript source code failed
-  301 |             </div>
-  302 |         </div>
-> 303 |         </div >
-      |          ^^^^^^
-  304 |     );
-  305 | }
-  306 |
-
-Unterminated regexp literal
-
-Import traces:
-  Client Component Browser:
-    ./src/app/chat/page.tsx [Client Component Browser]
-    ./src/app/chat/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/chat/page.tsx [Client Component SSR]
-    ./src/app/chat/page.tsx [Server Component]
+[00:39:10.556] Browser LOG     AuthContext: initializing auth...
+[00:39:10.556] Browser LOG     [API Request] No Token attached
+[00:39:10.556] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:39:10.556] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7871:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8389:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9195:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:247:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:375:30)","status":401}
+[00:39:11.914] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:39:15.427] Browser LOG     [API Request] No Token attached
+[00:39:15.427] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/send-otp
+[00:39:18.886] Browser ERROR   {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"email\":\"duongdaoq@gmail.com\"}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/send-otp","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 400","name":"AxiosError","stack":"AxiosError: Request failed with status code 400\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7871:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8389:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9195:49)\n    at async handleSendOtp (http://localhost:3000/_next/static/chunks/src_app_login_page_tsx_a6b4ed9b._.js:88:13)","status":400}
+[00:39:38.331] Server  LOG     ✓ Compiled in 91ms

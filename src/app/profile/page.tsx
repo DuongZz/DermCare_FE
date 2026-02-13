@@ -1,24 +1,49 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function ProfilePage() {
+    const { user } = useAuth();
     const [isEditing, setIsEditing] = useState(false);
     const [profileData, setProfileData] = useState({
-        fullName: "Nguyễn Văn A",
-        email: "user@example.com",
-        phone: "0943192828",
-        dateOfBirth: "1995-05-15",
-        gender: "Nam",
-        address: "Hà Nội, Việt Nam",
-        emergencyContact: "0912345678",
-        bloodType: "O+",
-        allergies: "Không có",
-        medications: "Không có"
+        fullName: "",
+        email: "",
+        phone: "",
+        dateOfBirth: "",
+        gender: "",
+        address: "",
+        emergencyContact: "",
+        bloodType: "",
+        allergies: "",
+        medications: ""
     });
 
+    useEffect(() => {
+        console.log("ProfilePage: user updated", user);
+        if (user) {
+            setProfileData(prev => ({
+                ...prev,
+                fullName: user.fullName || "",
+                email: user.email || "",
+                gender: user.gender || "",
+                // Convert ISO date to YYYY-MM-DD for input[type=date] if needed, 
+                // but simpler just to keep as string if already in that format or empty
+                dateOfBirth: user.dateOfBirth ? new Date(user.dateOfBirth).toISOString().split('T')[0] : "",
+                phone: user.phone || "",
+                address: user.address || "",
+                // Keep other fields if they were edited locally or set default
+            }));
+        }
+    }, [user]);
+
     const [editData, setEditData] = useState(profileData);
+
+    // Sync editData when profileData updates (e.g. after fetch)
+    useEffect(() => {
+        setEditData(profileData);
+    }, [profileData]);
 
     const handleSave = () => {
         setProfileData(editData);
@@ -44,7 +69,7 @@ export default function ProfilePage() {
                 <div className="mb-6 flex items-center justify-between">
                     <div className="flex items-center gap-4">
                         <div className="h-20 w-20 rounded-full bg-gradient-to-br from-dermcare to-blue-500 flex items-center justify-center text-white text-3xl font-bold">
-                            {profileData.fullName.charAt(0)}
+                            {profileData.fullName ? profileData.fullName.charAt(0).toUpperCase() : "U"}
                         </div>
                         <div>
                             <h1 className="text-3xl font-bold text-slate-900">Hồ sơ cá nhân</h1>
@@ -137,7 +162,7 @@ export default function ProfilePage() {
                                             className="w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20"
                                         />
                                     ) : (
-                                        <p className="text-slate-900">{new Date(profileData.dateOfBirth).toLocaleDateString('vi-VN')}</p>
+                                        <p className="text-slate-900">{profileData.dateOfBirth ? new Date(profileData.dateOfBirth).toLocaleDateString('vi-VN') : "Chưa cập nhật"}</p>
                                     )}
                                 </div>
 
@@ -149,12 +174,14 @@ export default function ProfilePage() {
                                             onChange={(e) => setEditData({ ...editData, gender: e.target.value })}
                                             className="w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20"
                                         >
-                                            <option value="Nam">Nam</option>
-                                            <option value="Nữ">Nữ</option>
-                                            <option value="Khác">Khác</option>
+                                            <option value="MALE">Nam</option>
+                                            <option value="FEMALE">Nữ</option>
+                                            <option value="OTHER">Khác</option>
                                         </select>
                                     ) : (
-                                        <p className="text-slate-900">{profileData.gender}</p>
+                                        <p className="text-slate-900">
+                                            {profileData.gender === "MALE" ? "Nam" : profileData.gender === "FEMALE" ? "Nữ" : "Khác"}
+                                        </p>
                                     )}
                                 </div>
 
