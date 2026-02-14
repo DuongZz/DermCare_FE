@@ -306,10 +306,6 @@ img, video {
   overflow: hidden;
 }
 
-.invisible {
-  visibility: hidden;
-}
-
 .fixed {
   position: fixed;
 }

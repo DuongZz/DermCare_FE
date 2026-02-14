@@ -90,7 +90,7 @@ function LoginPage() {
             });
             setForgotStep("OTP");
             setOtpSent(true);
-            setSuccessMessage("Mã OTP đã được gửi đến email của bạn. Vui lòng kiểm tra (cả hộp thư rác).");
+            setSuccessMessage("Mã OTP đã được gửi đến email của bạn.");
         } catch (error) {
             console.error(error);
             setError(error.response?.data?.message || 'Lỗi gửi OTP. Vui lòng thử lại.');
@@ -645,7 +645,7 @@ function LoginPage() {
                                                             value: forgotEmail,
                                                             onChange: (e)=>setForgotEmail(e.target.value),
                                                             className: "w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-dermcare focus:ring-2 focus:ring-dermcare/20 outline-none transition",
-                                                            placeholder: "example@email.com"
+                                                            placeholder: "Nhập email của bạn"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/login/page.tsx",
                                                             lineNumber: 353,
@@ -693,7 +693,7 @@ function LoginPage() {
                                                             value: otp,
                                                             onChange: (e)=>setOtp(e.target.value),
                                                             className: "w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-dermcare focus:ring-2 focus:ring-dermcare/20 outline-none transition text-center tracking-widest text-lg",
-                                                            placeholder: "123456"
+                                                            placeholder: "Nhập mã OTP"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/login/page.tsx",
                                                             lineNumber: 379,

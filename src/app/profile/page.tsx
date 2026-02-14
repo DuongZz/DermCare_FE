@@ -56,21 +56,13 @@ export default function ProfilePage() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 py-8">
+        <div className="min-h-screen bg-slate-50 py-6">
             <div className="mx-auto max-w-5xl px-4">
-                {/* Breadcrumb */}
-                <div className="mb-6 flex items-center gap-2 text-sm text-slate-600">
-                    <Link href="/" className="hover:text-dermcare">Trang chủ</Link>
-                    <span>/</span>
-                    <span className="text-slate-900 font-medium">Hồ sơ cá nhân</span>
-                </div>
+
 
                 {/* Header */}
-                <div className="mb-6 flex items-center justify-between">
+                <div className="mb-2 flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                        <div className="h-20 w-20 rounded-full bg-gradient-to-br from-dermcare to-blue-500 flex items-center justify-center text-white text-3xl font-bold">
-                            {profileData.fullName ? profileData.fullName.charAt(0).toUpperCase() : "U"}
-                        </div>
                         <div>
                             <h1 className="text-3xl font-bold text-slate-900">Hồ sơ cá nhân</h1>
                             <p className="text-slate-600">Quản lý thông tin cá nhân của bạn</p>
@@ -323,20 +315,6 @@ export default function ProfilePage() {
                             </div>
                         </div>
 
-                        {/* Security */}
-                        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
-                            <h3 className="mb-4 font-semibold text-slate-900">Bảo mật</h3>
-                            <div className="space-y-3">
-                                <button className="flex w-full items-center justify-between rounded-lg border border-slate-200 p-3 text-sm text-slate-700 transition hover:border-dermcare hover:bg-dermcare/5">
-                                    <span>Đổi mật khẩu</span>
-                                    <span>→</span>
-                                </button>
-                                <button className="flex w-full items-center justify-between rounded-lg border border-slate-200 p-3 text-sm text-slate-700 transition hover:border-dermcare hover:bg-dermcare/5">
-                                    <span>Xác thực 2 yếu tố</span>
-                                    <span>→</span>
-                                </button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
