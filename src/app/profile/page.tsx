@@ -4,9 +4,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 
+import userService from "@/services/userService";
+
 export default function ProfilePage() {
     const { user } = useAuth();
     const [isEditing, setIsEditing] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [profileData, setProfileData] = useState({
         fullName: "",
         email: "",
@@ -17,8 +20,37 @@ export default function ProfilePage() {
         emergencyContact: "",
         bloodType: "",
         allergies: "",
-        medications: ""
+        medications: "",
+        skinType: "",
+        chronicConditions: ""
     });
+
+    // Fetch user Medical Info
+    useEffect(() => {
+        const fetchMedicalInfo = async () => {
+            try {
+                const res = await userService.getMedicalInfo();
+                if (res.success && res.data) {
+                    const medicalInfo = res.data;
+                    setProfileData(prev => ({
+                        ...prev,
+                        bloodType: medicalInfo.bloodGroup || "",
+                        allergies: medicalInfo.allergies || "",
+                        emergencyContact: medicalInfo.emergencyContact || "",
+                        medications: medicalInfo.currentMedications || "",
+                        skinType: medicalInfo.skinType || "",
+                        chronicConditions: medicalInfo.chronicConditions || ""
+                    }));
+                }
+            } catch (error) {
+                console.error("Failed to fetch medical info:", error);
+            }
+        };
+
+        if (user) {
+            fetchMedicalInfo();
+        }
+    }, [user]);
 
     useEffect(() => {
         console.log("ProfilePage: user updated", user);
@@ -28,12 +60,9 @@ export default function ProfilePage() {
                 fullName: user.fullName || "",
                 email: user.email || "",
                 gender: user.gender || "",
-                // Convert ISO date to YYYY-MM-DD for input[type=date] if needed, 
-                // but simpler just to keep as string if already in that format or empty
                 dateOfBirth: user.dateOfBirth ? new Date(user.dateOfBirth).toISOString().split('T')[0] : "",
                 phone: user.phone || "",
                 address: user.address || "",
-                // Keep other fields if they were edited locally or set default
             }));
         }
     }, [user]);
@@ -45,9 +74,32 @@ export default function ProfilePage() {
         setEditData(profileData);
     }, [profileData]);
 
-    const handleSave = () => {
-        setProfileData(editData);
-        setIsEditing(false);
+    const handleSave = async () => {
+        setIsLoading(true);
+        try {
+            const res = await userService.updateMedicalInfo({
+                skinType: editData.skinType,
+                bloodGroup: editData.bloodType,
+                allergies: editData.allergies,
+                emergencyContact: editData.emergencyContact,
+                currentMedications: editData.medications,
+                chronicConditions: editData.chronicConditions
+            });
+
+            if (res.success) {
+                // Update local state immediately for optimistic UI or re-fetch
+                setProfileData(editData);
+                setIsEditing(false);
+                console.log("Medical info updated successfully");
+            } else {
+                throw new Error("Update failed");
+            }
+        } catch (error) {
+            console.error("Failed to update medical info:", error);
+            alert("Cập nhật thất bại. Vui lòng thử lại.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleCancel = () => {
@@ -55,17 +107,31 @@ export default function ProfilePage() {
         setIsEditing(false);
     };
 
-    return (
-        <div className="min-h-screen bg-slate-50 py-6">
-            <div className="mx-auto max-w-5xl px-4">
+    const inputClass = "w-full rounded-md border border-slate-300 bg-white px-2 h-8 text-sm text-slate-900 focus:border-dermcare focus:outline-none focus:ring-1 focus:ring-dermcare/20";
 
+    const EmptyValue = () => <span className="font-normal italic text-slate-400">Chưa cập nhật</span>;
+
+    const BLOOD_TYPES = {
+        "A_POSITIVE": "A+",
+        "A_NEGATIVE": "A-",
+        "B_POSITIVE": "B+",
+        "B_NEGATIVE": "B-",
+        "AB_POSITIVE": "AB+",
+        "AB_NEGATIVE": "AB-",
+        "O_POSITIVE": "O+",
+        "O_NEGATIVE": "O-",
+    };
+
+    return (
+        <div className="min-h-screen bg-slate-50 py-2">
+            <div className="mx-auto max-w-5xl px-4">
 
                 {/* Header */}
                 <div className="mb-2 flex items-center justify-between">
                     <div className="flex items-center gap-4">
                         <div>
                             <h1 className="text-3xl font-bold text-slate-900">Hồ sơ cá nhân</h1>
-                            <p className="text-slate-600">Quản lý thông tin cá nhân của bạn</p>
+
                         </div>
                     </div>
 
@@ -95,183 +161,165 @@ export default function ProfilePage() {
                 </div>
 
                 {/* Profile Content */}
-                <div className="grid gap-6 lg:grid-cols-3">
+                <div className="grid gap-3 lg:grid-cols-3">
                     {/* Main Info */}
-                    <div className="lg:col-span-2 space-y-6">
+                    <div className="lg:col-span-2 grid grid-cols-2 gap-3">
                         {/* Personal Information */}
-                        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
-                            <h2 className="mb-4 text-xl font-bold text-slate-900">Thông tin cá nhân</h2>
-                            <div className="grid gap-4 md:grid-cols-2">
-                                <div>
-                                    <label className="mb-1 block text-sm font-medium text-slate-700">Họ và tên</label>
+                        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft">
+                            <h2 className="mb-2 text-base font-bold text-slate-900">Thông tin cá nhân</h2>
+                            <div className="grid gap-2.5">
+                                <div className="rounded-xl bg-slate-50 px-3 py-2 transition hover:bg-slate-100/80">
+                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Họ và tên</label>
                                     {isEditing ? (
-                                        <input
-                                            type="text"
-                                            value={editData.fullName}
-                                            onChange={(e) => setEditData({ ...editData, fullName: e.target.value })}
-                                            className="w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20"
-                                        />
+                                        <input type="text" value={editData.fullName} onChange={(e) => setEditData({ ...editData, fullName: e.target.value })} className={inputClass} />
                                     ) : (
-                                        <p className="text-slate-900">{profileData.fullName}</p>
+                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.fullName || <EmptyValue />}</p>
                                     )}
                                 </div>
 
-                                <div>
-                                    <label className="mb-1 block text-sm font-medium text-slate-700">Email</label>
+                                <div className="rounded-xl bg-slate-50 px-3 py-2 transition hover:bg-slate-100/80">
+                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Email</label>
                                     {isEditing ? (
-                                        <input
-                                            type="email"
-                                            value={editData.email}
-                                            onChange={(e) => setEditData({ ...editData, email: e.target.value })}
-                                            className="w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20"
-                                        />
+                                        <input type="email" value={editData.email} onChange={(e) => setEditData({ ...editData, email: e.target.value })} className={inputClass} />
                                     ) : (
-                                        <p className="text-slate-900">{profileData.email}</p>
+                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.email || <EmptyValue />}</p>
                                     )}
                                 </div>
 
-                                <div>
-                                    <label className="mb-1 block text-sm font-medium text-slate-700">Số điện thoại</label>
+                                <div className="rounded-xl bg-slate-50 px-3 py-2 transition hover:bg-slate-100/80">
+                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Số điện thoại</label>
                                     {isEditing ? (
-                                        <input
-                                            type="tel"
-                                            value={editData.phone}
-                                            onChange={(e) => setEditData({ ...editData, phone: e.target.value })}
-                                            className="w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20"
-                                        />
+                                        <input type="tel" value={editData.phone} onChange={(e) => setEditData({ ...editData, phone: e.target.value })} className={inputClass} />
                                     ) : (
-                                        <p className="text-slate-900">{profileData.phone}</p>
+                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.phone || <EmptyValue />}</p>
                                     )}
                                 </div>
 
-                                <div>
-                                    <label className="mb-1 block text-sm font-medium text-slate-700">Ngày sinh</label>
+                                <div className="rounded-xl bg-slate-50 px-3 py-2 transition hover:bg-slate-100/80">
+                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Ngày sinh</label>
                                     {isEditing ? (
-                                        <input
-                                            type="date"
-                                            value={editData.dateOfBirth}
-                                            onChange={(e) => setEditData({ ...editData, dateOfBirth: e.target.value })}
-                                            className="w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20"
-                                        />
+                                        <input type="date" value={editData.dateOfBirth} onChange={(e) => setEditData({ ...editData, dateOfBirth: e.target.value })} className={inputClass} />
                                     ) : (
-                                        <p className="text-slate-900">{profileData.dateOfBirth ? new Date(profileData.dateOfBirth).toLocaleDateString('vi-VN') : "Chưa cập nhật"}</p>
+                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">
+                                            {profileData.dateOfBirth ? new Date(profileData.dateOfBirth).toLocaleDateString('vi-VN') : <EmptyValue />}
+                                        </p>
                                     )}
                                 </div>
 
-                                <div>
-                                    <label className="mb-1 block text-sm font-medium text-slate-700">Giới tính</label>
+                                <div className="rounded-xl bg-slate-50 px-3 py-2 transition hover:bg-slate-100/80">
+                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Giới tính</label>
                                     {isEditing ? (
-                                        <select
-                                            value={editData.gender}
-                                            onChange={(e) => setEditData({ ...editData, gender: e.target.value })}
-                                            className="w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20"
-                                        >
+                                        <select value={editData.gender} onChange={(e) => setEditData({ ...editData, gender: e.target.value })} className={inputClass}>
                                             <option value="MALE">Nam</option>
                                             <option value="FEMALE">Nữ</option>
                                             <option value="OTHER">Khác</option>
                                         </select>
                                     ) : (
-                                        <p className="text-slate-900">
-                                            {profileData.gender === "MALE" ? "Nam" : profileData.gender === "FEMALE" ? "Nữ" : "Khác"}
+                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">
+                                            {profileData.gender === "MALE" ? "Nam" : profileData.gender === "FEMALE" ? "Nữ" : profileData.gender ? "Khác" : <EmptyValue />}
                                         </p>
                                     )}
                                 </div>
 
-                                <div>
-                                    <label className="mb-1 block text-sm font-medium text-slate-700">Địa chỉ</label>
+                                <div className="rounded-xl bg-slate-50 px-3 py-2 transition hover:bg-slate-100/80">
+                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Địa chỉ</label>
                                     {isEditing ? (
-                                        <input
-                                            type="text"
-                                            value={editData.address}
-                                            onChange={(e) => setEditData({ ...editData, address: e.target.value })}
-                                            className="w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20"
-                                        />
+                                        <input type="text" value={editData.address} onChange={(e) => setEditData({ ...editData, address: e.target.value })} className={inputClass} />
                                     ) : (
-                                        <p className="text-slate-900">{profileData.address}</p>
+                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.address || <EmptyValue />}</p>
                                     )}
                                 </div>
                             </div>
+                            {/* Medical Information */}
                         </div>
 
                         {/* Medical Information */}
-                        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
-                            <h2 className="mb-4 text-xl font-bold text-slate-900">Thông tin y tế</h2>
-                            <div className="grid gap-4 md:grid-cols-2">
-                                <div>
-                                    <label className="mb-1 block text-sm font-medium text-slate-700">Nhóm máu</label>
+                        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft h-full">
+                            <h2 className="mb-2 text-base font-bold text-slate-900">Thông tin y tế</h2>
+                            <div className="grid gap-2.5">
+                                <div className="rounded-xl bg-red-50/60 px-3 py-2 transition hover:bg-red-50">
+                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Nhóm máu</label>
                                     {isEditing ? (
-                                        <select
-                                            value={editData.bloodType}
-                                            onChange={(e) => setEditData({ ...editData, bloodType: e.target.value })}
-                                            className="w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20"
-                                        >
-                                            <option value="A+">A+</option>
-                                            <option value="A-">A-</option>
-                                            <option value="B+">B+</option>
-                                            <option value="B-">B-</option>
-                                            <option value="O+">O+</option>
-                                            <option value="O-">O-</option>
-                                            <option value="AB+">AB+</option>
-                                            <option value="AB-">AB-</option>
+                                        <select value={editData.bloodType} onChange={(e) => setEditData({ ...editData, bloodType: e.target.value })} className={inputClass}>
+                                            <option value="">-- Chọn --</option>
+                                            <option value="A_POSITIVE">A+</option>
+                                            <option value="A_NEGATIVE">A-</option>
+                                            <option value="B_POSITIVE">B+</option>
+                                            <option value="B_NEGATIVE">B-</option>
+                                            <option value="O_POSITIVE">O+</option>
+                                            <option value="O_NEGATIVE">O-</option>
+                                            <option value="AB_POSITIVE">AB+</option>
+                                            <option value="AB_NEGATIVE">AB-</option>
                                         </select>
                                     ) : (
-                                        <p className="text-slate-900">{profileData.bloodType}</p>
+                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">
+                                            {BLOOD_TYPES[profileData.bloodType as keyof typeof BLOOD_TYPES] || profileData.bloodType || <EmptyValue />}
+                                        </p>
                                     )}
                                 </div>
 
-                                <div>
-                                    <label className="mb-1 block text-sm font-medium text-slate-700">Liên hệ khẩn cấp</label>
+                                <div className="rounded-xl bg-orange-50/60 px-3 py-2 transition hover:bg-orange-50">
+                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Loại da</label>
                                     {isEditing ? (
-                                        <input
-                                            type="tel"
-                                            value={editData.emergencyContact}
-                                            onChange={(e) => setEditData({ ...editData, emergencyContact: e.target.value })}
-                                            className="w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20"
-                                        />
+                                        <select value={editData.skinType} onChange={(e) => setEditData({ ...editData, skinType: e.target.value })} className={inputClass}>
+                                            <option value="">-- Chọn --</option>
+                                            <option value="Da dầu">Da dầu</option>
+                                            <option value="Da khô">Da khô</option>
+                                            <option value="Da hỗn hợp">Da hỗn hợp</option>
+                                            <option value="Da thường">Da thường</option>
+                                            <option value="Da nhạy cảm">Da nhạy cảm</option>
+                                        </select>
                                     ) : (
-                                        <p className="text-slate-900">{profileData.emergencyContact}</p>
+                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.skinType || <EmptyValue />}</p>
                                     )}
                                 </div>
 
-                                <div className="md:col-span-2">
-                                    <label className="mb-1 block text-sm font-medium text-slate-700">Dị ứng</label>
+                                <div className="rounded-xl bg-green-50/60 px-3 py-2 transition hover:bg-green-50">
+                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Liên hệ khẩn cấp</label>
                                     {isEditing ? (
-                                        <textarea
-                                            value={editData.allergies}
-                                            onChange={(e) => setEditData({ ...editData, allergies: e.target.value })}
-                                            rows={2}
-                                            className="w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20"
-                                            placeholder="Nhập các loại dị ứng (nếu có)"
-                                        />
+                                        <input type="tel" value={editData.emergencyContact} onChange={(e) => setEditData({ ...editData, emergencyContact: e.target.value })} className={inputClass} />
                                     ) : (
-                                        <p className="text-slate-900">{profileData.allergies}</p>
+                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.emergencyContact || <EmptyValue />}</p>
                                     )}
                                 </div>
 
-                                <div className="md:col-span-2">
-                                    <label className="mb-1 block text-sm font-medium text-slate-700">Thuốc đang dùng</label>
+                                <div className="rounded-xl bg-yellow-50/60 px-3 py-2 transition hover:bg-yellow-50">
+                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Dị ứng</label>
                                     {isEditing ? (
-                                        <textarea
-                                            value={editData.medications}
-                                            onChange={(e) => setEditData({ ...editData, medications: e.target.value })}
-                                            rows={2}
-                                            className="w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20"
-                                            placeholder="Nhập các loại thuốc đang sử dụng (nếu có)"
-                                        />
+                                        <input type="text" value={editData.allergies} onChange={(e) => setEditData({ ...editData, allergies: e.target.value })} className={inputClass} placeholder="Nhập dị ứng (nếu có)" />
                                     ) : (
-                                        <p className="text-slate-900">{profileData.medications}</p>
+                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.allergies || <EmptyValue />}</p>
+                                    )}
+                                </div>
+
+                                <div className="rounded-xl bg-blue-50/60 px-3 py-2 transition hover:bg-blue-50">
+                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Thuốc đang dùng</label>
+                                    {isEditing ? (
+                                        <input type="text" value={editData.medications} onChange={(e) => setEditData({ ...editData, medications: e.target.value })} className={inputClass} placeholder="Nhập thuốc đang dùng (nếu có)" />
+                                    ) : (
+                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.medications || <EmptyValue />}</p>
+                                    )}
+                                </div>
+
+                                <div className="rounded-xl bg-purple-50/60 px-3 py-2 transition hover:bg-purple-50">
+                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Bệnh mãn tính</label>
+                                    {isEditing ? (
+                                        <input type="text" value={editData.chronicConditions} onChange={(e) => setEditData({ ...editData, chronicConditions: e.target.value })} className={inputClass} placeholder="Nhập bệnh mãn tính (nếu có)" />
+                                    ) : (
+                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.chronicConditions || <EmptyValue />}</p>
                                     )}
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                     {/* Sidebar */}
-                    <div className="space-y-6">
+                    <div className="flex flex-col gap-3 h-full">
                         {/* Quick Actions */}
-                        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
-                            <h3 className="mb-4 font-semibold text-slate-900">Hành động nhanh</h3>
-                            <div className="space-y-3">
+                        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft">
+                            <h3 className="mb-3 font-semibold text-slate-900">Hành động nhanh</h3>
+                            <div className="space-y-2.5">
                                 <Link
                                     href="/appointments"
                                     className="flex items-center gap-3 rounded-lg border border-slate-200 p-3 text-sm text-slate-700 transition hover:border-dermcare hover:bg-dermcare/5"
@@ -297,9 +345,9 @@ export default function ProfilePage() {
                         </div>
 
                         {/* Account Stats */}
-                        <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-dermcare-light to-white p-6 shadow-soft">
-                            <h3 className="mb-4 font-semibold text-slate-900">Thống kê tài khoản</h3>
-                            <div className="space-y-3">
+                        <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-dermcare-light to-white p-5 shadow-soft flex-1 flex flex-col justify-center">
+                            <h3 className="mb-3 font-semibold text-slate-900">Thống kê tài khoản</h3>
+                            <div className="space-y-2.5">
                                 <div className="flex items-center justify-between">
                                     <span className="text-sm text-slate-600">Lượt khám</span>
                                     <span className="text-lg font-bold text-dermcare">12</span>
@@ -319,5 +367,6 @@ export default function ProfilePage() {
                 </div>
             </div>
         </div>
+
     );
 }
