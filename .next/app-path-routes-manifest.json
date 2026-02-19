@@ -5,6 +5,7 @@
   "/appointments/page": "/appointments",
   "/chat/page": "/chat",
   "/doctors/page": "/doctors",
+  "/forgot-password/page": "/forgot-password",
   "/login/page": "/login",
   "/page": "/",
   "/profile/page": "/profile",

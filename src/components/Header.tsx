@@ -1,6 +1,4 @@
-"use client";
-
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
@@ -8,6 +6,26 @@ import { useAuth } from "@/contexts/AuthContext";
 export default function Header() {
     const { isLoggedIn, user, logout } = useAuth();
     const [showUserMenu, setShowUserMenu] = useState(false);
+    const [showNotifications, setShowNotifications] = useState(false);
+
+    const notifRef = useRef<HTMLDivElement>(null);
+    const userMenuRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (notifRef.current && !notifRef.current.contains(event.target as Node)) {
+                setShowNotifications(false);
+            }
+            if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
+                setShowUserMenu(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     return (
         <header className="sticky top-0 z-50 border-b border-slate-100 bg-white">
@@ -76,17 +94,101 @@ export default function Header() {
                             </Link>
 
                             {/* Notification Bell */}
-                            <button className="relative rounded-full p-2 text-slate-600 hover:bg-slate-100 transition">
-                                <span className="text-xl">🔔</span>
-                                {/* Notification Badge */}
-                                <span className="absolute right-1 top-1 flex h-2 w-2">
-                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
-                                    <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
-                                </span>
-                            </button>
+                            <div className="relative" ref={notifRef}>
+                                <button
+                                    onClick={() => setShowNotifications(!showNotifications)}
+                                    className="relative rounded-full p-2 text-slate-600 hover:bg-slate-100 transition"
+                                >
+                                    <span className="text-xl">🔔</span>
+                                    {/* Notification Badge */}
+                                    <span className="absolute right-1 top-1 flex h-2 w-2">
+                                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                                        <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
+                                    </span>
+                                </button>
+
+                                {/* Notification Dropdown */}
+                                {showNotifications && (
+                                    <div className="absolute right-0 mt-2 w-80 rounded-xl border border-slate-200 bg-white shadow-xl py-2 z-50 animate-in fade-in zoom-in-95 duration-200">
+                                        <div className="px-4 py-2 border-b border-slate-100 flex justify-between items-center">
+                                            <h3 className="font-semibold text-slate-900">Thông báo</h3>
+                                            <button className="text-xs text-dermcare hover:underline">Đánh dấu đã đọc</button>
+                                        </div>
+                                        <div className="max-h-[400px] overflow-y-auto scrollbar-hide">
+                                            {[
+                                                {
+                                                    id: 1,
+                                                    type: 'appointment',
+                                                    title: 'Nhắc nhở lịch khám',
+                                                    message: 'Bạn có lịch khám với BS. Đào Quang Dương vào 14:00 hôm nay.',
+                                                    time: '30 phút trước',
+                                                    read: false,
+                                                    icon: '📅',
+                                                    bg: 'bg-blue-50 text-blue-600'
+                                                },
+                                                {
+                                                    id: 2,
+                                                    type: 'message',
+                                                    title: 'Tin nhắn mới',
+                                                    message: 'Bác sĩ đã trả lời câu hỏi của bạn về đơn thuốc: "Chào bạn, thuốc này uống sau ăn..."',
+                                                    time: '2 giờ trước',
+                                                    read: true,
+                                                    icon: '💬',
+                                                    bg: 'bg-green-50 text-green-600'
+                                                },
+                                                {
+                                                    id: 3,
+                                                    type: 'system',
+                                                    title: 'Cập nhật hồ sơ',
+                                                    message: 'Hồ sơ sức khỏe của bạn đã được cập nhật thành công.',
+                                                    time: '1 ngày trước',
+                                                    read: true,
+                                                    icon: '📋',
+                                                    bg: 'bg-purple-50 text-purple-600'
+                                                },
+                                                {
+                                                    id: 4,
+                                                    type: 'promotion',
+                                                    title: 'Khuyến mãi hè',
+                                                    message: 'Giảm 20% gói khám tổng quát trong tháng này.',
+                                                    time: '2 ngày trước',
+                                                    read: true,
+                                                    icon: '🎁',
+                                                    bg: 'bg-orange-50 text-orange-600'
+                                                }
+                                            ].map((notif) => (
+                                                <div key={notif.id} className={`px-4 py-3 border-b border-slate-50 hover:bg-slate-50 cursor-pointer transition flex gap-3 ${!notif.read ? 'bg-slate-50' : 'bg-white'}`}>
+                                                    <div className={`mt-1 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm ${notif.bg}`}>
+                                                        {notif.icon}
+                                                    </div>
+                                                    <div className="flex-1">
+                                                        <div className="flex justify-between items-start">
+                                                            <p className={`text-sm ${!notif.read ? 'font-bold text-slate-900' : 'font-medium text-slate-700'}`}>
+                                                                {notif.title}
+                                                            </p>
+                                                            {!notif.read && <span className="h-2 w-2 rounded-full bg-blue-500 mt-1.5"></span>}
+                                                        </div>
+                                                        <p className="text-xs text-slate-500 line-clamp-2 mt-0.5 leading-relaxed">
+                                                            {notif.message}
+                                                        </p>
+                                                        <p className="text-[10px] text-slate-400 mt-1 font-medium">
+                                                            {notif.time}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <div className="p-2 text-center border-t border-slate-100 bg-slate-50 rounded-b-xl">
+                                            <Link href="/notifications" className="text-xs font-semibold text-dermcare hover:text-dermcare-dark transition">
+                                                Xem tất cả thông báo
+                                            </Link>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
 
                             {/* User Menu Dropdown */}
-                            <div className="relative">
+                            <div className="relative" ref={userMenuRef}>
                                 <button
                                     onClick={() => setShowUserMenu(!showUserMenu)}
                                     className="flex items-center gap-1.5 rounded-full border border-slate-200 px-2.5 py-2 hover:bg-slate-50 transition"
