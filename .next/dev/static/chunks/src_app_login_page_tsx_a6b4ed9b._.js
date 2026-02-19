@@ -10,9 +10,17 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$authService$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/authService.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$contexts$2f$AuthContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/contexts/AuthContext.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/apiClient.ts [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
+;
+;
+;
 ;
 ;
 ;
@@ -20,18 +28,131 @@ function LoginPage() {
     _s();
     const [mode, setMode] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("login");
     const [rememberMe, setRememberMe] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [acceptTerms, setAcceptTerms] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    // Auto-fill from registration
+    const [email, setEmail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [password, setPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    // Forgot Password State
+    const [forgotEmail, setForgotEmail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [otp, setOtp] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [newPassword, setNewPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [forgotStep, setForgotStep] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("EMAIL");
+    const [otpSent, setOtpSent] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "LoginPage.useEffect": ()=>{
+            if ("TURBOPACK compile-time truthy", 1) {
+                const tempEmail = sessionStorage.getItem('temp_login_email');
+                const tempPassword = sessionStorage.getItem('temp_login_password');
+                if (tempEmail) {
+                    setEmail(tempEmail);
+                    sessionStorage.removeItem('temp_login_email');
+                }
+                if (tempPassword) {
+                    setPassword(tempPassword);
+                    sessionStorage.removeItem('temp_login_password');
+                }
+            }
+        }
+    }["LoginPage.useEffect"], []);
+    const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [successMessage, setSuccessMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
+    const { login: authLogin, isLoggedIn } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$contexts$2f$AuthContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"])();
+    const handleLogin = async (e)=>{
+        e.preventDefault();
+        setError("");
+        setLoading(true);
+        try {
+            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$authService$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["login"])({
+                email,
+                password,
+                rememberMe
+            });
+            authLogin();
+            router.push("/");
+        } catch (err) {
+            console.error("Login failed:", err);
+            setError(err.response?.data?.message || "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin!");
+        } finally{
+            setLoading(false);
+        }
+    };
+    const handleSendOtp = async ()=>{
+        if (!forgotEmail) {
+            setError("Vui lòng nhập email.");
+            return;
+        }
+        setLoading(true);
+        setError("");
+        try {
+            await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post('/auth/send-otp', {
+                email: forgotEmail
+            });
+            setForgotStep("OTP");
+            setOtpSent(true);
+            setSuccessMessage("Mã OTP đã được gửi đến email của bạn.");
+        } catch (error) {
+            console.error(error);
+            setError(error.response?.data?.message || 'Lỗi gửi OTP. Vui lòng thử lại.');
+        } finally{
+            setLoading(false);
+        }
+    };
+    const handleResetPassword = async ()=>{
+        if (!otp || !newPassword) {
+            setError("Vui lòng nhập đầy đủ mã OTP và mật khẩu mới.");
+            return;
+        }
+        setLoading(true);
+        setError("");
+        try {
+            await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post('/auth/reset-password', {
+                email: forgotEmail,
+                otp,
+                newPassword
+            });
+            setSuccessMessage('Đổi mật khẩu thành công! Đang chuyển hướng...');
+            setTimeout(()=>{
+                setMode("login");
+                resetForgotState();
+            }, 2000);
+        } catch (error) {
+            console.error(error);
+            setError(error.response?.data?.message || 'Lỗi đặt lại mật khẩu. Mã OTP có thể không đúng hoặc đã hết hạn.');
+        } finally{
+            setLoading(false);
+        }
+    };
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "LoginPage.useEffect": ()=>{
+            if (isLoggedIn) {
+                router.push("/");
+            }
+        }
+    }["LoginPage.useEffect"], [
+        isLoggedIn,
+        router
+    ]);
+    const resetForgotState = ()=>{
+        setForgotEmail("");
+        setOtp("");
+        setNewPassword("");
+        setForgotStep("EMAIL");
+        setError("");
+        setSuccessMessage("");
+        setOtpSent(false);
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "flex min-h-screen",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "hidden lg:flex lg:w-1/2 bg-gradient-to-br from-dermcare to-dermcare-dark p-12 pl-20 items-center justify-center relative overflow-hidden",
+                className: "hidden lg:flex lg:w-1/2 h-screen sticky top-0 bg-gradient-to-br from-dermcare to-dermcare-dark p-12 pl-20 items-center justify-center relative overflow-hidden pb-60",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.15),_transparent_60%)]"
                     }, void 0, false, {
                         fileName: "[project]/src/app/login/page.tsx",
-                        lineNumber: 18,
+                        lineNumber: 135,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -48,12 +169,12 @@ function LoginPage() {
                                     className: "h-32 w-32 rounded-full"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/login/page.tsx",
-                                    lineNumber: 21,
+                                    lineNumber: 138,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/login/page.tsx",
-                                lineNumber: 20,
+                                lineNumber: 137,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -62,14 +183,14 @@ function LoginPage() {
                                     "Chăm sóc da liễu ",
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                         fileName: "[project]/src/app/login/page.tsx",
-                                        lineNumber: 30,
+                                        lineNumber: 147,
                                         columnNumber: 42
                                     }, this),
                                     "chuyên nghiệp trực tuyến"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/login/page.tsx",
-                                lineNumber: 29,
+                                lineNumber: 146,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -77,104 +198,23 @@ function LoginPage() {
                                 children: "Kết nối với bác sĩ da liễu hàng đầu, theo dõi liệu trình điều trị và quản lý hồ sơ sức khỏe da liễu của bạn."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/login/page.tsx",
-                                lineNumber: 33,
-                                columnNumber: 21
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-8 pt-6",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-3xl font-bold",
-                                                children: "12.5K+"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/app/login/page.tsx",
-                                                lineNumber: 39,
-                                                columnNumber: 29
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-dermcare-light text-sm",
-                                                children: "Ca khám"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/app/login/page.tsx",
-                                                lineNumber: 40,
-                                                columnNumber: 29
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/app/login/page.tsx",
-                                        lineNumber: 38,
-                                        columnNumber: 25
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-3xl font-bold",
-                                                children: "4.9/5.0"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/app/login/page.tsx",
-                                                lineNumber: 43,
-                                                columnNumber: 29
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-dermcare-light text-sm",
-                                                children: "Đánh giá"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/app/login/page.tsx",
-                                                lineNumber: 44,
-                                                columnNumber: 29
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/app/login/page.tsx",
-                                        lineNumber: 42,
-                                        columnNumber: 25
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-3xl font-bold",
-                                                children: "<5 phút"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/app/login/page.tsx",
-                                                lineNumber: 47,
-                                                columnNumber: 29
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-dermcare-light text-sm",
-                                                children: "Chờ trả lời"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/app/login/page.tsx",
-                                                lineNumber: 48,
-                                                columnNumber: 29
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/app/login/page.tsx",
-                                        lineNumber: 46,
-                                        columnNumber: 25
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/app/login/page.tsx",
-                                lineNumber: 37,
+                                lineNumber: 150,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/login/page.tsx",
-                        lineNumber: 19,
+                        lineNumber: 136,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/login/page.tsx",
-                lineNumber: 17,
+                lineNumber: 134,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex-1 flex items-center justify-center p-6 bg-slate-50",
+                className: "flex-1 flex items-center justify-center p-4 bg-slate-50 pb-20",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "w-full max-w-md",
                     children: [
@@ -191,34 +231,35 @@ function LoginPage() {
                                     className: "h-16 w-auto mx-auto"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/login/page.tsx",
-                                    lineNumber: 60,
+                                    lineNumber: 163,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/login/page.tsx",
-                                lineNumber: 59,
+                                lineNumber: 162,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/login/page.tsx",
-                            lineNumber: 58,
+                            lineNumber: 161,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "bg-white rounded-2xl shadow-soft border border-slate-100 p-8",
+                            className: "bg-white rounded-2xl shadow-soft border border-slate-100 p-6",
                             children: [
-                                mode === "login" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                mode === "login" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+                                    onSubmit: handleLogin,
                                     className: "space-y-6",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "space-y-2 text-center",
+                                            className: "space-y-1 text-center",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                                     className: "text-2xl font-bold text-slate-900",
                                                     children: "Đăng nhập"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 75,
+                                                    lineNumber: 178,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -226,14 +267,30 @@ function LoginPage() {
                                                     children: "Chào mừng bạn quay trở lại với Dermcare"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 78,
+                                                    lineNumber: 181,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/login/page.tsx",
-                                            lineNumber: 74,
+                                            lineNumber: 177,
                                             columnNumber: 33
+                                        }, this),
+                                        error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-600",
+                                            children: error
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/login/page.tsx",
+                                            lineNumber: 187,
+                                            columnNumber: 37
+                                        }, this),
+                                        successMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "rounded-lg border border-green-200 bg-green-50 p-3 text-sm text-green-600",
+                                            children: successMessage
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/login/page.tsx",
+                                            lineNumber: 192,
+                                            columnNumber: 37
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "space-y-4",
@@ -246,23 +303,24 @@ function LoginPage() {
                                                             children: "Email"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 85,
+                                                            lineNumber: 199,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                             id: "email",
                                                             type: "email",
-                                                            placeholder: "yourname@example.com",
-                                                            className: "w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-dermcare focus:ring-2 focus:ring-dermcare/20 outline-none transition"
+                                                            value: email,
+                                                            onChange: (e)=>setEmail(e.target.value),
+                                                            className: "w-full px-4 py-2 rounded-lg border border-slate-200 focus:border-dermcare focus:ring-2 focus:ring-dermcare/20 outline-none transition"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 91,
+                                                            lineNumber: 205,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 84,
+                                                    lineNumber: 198,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -273,23 +331,24 @@ function LoginPage() {
                                                             children: "Mật khẩu"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 100,
+                                                            lineNumber: 215,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                             id: "password",
                                                             type: "password",
-                                                            placeholder: "••••••••",
-                                                            className: "w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-dermcare focus:ring-2 focus:ring-dermcare/20 outline-none transition"
+                                                            value: password,
+                                                            onChange: (e)=>setPassword(e.target.value),
+                                                            className: "w-full px-4 py-2 rounded-lg border border-slate-200 focus:border-dermcare focus:ring-2 focus:ring-dermcare/20 outline-none transition"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 106,
+                                                            lineNumber: 221,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 99,
+                                                    lineNumber: 214,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -305,7 +364,7 @@ function LoginPage() {
                                                                     className: "w-4 h-4 rounded border-slate-300 text-dermcare focus:ring-dermcare"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                                    lineNumber: 116,
+                                                                    lineNumber: 232,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -313,42 +372,48 @@ function LoginPage() {
                                                                     children: "Nhớ mật khẩu"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                                    lineNumber: 122,
+                                                                    lineNumber: 238,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 115,
+                                                            lineNumber: 231,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                            onClick: ()=>setMode("forgot-password"),
+                                                            type: "button",
+                                                            onClick: ()=>{
+                                                                setMode("forgot-password");
+                                                                resetForgotState();
+                                                            },
                                                             className: "text-sm text-dermcare hover:text-dermcare-dark font-medium",
                                                             children: "Quên mật khẩu?"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 126,
+                                                            lineNumber: 242,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 114,
+                                                    lineNumber: 230,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                    className: "w-full bg-dermcare hover:bg-dermcare-dark text-white font-semibold py-2.5 rounded-lg transition shadow-soft",
-                                                    children: "Đăng nhập"
+                                                    type: "submit",
+                                                    disabled: loading,
+                                                    className: "w-full bg-dermcare hover:bg-dermcare-dark text-white font-semibold py-2.5 rounded-lg transition shadow-soft disabled:opacity-50",
+                                                    children: loading ? "Đang đăng nhập..." : "Đăng nhập"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 134,
+                                                    lineNumber: 254,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/login/page.tsx",
-                                            lineNumber: 83,
+                                            lineNumber: 197,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -360,12 +425,12 @@ function LoginPage() {
                                                         className: "w-full border-t border-slate-200"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/login/page.tsx",
-                                                        lineNumber: 141,
+                                                        lineNumber: 266,
                                                         columnNumber: 41
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 140,
+                                                    lineNumber: 265,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -375,18 +440,18 @@ function LoginPage() {
                                                         children: "hoặc"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/login/page.tsx",
-                                                        lineNumber: 144,
+                                                        lineNumber: 269,
                                                         columnNumber: 41
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 143,
+                                                    lineNumber: 268,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/login/page.tsx",
-                                            lineNumber: 139,
+                                            lineNumber: 264,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -403,12 +468,12 @@ function LoginPage() {
                                                                 d: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/login/page.tsx",
-                                                                lineNumber: 151,
+                                                                lineNumber: 276,
                                                                 columnNumber: 45
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 150,
+                                                            lineNumber: 275,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -416,13 +481,13 @@ function LoginPage() {
                                                             children: "Facebook"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 156,
+                                                            lineNumber: 281,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 149,
+                                                    lineNumber: 274,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -437,7 +502,7 @@ function LoginPage() {
                                                                     d: "M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                                    lineNumber: 163,
+                                                                    lineNumber: 288,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -445,7 +510,7 @@ function LoginPage() {
                                                                     d: "M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                                    lineNumber: 167,
+                                                                    lineNumber: 292,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -453,7 +518,7 @@ function LoginPage() {
                                                                     d: "M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                                    lineNumber: 171,
+                                                                    lineNumber: 296,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -461,13 +526,13 @@ function LoginPage() {
                                                                     d: "M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                                    lineNumber: 175,
+                                                                    lineNumber: 300,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 162,
+                                                            lineNumber: 287,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -475,19 +540,19 @@ function LoginPage() {
                                                             children: "Google"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 180,
+                                                            lineNumber: 305,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 161,
+                                                    lineNumber: 286,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/login/page.tsx",
-                                            lineNumber: 148,
+                                            lineNumber: 273,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -495,395 +560,25 @@ function LoginPage() {
                                             children: [
                                                 "Chưa có tài khoản?",
                                                 " ",
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                    onClick: ()=>setMode("register"),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                                    href: "/register",
                                                     className: "text-dermcare hover:text-dermcare-dark font-medium",
                                                     children: "Đăng ký ngay"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 188,
+                                                    lineNumber: 313,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/login/page.tsx",
-                                            lineNumber: 186,
+                                            lineNumber: 311,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/login/page.tsx",
-                                    lineNumber: 73,
-                                    columnNumber: 29
-                                }, this),
-                                mode === "register" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "space-y-6",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "space-y-2 text-center",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                    className: "text-2xl font-bold text-slate-900",
-                                                    children: "Đăng ký tài khoản"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 202,
-                                                    columnNumber: 37
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-sm text-slate-600",
-                                                    children: "Tạo tài khoản để bắt đầu chăm sóc da liễu"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 205,
-                                                    columnNumber: 37
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/src/app/login/page.tsx",
-                                            lineNumber: 201,
-                                            columnNumber: 33
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "space-y-4",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                            htmlFor: "fullname",
-                                                            className: "block text-sm font-medium text-slate-700 mb-1.5",
-                                                            children: "Họ và tên"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 212,
-                                                            columnNumber: 41
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                            id: "fullname",
-                                                            type: "text",
-                                                            placeholder: "Nguyễn Văn A",
-                                                            className: "w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-dermcare focus:ring-2 focus:ring-dermcare/20 outline-none transition"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 218,
-                                                            columnNumber: 41
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 211,
-                                                    columnNumber: 37
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                            htmlFor: "reg-email",
-                                                            className: "block text-sm font-medium text-slate-700 mb-1.5",
-                                                            children: "Email"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 227,
-                                                            columnNumber: 41
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                            id: "reg-email",
-                                                            type: "email",
-                                                            placeholder: "yourname@example.com",
-                                                            className: "w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-dermcare focus:ring-2 focus:ring-dermcare/20 outline-none transition"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 233,
-                                                            columnNumber: 41
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 226,
-                                                    columnNumber: 37
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                            htmlFor: "reg-password",
-                                                            className: "block text-sm font-medium text-slate-700 mb-1.5",
-                                                            children: "Mật khẩu"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 242,
-                                                            columnNumber: 41
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                            id: "reg-password",
-                                                            type: "password",
-                                                            placeholder: "••••••••",
-                                                            className: "w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-dermcare focus:ring-2 focus:ring-dermcare/20 outline-none transition"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 248,
-                                                            columnNumber: 41
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 241,
-                                                    columnNumber: 37
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                            htmlFor: "confirm-password",
-                                                            className: "block text-sm font-medium text-slate-700 mb-1.5",
-                                                            children: "Xác nhận mật khẩu"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 257,
-                                                            columnNumber: 41
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                            id: "confirm-password",
-                                                            type: "password",
-                                                            placeholder: "••••••••",
-                                                            className: "w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-dermcare focus:ring-2 focus:ring-dermcare/20 outline-none transition"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 263,
-                                                            columnNumber: 41
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 256,
-                                                    columnNumber: 37
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                    className: "flex items-start gap-2 cursor-pointer",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                            type: "checkbox",
-                                                            checked: acceptTerms,
-                                                            onChange: (e)=>setAcceptTerms(e.target.checked),
-                                                            className: "w-4 h-4 mt-0.5 rounded border-slate-300 text-dermcare focus:ring-dermcare"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 272,
-                                                            columnNumber: 41
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "text-sm text-slate-600",
-                                                            children: [
-                                                                "Tôi đồng ý với",
-                                                                " ",
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                                                    href: "#",
-                                                                    className: "text-dermcare hover:underline",
-                                                                    children: "Điều khoản dịch vụ"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                                    lineNumber: 280,
-                                                                    columnNumber: 45
-                                                                }, this),
-                                                                " ",
-                                                                "và",
-                                                                " ",
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                                                    href: "#",
-                                                                    className: "text-dermcare hover:underline",
-                                                                    children: "Chính sách bảo mật"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                                    lineNumber: 284,
-                                                                    columnNumber: 45
-                                                                }, this)
-                                                            ]
-                                                        }, void 0, true, {
-                                                            fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 278,
-                                                            columnNumber: 41
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 271,
-                                                    columnNumber: 37
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                    disabled: !acceptTerms,
-                                                    className: "w-full bg-dermcare hover:bg-dermcare-dark text-white font-semibold py-2.5 rounded-lg transition shadow-soft disabled:opacity-50 disabled:cursor-not-allowed",
-                                                    children: "Đăng ký"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 290,
-                                                    columnNumber: 37
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/src/app/login/page.tsx",
-                                            lineNumber: 210,
-                                            columnNumber: 33
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "relative",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "absolute inset-0 flex items-center",
-                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "w-full border-t border-slate-200"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/login/page.tsx",
-                                                        lineNumber: 300,
-                                                        columnNumber: 41
-                                                    }, this)
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 299,
-                                                    columnNumber: 37
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "relative flex justify-center text-sm",
-                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "px-4 bg-white text-slate-500",
-                                                        children: "hoặc"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/login/page.tsx",
-                                                        lineNumber: 303,
-                                                        columnNumber: 41
-                                                    }, this)
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 302,
-                                                    columnNumber: 37
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/src/app/login/page.tsx",
-                                            lineNumber: 298,
-                                            columnNumber: 33
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "grid grid-cols-2 gap-3",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                    className: "flex items-center justify-center gap-2 px-4 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 transition",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                            className: "w-5 h-5",
-                                                            viewBox: "0 0 24 24",
-                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                                                fill: "#1877F2",
-                                                                d: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/app/login/page.tsx",
-                                                                lineNumber: 310,
-                                                                columnNumber: 45
-                                                            }, this)
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 309,
-                                                            columnNumber: 41
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "text-sm font-medium text-slate-700",
-                                                            children: "Facebook"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 315,
-                                                            columnNumber: 41
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 308,
-                                                    columnNumber: 37
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                    className: "flex items-center justify-center gap-2 px-4 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 transition",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                            className: "w-5 h-5",
-                                                            viewBox: "0 0 24 24",
-                                                            children: [
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                                                    fill: "#4285F4",
-                                                                    d: "M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                                    lineNumber: 322,
-                                                                    columnNumber: 45
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                                                    fill: "#34A853",
-                                                                    d: "M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                                    lineNumber: 326,
-                                                                    columnNumber: 45
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                                                    fill: "#FBBC05",
-                                                                    d: "M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                                    lineNumber: 330,
-                                                                    columnNumber: 45
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                                                    fill: "#EA4335",
-                                                                    d: "M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                                    lineNumber: 334,
-                                                                    columnNumber: 45
-                                                                }, this)
-                                                            ]
-                                                        }, void 0, true, {
-                                                            fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 321,
-                                                            columnNumber: 41
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "text-sm font-medium text-slate-700",
-                                                            children: "Google"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 339,
-                                                            columnNumber: 41
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 320,
-                                                    columnNumber: 37
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/src/app/login/page.tsx",
-                                            lineNumber: 307,
-                                            columnNumber: 33
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-center text-sm text-slate-600",
-                                            children: [
-                                                "Đã có tài khoản?",
-                                                " ",
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                    onClick: ()=>setMode("login"),
-                                                    className: "text-dermcare hover:text-dermcare-dark font-medium",
-                                                    children: "Đăng nhập"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 347,
-                                                    columnNumber: 37
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/src/app/login/page.tsx",
-                                            lineNumber: 345,
-                                            columnNumber: 33
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/src/app/login/page.tsx",
-                                    lineNumber: 200,
+                                    lineNumber: 176,
                                     columnNumber: 29
                                 }, this),
                                 mode === "forgot-password" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -897,24 +592,40 @@ function LoginPage() {
                                                     children: "Quên mật khẩu?"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 361,
+                                                    lineNumber: 327,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     className: "text-sm text-slate-600",
-                                                    children: "Nhập email của bạn để nhận link khôi phục mật khẩu"
+                                                    children: "Nhập email của bạn để nhận mã OTP khôi phục mật khẩu"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 364,
+                                                    lineNumber: 330,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/login/page.tsx",
-                                            lineNumber: 360,
+                                            lineNumber: 326,
                                             columnNumber: 33
                                         }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-600",
+                                            children: error
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/login/page.tsx",
+                                            lineNumber: 336,
+                                            columnNumber: 37
+                                        }, this),
+                                        successMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "rounded-lg border border-green-200 bg-green-50 p-3 text-sm text-green-600",
+                                            children: successMessage
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/login/page.tsx",
+                                            lineNumber: 341,
+                                            columnNumber: 37
+                                        }, this),
+                                        forgotStep === "EMAIL" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "space-y-4",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -925,69 +636,163 @@ function LoginPage() {
                                                             children: "Email"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 371,
-                                                            columnNumber: 41
+                                                            lineNumber: 350,
+                                                            columnNumber: 45
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                             id: "forgot-email",
                                                             type: "email",
-                                                            placeholder: "yourname@example.com",
-                                                            className: "w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-dermcare focus:ring-2 focus:ring-dermcare/20 outline-none transition"
+                                                            value: forgotEmail,
+                                                            onChange: (e)=>setForgotEmail(e.target.value),
+                                                            className: "w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-dermcare focus:ring-2 focus:ring-dermcare/20 outline-none transition",
+                                                            placeholder: "Nhập email của bạn"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/login/page.tsx",
-                                                            lineNumber: 377,
-                                                            columnNumber: 41
+                                                            lineNumber: 353,
+                                                            columnNumber: 45
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 370,
-                                                    columnNumber: 37
+                                                    lineNumber: 349,
+                                                    columnNumber: 41
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                    className: "w-full bg-dermcare hover:bg-dermcare-dark text-white font-semibold py-2.5 rounded-lg transition shadow-soft",
-                                                    children: "Gửi link khôi phục"
+                                                    onClick: handleSendOtp,
+                                                    disabled: loading,
+                                                    className: "w-full bg-dermcare hover:bg-dermcare-dark text-white font-semibold py-2.5 rounded-lg transition shadow-soft disabled:opacity-50",
+                                                    children: loading ? "Đang gửi..." : "Gửi mã OTP"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/login/page.tsx",
-                                                    lineNumber: 385,
-                                                    columnNumber: 37
+                                                    lineNumber: 362,
+                                                    columnNumber: 41
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/login/page.tsx",
-                                            lineNumber: 369,
-                                            columnNumber: 33
+                                            lineNumber: 348,
+                                            columnNumber: 37
+                                        }, this),
+                                        forgotStep === "OTP" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "space-y-4",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                            htmlFor: "otp",
+                                                            className: "block text-sm font-medium text-slate-700 mb-1.5",
+                                                            children: "Mã OTP"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/login/page.tsx",
+                                                            lineNumber: 376,
+                                                            columnNumber: 45
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                            id: "otp",
+                                                            type: "text",
+                                                            value: otp,
+                                                            onChange: (e)=>setOtp(e.target.value),
+                                                            className: "w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-dermcare focus:ring-2 focus:ring-dermcare/20 outline-none transition text-center tracking-widest text-lg",
+                                                            placeholder: "Nhập mã OTP"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/login/page.tsx",
+                                                            lineNumber: 379,
+                                                            columnNumber: 45
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/app/login/page.tsx",
+                                                    lineNumber: 375,
+                                                    columnNumber: 41
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                            htmlFor: "new-password",
+                                                            className: "block text-sm font-medium text-slate-700 mb-1.5",
+                                                            children: "Mật khẩu mới"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/login/page.tsx",
+                                                            lineNumber: 389,
+                                                            columnNumber: 45
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                            id: "new-password",
+                                                            type: "password",
+                                                            value: newPassword,
+                                                            onChange: (e)=>setNewPassword(e.target.value),
+                                                            className: "w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-dermcare focus:ring-2 focus:ring-dermcare/20 outline-none transition",
+                                                            placeholder: "Nhập mật khẩu mới"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/login/page.tsx",
+                                                            lineNumber: 392,
+                                                            columnNumber: 45
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/app/login/page.tsx",
+                                                    lineNumber: 388,
+                                                    columnNumber: 41
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                    onClick: handleResetPassword,
+                                                    disabled: loading,
+                                                    className: "w-full bg-dermcare hover:bg-dermcare-dark text-white font-semibold py-2.5 rounded-lg transition shadow-soft disabled:opacity-50",
+                                                    children: loading ? "Đang xử lý..." : "Đổi mật khẩu"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/login/page.tsx",
+                                                    lineNumber: 401,
+                                                    columnNumber: 41
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                    onClick: handleSendOtp,
+                                                    disabled: loading,
+                                                    className: "w-full mt-2 text-sm text-dermcare hover:underline",
+                                                    children: "Gửi lại mã OTP"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/login/page.tsx",
+                                                    lineNumber: 408,
+                                                    columnNumber: 41
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/login/page.tsx",
+                                            lineNumber: 374,
+                                            columnNumber: 37
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-center text-sm text-slate-600",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                onClick: ()=>setMode("login"),
+                                                onClick: ()=>{
+                                                    setMode("login");
+                                                    resetForgotState();
+                                                },
                                                 className: "text-dermcare hover:text-dermcare-dark font-medium",
                                                 children: "← Quay lại đăng nhập"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/login/page.tsx",
-                                                lineNumber: 391,
+                                                lineNumber: 419,
                                                 columnNumber: 37
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/login/page.tsx",
-                                            lineNumber: 390,
+                                            lineNumber: 418,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/login/page.tsx",
-                                    lineNumber: 359,
+                                    lineNumber: 325,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/login/page.tsx",
-                            lineNumber: 70,
+                            lineNumber: 173,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "text-center text-xs text-slate-500 mt-6",
+                            className: "text-center text-xs text-slate-500 mt-4",
                             children: [
                                 "© ",
                                 new Date().getFullYear(),
@@ -995,28 +800,33 @@ function LoginPage() {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/login/page.tsx",
-                            lineNumber: 402,
+                            lineNumber: 433,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/login/page.tsx",
-                    lineNumber: 56,
+                    lineNumber: 159,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/login/page.tsx",
-                lineNumber: 55,
+                lineNumber: 158,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/login/page.tsx",
-        lineNumber: 15,
+        lineNumber: 132,
         columnNumber: 9
     }, this);
 }
-_s(LoginPage, "KdTxrVVo7hDungBcdLVpqeO/OPE=");
+_s(LoginPage, "tp+Y33MTdtrSX9rchWjNxszWqbo=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$contexts$2f$AuthContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"]
+    ];
+});
 _c = LoginPage;
 var _c;
 __turbopack_context__.k.register(_c, "LoginPage");

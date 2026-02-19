@@ -1,0 +1,37 @@
+import apiClient from '@/lib/apiClient';
+
+export interface MedicalInfo {
+    id: string;
+    userId: string;
+    skinType: string | null;
+    bloodGroup: string | null;
+    allergies: string | null;
+    emergencyContact: string | null;
+    currentMedications: string | null;
+    chronicConditions: string | null;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface UpdateMedicalInfoPayload {
+    skinType?: string;
+    bloodGroup?: string;
+    allergies?: string;
+    emergencyContact?: string;
+    currentMedications?: string;
+    chronicConditions?: string;
+}
+
+const userService = {
+    getMedicalInfo: async () => {
+        const response = await apiClient.get<{ success: boolean; data: MedicalInfo }>('/users/me/medical-info');
+        return response.data;
+    },
+
+    updateMedicalInfo: async (data: UpdateMedicalInfoPayload) => {
+        const response = await apiClient.patch<{ success: boolean; data: MedicalInfo }>('/users/me/medical-info', data);
+        return response.data;
+    },
+};
+
+export default userService;
