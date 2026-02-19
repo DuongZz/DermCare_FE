@@ -4,8 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 
+
 export default function HomePage() {
   const { isLoggedIn } = useAuth();
+
 
   return (
     <div className="flex flex-col">
@@ -58,8 +60,15 @@ export default function HomePage() {
                 <div className="flex items-start">
                   <div>
                     <div className="mb-2 flex items-center gap-2">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 text-2xl backdrop-blur">
-                        🤖
+                      <div className="relative flex h-14 w-14 items-center justify-center">
+                        {/* Wave Effects */}
+                        <div className="animate-wave absolute inset-0 rounded-full bg-white/30"></div>
+                        <div className="animate-wave absolute inset-0 rounded-full bg-white/20" style={{ animationDelay: '0.5s' }}></div>
+
+                        {/* Robot Icon */}
+                        <div className="animate-float relative flex h-14 w-14 items-center justify-center rounded-full bg-white/20 text-3xl backdrop-blur border border-white/20 shadow-lg">
+                          <span className="animate-sway block">🤖</span>
+                        </div>
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold">DARA</h3>
@@ -346,81 +355,39 @@ export default function HomePage() {
       {/* SPECIALTIES */}
       <section id="specialties" className="bg-slate-50 px-4 py-16">
         <div className="mx-auto max-w-7xl">
+          {/* Section Header */}
+          {/* Section Header */}
           <div className="mb-8 text-center">
-            <h2 className="mb-3 text-3xl font-bold text-slate-900 md:text-4xl">
-              Chuyên khoa da liễu
+            <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">
+              Chuyên khoa
             </h2>
-            <p className="text-lg text-slate-600">
-              AI có thể chẩn đoán chính xác các bệnh sau
+            <p className="mt-1 text-slate-600">
+              Danh sách các chuyên khoa da liễu phổ biến
             </p>
           </div>
 
-          {/* Horizontal Scroll Container */}
-          <div className="relative">
-            {/* Left Arrow */}
-            <button
-              onClick={() => {
-                const container = document.getElementById('specialties-scroll');
-                if (container) {
-                  container.scrollBy({ left: -280, behavior: 'smooth' });
-                }
-              }}
-              className="absolute left-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-3 shadow-lg transition hover:bg-dermcare hover:text-white md:flex items-center justify-center border border-slate-200"
-              aria-label="Scroll left"
-            >
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            {/* Right Arrow */}
-            <button
-              onClick={() => {
-                const container = document.getElementById('specialties-scroll');
-                if (container) {
-                  container.scrollBy({ left: 280, behavior: 'smooth' });
-                }
-              }}
-              className="absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-3 shadow-lg transition hover:bg-dermcare hover:text-white md:flex items-center justify-center border border-slate-200"
-              aria-label="Scroll right"
-            >
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-
-            <div id="specialties-scroll" className="overflow-x-auto pb-4 scrollbar-hide">
-              <div className="flex gap-4 pb-2">
-                {[
-                  { icon: "🔥", name: "Viêm da & Eczema" },
-                  { icon: "💢", name: "Mụn trứng cá" },
-                  { icon: "⚠️", name: "Ung thư da" },
-                  { icon: "🍄", name: "Nấm da" },
-                  { icon: "🌸", name: "Vẩy nến" },
-                  { icon: "✨", name: "Thẩm mỹ da" },
-                  { icon: "🌿", name: "Da nhạy cảm" },
-                  { icon: "⚡", name: "Zona & Herpes" },
-                  { icon: "🧴", name: "Rụng tóc" },
-                  { icon: "💅", name: "Bệnh móng" },
-                ].map((specialty, idx) => (
-                  <div
-                    key={idx}
-                    className="group min-w-[180px] rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-dermcare hover:shadow-lg cursor-pointer"
-                  >
-                    {/* Icon */}
-                    {/* Icon */}
-                    <div className="mb-3 flex items-center justify-center text-5xl">
-                      {specialty.icon}
-                    </div>
-
-                    {/* Name */}
-                    <h3 className="text-center font-semibold text-slate-900">
-                      {specialty.name}
-                    </h3>
-                  </div>
-                ))}
+          {/* Grid Container */}
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+            {[
+              { name: "Da liễu Thẩm mỹ", count: "24 bác sĩ", color: "bg-pink-50 text-pink-700 border-pink-100 group-hover:border-pink-300" },
+              { name: "Da liễu Bệnh lý & Miễn dịch", count: "21 bác sĩ", color: "bg-blue-50 text-blue-700 border-blue-100 group-hover:border-blue-300" },
+              { name: "Ngoại khoa Da liễu", count: "12 bác sĩ", color: "bg-emerald-50 text-emerald-700 border-emerald-100 group-hover:border-emerald-300" },
+              { name: "Da liễu Nội khoa", count: "11 bác sĩ", color: "bg-amber-50 text-amber-700 border-amber-100 group-hover:border-amber-300" },
+              { name: "U & Ung thư da", count: "6 bác sĩ", color: "bg-purple-50 text-purple-700 border-purple-100 group-hover:border-purple-300" },
+              { name: "Nhiễm trùng da & Ký sinh trùng", count: "16 bác sĩ", color: "bg-cyan-50 text-cyan-700 border-cyan-100 group-hover:border-cyan-300" },
+            ].map((specialty, idx) => (
+              <div
+                key={idx}
+                className="group cursor-pointer transition hover:-translate-y-1 hover:scale-105 duration-300"
+              >
+                <div className={`flex aspect-square h-full flex-col items-center justify-center overflow-hidden rounded-xl border p-4 text-center shadow-sm hover:shadow-lg transition-all ${specialty.color}`}>
+                  <h3 className="mb-2 line-clamp-2 text-sm font-bold uppercase tracking-wide">
+                    {specialty.name}
+                  </h3>
+                  <p className="text-xs opacity-80 font-medium">{specialty.count}</p>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

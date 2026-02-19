@@ -83,6 +83,53 @@ body {
   animation: scroll-rtl 30s linear infinite;
 }
 
-.reviews-scroll-rtl:hover {
-  animation-play-state: paused;
+
+/* Custom Animations */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes wave-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+
+.animate-wave {
+  animation: wave-pulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes sway {
+
+  0%,
+  100% {
+    transform: rotate(-10deg);
+  }
+
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+.animate-sway {
+  animation: sway 3s ease-in-out infinite;
 }
