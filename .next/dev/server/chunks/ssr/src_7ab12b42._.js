@@ -647,41 +647,43 @@ const SPECIALTIES = [
         name: "Tất cả"
     },
     {
-        id: "viem-da",
-        name: "Viêm da"
+        id: "tham-my",
+        name: "Da liễu Thẩm mỹ"
     },
     {
-        id: "mun",
-        name: "Mụn trứng cá"
+        id: "benh-ly",
+        name: "Da liễu Bệnh lý & Miễn dịch"
+    },
+    {
+        id: "ngoai-khoa",
+        name: "Ngoại khoa Da liễu"
+    },
+    {
+        id: "noi-khoa",
+        name: "Da liễu Nội khoa"
     },
     {
         id: "ung-thu",
-        name: "Ung thư da"
+        name: "U & Ung thư da"
     },
     {
-        id: "nam-da",
-        name: "Nấm da"
-    },
-    {
-        id: "vay-nen",
-        name: "Vẩy nến"
-    },
-    {
-        id: "tham-my",
-        name: "Thẩm mỹ da"
-    },
-    {
-        id: "nhay-cam",
-        name: "Da nhạy cảm"
+        id: "nhiem-trung",
+        name: "Nhiễm trùng da & Ký sinh trùng"
     }
 ];
 const MOCK_DOCTORS = [
     {
         id: "1",
         name: "BS. Cù Thị Hải Nê",
-        specialty: [
-            "viem-da",
-            "nhay-cam"
+        specialties: [
+            "Da liễu Nội khoa",
+            "Da liễu Thẩm mỹ"
+        ],
+        skinConditions: [
+            "Viêm da cơ địa",
+            "Mề đay",
+            "Dị ứng",
+            "Da nhạy cảm"
         ],
         image: "/yen.jpg",
         rating: 3.6,
@@ -695,9 +697,15 @@ const MOCK_DOCTORS = [
     {
         id: "2",
         name: "BS. Đào Quang Yê",
-        specialty: [
-            "mun",
-            "tham-my"
+        specialties: [
+            "Da liễu Thẩm mỹ",
+            "Ngoại khoa Da liễu"
+        ],
+        skinConditions: [
+            "Mụn trứng cá",
+            "Sẹo rỗ",
+            "Lỗ chân lông to",
+            "Trẻ hóa da"
         ],
         image: "/duong.jpg",
         rating: 5.0,
@@ -711,9 +719,15 @@ const MOCK_DOCTORS = [
     {
         id: "3",
         name: "TS.BS. Đào Quang Dương",
-        specialty: [
-            "ung-thu",
-            "viem-da"
+        specialties: [
+            "U & Ung thư da",
+            "Ngoại khoa Da liễu"
+        ],
+        skinConditions: [
+            "Ung thư da",
+            "U lành tính",
+            "Nốt ruồi",
+            "Mụn cóc"
         ],
         image: "/duongtro.jpg",
         rating: 5.0,
@@ -727,9 +741,15 @@ const MOCK_DOCTORS = [
     {
         id: "4",
         name: "BS. Cao Khuê Béo",
-        specialty: [
-            "nam-da",
-            "viem-da"
+        specialties: [
+            "Da liễu Bệnh lý & Miễn dịch",
+            "Nhiễm trùng da & Ký sinh trùng"
+        ],
+        skinConditions: [
+            "Nấm da",
+            "Lang ben",
+            "Vảy nến",
+            "Ghẻ"
         ],
         image: "/khuebeo.jpg",
         rating: 3.8,
@@ -743,9 +763,15 @@ const MOCK_DOCTORS = [
     {
         id: "5",
         name: "BS. Tốt Chiến",
-        specialty: [
-            "vay-nen",
-            "nhay-cam"
+        specialties: [
+            "Da liễu Bệnh lý & Miễn dịch",
+            "Nhiễm trùng da & Ký sinh trùng"
+        ],
+        skinConditions: [
+            "Sùi mào gà",
+            "Lậu",
+            "Giang mai",
+            "Herpes"
         ],
         image: "/ganarcho.jpg",
         rating: 0.1,
@@ -759,9 +785,13 @@ const MOCK_DOCTORS = [
     {
         id: "6",
         name: "BS. Đỗ Ngọc Đức",
-        specialty: [
-            "mun",
-            "viem-da"
+        specialties: [
+            "Da liễu Thẩm mỹ"
+        ],
+        skinConditions: [
+            "Mụn nội tiết",
+            "Thâm mụn",
+            "Sạm da"
         ],
         image: "/duc.jpg",
         rating: 1.8,
@@ -775,9 +805,15 @@ const MOCK_DOCTORS = [
     {
         id: "7",
         name: "PGS.TS. Phạm Tuấn Hịp",
-        specialty: [
-            "ung-thu",
-            "tham-my"
+        specialties: [
+            "Da liễu Thẩm mỹ",
+            "Ngoại khoa Da liễu"
+        ],
+        skinConditions: [
+            "Nám mảng",
+            "Tàn nhang",
+            "Đồi mồi",
+            "Xóa xăm"
         ],
         image: "/hiepdan.jpg",
         rating: 3.6,
@@ -796,7 +832,31 @@ function DoctorsPage() {
     const [showBookingModal, setShowBookingModal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [selectedDoctor, setSelectedDoctor] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     // Filter doctors based on selected specialty
-    const filteredDoctors = selectedSpecialty === "all" ? MOCK_DOCTORS : MOCK_DOCTORS.filter((doctor)=>doctor.specialty.includes(selectedSpecialty));
+    // Mapping ID -> Keyword search or exact match logic
+    const getFilterKeyword = (id)=>{
+        switch(id){
+            case "tham-my":
+                return "thẩm mỹ";
+            case "benh-ly":
+                return "bệnh lý";
+            case "ngoai-khoa":
+                return "ngoại khoa";
+            case "noi-khoa":
+                return "nội khoa";
+            case "ung-thu":
+                return "ung thư";
+            case "nhiem-trung":
+                return "nhiễm trùng";
+            default:
+                return "";
+        }
+    };
+    const filteredDoctors = selectedSpecialty === "all" ? MOCK_DOCTORS : MOCK_DOCTORS.filter((doctor)=>{
+        const keyword = getFilterKeyword(selectedSpecialty).toLowerCase();
+        // Check if any of the doctor's specialties contains the keyword
+        // Case insensitive comparison
+        return doctor.specialties.some((s)=>s.toLowerCase().includes(keyword));
+    });
     const handleBookClick = (doctor)=>{
         // Check if user is logged in
         if (!isLoggedIn) {
@@ -819,7 +879,7 @@ function DoctorsPage() {
                         children: "Đội ngũ bác sĩ da liễu"
                     }, void 0, false, {
                         fileName: "[project]/src/app/doctors/page.tsx",
-                        lineNumber: 162,
+                        lineNumber: 185,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -827,13 +887,13 @@ function DoctorsPage() {
                         children: "Kết nối với các bác sĩ da liễu hàng đầu, được đào tạo chuyên sâu"
                     }, void 0, false, {
                         fileName: "[project]/src/app/doctors/page.tsx",
-                        lineNumber: 165,
+                        lineNumber: 188,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/doctors/page.tsx",
-                lineNumber: 161,
+                lineNumber: 184,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -847,12 +907,12 @@ function DoctorsPage() {
                                 children: specialty.name
                             }, specialty.id, false, {
                                 fileName: "[project]/src/app/doctors/page.tsx",
-                                lineNumber: 174,
+                                lineNumber: 197,
                                 columnNumber: 25
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/app/doctors/page.tsx",
-                        lineNumber: 172,
+                        lineNumber: 195,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -864,76 +924,67 @@ function DoctorsPage() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/doctors/page.tsx",
-                        lineNumber: 186,
+                        lineNumber: 209,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/doctors/page.tsx",
-                lineNumber: 171,
+                lineNumber: 194,
                 columnNumber: 13
             }, this),
             filteredDoctors.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "grid gap-6 md:grid-cols-2 lg:grid-cols-3",
                 children: filteredDoctors.map((doctor)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "card-elevated overflow-hidden transition hover:shadow-lg",
+                        className: "card-elevated overflow-hidden transition hover:shadow-lg flex flex-col h-full",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "relative h-48 bg-gradient-to-br from-dermcare-light to-slate-100 overflow-hidden",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                    src: doctor.image,
-                                    alt: doctor.name,
-                                    fill: true,
-                                    className: "object-cover"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/doctors/page.tsx",
-                                    lineNumber: 201,
-                                    columnNumber: 33
-                                }, this)
-                            }, void 0, false, {
+                                className: "relative h-56 bg-gradient-to-br from-dermcare-light to-slate-100 overflow-hidden group",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        src: doctor.image,
+                                        alt: doctor.name,
+                                        fill: true,
+                                        className: "object-cover transition duration-500 group-hover:scale-105"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/doctors/page.tsx",
+                                        lineNumber: 224,
+                                        columnNumber: 33
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/doctors/page.tsx",
+                                        lineNumber: 230,
+                                        columnNumber: 33
+                                    }, this)
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/src/app/doctors/page.tsx",
-                                lineNumber: 200,
+                                lineNumber: 223,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "p-5",
+                                className: "p-5 flex-1 flex flex-col",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                        className: "text-lg font-semibold text-slate-900",
+                                        className: "text-xl font-bold text-slate-900",
                                         children: doctor.name
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/doctors/page.tsx",
-                                        lineNumber: 211,
+                                        lineNumber: 235,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "mt-1 text-sm text-slate-600",
+                                        className: "text-sm font-medium text-dermcare mt-0.5",
                                         children: doctor.hospital
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/doctors/page.tsx",
-                                        lineNumber: 214,
+                                        lineNumber: 238,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "mt-3 flex flex-wrap gap-1.5",
-                                        children: doctor.specialty.map((spec)=>{
-                                            const specialtyName = SPECIALTIES.find((s)=>s.id === spec)?.name;
-                                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "rounded-full bg-dermcare-light px-2.5 py-0.5 text-xs font-medium text-dermcare-dark",
-                                                children: specialtyName
-                                            }, spec, false, {
-                                                fileName: "[project]/src/app/doctors/page.tsx",
-                                                lineNumber: 223,
-                                                columnNumber: 45
-                                            }, this);
-                                        })
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/doctors/page.tsx",
-                                        lineNumber: 217,
-                                        columnNumber: 33
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "mt-4 flex items-center gap-4 text-sm",
+                                        className: "my-3 flex items-center gap-4 text-sm border-b border-slate-100 pb-3",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex items-center gap-1",
@@ -943,15 +994,15 @@ function DoctorsPage() {
                                                         children: "★"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/doctors/page.tsx",
-                                                        lineNumber: 236,
+                                                        lineNumber: 243,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "font-semibold text-slate-900",
+                                                        className: "font-bold text-slate-900",
                                                         children: doctor.rating
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/doctors/page.tsx",
-                                                        lineNumber: 237,
+                                                        lineNumber: 244,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -963,102 +1014,211 @@ function DoctorsPage() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/doctors/page.tsx",
-                                                        lineNumber: 240,
+                                                        lineNumber: 247,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/doctors/page.tsx",
-                                                lineNumber: 235,
+                                                lineNumber: 242,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-slate-600",
+                                                className: "text-slate-600 pl-4 border-l border-slate-200",
                                                 children: [
                                                     doctor.experience,
                                                     " năm KN"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/doctors/page.tsx",
-                                                lineNumber: 244,
+                                                lineNumber: 251,
                                                 columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/doctors/page.tsx",
-                                        lineNumber: 234,
+                                        lineNumber: 241,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "mt-3 space-y-1 text-sm text-slate-600",
+                                        className: "space-y-3 mb-4",
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 children: [
-                                                    "🎓 ",
-                                                    doctor.education
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5",
+                                                        children: "Chuyên khoa chính"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/doctors/page.tsx",
+                                                        lineNumber: 260,
+                                                        columnNumber: 41
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "flex flex-wrap gap-1.5",
+                                                        children: doctor.specialties.map((spec, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10",
+                                                                children: spec
+                                                            }, idx, false, {
+                                                                fileName: "[project]/src/app/doctors/page.tsx",
+                                                                lineNumber: 265,
+                                                                columnNumber: 49
+                                                            }, this))
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/doctors/page.tsx",
+                                                        lineNumber: 263,
+                                                        columnNumber: 41
+                                                    }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/doctors/page.tsx",
-                                                lineNumber: 251,
+                                                lineNumber: 259,
                                                 columnNumber: 37
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "font-medium text-dermcare",
-                                                children: doctor.price
-                                            }, void 0, false, {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5",
+                                                        children: "Sở trường / Mảng bệnh"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/doctors/page.tsx",
+                                                        lineNumber: 277,
+                                                        columnNumber: 41
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "flex flex-wrap gap-1.5",
+                                                        children: doctor.skinConditions.map((cond, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "inline-flex items-center rounded-md bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-700 ring-1 ring-inset ring-emerald-600/20",
+                                                                children: cond
+                                                            }, idx, false, {
+                                                                fileName: "[project]/src/app/doctors/page.tsx",
+                                                                lineNumber: 282,
+                                                                columnNumber: 49
+                                                            }, this))
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/doctors/page.tsx",
+                                                        lineNumber: 280,
+                                                        columnNumber: 41
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
                                                 fileName: "[project]/src/app/doctors/page.tsx",
-                                                lineNumber: 252,
+                                                lineNumber: 276,
                                                 columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/doctors/page.tsx",
-                                        lineNumber: 250,
+                                        lineNumber: 257,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "mt-3 text-sm",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-emerald-600",
-                                            children: [
-                                                "✓ ",
-                                                doctor.availableSlots,
-                                                " khung giờ còn trống"
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/src/app/doctors/page.tsx",
-                                            lineNumber: 257,
-                                            columnNumber: 37
-                                        }, this)
-                                    }, void 0, false, {
+                                        className: "mt-auto",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex justify-between items-end text-sm text-slate-600 mb-3 bg-slate-50 p-2 rounded-lg",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                className: "text-[10px] text-slate-400 font-semibold uppercase",
+                                                                children: "Giá khám"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/doctors/page.tsx",
+                                                                lineNumber: 297,
+                                                                columnNumber: 45
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                className: "font-bold text-slate-900",
+                                                                children: doctor.price
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/doctors/page.tsx",
+                                                                lineNumber: 298,
+                                                                columnNumber: 45
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/app/doctors/page.tsx",
+                                                        lineNumber: 296,
+                                                        columnNumber: 41
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "text-right",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "text-emerald-600 text-xs font-medium flex items-center justify-end gap-1",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "relative flex h-2 w-2",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                            className: "animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/src/app/doctors/page.tsx",
+                                                                            lineNumber: 303,
+                                                                            columnNumber: 53
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                            className: "relative inline-flex h-2 w-2 rounded-full bg-emerald-500"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/src/app/doctors/page.tsx",
+                                                                            lineNumber: 304,
+                                                                            columnNumber: 53
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/src/app/doctors/page.tsx",
+                                                                    lineNumber: 302,
+                                                                    columnNumber: 49
+                                                                }, this),
+                                                                "Còn ",
+                                                                doctor.availableSlots,
+                                                                " lịch"
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/src/app/doctors/page.tsx",
+                                                            lineNumber: 301,
+                                                            columnNumber: 45
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/doctors/page.tsx",
+                                                        lineNumber: 300,
+                                                        columnNumber: 41
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/doctors/page.tsx",
+                                                lineNumber: 295,
+                                                columnNumber: 37
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                onClick: ()=>handleBookClick(doctor),
+                                                className: "w-full rounded-xl bg-dermcare py-3 text-sm font-bold text-white shadow-soft transition hover:bg-dermcare-dark hover:shadow-lg active:scale-[0.98]",
+                                                children: "Đặt lịch khám"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/doctors/page.tsx",
+                                                lineNumber: 312,
+                                                columnNumber: 37
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/src/app/doctors/page.tsx",
-                                        lineNumber: 256,
-                                        columnNumber: 33
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: ()=>handleBookClick(doctor),
-                                        className: "mt-4 w-full rounded-lg bg-dermcare py-2.5 text-sm font-semibold text-white transition hover:bg-dermcare-dark",
-                                        children: "Đặt lịch khám"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/doctors/page.tsx",
-                                        lineNumber: 263,
+                                        lineNumber: 293,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/doctors/page.tsx",
-                                lineNumber: 210,
+                                lineNumber: 234,
                                 columnNumber: 29
                             }, this)
                         ]
                     }, doctor.id, true, {
                         fileName: "[project]/src/app/doctors/page.tsx",
-                        lineNumber: 195,
+                        lineNumber: 218,
                         columnNumber: 25
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/app/doctors/page.tsx",
-                lineNumber: 193,
+                lineNumber: 216,
                 columnNumber: 17
             }, this) : // Empty State
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1071,7 +1231,7 @@ function DoctorsPage() {
                             children: "Không tìm thấy bác sĩ"
                         }, void 0, false, {
                             fileName: "[project]/src/app/doctors/page.tsx",
-                            lineNumber: 277,
+                            lineNumber: 327,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1079,7 +1239,7 @@ function DoctorsPage() {
                             children: "Hiện tại chưa có bác sĩ cho chuyên khoa này. Vui lòng chọn chuyên khoa khác."
                         }, void 0, false, {
                             fileName: "[project]/src/app/doctors/page.tsx",
-                            lineNumber: 280,
+                            lineNumber: 330,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1088,18 +1248,18 @@ function DoctorsPage() {
                             children: "Xem tất cả bác sĩ"
                         }, void 0, false, {
                             fileName: "[project]/src/app/doctors/page.tsx",
-                            lineNumber: 284,
+                            lineNumber: 334,
                             columnNumber: 25
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/doctors/page.tsx",
-                    lineNumber: 276,
+                    lineNumber: 326,
                     columnNumber: 21
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/doctors/page.tsx",
-                lineNumber: 275,
+                lineNumber: 325,
                 columnNumber: 17
             }, this),
             selectedDoctor && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$BookingModal$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1110,18 +1270,18 @@ function DoctorsPage() {
                 },
                 doctor: {
                     name: selectedDoctor.name,
-                    specialty: selectedDoctor.hospital,
+                    specialty: selectedDoctor.specialties[0],
                     avatar: selectedDoctor.image
                 }
             }, void 0, false, {
                 fileName: "[project]/src/app/doctors/page.tsx",
-                lineNumber: 296,
+                lineNumber: 346,
                 columnNumber: 17
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/doctors/page.tsx",
-        lineNumber: 159,
+        lineNumber: 182,
         columnNumber: 9
     }, this);
 }

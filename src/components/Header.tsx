@@ -7,9 +7,12 @@ export default function Header() {
     const { isLoggedIn, user, logout } = useAuth();
     const [showUserMenu, setShowUserMenu] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
+    const [language, setLanguage] = useState<'vn' | 'en'>('vn');
+    const [showLangMenu, setShowLangMenu] = useState(false);
 
     const notifRef = useRef<HTMLDivElement>(null);
     const userMenuRef = useRef<HTMLDivElement>(null);
+    const langRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -18,6 +21,9 @@ export default function Header() {
             }
             if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
                 setShowUserMenu(false);
+            }
+            if (langRef.current && !langRef.current.contains(event.target as Node)) {
+                setShowLangMenu(false);
             }
         }
 
@@ -28,8 +34,9 @@ export default function Header() {
     }, []);
 
     return (
-        <header className="sticky top-0 z-50 border-b border-slate-100 bg-white">
-            <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2">
+        <header className="sticky top-0 z-50 border-b border-slate-100 bg-white h-24">
+            <div className="relative mx-auto flex h-full max-w-7xl items-center justify-start gap-8 px-8">
+                {/* 1. Logo */}
                 <div className="flex items-center gap-3">
                     <Link href="/" className="cursor-pointer">
                         <Image
@@ -37,8 +44,9 @@ export default function Header() {
                             alt="Dermcare - Phòng khám da liễu trực tuyến"
                             width={650}
                             height={180}
+                            quality={100}
                             priority
-                            className="h-20 w-auto"
+                            className="h-full w-auto object-contain object-left py-2"
                         />
                     </Link>
                     <span className="sr-only">
@@ -46,7 +54,8 @@ export default function Header() {
                     </span>
                 </div>
 
-                <nav className="hidden gap-6 text-sm text-slate-600 md:flex">
+                {/* 2. Navigation */}
+                <nav className="hidden gap-8 text-sm text-slate-600 md:flex mx-auto whitespace-nowrap">
                     <a href="#services" className="hover:text-dermcare">
                         Dịch vụ
                     </a>
@@ -67,8 +76,10 @@ export default function Header() {
                     </a>
                 </nav>
 
-                <div className="flex items-center gap-3">
-                    {!isLoggedIn ? (
+                {/* 3. Right Actions (Login, Booking, Language, User) */}
+                <div className="flex items-center gap-4 ml-auto">
+                    {/* Guest: Login & Booking */}
+                    {!isLoggedIn && (
                         <>
                             <Link
                                 href="/login"
@@ -83,12 +94,15 @@ export default function Header() {
                                 Đặt lịch ngay
                             </Link>
                         </>
-                    ) : (
+                    )}
+
+                    {/* Logged In: Booking & Bell & User */}
+                    {isLoggedIn && (
                         <>
-                            {/* Logged in UI */}
+                            {/* Booking Button (Logged In) */}
                             <Link
                                 href="/doctors"
-                                className="inline-flex rounded-full bg-dermcare px-4 py-1.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark"
+                                className="hidden lg:inline-flex rounded-full bg-dermcare px-4 py-1.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark transition whitespace-nowrap"
                             >
                                 Đặt lịch ngay
                             </Link>
@@ -99,7 +113,9 @@ export default function Header() {
                                     onClick={() => setShowNotifications(!showNotifications)}
                                     className="relative rounded-full p-2 text-slate-600 hover:bg-slate-100 transition"
                                 >
-                                    <span className="text-xl">🔔</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                                    </svg>
                                     {/* Notification Badge */}
                                     <span className="absolute right-1 top-1 flex h-2 w-2">
                                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
@@ -248,6 +264,53 @@ export default function Header() {
                             </div>
                         </>
                     )}
+
+                    {/* Language Selector */}
+                    <div className="relative" ref={langRef}>
+                        <button
+                            onClick={() => setShowLangMenu(!showLangMenu)}
+                            className="flex items-center justify-between w-[160px] rounded-full border border-slate-200 px-3 py-1.5 hover:bg-slate-50 transition relative"
+                        >
+                            <div className="flex items-center gap-2">
+                                <img
+                                    src={language === 'vn' ? "https://flagcdn.com/w40/vn.png" : "https://flagcdn.com/w40/gb.png"}
+                                    alt="flag"
+                                    className="h-3.5 w-5 object-cover rounded-sm border border-slate-100"
+                                />
+                                <span className="text-sm font-medium text-slate-600 truncate">{language === 'vn' ? 'Vietnamese' : 'English'}</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-3.5 w-3.5 text-slate-400 flex-shrink-0">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </button>
+
+                        {showLangMenu && (
+                            <div className="absolute right-0 mt-2 w-40 rounded-xl border border-slate-200 bg-white shadow-lg py-1 z-50 animate-in fade-in zoom-in-95 duration-200">
+                                <button
+                                    onClick={() => { setLanguage('vn'); setShowLangMenu(false); }}
+                                    className={`flex w-full items-center gap-3 px-4 py-2 text-sm hover:bg-slate-50 ${language === 'vn' ? 'bg-slate-50 font-medium text-dermcare' : 'text-slate-700'}`}
+                                >
+                                    <img
+                                        src="https://flagcdn.com/w40/vn.png"
+                                        alt="VN"
+                                        className="h-3.5 w-5 object-cover rounded-sm border border-slate-100"
+                                    />
+                                    <span>Vietnamese</span>
+                                </button>
+                                <button
+                                    onClick={() => { setLanguage('en'); setShowLangMenu(false); }}
+                                    className={`flex w-full items-center gap-3 px-4 py-2 text-sm hover:bg-slate-50 ${language === 'en' ? 'bg-slate-50 font-medium text-dermcare' : 'text-slate-700'}`}
+                                >
+                                    <img
+                                        src="https://flagcdn.com/w40/gb.png"
+                                        alt="EN"
+                                        className="h-3.5 w-5 object-cover rounded-sm border border-slate-100"
+                                    />
+                                    <span>English</span>
+                                </button>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </header>

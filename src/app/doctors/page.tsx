@@ -11,7 +11,8 @@ import BookingModal from "@/components/BookingModal";
 interface Doctor {
     id: string;
     name: string;
-    specialty: string[];
+    specialties: string[]; // Chuyên khoa (VD: Da liễu thẩm mỹ, Nội khoa...)
+    skinConditions: string[]; // Sở trường / Mảng bệnh (VD: Mụn, Nám, Sẹo...)
     image: string;
     rating: number;
     reviewCount: number;
@@ -24,20 +25,20 @@ interface Doctor {
 
 const SPECIALTIES = [
     { id: "all", name: "Tất cả" },
-    { id: "viem-da", name: "Viêm da" },
-    { id: "mun", name: "Mụn trứng cá" },
-    { id: "ung-thu", name: "Ung thư da" },
-    { id: "nam-da", name: "Nấm da" },
-    { id: "vay-nen", name: "Vẩy nến" },
-    { id: "tham-my", name: "Thẩm mỹ da" },
-    { id: "nhay-cam", name: "Da nhạy cảm" },
+    { id: "tham-my", name: "Da liễu Thẩm mỹ" },
+    { id: "benh-ly", name: "Da liễu Bệnh lý & Miễn dịch" },
+    { id: "ngoai-khoa", name: "Ngoại khoa Da liễu" },
+    { id: "noi-khoa", name: "Da liễu Nội khoa" },
+    { id: "ung-thu", name: "U & Ung thư da" },
+    { id: "nhiem-trung", name: "Nhiễm trùng da & Ký sinh trùng" },
 ];
 
 const MOCK_DOCTORS: Doctor[] = [
     {
         id: "1",
         name: "BS. Cù Thị Hải Nê",
-        specialty: ["viem-da", "nhay-cam"],
+        specialties: ["Da liễu Nội khoa", "Da liễu Thẩm mỹ"],
+        skinConditions: ["Viêm da cơ địa", "Mề đay", "Dị ứng", "Da nhạy cảm"],
         image: "/yen.jpg",
         rating: 3.6,
         reviewCount: 234,
@@ -50,7 +51,8 @@ const MOCK_DOCTORS: Doctor[] = [
     {
         id: "2",
         name: "BS. Đào Quang Yê",
-        specialty: ["mun", "tham-my"],
+        specialties: ["Da liễu Thẩm mỹ", "Ngoại khoa Da liễu"],
+        skinConditions: ["Mụn trứng cá", "Sẹo rỗ", "Lỗ chân lông to", "Trẻ hóa da"],
         image: "/duong.jpg",
         rating: 5.0,
         reviewCount: 189,
@@ -63,7 +65,8 @@ const MOCK_DOCTORS: Doctor[] = [
     {
         id: "3",
         name: "TS.BS. Đào Quang Dương",
-        specialty: ["ung-thu", "viem-da"],
+        specialties: ["U & Ung thư da", "Ngoại khoa Da liễu"],
+        skinConditions: ["Ung thư da", "U lành tính", "Nốt ruồi", "Mụn cóc"],
         image: "/duongtro.jpg",
         rating: 5.0,
         reviewCount: 312,
@@ -76,7 +79,8 @@ const MOCK_DOCTORS: Doctor[] = [
     {
         id: "4",
         name: "BS. Cao Khuê Béo",
-        specialty: ["nam-da", "viem-da"],
+        specialties: ["Da liễu Bệnh lý & Miễn dịch", "Nhiễm trùng da & Ký sinh trùng"],
+        skinConditions: ["Nấm da", "Lang ben", "Vảy nến", "Ghẻ"],
         image: "/khuebeo.jpg",
         rating: 3.8,
         reviewCount: 156,
@@ -89,7 +93,8 @@ const MOCK_DOCTORS: Doctor[] = [
     {
         id: "5",
         name: "BS. Tốt Chiến",
-        specialty: ["vay-nen", "nhay-cam"],
+        specialties: ["Da liễu Bệnh lý & Miễn dịch", "Nhiễm trùng da & Ký sinh trùng"],
+        skinConditions: ["Sùi mào gà", "Lậu", "Giang mai", "Herpes"],
         image: "/ganarcho.jpg",
         rating: 0.1,
         reviewCount: 203,
@@ -102,7 +107,8 @@ const MOCK_DOCTORS: Doctor[] = [
     {
         id: "6",
         name: "BS. Đỗ Ngọc Đức",
-        specialty: ["mun", "viem-da"],
+        specialties: ["Da liễu Thẩm mỹ"],
+        skinConditions: ["Mụn nội tiết", "Thâm mụn", "Sạm da"],
         image: "/duc.jpg",
         rating: 1.8,
         reviewCount: 142,
@@ -115,7 +121,8 @@ const MOCK_DOCTORS: Doctor[] = [
     {
         id: "7",
         name: "PGS.TS. Phạm Tuấn Hịp",
-        specialty: ["ung-thu", "tham-my"],
+        specialties: ["Da liễu Thẩm mỹ", "Ngoại khoa Da liễu"],
+        skinConditions: ["Nám mảng", "Tàn nhang", "Đồi mồi", "Xóa xăm"],
         image: "/hiepdan.jpg",
         rating: 3.6,
         reviewCount: 428,
@@ -135,12 +142,28 @@ export default function DoctorsPage() {
     const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
 
     // Filter doctors based on selected specialty
+    // Mapping ID -> Keyword search or exact match logic
+    const getFilterKeyword = (id: string) => {
+        switch (id) {
+            case "tham-my": return "thẩm mỹ";
+            case "benh-ly": return "bệnh lý";
+            case "ngoai-khoa": return "ngoại khoa";
+            case "noi-khoa": return "nội khoa";
+            case "ung-thu": return "ung thư";
+            case "nhiem-trung": return "nhiễm trùng";
+            default: return "";
+        }
+    };
+
     const filteredDoctors =
         selectedSpecialty === "all"
             ? MOCK_DOCTORS
-            : MOCK_DOCTORS.filter((doctor) =>
-                doctor.specialty.includes(selectedSpecialty)
-            );
+            : MOCK_DOCTORS.filter((doctor) => {
+                const keyword = getFilterKeyword(selectedSpecialty).toLowerCase();
+                // Check if any of the doctor's specialties contains the keyword
+                // Case insensitive comparison
+                return doctor.specialties.some(s => s.toLowerCase().includes(keyword));
+            });
 
     const handleBookClick = (doctor: Doctor) => {
         // Check if user is logged in
@@ -194,78 +217,105 @@ export default function DoctorsPage() {
                     {filteredDoctors.map((doctor) => (
                         <div
                             key={doctor.id}
-                            className="card-elevated overflow-hidden transition hover:shadow-lg"
+                            className="card-elevated overflow-hidden transition hover:shadow-lg flex flex-col h-full"
                         >
                             {/* Doctor Image */}
-                            <div className="relative h-48 bg-gradient-to-br from-dermcare-light to-slate-100 overflow-hidden">
+                            <div className="relative h-56 bg-gradient-to-br from-dermcare-light to-slate-100 overflow-hidden group">
                                 <Image
                                     src={doctor.image}
                                     alt={doctor.name}
                                     fill
-                                    className="object-cover"
+                                    className="object-cover transition duration-500 group-hover:scale-105"
                                 />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </div>
 
                             {/* Doctor Info */}
-                            <div className="p-5">
-                                <h3 className="text-lg font-semibold text-slate-900">
+                            <div className="p-5 flex-1 flex flex-col">
+                                <h3 className="text-xl font-bold text-slate-900">
                                     {doctor.name}
                                 </h3>
-                                <p className="mt-1 text-sm text-slate-600">{doctor.hospital}</p>
-
-                                {/* Specialties */}
-                                <div className="mt-3 flex flex-wrap gap-1.5">
-                                    {doctor.specialty.map((spec) => {
-                                        const specialtyName = SPECIALTIES.find(
-                                            (s) => s.id === spec
-                                        )?.name;
-                                        return (
-                                            <span
-                                                key={spec}
-                                                className="rounded-full bg-dermcare-light px-2.5 py-0.5 text-xs font-medium text-dermcare-dark"
-                                            >
-                                                {specialtyName}
-                                            </span>
-                                        );
-                                    })}
-                                </div>
+                                <p className="text-sm font-medium text-dermcare mt-0.5">{doctor.hospital}</p>
 
                                 {/* Stats */}
-                                <div className="mt-4 flex items-center gap-4 text-sm">
+                                <div className="my-3 flex items-center gap-4 text-sm border-b border-slate-100 pb-3">
                                     <div className="flex items-center gap-1">
                                         <span className="text-amber-500">★</span>
-                                        <span className="font-semibold text-slate-900">
+                                        <span className="font-bold text-slate-900">
                                             {doctor.rating}
                                         </span>
                                         <span className="text-slate-500">
                                             ({doctor.reviewCount})
                                         </span>
                                     </div>
-                                    <div className="text-slate-600">
+                                    <div className="text-slate-600 pl-4 border-l border-slate-200">
                                         {doctor.experience} năm KN
                                     </div>
                                 </div>
 
-                                {/* Education & Price */}
-                                <div className="mt-3 space-y-1 text-sm text-slate-600">
-                                    <p>🎓 {doctor.education}</p>
-                                    <p className="font-medium text-dermcare">{doctor.price}</p>
+                                {/* Specialties & Conditions Sections */}
+                                <div className="space-y-3 mb-4">
+                                    {/* 1. Specialties */}
+                                    <div>
+                                        <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                                            Chuyên khoa chính
+                                        </p>
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {doctor.specialties.map((spec, idx) => (
+                                                <span
+                                                    key={idx}
+                                                    className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10"
+                                                >
+                                                    {spec}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* 2. Skin Conditions */}
+                                    <div>
+                                        <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                                            Sở trường / Mảng bệnh
+                                        </p>
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {doctor.skinConditions.map((cond, idx) => (
+                                                <span
+                                                    key={idx}
+                                                    className="inline-flex items-center rounded-md bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-700 ring-1 ring-inset ring-emerald-600/20"
+                                                >
+                                                    {cond}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
                                 </div>
 
-                                {/* Available Slots */}
-                                <div className="mt-3 text-sm">
-                                    <span className="text-emerald-600">
-                                        ✓ {doctor.availableSlots} khung giờ còn trống
-                                    </span>
-                                </div>
+                                <div className="mt-auto">
+                                    {/* Education & Price */}
+                                    <div className="flex justify-between items-end text-sm text-slate-600 mb-3 bg-slate-50 p-2 rounded-lg">
+                                        <div>
+                                            <p className="text-[10px] text-slate-400 font-semibold uppercase">Giá khám</p>
+                                            <p className="font-bold text-slate-900">{doctor.price}</p>
+                                        </div>
+                                        <div className="text-right">
+                                            <span className="text-emerald-600 text-xs font-medium flex items-center justify-end gap-1">
+                                                <span className="relative flex h-2 w-2">
+                                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                                                </span>
+                                                Còn {doctor.availableSlots} lịch
+                                            </span>
+                                        </div>
+                                    </div>
 
-                                {/* Action Button */}
-                                <button
-                                    onClick={() => handleBookClick(doctor)}
-                                    className="mt-4 w-full rounded-lg bg-dermcare py-2.5 text-sm font-semibold text-white transition hover:bg-dermcare-dark"
-                                >
-                                    Đặt lịch khám
-                                </button>
+                                    {/* Action Button */}
+                                    <button
+                                        onClick={() => handleBookClick(doctor)}
+                                        className="w-full rounded-xl bg-dermcare py-3 text-sm font-bold text-white shadow-soft transition hover:bg-dermcare-dark hover:shadow-lg active:scale-[0.98]"
+                                    >
+                                        Đặt lịch khám
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     ))}
@@ -301,7 +351,7 @@ export default function DoctorsPage() {
                     }}
                     doctor={{
                         name: selectedDoctor.name,
-                        specialty: selectedDoctor.hospital,
+                        specialty: selectedDoctor.specialties[0], // Lấy chuyên khoa đầu tiên để hiển thị trong modal
                         avatar: selectedDoctor.image
                     }}
                 />
