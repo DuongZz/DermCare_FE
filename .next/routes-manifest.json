@@ -59,6 +59,18 @@
       "namedRegex": "^/chat(?:/)?$"
     },
     {
+      "page": "/doctor/appointments",
+      "regex": "^/doctor/appointments(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/doctor/appointments(?:/)?$"
+    },
+    {
+      "page": "/doctor/schedule",
+      "regex": "^/doctor/schedule(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/doctor/schedule(?:/)?$"
+    },
+    {
       "page": "/doctors",
       "regex": "^/doctors(?:/)?$",
       "routeKeys": {},

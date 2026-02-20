@@ -4,6 +4,8 @@
   "/ai-chat/page": "app/ai-chat/page.js",
   "/appointments/page": "app/appointments/page.js",
   "/chat/page": "app/chat/page.js",
+  "/doctor/appointments/page": "app/doctor/appointments/page.js",
+  "/doctor/schedule/page": "app/doctor/schedule/page.js",
   "/doctors/page": "app/doctors/page.js",
   "/forgot-password/page": "app/forgot-password/page.js",
   "/login/page": "app/login/page.js",

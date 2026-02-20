@@ -7,7 +7,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import userService from "@/services/userService";
 
 export default function ProfilePage() {
-    const { user } = useAuth();
+    const { user, isDoctor } = useAuth();
     const [isEditing, setIsEditing] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [profileData, setProfileData] = useState({
@@ -233,84 +233,106 @@ export default function ProfilePage() {
                             {/* Medical Information */}
                         </div>
 
-                        {/* Medical Information */}
-                        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft h-full">
-                            <h2 className="mb-2 text-base font-bold text-slate-900">Thông tin y tế</h2>
-                            <div className="grid gap-2.5">
-                                <div className="rounded-xl bg-red-50/60 px-3 py-2 transition hover:bg-red-50">
-                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Nhóm máu</label>
-                                    {isEditing ? (
-                                        <select value={editData.bloodType} onChange={(e) => setEditData({ ...editData, bloodType: e.target.value })} className={inputClass}>
-                                            <option value="">-- Chọn --</option>
-                                            <option value="A_POSITIVE">A+</option>
-                                            <option value="A_NEGATIVE">A-</option>
-                                            <option value="B_POSITIVE">B+</option>
-                                            <option value="B_NEGATIVE">B-</option>
-                                            <option value="O_POSITIVE">O+</option>
-                                            <option value="O_NEGATIVE">O-</option>
-                                            <option value="AB_POSITIVE">AB+</option>
-                                            <option value="AB_NEGATIVE">AB-</option>
-                                        </select>
-                                    ) : (
+                        {/* Medical Information (Patient only) / Doctor Info */}
+                        {isDoctor ? (
+                            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft h-full">
+                                <h2 className="mb-2 text-base font-bold text-slate-900">Thông tin bác sĩ</h2>
+                                <div className="grid gap-2.5">
+                                    <div className="rounded-xl bg-blue-50/60 px-3 py-2 transition hover:bg-blue-50">
+                                        <label className="mb-0.5 block text-xs font-medium text-slate-500">Chuyên khoa</label>
+                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{user?.specialization || <EmptyValue />}</p>
+                                    </div>
+                                    <div className="rounded-xl bg-green-50/60 px-3 py-2 transition hover:bg-green-50">
+                                        <label className="mb-0.5 block text-xs font-medium text-slate-500">Bằng cấp / Chứng chỉ</label>
+                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{user?.qualifications || <EmptyValue />}</p>
+                                    </div>
+                                    <div className="rounded-xl bg-amber-50/60 px-3 py-2 transition hover:bg-amber-50">
+                                        <label className="mb-0.5 block text-xs font-medium text-slate-500">Đánh giá</label>
                                         <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">
-                                            {BLOOD_TYPES[profileData.bloodType as keyof typeof BLOOD_TYPES] || profileData.bloodType || <EmptyValue />}
+                                            {user?.rating ? `⭐ ${user.rating}/5` : <EmptyValue />}
                                         </p>
-                                    )}
-                                </div>
-
-                                <div className="rounded-xl bg-orange-50/60 px-3 py-2 transition hover:bg-orange-50">
-                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Loại da</label>
-                                    {isEditing ? (
-                                        <select value={editData.skinType} onChange={(e) => setEditData({ ...editData, skinType: e.target.value })} className={inputClass}>
-                                            <option value="">-- Chọn --</option>
-                                            <option value="Da dầu">Da dầu</option>
-                                            <option value="Da khô">Da khô</option>
-                                            <option value="Da hỗn hợp">Da hỗn hợp</option>
-                                            <option value="Da thường">Da thường</option>
-                                            <option value="Da nhạy cảm">Da nhạy cảm</option>
-                                        </select>
-                                    ) : (
-                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.skinType || <EmptyValue />}</p>
-                                    )}
-                                </div>
-
-                                <div className="rounded-xl bg-green-50/60 px-3 py-2 transition hover:bg-green-50">
-                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Liên hệ khẩn cấp</label>
-                                    {isEditing ? (
-                                        <input type="tel" value={editData.emergencyContact} onChange={(e) => setEditData({ ...editData, emergencyContact: e.target.value })} className={inputClass} />
-                                    ) : (
-                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.emergencyContact || <EmptyValue />}</p>
-                                    )}
-                                </div>
-
-                                <div className="rounded-xl bg-yellow-50/60 px-3 py-2 transition hover:bg-yellow-50">
-                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Dị ứng</label>
-                                    {isEditing ? (
-                                        <input type="text" value={editData.allergies} onChange={(e) => setEditData({ ...editData, allergies: e.target.value })} className={inputClass} placeholder="Nhập dị ứng (nếu có)" />
-                                    ) : (
-                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.allergies || <EmptyValue />}</p>
-                                    )}
-                                </div>
-
-                                <div className="rounded-xl bg-blue-50/60 px-3 py-2 transition hover:bg-blue-50">
-                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Thuốc đang dùng</label>
-                                    {isEditing ? (
-                                        <input type="text" value={editData.medications} onChange={(e) => setEditData({ ...editData, medications: e.target.value })} className={inputClass} placeholder="Nhập thuốc đang dùng (nếu có)" />
-                                    ) : (
-                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.medications || <EmptyValue />}</p>
-                                    )}
-                                </div>
-
-                                <div className="rounded-xl bg-purple-50/60 px-3 py-2 transition hover:bg-purple-50">
-                                    <label className="mb-0.5 block text-xs font-medium text-slate-500">Bệnh mãn tính</label>
-                                    {isEditing ? (
-                                        <input type="text" value={editData.chronicConditions} onChange={(e) => setEditData({ ...editData, chronicConditions: e.target.value })} className={inputClass} placeholder="Nhập bệnh mãn tính (nếu có)" />
-                                    ) : (
-                                        <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.chronicConditions || <EmptyValue />}</p>
-                                    )}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        ) : (
+                            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft h-full">
+                                <h2 className="mb-2 text-base font-bold text-slate-900">Thông tin y tế</h2>
+                                <div className="grid gap-2.5">
+                                    <div className="rounded-xl bg-red-50/60 px-3 py-2 transition hover:bg-red-50">
+                                        <label className="mb-0.5 block text-xs font-medium text-slate-500">Nhóm máu</label>
+                                        {isEditing ? (
+                                            <select value={editData.bloodType} onChange={(e) => setEditData({ ...editData, bloodType: e.target.value })} className={inputClass}>
+                                                <option value="">-- Chọn --</option>
+                                                <option value="A_POSITIVE">A+</option>
+                                                <option value="A_NEGATIVE">A-</option>
+                                                <option value="B_POSITIVE">B+</option>
+                                                <option value="B_NEGATIVE">B-</option>
+                                                <option value="O_POSITIVE">O+</option>
+                                                <option value="O_NEGATIVE">O-</option>
+                                                <option value="AB_POSITIVE">AB+</option>
+                                                <option value="AB_NEGATIVE">AB-</option>
+                                            </select>
+                                        ) : (
+                                            <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">
+                                                {BLOOD_TYPES[profileData.bloodType as keyof typeof BLOOD_TYPES] || profileData.bloodType || <EmptyValue />}
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    <div className="rounded-xl bg-orange-50/60 px-3 py-2 transition hover:bg-orange-50">
+                                        <label className="mb-0.5 block text-xs font-medium text-slate-500">Loại da</label>
+                                        {isEditing ? (
+                                            <select value={editData.skinType} onChange={(e) => setEditData({ ...editData, skinType: e.target.value })} className={inputClass}>
+                                                <option value="">-- Chọn --</option>
+                                                <option value="Da dầu">Da dầu</option>
+                                                <option value="Da khô">Da khô</option>
+                                                <option value="Da hỗn hợp">Da hỗn hợp</option>
+                                                <option value="Da thường">Da thường</option>
+                                                <option value="Da nhạy cảm">Da nhạy cảm</option>
+                                            </select>
+                                        ) : (
+                                            <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.skinType || <EmptyValue />}</p>
+                                        )}
+                                    </div>
+
+                                    <div className="rounded-xl bg-green-50/60 px-3 py-2 transition hover:bg-green-50">
+                                        <label className="mb-0.5 block text-xs font-medium text-slate-500">Liên hệ khẩn cấp</label>
+                                        {isEditing ? (
+                                            <input type="tel" value={editData.emergencyContact} onChange={(e) => setEditData({ ...editData, emergencyContact: e.target.value })} className={inputClass} />
+                                        ) : (
+                                            <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.emergencyContact || <EmptyValue />}</p>
+                                        )}
+                                    </div>
+
+                                    <div className="rounded-xl bg-yellow-50/60 px-3 py-2 transition hover:bg-yellow-50">
+                                        <label className="mb-0.5 block text-xs font-medium text-slate-500">Dị ứng</label>
+                                        {isEditing ? (
+                                            <input type="text" value={editData.allergies} onChange={(e) => setEditData({ ...editData, allergies: e.target.value })} className={inputClass} placeholder="Nhập dị ứng (nếu có)" />
+                                        ) : (
+                                            <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.allergies || <EmptyValue />}</p>
+                                        )}
+                                    </div>
+
+                                    <div className="rounded-xl bg-blue-50/60 px-3 py-2 transition hover:bg-blue-50">
+                                        <label className="mb-0.5 block text-xs font-medium text-slate-500">Thuốc đang dùng</label>
+                                        {isEditing ? (
+                                            <input type="text" value={editData.medications} onChange={(e) => setEditData({ ...editData, medications: e.target.value })} className={inputClass} placeholder="Nhập thuốc đang dùng (nếu có)" />
+                                        ) : (
+                                            <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.medications || <EmptyValue />}</p>
+                                        )}
+                                    </div>
+
+                                    <div className="rounded-xl bg-purple-50/60 px-3 py-2 transition hover:bg-purple-50">
+                                        <label className="mb-0.5 block text-xs font-medium text-slate-500">Bệnh mãn tính</label>
+                                        {isEditing ? (
+                                            <input type="text" value={editData.chronicConditions} onChange={(e) => setEditData({ ...editData, chronicConditions: e.target.value })} className={inputClass} placeholder="Nhập bệnh mãn tính (nếu có)" />
+                                        ) : (
+                                            <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{profileData.chronicConditions || <EmptyValue />}</p>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
 
                     </div>
 
@@ -320,20 +342,32 @@ export default function ProfilePage() {
                         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft">
                             <h3 className="mb-3 font-semibold text-slate-900">Hành động nhanh</h3>
                             <div className="space-y-2.5">
-                                <Link
-                                    href="/appointments"
-                                    className="flex items-center gap-3 rounded-lg border border-slate-200 p-3 text-sm text-slate-700 transition hover:border-dermcare hover:bg-dermcare/5"
-                                >
-                                    <span className="text-xl">📅</span>
-                                    <span>Đặt lịch khám</span>
-                                </Link>
-                                <Link
-                                    href="/medical-records"
-                                    className="flex items-center gap-3 rounded-lg border border-slate-200 p-3 text-sm text-slate-700 transition hover:border-dermcare hover:bg-dermcare/5"
-                                >
-                                    <span className="text-xl">📋</span>
-                                    <span>Hồ sơ y tế</span>
-                                </Link>
+                                {isDoctor ? (
+                                    <Link
+                                        href="/doctor/appointments"
+                                        className="flex items-center gap-3 rounded-lg border border-dermcare/30 bg-dermcare/5 p-3 text-sm text-dermcare font-medium transition hover:border-dermcare hover:bg-dermcare/10"
+                                    >
+                                        <span className="text-xl">🩺</span>
+                                        <span>Quản lý lịch hẹn</span>
+                                    </Link>
+                                ) : (
+                                    <>
+                                        <Link
+                                            href="/appointments"
+                                            className="flex items-center gap-3 rounded-lg border border-slate-200 p-3 text-sm text-slate-700 transition hover:border-dermcare hover:bg-dermcare/5"
+                                        >
+                                            <span className="text-xl">📅</span>
+                                            <span>Đặt lịch khám</span>
+                                        </Link>
+                                        <Link
+                                            href="/medical-records"
+                                            className="flex items-center gap-3 rounded-lg border border-slate-200 p-3 text-sm text-slate-700 transition hover:border-dermcare hover:bg-dermcare/5"
+                                        >
+                                            <span className="text-xl">📋</span>
+                                            <span>Hồ sơ y tế</span>
+                                        </Link>
+                                    </>
+                                )}
                                 <Link
                                     href="/chat"
                                     className="flex items-center gap-3 rounded-lg border border-slate-200 p-3 text-sm text-slate-700 transition hover:border-dermcare hover:bg-dermcare/5"
@@ -346,25 +380,46 @@ export default function ProfilePage() {
 
                         {/* Account Stats */}
                         <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-dermcare-light to-white p-5 shadow-soft flex-1 flex flex-col justify-center">
-                            <h3 className="mb-3 font-semibold text-slate-900">Thống kê tài khoản</h3>
+                            <h3 className="mb-3 font-semibold text-slate-900">{isDoctor ? 'Thống kê hoạt động' : 'Thống kê tài khoản'}</h3>
                             <div className="space-y-2.5">
-                                <div className="flex items-center justify-between">
-                                    <span className="text-sm text-slate-600">Lượt khám</span>
-                                    <span className="text-lg font-bold text-dermcare">12</span>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className="text-sm text-slate-600">Hồ sơ y tế</span>
-                                    <span className="text-lg font-bold text-dermcare">8</span>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <span className="text-sm text-slate-600">Bác sĩ theo dõi</span>
-                                    <span className="text-lg font-bold text-dermcare">3</span>
-                                </div>
+                                {isDoctor ? (
+                                    <>
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-sm text-slate-600">Ca khám</span>
+                                            <span className="text-lg font-bold text-dermcare">--</span>
+                                        </div>
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-sm text-slate-600">Bệnh nhân</span>
+                                            <span className="text-lg font-bold text-dermcare">--</span>
+                                        </div>
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-sm text-slate-600">Đánh giá TB</span>
+                                            <span className="text-lg font-bold text-dermcare">--</span>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-sm text-slate-600">Lượt khám</span>
+                                            <span className="text-lg font-bold text-dermcare">12</span>
+                                        </div>
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-sm text-slate-600">Hồ sơ y tế</span>
+                                            <span className="text-lg font-bold text-dermcare">8</span>
+                                        </div>
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-sm text-slate-600">Bác sĩ theo dõi</span>
+                                            <span className="text-lg font-bold text-dermcare">3</span>
+                                        </div>
+                                    </>
+                                )}
                             </div>
                         </div>
 
                     </div>
                 </div>
+
+
             </div>
         </div>
 

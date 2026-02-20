@@ -40,7 +40,11 @@ export interface User {
     dateOfBirth: string;
     phone?: string;
     address?: string;
-    roles: string[];
+    role: string;
+    // Doctor-specific fields (from Doctor entity)
+    specialization?: string;
+    qualifications?: string;
+    rating?: number;
 }
 
 // Login

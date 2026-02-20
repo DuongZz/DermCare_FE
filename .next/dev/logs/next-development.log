@@ -1,7 +1,6 @@
-[00:00:02.262] Server  LOG     ✓ Ready in 1660ms
-[00:10:44.932] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:10:44.932] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:10:45.226] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:02.801] Server  LOG     ✓ Ready in 1824ms
+[00:00:19.054] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:19.523] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -37,581 +36,149 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:10:45.226] Browser LOG     AuthContext: initializing auth...
-[00:10:45.226] Browser LOG     [API Request] No Token attached
-[00:10:45.226] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:10:46.759] Browser LOG     AuthContext: washToken success
-[00:10:46.759] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:10:46.759] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:10:46.759] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","role":"PATIENT","updated_at":"2026-02-18T21:43:09.579Z"}
-[01:40:00.537] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[01:40:00.784] Browser WARN    Image with src "/yen.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:40:00.784] Browser WARN    Image with src "/duong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:40:00.784] Browser WARN    Image with src "/duongtro.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:40:00.784] Browser WARN    Image with src "/ganarcho.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:40:00.784] Browser WARN    Image with src "/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:40:00.784] Browser WARN    Image with src "/khuebeo.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:40:00.784] Browser WARN    Image with src "/hiepdan.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[07:00:33.727] Server  LOG     ✓ Compiled in 2.9s
-[07:08:33.722] Server  LOG     ✓ Compiled in 323ms
-[07:20:11.054] Server  LOG     ✓ Compiled in 399ms
-[07:23:39.072] Server  LOG     ✓ Compiled in 179ms
-[07:25:55.118] Server  LOG     ✓ Compiled in 190ms
-[07:29:42.827] Server  LOG     ✓ Compiled in 150ms
-[07:29:47.647] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[07:29:47.647] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[07:29:48.056] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[07:29:48.056] Browser LOG     AuthContext: initializing auth...
-[07:29:48.056] Browser LOG     [API Request] No Token attached
-[07:29:48.056] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[07:29:49.794] Browser LOG     AuthContext: washToken success
-[07:29:49.794] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[07:29:49.794] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[07:29:49.794] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","role":"PATIENT","updated_at":"2026-02-19T05:02:12.210Z"}
-[07:31:13.294] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/doctors" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                          <body
-                            className="page-shell"
--                           style={{overscroll-behavior-x:"contain",overscroll-behavior-y:"contain"}}
-                          >
-                  ...
-
-[07:31:13.294] Browser LOG     AuthContext: initializing auth...
-[07:31:13.294] Browser LOG     [API Request] No Token attached
-[07:31:13.294] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[07:31:13.990] Browser LOG     AuthContext: washToken success
-[07:31:13.990] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[07:31:13.990] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[07:31:13.990] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","role":"PATIENT","updated_at":"2026-02-19T05:03:36.159Z"}
-[07:32:58.441] Server  LOG     ✓ Compiled in 131ms
-[07:33:02.491] Server  LOG     ✓ Compiled in 83ms
-[07:34:59.603] Server  LOG     ✓ Compiled in 151ms
-[07:37:34.588] Server  LOG     ✓ Compiled in 148ms
-[07:40:44.822] Server  LOG     ✓ Compiled in 69ms
-[07:40:46.973] Server  LOG     ✓ Compiled in 69ms
-[07:40:48.238] Server  LOG     ✓ Compiled in 53ms
-[07:40:57.055] Server  LOG     ✓ Compiled in 75ms
-[07:41:00.679] Server  LOG     ✓ Compiled in 72ms
-[07:41:41.945] Server  LOG     ✓ Compiled in 638ms
-[07:41:42.210] Browser ERROR   ./src/components/Header.tsx:309:25
-Parsing ecmascript source code failed
-  307 |                     </div>
-  308 |                 </div>
-> 309 |             </div>header>
-      |                         ^
-  310 |             );
-  311 | }
-  312 |
-
-Unexpected token. Did you mean `{'>'}` or `&gt;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-[07:41:42.210] Browser ERROR   ./src/components/Header.tsx:311:1
-Parsing ecmascript source code failed
-  309 |             </div>header>
-  310 |             );
-> 311 | }
-      | ^
-  312 |
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-[07:42:10.909] Server  ERROR   ⨯ ./src/components/Header.tsx:309:25
-Parsing ecmascript source code failed
-  307 |                     </div>
-  308 |                 </div>
-> 309 |             </div>header>
-      |                         ^
-  310 |             );
-  311 | }
-  312 |
-
-Unexpected token. Did you mean `{'>'}` or `&gt;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-
-
-./src/components/Header.tsx:311:1
-Parsing ecmascript source code failed
-  309 |             </div>header>
-  310 |             );
-> 311 | }
-      | ^
-  312 |
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-
-[07:42:11.110] Browser ERROR   ./src/components/Header.tsx:309:25
-Parsing ecmascript source code failed
-  307 |                     </div>
-  308 |                 </div>
-> 309 |             </div>header>
-      |                         ^
-  310 |             );
-  311 | }
-  312 |
-
-Unexpected token. Did you mean `{'>'}` or `&gt;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-[07:42:11.110] Browser ERROR   ./src/components/Header.tsx:311:1
-Parsing ecmascript source code failed
-  309 |             </div>header>
-  310 |             );
-> 311 | }
-      | ^
-  312 |
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-[07:42:12.593] Browser ERROR   ./src/components/Header.tsx:309:25
-Parsing ecmascript source code failed
-  307 |                     </div>
-  308 |                 </div>
-> 309 |             </div>header>
-      |                         ^
-  310 |             );
-  311 | }
-  312 |
-
-Unexpected token. Did you mean `{'>'}` or `&gt;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-[07:42:12.594] Browser ERROR   ./src/components/Header.tsx:311:1
-Parsing ecmascript source code failed
-  309 |             </div>header>
-  310 |             );
-> 311 | }
-      | ^
-  312 |
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-[07:42:13.486] Browser ERROR   uncaughtError: Error: ./src/components/Header.tsx:309:25
-Parsing ecmascript source code failed
-  307 |                     </div>
-  308 |                 </div>
-> 309 |             </div>header>
-      |                         ^
-  310 |             );
-  311 | }
-  312 |
-
-Unexpected token. Did you mean `{'>'}` or `&gt;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-
-[07:42:13.722] Browser ERROR   ./src/components/Header.tsx:309:25
-Parsing ecmascript source code failed
-  307 |                     </div>
-  308 |                 </div>
-> 309 |             </div>header>
-      |                         ^
-  310 |             );
-  311 | }
-  312 |
-
-Unexpected token. Did you mean `{'>'}` or `&gt;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-[07:42:13.722] Browser ERROR   ./src/components/Header.tsx:311:1
-Parsing ecmascript source code failed
-  309 |             </div>header>
-  310 |             );
-> 311 | }
-      | ^
-  312 |
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-[07:42:13.722] Browser ERROR   ./src/components/Header.tsx:309:25
-Parsing ecmascript source code failed
-  307 |                     </div>
-  308 |                 </div>
-> 309 |             </div>header>
-      |                         ^
-  310 |             );
-  311 | }
-  312 |
-
-Unexpected token. Did you mean `{'>'}` or `&gt;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-[07:42:13.722] Browser ERROR   ./src/components/Header.tsx:311:1
-Parsing ecmascript source code failed
-  309 |             </div>header>
-  310 |             );
-> 311 | }
-      | ^
-  312 |
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-[07:42:14.024] Browser ERROR   ./src/components/Header.tsx:309:25
-Parsing ecmascript source code failed
-  307 |                     </div>
-  308 |                 </div>
-> 309 |             </div>header>
-      |                         ^
-  310 |             );
-  311 | }
-  312 |
-
-Unexpected token. Did you mean `{'>'}` or `&gt;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-[07:42:14.024] Browser ERROR   ./src/components/Header.tsx:311:1
-Parsing ecmascript source code failed
-  309 |             </div>header>
-  310 |             );
-> 311 | }
-      | ^
-  312 |
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-[07:42:41.206] Browser ERROR   ./src/components/Header.tsx:306:18
-Parsing ecmascript source code failed
-  304 |                                 </button>
-  305 |                             </div>
-> 306 |                 </div>
-      |                  ^^^^^
-  307 |                 </div>
-  308 |         </header>
-  309 |     );
-
-Unterminated regexp literal
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-[07:43:26.588] Server  LOG     ✓ Compiled in 57ms
-[07:43:27.870] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[07:43:29.202] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[07:43:29.202] Browser LOG     AuthContext: initializing auth...
-[07:43:29.202] Browser LOG     [API Request] No Token attached
-[07:43:29.202] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[07:43:30.242] Browser LOG     AuthContext: washToken success
-[07:43:30.242] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[07:43:30.242] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[07:43:30.242] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","role":"PATIENT","updated_at":"2026-02-19T05:15:52.540Z"}
-[07:44:00.501] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[07:44:00.501] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/logout
-[07:44:01.346] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[07:44:03.043] Browser WARN    Image with src "/duongtro.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[07:44:03.044] Browser WARN    Image with src "/yen.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[07:44:03.044] Browser WARN    Image with src "/duong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[07:44:03.044] Browser WARN    Image with src "/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[07:44:03.044] Browser WARN    Image with src "/ganarcho.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[07:44:03.044] Browser WARN    Image with src "/khuebeo.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[07:44:03.044] Browser WARN    Image with src "/hiepdan.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[07:44:11.427] Browser LOG     [API Request] No Token attached
-[07:44:11.427] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
-[07:44:12.204] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[07:44:12.204] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[07:44:12.204] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","role":"PATIENT","updated_at":"2026-02-19T05:16:34.611Z"}
-[07:44:39.858] Server  LOG     ✓ Compiled in 92ms
-[07:46:16.932] Server  LOG     ✓ Compiled in 149ms
-[07:46:17.121] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+[00:00:19.523] Browser LOG     AuthContext: initializing auth...
+[00:00:19.523] Browser LOG     [API Request] No Token attached
+[00:00:19.523] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:00:20.122] Browser LOG     AuthContext: washToken success
+[00:00:20.122] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:20.122] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:00:20.122] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","role":"PATIENT","updated_at":"2026-02-20T09:32:22.090Z"}
+[00:00:20.122] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[07:46:17.121] Browser WARN    Image with src "/logo_dermcare.jpg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[13:22:18.212] Server  LOG     ✓ Compiled in 844ms
-[13:22:51.494] Server  LOG     ✓ Compiled in 155ms
-[13:24:00.446] Server  LOG     ✓ Compiled in 148ms
-[13:25:20.167] Server  LOG     ✓ Compiled in 196ms
-[13:26:30.815] Server  LOG     ✓ Compiled in 116ms
-[13:27:38.976] Server  LOG     ✓ Compiled in 76ms
-[13:27:43.438] Server  LOG     ✓ Compiled in 57ms
-[13:27:55.289] Server  LOG     ✓ Compiled in 256ms
-[13:28:05.561] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[13:28:06.136] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:18:27.485] Server  LOG     ✓ Compiled in 261ms
+[00:19:25.806] Server  LOG     ✓ Compiled in 3.1s
+[00:19:40.679] Server  LOG     ✓ Compiled in 162ms
+[00:20:13.412] Server  LOG     ✓ Compiled in 172ms
+[00:44:19.674] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:44:19.679] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/logout
+[00:44:20.010] Browser ERROR   Logout failed {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"fcmToken\":null}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlOTNlYTUzLTJhNTMtNGRkNC04MjI4LTAxNjk5ODYyZTIyYiIsIm5hbWUiOiLEkMOgbyBRdWFuZyBExrDGoW5nIiwiZW1haWwiOiJkdW9uZ2Rhb3FAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0xMVQwOTowODowMC45MDVaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MTYwNTE0MiwiZXhwIjoxNzcxNjA2MDQyfQ.6PhKt8X6b-yklJTm31SIoxPfPX8i-0pnE7XKIk1NPSQ","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/logout","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async logout (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:272:9)\n    at async logout (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js?id=%255Bproject%255D%252Fsrc%252Fcontexts%252FAuthContext.tsx+%255Bapp-client%255D+%2528ecmascript%2529:74:13)","status":401}
+[00:44:21.041] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:45:14.399] Browser LOG     === REGISTER FORM SUBMITTED ===
+[00:45:14.399] Browser LOG     Starting registration...
+[00:45:14.399] Browser LOG     Registration payload: {"address":"Bệnh viện Kinh Đô","dateOfBirth":"2003-06-13","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","password":"***","passwordConfirm":"Duck130603@","phone":"0943172828"}
+[00:45:14.399] Browser LOG     [API Request] No Token attached
+[00:45:14.399] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/register
+[00:45:15.806] Browser LOG     Registration response: {"data":null,"message":"User successfully created.","success":true}
+[00:45:18.615] Browser LOG     [API Request] No Token attached
+[00:45:18.615] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[00:45:19.239] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:45:19.239] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:45:19.240] Browser LOG     AuthContext: fetchUser success {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"PATIENT","updated_at":"2026-02-20T10:17:21.255Z"}
+[00:45:20.551] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:45:20.551] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/logout
+[00:46:13.946] Browser LOG     [API Request] No Token attached
+[00:46:13.946] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[00:46:14.693] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:46:14.693] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:46:14.693] Browser LOG     AuthContext: fetchUser success {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-20T10:18:16.975Z"}
+[00:46:18.451] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-20T10:18:16.975Z"}
+[00:46:18.451] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-20T10:18:16.975Z"}
+[00:46:18.451] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:46:18.451] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[00:46:18.451] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:46:18.451] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:46:18.451] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:46:18.451] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[00:46:18.451] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:46:18.451] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:46:18.451] Browser ERROR   Failed to fetch doctor appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDc4OTcsImV4cCI6MTc3MTYwODc5N30.wUTSS7ExSAkskQxmGF8q2rW1k2n0TL5KyLFzs7o5jRE","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:36:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:127:26)","status":404}
+[00:46:18.451] Browser ERROR   Failed to fetch doctor appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDc4OTcsImV4cCI6MTc3MTYwODc5N30.wUTSS7ExSAkskQxmGF8q2rW1k2n0TL5KyLFzs7o5jRE","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:36:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:127:26)","status":404}
+[00:50:14.681] Server  LOG     ✓ Compiled in 612ms
+[00:50:33.832] Server  LOG     ✓ Compiled in 1294ms
+[00:55:52.950] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-20T10:18:16.975Z"}
+[00:55:52.950] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-20T10:18:16.975Z"}
+[00:55:52.950] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:55:52.950] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[00:55:52.950] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:55:52.950] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:55:52.950] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:55:52.950] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[00:55:52.950] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:55:52.950] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:55:52.950] Browser ERROR   Failed to fetch doctor appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDc4OTcsImV4cCI6MTc3MTYwODc5N30.wUTSS7ExSAkskQxmGF8q2rW1k2n0TL5KyLFzs7o5jRE","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:36:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:127:26)","status":404}
+[00:55:52.950] Browser ERROR   Failed to fetch doctor appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDc4OTcsImV4cCI6MTc3MTYwODc5N30.wUTSS7ExSAkskQxmGF8q2rW1k2n0TL5KyLFzs7o5jRE","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:36:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:127:26)","status":404}
+[00:55:58.179] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-20T10:18:16.975Z"}
+[00:55:58.179] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-20T10:18:16.975Z"}
+[00:55:58.179] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:55:58.179] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[00:55:58.179] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:55:58.179] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:55:58.179] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:55:58.179] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[00:55:58.179] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:55:58.179] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:55:58.179] Browser ERROR   Failed to fetch doctor appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDc4OTcsImV4cCI6MTc3MTYwODc5N30.wUTSS7ExSAkskQxmGF8q2rW1k2n0TL5KyLFzs7o5jRE","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:36:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:127:26)","status":404}
+[00:55:58.179] Browser ERROR   Failed to fetch doctor appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDc4OTcsImV4cCI6MTc3MTYwODc5N30.wUTSS7ExSAkskQxmGF8q2rW1k2n0TL5KyLFzs7o5jRE","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:36:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:127:26)","status":404}
+[00:57:10.590] Server  LOG     ✓ Compiled in 2.9s
+[00:57:10.824] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 75]. Please update your config to [100, 70, 70, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[00:57:18.568] Server  LOG     ✓ Compiled in 138ms
+[00:58:43.628] Server  LOG     ✓ Compiled in 389ms
+[01:01:52.296] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:01:52.296] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:01:52.296] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:01:52.296] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:01:52.296] Browser ERROR   Failed to fetch doctor appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDc4OTcsImV4cCI6MTc3MTYwODc5N30.wUTSS7ExSAkskQxmGF8q2rW1k2n0TL5KyLFzs7o5jRE","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:36:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:127:26)","status":404}
+[01:01:52.296] Browser ERROR   Failed to fetch doctor appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDc4OTcsImV4cCI6MTc3MTYwODc5N30.wUTSS7ExSAkskQxmGF8q2rW1k2n0TL5KyLFzs7o5jRE","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:36:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:127:26)","status":404}
+[01:04:22.849] Server  LOG     ✓ Compiled in 1156ms
+[01:04:23.792] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:04:23.792] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:04:24.812] Browser ERROR   Failed to load appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDc4OTcsImV4cCI6MTc3MTYwODc5N30.wUTSS7ExSAkskQxmGF8q2rW1k2n0TL5KyLFzs7o5jRE","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:36:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252FDoctorAppointments.tsx+%255Bapp-client%255D+%2528ecmascript%2529:151:26)","status":404}
+[01:06:23.744] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-20T10:18:16.975Z"}
+[01:06:23.744] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-20T10:18:16.975Z"}
+[01:06:23.744] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:06:23.744] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:06:23.744] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:06:23.744] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:06:24.875] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:06:24.875] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:06:25.068] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:06:25.068] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:06:26.344] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:06:26.344] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:06:26.344] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:06:26.344] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:06:26.344] Browser ERROR   Failed to load appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDkxMDcsImV4cCI6MTc3MTYxMDAwN30.OK4CYtzdWDii2ZoXLGCs0Zh6-PxyzI8LKuVdDRPHs7o","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:36:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252FDoctorAppointments.tsx+%255Bapp-client%255D+%2528ecmascript%2529:151:26)","status":404}
+[01:06:26.344] Browser ERROR   Failed to load appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDkxMDcsImV4cCI6MTc3MTYxMDAwN30.OK4CYtzdWDii2ZoXLGCs0Zh6-PxyzI8LKuVdDRPHs7o","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_5fbd9f66._.js:36:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252FDoctorAppointments.tsx+%255Bapp-client%255D+%2528ecmascript%2529:151:26)","status":404}
+[01:08:20.008] Server  LOG     ✓ Compiled in 537ms
+[01:09:02.141] Server  LOG     ✓ Compiled in 782ms
+[01:09:02.338] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:09:02.339] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:09:02.615] Browser ERROR   Failed to load appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDkxMDcsImV4cCI6MTc3MTYxMDAwN30.OK4CYtzdWDii2ZoXLGCs0Zh6-PxyzI8LKuVdDRPHs7o","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fservices%252FdoctorService.ts+%255Bapp-client%255D+%2528ecmascript%2529:37:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252FDoctorAppointments.tsx+%255Bapp-client%255D+%2528ecmascript%2529:158:26)","status":404}
+[01:10:18.757] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:10:18.757] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:10:18.757] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:10:18.757] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:10:18.757] Browser ERROR   Failed to load appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDkxMDcsImV4cCI6MTc3MTYxMDAwN30.OK4CYtzdWDii2ZoXLGCs0Zh6-PxyzI8LKuVdDRPHs7o","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fservices%252FdoctorService.ts+%255Bapp-client%255D+%2528ecmascript%2529:37:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252FDoctorAppointments.tsx+%255Bapp-client%255D+%2528ecmascript%2529:158:26)","status":404}
+[01:10:18.757] Browser ERROR   Failed to load appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDkxMDcsImV4cCI6MTc3MTYxMDAwN30.OK4CYtzdWDii2ZoXLGCs0Zh6-PxyzI8LKuVdDRPHs7o","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fservices%252FdoctorService.ts+%255Bapp-client%255D+%2528ecmascript%2529:37:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252FDoctorAppointments.tsx+%255Bapp-client%255D+%2528ecmascript%2529:158:26)","status":404}
+[01:10:20.028] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-20T10:18:16.975Z"}
+[01:10:20.028] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-20T10:18:16.975Z"}
+[01:10:20.028] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:10:20.028] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:10:20.028] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:10:20.028] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:10:38.118] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:10:38.118] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:10:38.118] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:10:38.118] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:10:38.118] Browser ERROR   Failed to load appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDkxMDcsImV4cCI6MTc3MTYxMDAwN30.OK4CYtzdWDii2ZoXLGCs0Zh6-PxyzI8LKuVdDRPHs7o","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fservices%252FdoctorService.ts+%255Bapp-client%255D+%2528ecmascript%2529:37:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252FDoctorAppointments.tsx+%255Bapp-client%255D+%2528ecmascript%2529:158:26)","status":404}
+[01:10:38.118] Browser ERROR   Failed to load appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDkxMDcsImV4cCI6MTc3MTYxMDAwN30.OK4CYtzdWDii2ZoXLGCs0Zh6-PxyzI8LKuVdDRPHs7o","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fservices%252FdoctorService.ts+%255Bapp-client%255D+%2528ecmascript%2529:37:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252FDoctorAppointments.tsx+%255Bapp-client%255D+%2528ecmascript%2529:158:26)","status":404}
+[01:14:10.874] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-20T10:18:16.975Z"}
+[01:14:10.874] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-20T10:18:16.975Z"}
+[01:14:10.874] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:14:10.874] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:14:10.874] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:14:10.874] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:14:14.917] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:14:14.917] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:14:14.917] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:14:14.917] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:14:14.917] Browser ERROR   Failed to load appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDkxMDcsImV4cCI6MTc3MTYxMDAwN30.OK4CYtzdWDii2ZoXLGCs0Zh6-PxyzI8LKuVdDRPHs7o","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fservices%252FdoctorService.ts+%255Bapp-client%255D+%2528ecmascript%2529:37:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252FDoctorAppointments.tsx+%255Bapp-client%255D+%2528ecmascript%2529:158:26)","status":404}
+[01:14:14.917] Browser ERROR   Failed to load appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDkxMDcsImV4cCI6MTc3MTYxMDAwN30.OK4CYtzdWDii2ZoXLGCs0Zh6-PxyzI8LKuVdDRPHs7o","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fservices%252FdoctorService.ts+%255Bapp-client%255D+%2528ecmascript%2529:37:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js?id=%255Bproject%255D%252Fsrc%252Fcomponents%252FDoctorAppointments.tsx+%255Bapp-client%255D+%2528ecmascript%2529:158:26)","status":404}
+[01:15:09.846] Server  LOG     ✓ Compiled in 425ms
+[01:15:36.848] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:15:36.848] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[01:15:37.156] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -629,7 +196,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/doctor/ap..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -647,98 +214,41 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[13:28:06.136] Browser LOG     AuthContext: initializing auth...
-[13:28:06.136] Browser LOG     [API Request] No Token attached
-[13:28:06.136] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[13:28:07.444] Browser LOG     AuthContext: washToken success
-[13:28:07.444] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[13:28:07.444] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[13:28:07.444] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","role":"PATIENT","updated_at":"2026-02-19T11:00:29.423Z"}
-[13:28:07.444] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+[01:15:37.156] Browser LOG     AuthContext: initializing auth...
+[01:15:37.156] Browser LOG     [API Request] No Token attached
+[01:15:37.156] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[01:15:37.724] Browser LOG     AuthContext: washToken success
+[01:15:37.724] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:37.724] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[01:15:37.932] Browser LOG     AuthContext: fetchUser success {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-20T10:47:40.030Z"}
+[01:15:37.932] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 75]. Please update your config to [100, 70, 70, 75].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[13:28:07.444] Browser WARN    Image with src "/logo_dermcare.jpg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[13:28:12.215] Server  LOG     ✓ Compiled in 53ms
-[13:28:16.029] Server  LOG     ✓ Compiled in 70ms
-[13:29:27.140] Server  LOG     ✓ Compiled in 94ms
-[13:30:20.781] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[13:30:20.781] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[13:30:21.085] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[13:30:21.085] Browser LOG     AuthContext: initializing auth...
-[13:30:21.085] Browser LOG     [API Request] No Token attached
-[13:30:21.085] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[13:30:21.638] Browser LOG     AuthContext: washToken success
-[13:30:21.638] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[13:30:21.638] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[13:30:21.638] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","role":"PATIENT","updated_at":"2026-02-19T11:02:43.689Z"}
-[13:30:21.638] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+[01:15:37.932] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:37.932] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:15:37.932] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:37.932] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:15:37.932] Browser ERROR   Failed to load appointments, using mock data: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDk2NjAsImV4cCI6MTc3MTYxMDU2MH0.aHVCSGMTPzm0rSBcC9mGOSoyf3W3VbYRuhsYe6P80d4","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7861:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8379:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9185:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js:38:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js:294:26)","status":404}
+[01:15:37.932] Browser ERROR   Failed to load appointments, using mock data: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDk2NjAsImV4cCI6MTc3MTYxMDU2MH0.aHVCSGMTPzm0rSBcC9mGOSoyf3W3VbYRuhsYe6P80d4","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7861:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8379:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9185:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js:38:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js:294:26)","status":404}
+[01:15:41.969] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:41.969] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctor/appointments/mock-1/status
+[01:15:41.969] Browser ERROR   Failed to update: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"status\":\"CONFIRMED\"}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDk2NjAsImV4cCI6MTc3MTYxMDU2MH0.aHVCSGMTPzm0rSBcC9mGOSoyf3W3VbYRuhsYe6P80d4","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"patch","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments/mock-1/status","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7861:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8379:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9185:49)\n    at async updateAppointmentStatus (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js:42:22)\n    at async handleUpdateStatus (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js:306:13)","status":404}
+[01:19:24.596] Server  LOG     ✓ Compiled in 1352ms
+[01:19:25.439] Server  LOG     ✓ Compiled in 484ms
+[01:19:25.810] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 75].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[13:31:16.069] Server  LOG     ✓ Compiled in 287ms
-[13:33:11.402] Server  LOG     ✓ Compiled in 116ms
-[13:36:34.199] Server  LOG     ✓ Compiled in 297ms
-[13:39:37.149] Server  LOG     ✓ Compiled in 172ms
-[13:42:02.797] Server  LOG     ✓ Compiled in 225ms
-[13:43:40.169] Server  LOG     ✓ Compiled in 223ms
-[13:44:51.251] Server  LOG     ✓ Compiled in 617ms
-[13:44:52.206] Browser ERROR   ./src/components/Header.tsx:49:25
-Parsing ecmascript source code failed
-  47 |                             quality={100}
-  48 |                             priority
-> 49 |                         <Image
-     |                         ^
-  50 |                             src="/logo_dermcare.jpg"
-  51 |                             alt="Dermcare - Phòng khám da liễu trực tuyến"
-  52 |                             width={650}
-
-Expression expected
-
-Import traces:
-  Client Component Browser:
-    ./src/components/Header.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Client Component Browser]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/components/Header.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Client Component SSR]
-    ./src/components/ClientLayout.tsx [Server Component]
-    ./src/app/layout.tsx [Server Component]
-[13:45:34.290] Server  LOG     ✓ Compiled in 167ms
-[13:48:34.110] Server  LOG     ✓ Compiled in 109ms
-[13:50:33.220] Server  LOG     ✓ Compiled in 231ms
-[13:52:29.669] Server  LOG     ✓ Compiled in 103ms
+[01:19:25.812] Server  LOG     ✓ Compiled in 192ms
+[01:19:34.426] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[01:19:34.426] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:19:34.426] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[01:19:34.426] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:19:34.426] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[01:20:11.022] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:20:11.022] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:20:11.022] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:20:11.022] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:20:11.022] Browser ERROR   Failed to load appointments, using mock data: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDk2NjAsImV4cCI6MTc3MTYxMDU2MH0.aHVCSGMTPzm0rSBcC9mGOSoyf3W3VbYRuhsYe6P80d4","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7861:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8379:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9185:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js:38:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js:294:26)","status":404}
+[01:20:11.022] Browser ERROR   Failed to load appointments, using mock data: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2MDk2NjAsImV4cCI6MTc3MTYxMDU2MH0.aHVCSGMTPzm0rSBcC9mGOSoyf3W3VbYRuhsYe6P80d4","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7861:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8379:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9185:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js:38:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_3cfbde4d._.js:294:26)","status":404}
+[01:20:18.312] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:20:18.312] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[01:20:18.312] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:20:18.312] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule

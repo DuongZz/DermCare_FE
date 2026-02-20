@@ -4,6 +4,8 @@
   "/ai-chat/page": "/ai-chat",
   "/appointments/page": "/appointments",
   "/chat/page": "/chat",
+  "/doctor/appointments/page": "/doctor/appointments",
+  "/doctor/schedule/page": "/doctor/schedule",
   "/doctors/page": "/doctors",
   "/forgot-password/page": "/forgot-password",
   "/login/page": "/login",

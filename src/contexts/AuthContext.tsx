@@ -8,6 +8,7 @@ import { setAccessToken } from "@/lib/tokenStore";
 
 export interface AuthContextType {
     isLoggedIn: boolean;
+    isDoctor: boolean;
     user: User | null;
     login: () => void;
     logout: () => void;
@@ -84,8 +85,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return <div>Loading...</div>; // Or a spinner
     }
 
+    const isDoctor = user?.role === 'DOCTOR';
+
     return (
-        <AuthContext.Provider value={{ isLoggedIn, user, login, logout, fetchUser }}>
+        <AuthContext.Provider value={{ isLoggedIn, isDoctor, user, login, logout, fetchUser }}>
             {children}
         </AuthContext.Provider>
     );

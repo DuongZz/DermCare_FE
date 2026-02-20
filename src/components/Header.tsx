@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function Header() {
-    const { isLoggedIn, user, logout } = useAuth();
+    const { isLoggedIn, isDoctor, user, logout } = useAuth();
     const [showUserMenu, setShowUserMenu] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
     const [language, setLanguage] = useState<'vn' | 'en'>('vn');
@@ -46,7 +46,7 @@ export default function Header() {
                             height={180}
                             quality={100}
                             priority
-                            className="h-full w-auto object-contain object-left py-2"
+                            className="h-16 w-auto object-contain object-left"
                         />
                     </Link>
                     <span className="sr-only">
@@ -55,7 +55,7 @@ export default function Header() {
                 </div>
 
                 {/* 2. Navigation */}
-                <nav className="hidden gap-8 text-sm text-slate-600 md:flex mx-auto whitespace-nowrap">
+                <nav className="hidden gap-8 text-sm text-slate-600 md:flex ml-auto whitespace-nowrap">
                     <a href="#services" className="hover:text-dermcare">
                         Dịch vụ
                     </a>
@@ -77,19 +77,19 @@ export default function Header() {
                 </nav>
 
                 {/* 3. Right Actions (Login, Booking, Language, User) */}
-                <div className="flex items-center gap-4 ml-auto">
+                <div className="flex items-center gap-4">
                     {/* Guest: Login & Booking */}
                     {!isLoggedIn && (
                         <>
                             <Link
                                 href="/login"
-                                className="hidden rounded-full border border-slate-200 px-4 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50 md:inline-flex"
+                                className="hidden rounded-full border border-slate-200 px-4 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50 md:inline-flex whitespace-nowrap"
                             >
                                 Đăng nhập
                             </Link>
                             <Link
                                 href="/doctors"
-                                className="inline-flex rounded-full bg-dermcare px-4 py-1.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark"
+                                className="inline-flex rounded-full bg-dermcare px-4 py-1.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark whitespace-nowrap"
                             >
                                 Đặt lịch ngay
                             </Link>
@@ -99,19 +99,28 @@ export default function Header() {
                     {/* Logged In: Booking & Bell & User */}
                     {isLoggedIn && (
                         <>
-                            {/* Booking Button (Logged In) */}
-                            <Link
-                                href="/doctors"
-                                className="hidden lg:inline-flex rounded-full bg-dermcare px-4 py-1.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark transition whitespace-nowrap"
-                            >
-                                Đặt lịch ngay
-                            </Link>
+                            {/* Booking/Management Button (Logged In) */}
+                            {isDoctor ? (
+                                <Link
+                                    href="/doctor/appointments"
+                                    className="hidden lg:inline-flex rounded-full bg-dermcare px-4 py-1.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark transition whitespace-nowrap"
+                                >
+                                    Quản lý lịch hẹn
+                                </Link>
+                            ) : (
+                                <Link
+                                    href="/doctors"
+                                    className="hidden lg:inline-flex rounded-full bg-dermcare px-4 py-1.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark transition whitespace-nowrap"
+                                >
+                                    Đặt lịch ngay
+                                </Link>
+                            )}
 
                             {/* Notification Bell */}
                             <div className="relative" ref={notifRef}>
                                 <button
                                     onClick={() => setShowNotifications(!showNotifications)}
-                                    className="relative rounded-full p-2 text-slate-600 hover:bg-slate-100 transition"
+                                    className="relative rounded-full p-1.5 text-slate-600 hover:bg-slate-100 transition"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
@@ -207,7 +216,7 @@ export default function Header() {
                             <div className="relative" ref={userMenuRef}>
                                 <button
                                     onClick={() => setShowUserMenu(!showUserMenu)}
-                                    className="flex items-center gap-1.5 rounded-full border border-slate-200 px-2.5 py-2 hover:bg-slate-50 transition"
+                                    className="flex items-center gap-1.5 rounded-full border border-slate-200 px-2.5 py-1.5 hover:bg-slate-50 transition"
                                 >
                                     <svg className="h-5 w-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
@@ -236,20 +245,33 @@ export default function Header() {
                                             <span>👤</span>
                                             <span>Hồ sơ cá nhân</span>
                                         </Link>
-                                        <Link
-                                            href="/appointments"
-                                            className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
-                                        >
-                                            <span>📅</span>
-                                            <span>Lịch hẹn</span>
-                                        </Link>
-                                        <Link
-                                            href="/medical-records"
-                                            className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
-                                        >
-                                            <span>📋</span>
-                                            <span>Hồ sơ y tế</span>
-                                        </Link>
+                                        {isDoctor && (
+                                            <Link
+                                                href="/doctor/schedule"
+                                                className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                                            >
+                                                <span>🗓️</span>
+                                                <span>Lịch làm việc</span>
+                                            </Link>
+                                        )}
+                                        {!isDoctor && (
+                                            <>
+                                                <Link
+                                                    href="/appointments"
+                                                    className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                                                >
+                                                    <span>📅</span>
+                                                    <span>Lịch hẹn</span>
+                                                </Link>
+                                                <Link
+                                                    href="/medical-records"
+                                                    className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                                                >
+                                                    <span>📋</span>
+                                                    <span>Hồ sơ y tế</span>
+                                                </Link>
+                                            </>
+                                        )}
                                         <div className="border-t border-slate-100 mt-2 pt-2">
                                             <button
                                                 onClick={() => logout()}
@@ -313,6 +335,6 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-        </header>
+        </header >
     );
 }
