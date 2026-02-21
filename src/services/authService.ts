@@ -44,6 +44,7 @@ export interface User {
     // Doctor-specific fields (from Doctor entity)
     specialization?: string;
     qualifications?: string;
+    work_place?: string;
     rating?: number;
 }
 
