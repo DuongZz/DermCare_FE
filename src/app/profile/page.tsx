@@ -9,7 +9,7 @@ import userService from "@/services/userService";
 import apiClient from "@/lib/apiClient";
 
 export default function ProfilePage() {
-    const { user, isDoctor } = useAuth();
+    const { user, isDoctor, fetchUser } = useAuth();
     const [isEditing, setIsEditing] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [profileData, setProfileData] = useState({
@@ -93,6 +93,20 @@ export default function ProfilePage() {
     }, [user]);
 
     const [editData, setEditData] = useState(profileData);
+    const [toastMessage, setToastMessage] = useState<string | null>(null);
+    const [isToastVisible, setIsToastVisible] = useState(false);
+
+    const showToast = (msg: string) => {
+        setToastMessage(msg);
+
+        // Start enter animation slightly after render
+        setTimeout(() => setIsToastVisible(true), 10);
+
+        // Start leave animation at 2.7s
+        setTimeout(() => setIsToastVisible(false), 2700);
+        // Completely remove at 3s
+        setTimeout(() => setToastMessage(null), 3000);
+    };
 
     // Sync editData when profileData updates (e.g. after fetch)
     useEffect(() => {
@@ -104,9 +118,10 @@ export default function ProfilePage() {
         try {
             if (isDoctor) {
                 // Doctor: save doctor-specific fields (column 2)
-                await apiClient.patch('/doctors/update-info', doctorEditData);
+                const res = await apiClient.patch('/doctors/update-info', doctorEditData);
                 await fetchUser(); // Re-fetch user data to update UI
                 setIsEditing(false);
+                showToast(res.data?.message || "Cập nhật thông tin thành công!");
                 console.log("Doctor info updated successfully");
             } else {
                 // Patient: save medical info
@@ -121,6 +136,7 @@ export default function ProfilePage() {
                 if (res.success) {
                     setProfileData(editData);
                     setIsEditing(false);
+                    showToast("Cập nhật thông tin y tế thành công!");
                     console.log("Medical info updated successfully");
                 } else {
                     throw new Error("Update failed");
@@ -128,7 +144,7 @@ export default function ProfilePage() {
             }
         } catch (error) {
             console.error("Failed to save:", error);
-            alert("Cập nhật thất bại. Vui lòng thử lại.");
+            showToast("Cập nhật thất bại. Vui lòng thử lại.");
         } finally {
             setIsLoading(false);
         }
@@ -159,12 +175,15 @@ export default function ProfilePage() {
         try {
             const formData = new FormData();
             formData.append('avatar', file);
-            await apiClient.patch('/doctor/update-info', formData, {
+            const response = await apiClient.patch('/doctors/update-avatar', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
+            await fetchUser();
+            showToast(response.data?.message || "Cập nhật ảnh đại diện thành công!");
             console.log("Avatar updated");
         } catch (err) {
             console.error("Avatar upload failed:", err);
+            showToast("Lỗi tải ảnh lên! Vui lòng thử lại.");
         } finally {
             setUploadingAvatar(false);
         }
@@ -186,7 +205,15 @@ export default function ProfilePage() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 py-2">
+        <div className="min-h-screen bg-slate-50 py-2 pt-8 relative">
+            {toastMessage && (
+                <div className={`fixed top-28 left-1/2 z-[100] rounded-full border border-dermcare bg-white px-6 py-2.5 text-sm font-semibold text-dermcare shadow-lg transition-all duration-500 ease-in-out transform ${isToastVisible
+                    ? 'translate-y-0 opacity-100 -translate-x-1/2'
+                    : '-translate-y-12 opacity-0 -translate-x-1/2'
+                    }`}>
+                    {toastMessage}
+                </div>
+            )}
             <div className="mx-auto max-w-5xl px-4">
 
                 {/* Header */}
@@ -249,14 +276,6 @@ export default function ProfilePage() {
                                             </span>
                                         )}
                                     </div>
-                                    <button
-                                        onClick={() => fileInputRef.current?.click()}
-                                        disabled={uploadingAvatar}
-                                        className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-all duration-200 cursor-pointer gap-0.5"
-                                    >
-                                        <span className="text-xl">{uploadingAvatar ? '⏳' : '📷'}</span>
-                                        <span className="text-[10px] font-medium">{uploadingAvatar ? 'Đang tải...' : 'Đổi ảnh'}</span>
-                                    </button>
                                     <input
                                         ref={fileInputRef}
                                         type="file"
@@ -267,8 +286,9 @@ export default function ProfilePage() {
                                 </div>
 
                                 {/* Name & Info */}
-                                <h3 className="text-lg font-bold text-slate-900">{user?.fullName || 'Bác sĩ'}</h3>
-                                <p className="text-xs text-slate-500 mt-0.5">{user?.email}</p>
+                                <h3 className="text-lg font-bold text-slate-900">
+                                    {user?.qualifications ? `${user.qualifications} ${user.fullName}` : (user?.fullName || 'Bác sĩ')}
+                                </h3>
                                 {user?.specialization && (
                                     <p className="text-xs text-dermcare font-medium mt-2">{user.specialization}</p>
                                 )}
@@ -383,9 +403,18 @@ export default function ProfilePage() {
                                         )}
                                     </div>
                                     <div className="rounded-xl bg-green-50/60 px-4 py-3 transition hover:bg-green-50">
-                                        <label className="mb-1 block text-xs font-medium text-slate-500">Bằng cấp / Chứng chỉ</label>
+                                        <label className="mb-1 block text-xs font-medium text-slate-500">Chuyên môn</label>
                                         {isEditing ? (
-                                            <input type="text" value={doctorEditData.qualifications} onChange={(e) => setDoctorEditData({ ...doctorEditData, qualifications: e.target.value })} className={inputClass} placeholder="VD: Thạc sĩ Y khoa..." />
+                                            <select value={doctorEditData.qualifications} onChange={(e) => setDoctorEditData({ ...doctorEditData, qualifications: e.target.value })} className={inputClass}>
+                                                <option value="">-- Chọn chuyên môn --</option>
+                                                <option value="BS">Bác sĩ (BS)</option>
+                                                <option value="ThS.BS">Thạc sĩ, Bác sĩ (ThS.BS)</option>
+                                                <option value="TS.BS">Tiến sĩ, Bác sĩ (TS.BS)</option>
+                                                <option value="BS.CKI">Bác sĩ Chuyên khoa I (BS.CKI)</option>
+                                                <option value="BS.CKII">Bác sĩ Chuyên khoa II (BS.CKII)</option>
+                                                <option value="PGS.TS.BS">Phó Giáo sư, Tiến sĩ, Bác sĩ (PGS.TS.BS)</option>
+                                                <option value="GS.TS.BS">Giáo sư, Tiến sĩ, Bác sĩ (GS.TS.BS)</option>
+                                            </select>
                                         ) : (
                                             <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">{user?.qualifications || <EmptyValue />}</p>
                                         )}
@@ -401,7 +430,7 @@ export default function ProfilePage() {
                                     <div className="rounded-xl bg-amber-50/60 px-4 py-3 transition hover:bg-amber-50">
                                         <label className="mb-1 block text-xs font-medium text-slate-500">Đánh giá</label>
                                         <p className="h-8 flex items-center px-2 text-sm font-semibold text-slate-900">
-                                            {user?.rating ? `⭐ ${user.rating}/5` : <EmptyValue />}
+                                            {user?.rating ? `⭐ ${user.rating}/5` : "--"}
                                         </p>
                                     </div>
                                 </div>

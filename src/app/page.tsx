@@ -1,13 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
-
+import { getPublicDoctors, PublicDoctor } from "@/services/doctorService";
 
 export default function HomePage() {
   const { isLoggedIn } = useAuth();
+  const [doctors, setDoctors] = useState<PublicDoctor[]>([]);
 
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const data = await getPublicDoctors();
+        setDoctors(data);
+      } catch (error) {
+        console.error("Failed to fetch doctors:", error);
+      }
+    };
+    fetchDoctors();
+  }, []);
 
   return (
     <div className="flex flex-col">
@@ -144,8 +156,8 @@ export default function HomePage() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="bg-slate-50 px-4 py-16">
-        <div className="mx-auto max-w-7xl">
+      <section className="bg-slate-50 px-4 py-16">
+        <div id="services" className="mx-auto max-w-7xl pt-12 -mt-12">
           <div className="mb-10 text-center">
             <h2 className="mb-3 text-3xl font-bold text-slate-900 md:text-4xl">
               Dịch vụ chăm sóc da
@@ -253,8 +265,8 @@ export default function HomePage() {
       </section>
 
       {/* FEATURED DOCTORS */}
-      <section id="doctors" className="bg-white px-4 py-16">
-        <div className="mx-auto max-w-7xl">
+      <section className="bg-white px-4 py-16">
+        <div id="doctors" className="mx-auto max-w-7xl pt-14 -mt-14">
           <div className="mb-10 text-center">
             <h2 className="mb-3 text-3xl font-bold text-slate-900 md:text-4xl">
               Bác sĩ tiêu biểu
@@ -265,67 +277,43 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                name: "TS.BS. Đào Quang Dương",
-                specialty: "Ung thư da, Viêm da",
-                rating: 5.0,
-                reviews: 312,
-                image: "/duongtro.jpg",
-              },
-              {
-                name: "BS. Đào Quang Yê",
-                specialty: "Mụn, Thẩm mỹ da",
-                rating: 5.0,
-                reviews: 189,
-                image: "/duong.jpg",
-              },
-              {
-                name: "BS. Cù Thị Hải Nê",
-                specialty: "Viêm da, Da nhạy cảm",
-                rating: 3.6,
-                reviews: 234,
-                image: "/yen.jpg",
-              },
-              {
-                name: "PGS.TS. Phạm Tuấn Hịp",
-                specialty: "Ung thư da, Thẩm mỹ",
-                rating: 3.6,
-                reviews: 428,
-                image: "/hiepdan.jpg",
-              },
-            ].map((doctor, idx) => (
+            {doctors.length > 0 ? doctors.slice(0, 4).map((doctor, idx) => (
               <div
                 key={idx}
-                className="card-elevated overflow-hidden text-center transition hover:shadow-lg"
+                className="card-elevated flex flex-col overflow-hidden text-center transition hover:shadow-lg h-full"
               >
-                <div className="relative h-48 overflow-hidden bg-gradient-to-br from-dermcare-light to-slate-100">
+                <div className="relative h-56 overflow-hidden bg-gradient-to-br from-dermcare-light to-slate-100 flex-shrink-0">
                   <img
-                    src={doctor.image}
-                    alt={doctor.name}
-                    className="h-full w-full object-cover"
+                    src={doctor.avatar || '/default-avatar.png'}
+                    alt={doctor.user?.fullName || 'Bác sĩ'}
+                    className="h-full w-full object-cover object-top rounded-t-2xl"
                   />
                 </div>
-                <div className="p-5">
-                  <h3 className="mb-1 text-lg font-semibold text-slate-900">
-                    {doctor.name}
+                <div className="flex flex-col flex-1 p-4 pb-5">
+                  <h3 className="mb-0.5 text-base font-bold text-slate-900 line-clamp-2">
+                    {doctor.qualifications ? `${doctor.qualifications} ${doctor.user.fullName}` : (doctor.user.fullName || 'Bác sĩ')}
                   </h3>
-                  <p className="mb-3 text-sm text-slate-600">
-                    {doctor.specialty}
-                  </p>
-                  <div className="mb-4 flex items-center justify-center gap-1 text-sm">
-                    <span className="text-amber-500">★</span>
-                    <span className="font-semibold text-slate-900">
-                      {doctor.rating}
-                    </span>
-                    <span className="text-slate-500">({doctor.reviews})</span>
+                  <div className="flex-1">
+                    <p className="mb-1.5 text-sm text-dermcare font-medium line-clamp-2">
+                      {doctor.specialization || "Chưa cập nhật"}
+                    </p>
                   </div>
-                  <button className="w-full rounded-lg bg-dermcare py-2 text-sm font-semibold text-white transition hover:bg-dermcare-dark">
-                    Đặt lịch khám
-                  </button>
+                  <div className="mt-auto">
+                    <div className="mb-3 flex items-center justify-center gap-1 text-sm bg-slate-50 py-1 rounded-lg border border-slate-100">
+                      <span className="text-amber-500">★</span>
+                      <span className="font-bold text-slate-900">
+                        {doctor.rating ? doctor.rating : '--'} / 5
+                      </span>
+                    </div>
+                    <button className="w-full rounded-xl bg-dermcare py-2 text-sm font-semibold text-white transition hover:bg-dermcare-dark shadow-soft">
+                      Đặt lịch khám
+                    </button>
+                  </div>
                 </div>
               </div>
-            ))}
+            )) : (
+              <div className="col-span-full py-12 text-slate-500 text-center">Đang tải danh sách bác sĩ...</div>
+            )}
           </div>
 
           <div className="mt-8 text-center">
@@ -353,8 +341,8 @@ export default function HomePage() {
       </section>
 
       {/* SPECIALTIES */}
-      <section id="specialties" className="bg-slate-50 px-4 py-16">
-        <div className="mx-auto max-w-7xl">
+      <section className="bg-slate-50 px-4 py-16">
+        <div id="specialties" className="mx-auto max-w-7xl pt-24 -mt-24">
           {/* Section Header */}
           {/* Section Header */}
           <div className="mb-8 text-center">
@@ -393,8 +381,8 @@ export default function HomePage() {
       </section>
 
       {/* REVIEWS */}
-      <section id="reviews" className="bg-slate-50 px-4 py-16 overflow-hidden">
-        <div className="mx-auto max-w-7xl">
+      <section className="bg-slate-50 px-4 py-16 overflow-hidden">
+        <div id="reviews" className="mx-auto max-w-7xl pt-12 -mt-12">
           <div className="mb-10 text-center">
             <h2 className="mb-3 text-3xl font-bold text-slate-900 md:text-4xl">
               Đánh giá từ bệnh nhân
@@ -527,8 +515,8 @@ export default function HomePage() {
       </section>
 
       {/* PARTNERS */}
-      <section id="partners" className="bg-white px-4 py-16">
-        <div className="mx-auto max-w-7xl">
+      <section className="bg-white px-4 py-16">
+        <div id="partners" className="mx-auto max-w-7xl pt-24 -mt-24">
           <div className="mb-10 text-center">
             <h2 className="mb-3 text-3xl font-bold text-slate-900 md:text-4xl">
               Đối tác & Hợp tác

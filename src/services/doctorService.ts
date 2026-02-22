@@ -32,10 +32,29 @@ export interface DoctorAppointment {
     };
 }
 
+export interface PublicDoctor {
+    user_id: string;
+    avatar: string | null;
+    specialization: string | null;
+    qualifications: string | null;
+    workPlace: string | null;
+    rating: number;
+    user: {
+        fullName: string;
+        email: string;
+    };
+}
+
 // Get all doctors
 export const getDoctors = async (): Promise<Doctor[]> => {
     const { data } = await apiClient.get('/doctors');
     return data;
+};
+
+// Get public doctors catalog
+export const getPublicDoctors = async (): Promise<PublicDoctor[]> => {
+    const { data } = await apiClient.get('/doctors/public');
+    return data.data;
 };
 
 // Get doctor by ID

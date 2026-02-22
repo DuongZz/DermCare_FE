@@ -38,7 +38,11 @@ export default function Header() {
             <div className="relative mx-auto flex h-full max-w-7xl items-center justify-start gap-8 px-8">
                 {/* 1. Logo */}
                 <div className="flex items-center gap-3">
-                    <Link href="/" className="cursor-pointer">
+                    <Link
+                        href="/"
+                        className="cursor-pointer"
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    >
                         <Image
                             src="/logo_dermcare.jpg"
                             alt="Dermcare - Phòng khám da liễu trực tuyến"
@@ -56,24 +60,24 @@ export default function Header() {
 
                 {/* 2. Navigation */}
                 <nav className="hidden gap-8 text-sm text-slate-600 md:flex ml-auto whitespace-nowrap">
-                    <a href="#services" className="hover:text-dermcare">
+                    <Link href="/#services" className="hover:text-dermcare">
                         Dịch vụ
-                    </a>
-                    <a href="#doctors" className="hover:text-dermcare">
+                    </Link>
+                    <Link href="/#doctors" className="hover:text-dermcare">
                         Bác sĩ
-                    </a>
-                    <a href="#specialties" className="hover:text-dermcare">
+                    </Link>
+                    <Link href="/#specialties" className="hover:text-dermcare">
                         Chuyên khoa
-                    </a>
-                    <a href="#reviews" className="hover:text-dermcare">
+                    </Link>
+                    <Link href="/#reviews" className="hover:text-dermcare">
                         Đánh giá
-                    </a>
-                    <a href="#partners" className="hover:text-dermcare">
+                    </Link>
+                    <Link href="/#partners" className="hover:text-dermcare">
                         Hợp tác
-                    </a>
-                    <a href="#footer" className="hover:text-dermcare">
+                    </Link>
+                    <Link href="/#footer" className="hover:text-dermcare">
                         Về chúng tôi
-                    </a>
+                    </Link>
                 </nav>
 
                 {/* 3. Right Actions (Login, Booking, Language, User) */}
@@ -235,7 +239,9 @@ export default function Header() {
                                 {showUserMenu && (
                                     <div className="absolute right-0 mt-2 w-56 rounded-xl border border-slate-200 bg-white shadow-lg py-2">
                                         <div className="px-4 py-3 border-b border-slate-100">
-                                            <p className="text-sm font-semibold text-slate-900 truncate">{user?.fullName || "Người dùng"}</p>
+                                            <p className="text-sm font-semibold text-slate-900 truncate">
+                                                {user?.qualifications ? `${user.qualifications} ${user.fullName}` : (user?.fullName || "Người dùng")}
+                                            </p>
                                             <p className="text-xs text-slate-500 truncate">{user?.email || "Chưa cập nhật email"}</p>
                                         </div>
                                         <Link

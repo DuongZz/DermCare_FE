@@ -1,212 +1,6 @@
-[00:00:02.367] Server  LOG     ✓ Ready in 1741ms
-[00:05:36.229] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:37.978] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[00:05:37.978] Browser LOG     AuthContext: initializing auth...
-[00:05:37.978] Browser LOG     [API Request] No Token attached
-[00:05:37.978] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:05:37.978] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:247:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:375:30)","status":401}
-[00:05:37.978] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:05:37.978] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:07:21.517] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:07:30.938] Browser LOG     [API Request] No Token attached
-[00:07:30.938] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
-[00:07:32.365] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:07:32.365] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:07:32.365] Browser LOG     AuthContext: fetchUser success {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-21T09:57:40.814Z"}
-[00:07:36.170] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:07:36.170] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
-[00:07:36.170] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:07:36.170] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
-[00:09:23.981] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-21T09:57:40.814Z"}
-[00:09:23.981] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-21T09:57:40.814Z"}
-[00:09:23.981] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:09:23.981] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[00:09:23.981] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:09:23.982] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[00:17:33.799] Server  LOG     ✓ Compiled in 4.4s
-[00:17:33.982] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-21T09:57:40.814Z"}
-[00:17:33.982] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:17:33.983] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[00:18:52.137] Server  LOG     ✓ Compiled in 2.1s
-[00:22:34.426] Server  LOG     ✓ Compiled in 762ms
-[00:24:57.205] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:26:40.275] Server  LOG     ✓ Compiled in 553ms
-[00:27:19.883] Server  LOG     ✓ Compiled in 323ms
-[00:30:07.890] Server  LOG     ✓ Compiled in 425ms
-[00:32:27.762] Server  LOG     ✓ Compiled in 430ms
-[00:34:09.532] Server  LOG     ✓ Compiled in 267ms
-[00:49:53.889] Server  LOG     ✓ Compiled in 669ms
-[00:49:55.990] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-21T09:57:40.814Z"}
-[00:49:55.990] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:49:55.990] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[00:49:55.991] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:49:55.991] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[00:50:13.884] Server  LOG     ✓ Compiled in 86ms
-[01:00:01.761] Server  LOG     ✓ Compiled in 2.4s
-[01:00:34.444] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-21T09:57:40.814Z"}
-[01:00:34.444] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"DOCTOR","updated_at":"2026-02-21T09:57:40.814Z"}
-[01:00:34.444] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:00:34.444] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[01:00:34.444] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:00:34.444] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[01:00:42.986] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:00:42.986] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
-[01:00:42.986] Browser ERROR   Failed to save: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"specialization\":\"\",\"qualifications\":\"\",\"workPlace\":\"\"}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2OTU2MDMsImV4cCI6MTc3MTY5NjUwM30._BTa9G_PBx4KSq3QS-0MaIODVaDUYLh3Q3-41kU7s6U","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"patch","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctors/update-info","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async handleSave (http://localhost:3000/_next/static/chunks/src_e4f9efb7._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fprofile%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:135:17)","status":404}
-[01:02:13.934] Server  LOG     ✓ Compiled in 129ms
-[01:03:23.463] Server  LOG     ✓ Compiled in 63ms
-[01:04:10.350] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:04:10.350] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
-[01:04:12.013] Browser ERROR   Failed to save: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"specialization\":\"Da liễu thẩm mỹ\",\"qualifications\":\"Thạc sĩ\",\"workPlace\":\"Bệnh viện Da liễu Đống Đa\"}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2OTU2MDMsImV4cCI6MTc3MTY5NjUwM30._BTa9G_PBx4KSq3QS-0MaIODVaDUYLh3Q3-41kU7s6U","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"patch","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctors/update-info","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async handleSave (http://localhost:3000/_next/static/chunks/src_e4f9efb7._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fprofile%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:135:17)","status":404}
-[01:06:03.539] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:06:03.539] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
-[01:06:04.912] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:06:04.913] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
-[01:06:04.913] Browser ERROR   Failed to save: {"code":"ERR_BAD_REQUEST","config":{"_retry":true,"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"specialization\":\"Da liễu thẩm mỹ\",\"qualifications\":\"Thạc sĩ\",\"workPlace\":\"Bệnh viện Da liễu Đống Đa\"}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2OTY1NzIsImV4cCI6MTc3MTY5NzQ3Mn0.Aip-pOROZHEy5f3oBFs8gSp6ppeyXcuTDRRx5nZHRWI","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"patch","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctors/update-info","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9177:20)\n    at async handleSave (http://localhost:3000/_next/static/chunks/src_e4f9efb7._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fprofile%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:135:17)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async handleSave (http://localhost:3000/_next/static/chunks/src_e4f9efb7._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fprofile%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:135:17)","status":404}
-[01:06:36.423] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:06:36.423] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
-[01:06:36.423] Browser ERROR   Failed to save: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"specialization\":\"Da liễu thẩm mỹ\",\"qualifications\":\"Thạc sĩ\",\"workPlace\":\"Bệnh viện Da liễu Đống Đa\"}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2OTY1NzIsImV4cCI6MTc3MTY5NzQ3Mn0.Aip-pOROZHEy5f3oBFs8gSp6ppeyXcuTDRRx5nZHRWI","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"patch","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctors/update-info","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async handleSave (http://localhost:3000/_next/static/chunks/src_e4f9efb7._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fprofile%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:135:17)","status":404}
-[01:08:20.565] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:08:20.565] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
-[01:08:21.623] Browser ERROR   Failed to save: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"specialization\":\"Da liễu thẩm mỹ\",\"qualifications\":\"Thạc sĩ\",\"workPlace\":\"Bệnh viện Da liễu Đống Đa\"}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiNzJhZWQxLWI4MTUtNGRhMi1iN2RhLTQ1NDNlNmY0YjI0MSIsIm5hbWUiOiJOZ3V54buFbiBWxINuIEEiLCJlbWFpbCI6ImR1b25nZGFvcXFxcUBnbWFpbC5jb20iLCJyb2xlIjoiRE9DVE9SIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDItMjBUMTA6MTc6MTguMTIwWiIsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE3NzE2OTY1NzIsImV4cCI6MTc3MTY5NzQ3Mn0.Aip-pOROZHEy5f3oBFs8gSp6ppeyXcuTDRRx5nZHRWI","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"patch","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctors/update-info","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7857:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8375:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async handleSave (http://localhost:3000/_next/static/chunks/src_e4f9efb7._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fprofile%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:135:17)","status":404}
-[01:11:52.493] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:11:52.494] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/logout
-[01:11:53.317] Browser LOG     ProfilePage: user updated null
-[01:29:54.020] Browser LOG     === REGISTER FORM SUBMITTED ===
-[01:29:54.020] Browser LOG     Starting registration...
-[01:29:54.020] Browser LOG     Registration payload: {"address":"Số 16, xóm 4, Đỗ Xá, Vạn Điểm Thường Tín, Hà Nội","dateOfBirth":"2003-08-08","email":"cuyenbaongoc05061011@gmail.com","fullName":"Cù Thị Hải Yến","gender":"FEMALE","password":"***","passwordConfirm":"Duck130603@","phone":"0877505255"}
-[01:29:54.020] Browser LOG     [API Request] No Token attached
-[01:29:54.020] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/register
-[01:29:56.358] Browser ERROR   Registration failed: {"code":"ERR_NETWORK","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"email\":\"cuyenbaongoc05061011@gmail.com\",\"password\":\"Duck130603@\",\"passwordConfirm\":\"Duck130603@\",\"fullName\":\"Cù Thị Hải Yến\",\"gender\":\"FEMALE\",\"dateOfBirth\":\"2003-08-08\",\"phone\":\"0877505255\",\"address\":\"Số 16, xóm 4, Đỗ Xá, Vạn Điểm Thường Tín, Hà Nội\"}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/register","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Network Error","name":"AxiosError","stack":"AxiosError: Network Error\n    at XMLHttpRequest.handleError (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8421:25)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9181:49)\n    at async register (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:217:22)\n    at async handleRegister (http://localhost:3000/_next/static/chunks/src_app_register_page_tsx_e3da4879._.js:84:30)"}
-[01:31:23.444] Browser LOG     === REGISTER FORM SUBMITTED ===
-[01:31:23.444] Browser LOG     Starting registration...
-[01:31:23.444] Browser LOG     Registration payload: {"address":"Số 16, xóm 4, Đỗ Xá, Vạn Điểm Thường Tín, Hà Nội","dateOfBirth":"2003-08-08","email":"cuyenbaongoc05061011@gmail.com","fullName":"Cù Thị Hải Yến","gender":"FEMALE","password":"***","passwordConfirm":"Duck130603@","phone":"0877505255"}
-[01:31:23.444] Browser LOG     [API Request] No Token attached
-[01:31:23.444] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/register
-[01:31:24.158] Browser LOG     Registration response: {"data":null,"message":"User successfully created.","success":true}
-[01:40:34.223] Browser LOG     [API Request] No Token attached
-[01:40:34.230] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
-[01:40:34.942] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:40:34.942] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[01:40:34.942] Browser LOG     AuthContext: fetchUser success {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"ADMIN","updated_at":"2026-02-21T11:30:43.317Z"}
-[01:40:36.606] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"ADMIN","updated_at":"2026-02-21T11:30:43.317Z"}
-[01:40:36.606] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"ADMIN","updated_at":"2026-02-21T11:30:43.317Z"}
-[01:40:36.606] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:40:36.606] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[01:40:36.606] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:40:36.606] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[01:40:39.996] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:40:40.328] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/medical-r..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[01:40:40.328] Browser LOG     AuthContext: initializing auth...
-[01:40:40.328] Browser LOG     [API Request] No Token attached
-[01:40:40.328] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[01:40:40.719] Browser LOG     AuthContext: washToken success
-[01:40:40.720] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:40:40.720] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[01:40:40.720] Browser LOG     AuthContext: fetchUser success {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"ADMIN","updated_at":"2026-02-21T11:30:48.925Z"}
-[01:40:40.720] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[01:40:40.720] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[01:40:42.738] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[01:40:42.738] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"ADMIN","updated_at":"2026-02-21T11:30:48.925Z"}
-[01:40:42.738] Browser LOG     ProfilePage: user updated {"address":"Bệnh viện Kinh Đô","created_at":"2026-02-20T10:17:18.120Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqqqq@gmail.com","fullName":"Nguyễn Văn A","gender":"MALE","id":"db72aed1-b815-4da2-b7da-4543e6f4b241","phone":"0943172828","role":"ADMIN","updated_at":"2026-02-21T11:30:48.925Z"}
-[01:40:42.738] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:40:42.738] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[01:40:42.738] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:40:42.738] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[01:40:47.279] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:40:47.279] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/logout
-[01:40:47.567] Browser LOG     ProfilePage: user updated null
-[01:40:59.918] Browser LOG     [API Request] No Token attached
-[01:40:59.918] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
-[01:41:00.591] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:41:00.591] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[01:41:00.591] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","role":"DOCTOR","updated_at":"2026-02-21T11:31:08.979Z"}
-[01:41:02.141] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","role":"DOCTOR","updated_at":"2026-02-21T11:31:08.979Z"}
-[01:41:02.141] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","role":"DOCTOR","updated_at":"2026-02-21T11:31:08.979Z"}
-[01:41:02.141] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:41:02.141] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[01:41:02.141] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:41:02.141] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[01:41:22.197] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:41:22.197] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
-[01:41:22.847] Browser LOG     Doctor info updated successfully
-[01:42:26.599] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:42:26.599] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
-[01:42:26.751] Browser LOG     Doctor info updated successfully
-[01:44:19.274] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:44:19.274] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[01:44:19.489] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:03.124] Server  LOG     ✓ Ready in 2.1s
+[00:00:05.729] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:06.533] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -242,19 +36,844 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[01:44:19.489] Browser LOG     AuthContext: initializing auth...
-[01:44:19.489] Browser LOG     [API Request] No Token attached
-[01:44:19.489] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[01:44:20.004] Browser LOG     AuthContext: washToken success
-[01:44:20.004] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:44:20.004] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[01:44:20.154] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":null,"created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-21T11:34:28.413Z","work_place":"Bệnh viện Da Liệu TPHCM"}
-[01:44:20.154] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+[00:00:06.534] Browser LOG     AuthContext: initializing auth...
+[00:00:06.534] Browser LOG     [API Request] No Token attached
+[00:00:06.534] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:00:08.525] Browser LOG     AuthContext: washToken success
+[00:00:08.525] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:08.525] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:00:08.525] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:21.596Z","work_place":"Bệnh viện Da Liệu TPHCM"}
+[00:00:08.525] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[01:44:20.154] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":null,"created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-21T11:34:28.413Z","work_place":"Bệnh viện Da Liệu TPHCM"}
-[01:44:20.154] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":null,"created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-21T11:34:28.413Z","work_place":"Bệnh viện Da Liệu TPHCM"}
-[01:44:20.154] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:44:20.154] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[01:44:20.154] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:44:20.154] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[01:44:38.750] Server  LOG     ✓ Compiled in 3.1s
+[00:00:08.525] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:21.596Z","work_place":"Bệnh viện Da Liệu TPHCM"}
+[00:00:08.526] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:21.596Z","work_place":"Bệnh viện Da Liệu TPHCM"}
+[00:00:08.526] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:08.526] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:00:08.526] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:08.526] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:00:26.962] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:00:29.535] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:29.895] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/profile" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[00:00:29.895] Browser LOG     AuthContext: initializing auth...
+[00:00:29.895] Browser LOG     [API Request] No Token attached
+[00:00:29.895] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:00:30.390] Browser LOG     AuthContext: washToken success
+[00:00:30.390] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:30.390] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:00:30.595] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:44.689Z","work_place":"Bệnh viện Da Liệu TPHCM"}
+[00:00:30.595] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[00:00:30.595] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:44.689Z","work_place":"Bệnh viện Da Liệu TPHCM"}
+[00:00:30.595] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:44.689Z","work_place":"Bệnh viện Da Liệu TPHCM"}
+[00:00:30.595] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:30.595] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:00:30.595] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:30.595] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:00:30.595] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:01:20.888] Server  LOG     ✓ Compiled in 2.8s
+[00:10:28.998] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:10:29.005] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
+[00:10:29.898] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:10:29.898] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:10:30.018] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:44.689Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:10:30.019] Browser LOG     Doctor info updated successfully
+[00:10:30.019] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:44.689Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:10:30.019] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:10:30.019] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:15:12.275] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:15:39.867] Server  LOG     ✓ Compiled in 880ms
+[00:20:34.463] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:44.689Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:20:34.463] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:44.689Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:20:34.463] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:20:34.463] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:20:34.463] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:20:34.463] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:20:35.672] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:20:35.672] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:20:35.672] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:20:35.672] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:20:43.214] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:44.689Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:20:43.214] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:44.689Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:20:43.214] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:20:43.214] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:20:43.214] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:20:43.214] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:21:12.495] Server  LOG     ✓ Compiled in 876ms
+[00:23:49.164] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:44.689Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:23:49.164] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:44.689Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:23:49.164] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:23:49.164] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:23:49.164] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:23:49.164] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:24:26.789] Server  LOG     ✓ Compiled in 619ms
+[00:25:08.243] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:25:08.243] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[00:25:08.243] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:25:08.243] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[00:25:12.057] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:44.689Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:25:12.057] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:44.689Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:25:12.057] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:25:12.057] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:25:12.057] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:25:12.057] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:26:53.610] Browser WARN    Image with src "/yen.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:26:53.610] Browser WARN    Image with src "/khuebeo.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:26:53.611] Browser WARN    Image with src "/duongtro.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:26:53.611] Browser WARN    Image with src "/duong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:26:53.611] Browser WARN    Image with src "/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:26:53.611] Browser WARN    Image with src "/ganarcho.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:26:53.611] Browser WARN    Image with src "/hiepdan.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:27:25.304] Server  LOG     ✓ Compiled in 672ms
+[00:28:08.802] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:44.689Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:28:08.802] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"Thạc sĩ","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T00:42:44.689Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:28:08.802] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:28:08.802] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:28:08.802] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:28:08.802] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:28:16.456] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:28:16.456] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
+[00:28:16.837] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:28:16.837] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:28:16.960] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:02:49.911Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:28:16.960] Browser LOG     Doctor info updated successfully
+[00:28:16.960] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:02:49.911Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:28:16.960] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:28:16.960] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:28:33.933] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:28:34.526] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/profile" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[00:28:34.526] Browser LOG     AuthContext: initializing auth...
+[00:28:34.526] Browser LOG     [API Request] No Token attached
+[00:28:34.526] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:28:35.516] Browser LOG     AuthContext: washToken success
+[00:28:35.516] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:28:35.516] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:28:36.338] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:10:49.337Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:28:36.338] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[00:28:36.338] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:10:49.337Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:28:36.338] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:10:49.337Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:28:36.338] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:28:36.338] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:28:36.338] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:28:36.338] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:28:36.458] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:29:42.526] Server  LOG     ✓ Compiled in 289ms
+[00:30:55.648] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:30:55.648] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
+[00:30:59.186] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:30:59.186] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:30:59.186] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:10:49.337Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:30:59.186] Browser LOG     Doctor info updated successfully
+[00:30:59.186] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:10:49.337Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:30:59.186] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:30:59.186] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:32:20.042] Server  LOG     ✓ Compiled in 474ms
+[00:32:20.532] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:10:49.337Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:32:20.532] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:32:20.532] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:32:30.745] Server  LOG     ✓ Compiled in 231ms
+[00:35:40.368] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:35:40.374] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
+[00:35:41.226] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:35:41.226] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:35:41.354] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"PGS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:10:49.337Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:35:41.354] Browser LOG     Doctor info updated successfully
+[00:35:41.354] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"PGS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:10:49.337Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:35:41.354] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:35:41.354] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:37:06.716] Server  LOG     ✓ Compiled in 436ms
+[00:38:16.236] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:38:16.237] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
+[00:38:17.047] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:38:17.047] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:38:17.178] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS.CKI","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:10:49.337Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:38:17.178] Browser LOG     Doctor info updated successfully
+[00:38:17.178] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-a2d229b7-c1db-4653-a149-7d810359bc4c.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS.CKI","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:10:49.337Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:38:17.178] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:38:17.178] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:39:14.996] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:39:14.997] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-avatar
+[00:39:18.007] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:39:18.007] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:39:18.007] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS.CKI","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:10:49.337Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:39:18.007] Browser LOG     Avatar updated
+[00:39:18.007] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS.CKI","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:10:49.337Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:39:18.007] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:39:18.007] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:39:22.622] Server  LOG     ✓ Compiled in 2.1s
+[00:39:23.532] Browser ERROR   ./src/app/profile/page.tsx:611:1
+Parsing ecmascript source code failed
+  609 |         );
+  610 |     }
+> 611 |
+      | ^
+
+Expected ',', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./src/app/profile/page.tsx [Client Component Browser]
+    ./src/app/profile/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/profile/page.tsx [Client Component SSR]
+    ./src/app/profile/page.tsx [Server Component]
+[00:39:45.883] Server  LOG     ✓ Compiled in 991ms
+[00:39:46.557] Browser ERROR   ./src/app/profile/page.tsx:96:6
+Parsing ecmascript source code failed
+  94 |         // Completely remove at 3s
+  95 |         setTimeout(() => setToastMessage(null), 3000);
+> 96 |     };
+     |      ^
+  97 |
+  98 |     // Sync editData when profileData updates (e.g. after fetch)
+  99 |     useEffect(() => {
+
+Expected ',', got ';'
+
+Import traces:
+  Client Component Browser:
+    ./src/app/profile/page.tsx [Client Component Browser]
+    ./src/app/profile/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/profile/page.tsx [Client Component SSR]
+    ./src/app/profile/page.tsx [Server Component]
+[00:40:01.949] Server  LOG     ✓ Compiled in 127ms
+[00:40:02.528] Browser ERROR   ./src/app/profile/page.tsx:108:6
+Parsing ecmascript source code failed
+  106 |     }; {
+  107 |         setEditData(profileData);
+> 108 |     }, [profileData]);
+      |      ^
+  109 |
+  110 |     const handleSave = async () => {
+  111 |         setIsLoading(true);
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./src/app/profile/page.tsx [Client Component Browser]
+    ./src/app/profile/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/profile/page.tsx [Client Component SSR]
+    ./src/app/profile/page.tsx [Server Component]
+[00:40:16.859] Server  LOG     ✓ Compiled in 106ms
+[00:40:17.524] Browser ERROR   ./src/app/profile/page.tsx:611:1
+Parsing ecmascript source code failed
+  609 |         );
+  610 |     }
+> 611 |
+      | ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./src/app/profile/page.tsx [Client Component Browser]
+    ./src/app/profile/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/profile/page.tsx [Client Component SSR]
+    ./src/app/profile/page.tsx [Server Component]
+[00:40:33.937] Server  LOG     ✓ Compiled in 739ms
+[00:40:35.607] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS.CKI","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:10:49.337Z","work_place":"Bệnh viện Da Liễu TPHCM"}
+[00:40:35.607] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:40:35.607] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:42:53.957] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:42:53.964] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
+[00:42:54.953] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:42:54.953] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:42:55.126] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"TS.BS","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:10:49.337Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:42:55.126] Browser LOG     Doctor info updated successfully
+[00:42:55.126] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"TS.BS","rating":null,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-02-22T01:10:49.337Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:42:55.126] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:42:55.126] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:44:00.112] Server  LOG     ✓ Compiled in 436ms
+[00:47:21.456] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:47:21.462] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
+[00:47:22.338] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:47:22.338] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
+[00:47:22.580] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:47:22.580] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:47:22.698] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu thẩm mỹ","updated_at":"2026-02-22T01:29:36.595Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:47:22.698] Browser LOG     Doctor info updated successfully
+[00:47:22.698] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu thẩm mỹ","updated_at":"2026-02-22T01:29:36.595Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:47:22.698] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:47:22.698] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:48:33.861] Server  LOG     ✓ Compiled in 1000ms
+[00:48:34.540] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu thẩm mỹ","updated_at":"2026-02-22T01:29:36.595Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:48:34.540] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:48:34.541] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:49:09.429] Server  LOG     ✓ Compiled in 335ms
+[00:49:39.479] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:49:39.479] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[00:49:40.853] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/profile" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[00:49:40.853] Browser LOG     AuthContext: initializing auth...
+[00:49:40.853] Browser LOG     [API Request] No Token attached
+[00:49:40.853] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:49:41.579] Browser LOG     AuthContext: washToken success
+[00:49:41.579] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:49:41.580] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:49:41.580] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu thẩm mỹ","updated_at":"2026-02-22T01:31:55.232Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:49:41.580] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[00:49:41.580] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu thẩm mỹ","updated_at":"2026-02-22T01:31:55.232Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:49:41.580] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu thẩm mỹ","updated_at":"2026-02-22T01:31:55.232Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:49:41.580] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:49:41.580] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:49:41.580] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:49:41.580] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:49:59.615] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:50:03.906] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:50:03.906] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
+[00:50:04.529] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:50:04.529] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:50:04.650] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-22T01:31:55.232Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:50:04.650] Browser LOG     Doctor info updated successfully
+[00:50:04.650] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-22T01:31:55.232Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:50:04.650] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:50:04.650] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:52:07.076] Server  LOG     ✓ Compiled in 1079ms
+[00:52:07.536] Browser ERROR   ./src/app/profile/page.tsx:278:45
+Parsing ecmascript source code failed
+  276 |                                             </span>
+  277 |                                         )}
+> 278 |                                     </label>
+      |                                             ^
+> 279 |                                     <input
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  280 |                                         ref={fileInputRef}
+  281 |                                         type="file"
+  282 |                                         accept="image/*"
+
+Expected '</', got 'jsx text'
+
+Import traces:
+  Client Component Browser:
+    ./src/app/profile/page.tsx [Client Component Browser]
+    ./src/app/profile/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/profile/page.tsx [Client Component SSR]
+    ./src/app/profile/page.tsx [Server Component]
+[00:52:18.250] Server  LOG     ✓ Compiled in 2.2s
+[00:52:33.838] Server  LOG     ✓ Compiled in 109ms
+[00:52:45.127] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:52:45.128] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
+[00:52:46.184] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:52:46.184] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:52:46.323] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS.CKII","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-22T01:31:55.232Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:52:46.323] Browser LOG     Doctor info updated successfully
+[00:52:46.323] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS.CKII","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-22T01:31:55.232Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:52:46.323] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:52:46.323] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:53:32.604] Server  LOG     ✓ Compiled in 121ms
+[00:55:28.870] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[01:01:42.395] Server  LOG     ✓ Compiled in 978ms
+[01:02:02.233] Server  LOG     ✓ Compiled in 702ms
+[01:02:03.103] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:02:03.103] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[01:04:45.427] Server  LOG     ✓ Compiled in 539ms
+[01:06:03.078] Server  LOG     ✓ Compiled in 168ms
+[01:09:00.995] Server  LOG     ✓ Compiled in 489ms
+[01:11:05.881] Server  LOG     ✓ Compiled in 142ms
+[01:15:42.139] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:15:42.617] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[01:15:42.617] Browser LOG     AuthContext: initializing auth...
+[01:15:42.617] Browser LOG     [API Request] No Token attached
+[01:15:42.617] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[01:15:43.549] Browser LOG     AuthContext: washToken success
+[01:15:43.549] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:43.549] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[01:15:43.549] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS.CKII","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-22T01:57:57.471Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[01:15:43.549] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[01:15:43.549] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:43.549] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[01:15:43.549] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:43.549] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[01:17:09.713] Server  LOG     ✓ Compiled in 4.5s
+[01:18:39.695] Server  LOG     ✓ Compiled in 310ms
+[01:22:12.992] Server  LOG     ✓ Compiled in 155ms
+[01:28:38.607] Server  LOG     ✓ Compiled in 1184ms
+[01:29:52.442] Server  LOG     ✓ Compiled in 898ms
+[01:30:24.276] Server  LOG     ✓ Compiled in 2s
+[01:30:35.295] Server  LOG     ✓ Compiled in 320ms
+[01:30:51.733] Server  LOG     ✓ Compiled in 1955ms
+[01:30:56.246] Server  LOG     ✓ Compiled in 161ms
+[01:31:12.541] Server  LOG     ✓ Compiled in 334ms
+[01:31:27.354] Server  LOG     ✓ Compiled in 151ms
+[01:32:26.380] Server  LOG     ✓ Compiled in 1105ms
+[01:32:37.256] Server  LOG     ✓ Compiled in 634ms
+[01:33:35.780] Server  LOG     ✓ Compiled in 185ms
+[01:33:38.651] Server  LOG     ✓ Compiled in 106ms
+[01:33:49.606] Server  LOG     ✓ Compiled in 583ms
+[01:33:57.962] Server  LOG     ✓ Compiled in 553ms
+[01:34:07.406] Server  LOG     ✓ Compiled in 87ms
+[01:34:39.555] Server  LOG     ✓ Compiled in 80ms
+[01:36:23.983] Server  LOG     ✓ Compiled in 2.9s
+[02:37:00.532] Server  LOG     ✓ Compiled in 1285ms
+[02:37:27.733] Server  LOG     ✓ Compiled in 118ms
+[02:37:51.328] Server  LOG     ✓ Compiled in 131ms
+[02:38:21.404] Server  LOG     ✓ Compiled in 101ms
+[02:38:46.643] Server  LOG     ✓ Compiled in 93ms
+[02:38:53.715] Server  LOG     ✓ Compiled in 271ms
+[02:39:03.305] Server  LOG     ✓ Compiled in 74ms
+[02:39:07.348] Server  LOG     ✓ Compiled in 194ms
+[02:39:38.087] Server  LOG     ✓ Compiled in 62ms
+[02:52:00.537] Server  LOG       Reload env: .env.local
+[02:52:03.897] Server  LOG     ✓ Compiled in 2.7s
+[02:52:04.522] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[02:53:04.123] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:53:04.409] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[02:53:04.409] Browser LOG     AuthContext: initializing auth...
+[02:53:04.409] Browser LOG     [API Request] No Token attached
+[02:53:04.409] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[02:53:05.673] Browser LOG     AuthContext: washToken success
+[02:53:05.673] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[02:53:05.673] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[02:53:05.853] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS.CKII","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-22T03:35:19.781Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[02:53:05.853] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[02:53:05.853] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[02:53:05.853] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[02:53:05.853] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[02:53:05.853] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[02:53:30.249] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:53:30.249] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[02:53:30.622] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[02:53:30.622] Browser LOG     AuthContext: initializing auth...
+[02:53:30.622] Browser LOG     [API Request] No Token attached
+[02:53:30.622] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[02:53:30.622] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7925:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8443:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9249:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:247:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:375:30)","status":500}
+[02:53:30.622] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[02:53:30.622] Browser LOG     [API Request] No Token attached
+[02:53:30.622] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[02:53:30.622] Browser LOG     [API Request] No Token attached
+[02:53:30.622] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:08:07.534] Server  LOG     ✓ Compiled in 508ms
+[03:10:23.488] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:10:23.489] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[03:10:23.876] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[03:10:23.876] Browser LOG     AuthContext: initializing auth...
+[03:10:23.877] Browser LOG     [API Request] No Token attached
+[03:10:23.877] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[03:10:24.190] Browser LOG     AuthContext: washToken success
+[03:10:24.190] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:10:24.190] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:10:24.409] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS.CKII","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-22T03:52:38.131Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[03:10:24.410] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[03:10:24.410] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:10:24.410] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:10:24.410] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:10:24.410] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:10:24.635] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'fullName')
+[03:10:36.960] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:10:36.960] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[03:10:37.202] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[03:10:37.202] Browser LOG     AuthContext: initializing auth...
+[03:10:37.202] Browser LOG     [API Request] No Token attached
+[03:10:37.202] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[03:10:37.874] Browser LOG     AuthContext: washToken success
+[03:10:37.874] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:10:37.874] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:10:37.874] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS.CKII","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-22T03:52:51.818Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[03:10:37.874] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[03:10:37.874] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:10:37.874] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:10:37.874] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:10:37.874] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:10:37.990] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'fullName')
+[03:15:21.572] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:15:21.573] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[03:15:21.879] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[03:15:21.879] Browser LOG     AuthContext: initializing auth...
+[03:15:21.879] Browser LOG     [API Request] No Token attached
+[03:15:21.879] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[03:15:22.716] Browser LOG     AuthContext: washToken success
+[03:15:22.717] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:15:22.717] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:15:22.717] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS.CKII","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-22T03:57:36.592Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[03:15:22.717] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[03:15:22.717] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:15:22.717] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:15:22.717] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:15:22.717] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:19:17.777] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:19:17.777] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[03:19:18.140] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[03:19:18.140] Browser LOG     AuthContext: initializing auth...
+[03:19:18.140] Browser LOG     [API Request] No Token attached
+[03:19:18.140] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[03:19:18.414] Browser LOG     AuthContext: washToken success
+[03:19:18.414] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:19:18.414] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:19:18.591] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"BS.CKII","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-22T04:01:32.446Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[03:19:18.591] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[03:19:18.591] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:19:18.591] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:19:18.591] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:19:18.591] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
