@@ -1,61 +1,7 @@
-[00:00:02.466] Server  LOG     ✓ Ready in 1693ms
-[00:00:05.655] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:05.656] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:00:06.142] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/profile" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[00:00:06.142] Browser LOG     AuthContext: initializing auth...
-[00:00:06.142] Browser LOG     [API Request] No Token attached
-[00:00:06.142] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:00:06.384] Browser LOG     AuthContext: washToken success
-[00:00:06.384] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:06.384] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:00:06.614] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T07:45:30.138Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
-[00:00:06.614] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:00:06.614] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T07:45:30.138Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
-[00:00:06.614] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T07:45:30.138Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
-[00:00:06.614] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:06.614] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[00:00:06.614] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:06.614] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
-[00:00:06.717] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:01:22.722] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:22.723] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:02.216] Server  LOG     ✓ Ready in 1401ms
+[00:00:11.148] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:11.148] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[00:00:11.951] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -91,23 +37,19 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:01:22.723] Browser LOG     AuthContext: initializing auth...
-[00:01:22.723] Browser LOG     [API Request] No Token attached
-[00:01:22.723] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:01:22.723] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
-[00:01:22.723] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+[00:00:11.951] Browser LOG     AuthContext: initializing auth...
+[00:00:11.951] Browser LOG     [API Request] No Token attached
+[00:00:11.951] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:00:11.951] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
+[00:00:11.951] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:01:22.723] Browser LOG     [API Request] No Token attached
-[00:01:22.723] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:01:22.723] Browser LOG     [API Request] No Token attached
-[00:01:22.723] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:02:58.386] Browser ERROR   Failed to fetch RSC payload for https://localhost/login. Falling back to browser navigation. {}
-[00:02:58.593] Browser ERROR   unhandledRejection: TypeError: Failed to fetch
-[00:02:58.593] Browser ERROR   unhandledRejection: TypeError: Failed to fetch
-[00:02:58.594] Browser ERROR   unhandledRejection: TypeError: Failed to fetch
-[00:03:06.343] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:03:06.343] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:03:06.822] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:11.951] Browser LOG     [API Request] No Token attached
+[00:00:11.951] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[00:00:11.951] Browser LOG     [API Request] No Token attached
+[00:00:11.951] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[00:00:16.442] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:00:28.160] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:28.530] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -143,370 +85,15 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:03:06.823] Browser LOG     AuthContext: initializing auth...
-[00:03:06.823] Browser LOG     [API Request] No Token attached
-[00:03:06.823] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:03:06.823] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
-[00:03:06.823] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+[00:00:28.530] Browser LOG     AuthContext: initializing auth...
+[00:00:28.530] Browser LOG     [API Request] No Token attached
+[00:00:28.530] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:00:28.530] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
+[00:00:28.530] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:04:45.052] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:46.128] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[00:04:46.128] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:04:46.128] Browser LOG     AuthContext: initializing auth...
-[00:04:46.128] Browser LOG     [API Request] No Token attached
-[00:04:46.128] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:04:46.128] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
-[00:04:46.128] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:04:46.128] Browser LOG     [API Request] No Token attached
-[00:04:46.128] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:04:46.128] Browser LOG     [API Request] No Token attached
-[00:04:46.128] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:05:43.158] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:05:48.204] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:49.165] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[00:05:49.165] Browser LOG     AuthContext: initializing auth...
-[00:05:49.165] Browser LOG     [API Request] No Token attached
-[00:05:49.165] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:05:49.165] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
-[00:05:49.165] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:05:49.165] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:05:55.753] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:56.344] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[00:05:56.344] Browser LOG     AuthContext: initializing auth...
-[00:05:56.344] Browser LOG     [API Request] No Token attached
-[00:05:56.344] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:05:56.344] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
-[00:05:56.344] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:05:57.111] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:06:15.238] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:06:15.238] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[00:06:16.129] Browser LOG     AuthContext: initializing auth...
-[00:06:16.129] Browser LOG     [API Request] No Token attached
-[00:06:16.129] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:06:16.129] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
-[00:06:16.129] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:06:16.129] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:21:13.207] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:21:13.652] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[00:21:13.652] Browser LOG     AuthContext: initializing auth...
-[00:21:13.652] Browser LOG     [API Request] No Token attached
-[00:21:13.652] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:21:13.652] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
-[00:21:13.652] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:21:14.081] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:22:15.657] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:22:15.657] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[00:22:15.946] Browser LOG     AuthContext: initializing auth...
-[00:22:15.946] Browser LOG     [API Request] No Token attached
-[00:22:15.946] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:22:15.946] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
-[00:22:15.946] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:22:16.276] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:22:20.716] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:22:21.169] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[00:22:21.169] Browser LOG     AuthContext: initializing auth...
-[00:22:21.169] Browser LOG     [API Request] No Token attached
-[00:22:21.169] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:22:21.169] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
-[00:22:21.169] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:22:22.121] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:22:25.010] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:22:25.010] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[00:22:25.010] Browser LOG     AuthContext: initializing auth...
-[00:22:25.010] Browser LOG     [API Request] No Token attached
-[00:22:25.010] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:22:25.316] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
-[00:22:25.316] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:22:43.838] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:22:44.371] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:28.841] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[00:00:33.818] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:33.818] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -542,27 +129,424 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:22:44.371] Browser LOG     AuthContext: initializing auth...
-[00:22:44.371] Browser LOG     [API Request] No Token attached
-[00:22:44.371] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:22:44.371] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
-[00:22:44.371] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+[00:00:33.818] Browser LOG     AuthContext: initializing auth...
+[00:00:33.818] Browser LOG     [API Request] No Token attached
+[00:00:33.818] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:00:34.147] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
+[00:00:34.147] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:22:44.371] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:22:44.371] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:22:44.371] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:22:44.371] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:22:44.371] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:22:44.371] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:22:46.692] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:22:46.692] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:08:06.427Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
-[00:22:46.692] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:22:46.692] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:22:46.692] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:22:46.692] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:08:06.427Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
-[00:22:46.692] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:08:06.427Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
-[00:22:46.692] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:08:06.427Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
-[00:22:46.692] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:22:46.692] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:22:46.692] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:22:46.692] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[00:00:34.147] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:34.147] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:00:34.147] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:34.147] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:00:34.147] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:34.147] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:00:34.793] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:24:54.627Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:00:34.793] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:34.793] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:00:34.793] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:24:54.627Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:00:34.793] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:34.793] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:00:34.793] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[00:00:34.793] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:24:54.627Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:00:34.793] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:34.793] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:00:34.793] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:00:34.793] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:24:54.627Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:00:34.793] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:34.793] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[00:00:34.793] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:34.793] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[00:00:34.793] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:24:54.627Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:00:34.793] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:24:54.627Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:00:41.375] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:24:54.627Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:00:41.375] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:24:54.627Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:00:41.375] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:41.375] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:00:41.375] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:41.375] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:00:47.843] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:47.843] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[00:00:47.843] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:47.843] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[00:17:46.458] Server  LOG     ✓ Compiled in 666ms
+[00:17:50.083] Server  LOG     ✓ Compiled in 2.2s
+[00:19:08.930] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:19:08.931] Browser LOG     [API Request] DELETE http://localhost:4000/v1/doctor/schedule/s3
+[00:19:11.208] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:19:11.799] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[00:19:11.799] Browser LOG     AuthContext: initializing auth...
+[00:19:11.799] Browser LOG     [API Request] No Token attached
+[00:19:11.799] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:19:11.799] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
+[00:19:11.799] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[00:19:12.089] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[00:19:19.798] Browser LOG     [API Request] No Token attached
+[00:19:19.798] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[00:19:20.691] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:19:20.691] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:19:20.691] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:19:20.691] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:43:41.678Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:19:20.691] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:19:20.691] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[00:19:20.691] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:19:20.691] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[00:19:22.863] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:19:22.863] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[00:19:22.863] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:19:22.863] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[00:23:28.377] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:23:28.377] Browser LOG     [API Request] POST http://localhost:4000/v1/doctor/schedule
+[00:23:28.377] Browser ERROR   Save failed: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"slots\":[{\"availableDate\":\"2026-02-26\",\"startTime\":\"20:00\",\"endTime\":\"20:30\",\"price\":250000},{\"availableDate\":\"2026-02-26\",\"startTime\":\"20:30\",\"endTime\":\"21:00\",\"price\":250000},{\"availableDate\":\"2026-02-26\",\"startTime\":\"21:00\",\"endTime\":\"21:30\",\"price\":250000},{\"availableDate\":\"2026-02-26\",\"startTime\":\"21:30\",\"endTime\":\"22:00\",\"price\":250000},{\"availableDate\":\"2026-02-26\",\"startTime\":\"22:00\",\"endTime\":\"22:30\",\"price\":250000},{\"availableDate\":\"2026-02-26\",\"startTime\":\"22:30\",\"endTime\":\"23:00\",\"price\":250000},{\"availableDate\":\"2026-02-26\",\"startTime\":\"23:00\",\"endTime\":\"23:30\",\"price\":250000}]}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlOTNlYTUzLTJhNTMtNGRkNC04MjI4LTAxNjk5ODYyZTIyYiIsIm5hbWUiOiLEkMOgbyBRdWFuZyBExrDGoW5nIiwiZW1haWwiOiJkdW9uZ2Rhb3FAZ21haWwuY29tIiwicm9sZSI6IkRPQ1RPUiIsImNyZWF0ZWRfYXQiOiIyMDI2LTAyLTExVDA5OjA4OjAwLjkwNVoiLCJyZW1lbWJlck1lIjpmYWxzZSwiaWF0IjoxNzcyMDM0MjIyLCJleHAiOjE3NzIwMzUxMjJ9.7WDpUsgLO-WFzFahLYwaP9V1fl7O3G2coPzST8Vw8b8","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/schedule","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async createScheduleSlot (https://localhost/_next/static/chunks/src_c84288f9._.js:22:22)\n    at async handleSubmit (https://localhost/_next/static/chunks/src_c84288f9._.js:207:34)","status":500}
+[00:24:00.633] Server  LOG     ✓ Compiled in 385ms
+[00:24:52.157] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:24:52.157] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[00:24:52.157] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:24:52.157] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[00:24:52.316] Browser ERROR   Failed to load appointments, using mock data: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlOTNlYTUzLTJhNTMtNGRkNC04MjI4LTAxNjk5ODYyZTIyYiIsIm5hbWUiOiLEkMOgbyBRdWFuZyBExrDGoW5nIiwiZW1haWwiOiJkdW9uZ2Rhb3FAZ21haWwuY29tIiwicm9sZSI6IkRPQ1RPUiIsImNyZWF0ZWRfYXQiOiIyMDI2LTAyLTExVDA5OjA4OjAwLjkwNVoiLCJyZW1lbWJlck1lIjpmYWxzZSwiaWF0IjoxNzcyMDM0MjIyLCJleHAiOjE3NzIwMzUxMjJ9.7WDpUsgLO-WFzFahLYwaP9V1fl7O3G2coPzST8Vw8b8","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async getDoctorAppointments (https://localhost/_next/static/chunks/src_21490138._.js:50:22)\n    at async fetchAppointments (https://localhost/_next/static/chunks/src_3cfbde4d._.js:306:26)","status":404}
+[00:24:52.316] Browser ERROR   Failed to load appointments, using mock data: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlOTNlYTUzLTJhNTMtNGRkNC04MjI4LTAxNjk5ODYyZTIyYiIsIm5hbWUiOiLEkMOgbyBRdWFuZyBExrDGoW5nIiwiZW1haWwiOiJkdW9uZ2Rhb3FAZ21haWwuY29tIiwicm9sZSI6IkRPQ1RPUiIsImNyZWF0ZWRfYXQiOiIyMDI2LTAyLTExVDA5OjA4OjAwLjkwNVoiLCJyZW1lbWJlck1lIjpmYWxzZSwiaWF0IjoxNzcyMDM0MjIyLCJleHAiOjE3NzIwMzUxMjJ9.7WDpUsgLO-WFzFahLYwaP9V1fl7O3G2coPzST8Vw8b8","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async getDoctorAppointments (https://localhost/_next/static/chunks/src_21490138._.js:50:22)\n    at async fetchAppointments (https://localhost/_next/static/chunks/src_3cfbde4d._.js:306:26)","status":404}
+[00:24:55.277] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:43:41.678Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:24:55.277] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:43:41.678Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:24:55.277] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:24:55.277] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:24:55.277] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:24:55.277] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[00:24:57.044] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:24:57.044] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[00:24:57.044] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:24:57.044] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[00:26:02.516] Server  LOG     ✓ Compiled in 655ms
+[00:26:02.720] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:26:02.720] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[00:31:41.363] Server  LOG     ✓ Compiled in 196ms
+[00:37:18.926] Server  LOG     ✓ Compiled in 287ms
+[00:38:52.549] Server  LOG     ✓ Compiled in 224ms
+[00:42:10.592] Server  LOG     ✓ Compiled in 269ms
+[00:45:24.090] Server  LOG     ✓ Compiled in 195ms
+[00:45:24.714] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:45:24.714] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[01:09:48.903] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:09:48.903] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:09:48.903] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:09:48.903] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:09:49.073] Browser ERROR   Failed to load appointments, using mock data: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlOTNlYTUzLTJhNTMtNGRkNC04MjI4LTAxNjk5ODYyZTIyYiIsIm5hbWUiOiLEkMOgbyBRdWFuZyBExrDGoW5nIiwiZW1haWwiOiJkdW9uZ2Rhb3FAZ21haWwuY29tIiwicm9sZSI6IkRPQ1RPUiIsImNyZWF0ZWRfYXQiOiIyMDI2LTAyLTExVDA5OjA4OjAwLjkwNVoiLCJyZW1lbWJlck1lIjpmYWxzZSwiaWF0IjoxNzcyMDM0MjIyLCJleHAiOjE3NzIwMzUxMjJ9.7WDpUsgLO-WFzFahLYwaP9V1fl7O3G2coPzST8Vw8b8","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async getDoctorAppointments (https://localhost/_next/static/chunks/src_21490138._.js:50:22)\n    at async fetchAppointments (https://localhost/_next/static/chunks/src_3cfbde4d._.js:306:26)","status":404}
+[01:09:49.073] Browser ERROR   Failed to load appointments, using mock data: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlOTNlYTUzLTJhNTMtNGRkNC04MjI4LTAxNjk5ODYyZTIyYiIsIm5hbWUiOiLEkMOgbyBRdWFuZyBExrDGoW5nIiwiZW1haWwiOiJkdW9uZ2Rhb3FAZ21haWwuY29tIiwicm9sZSI6IkRPQ1RPUiIsImNyZWF0ZWRfYXQiOiIyMDI2LTAyLTExVDA5OjA4OjAwLjkwNVoiLCJyZW1lbWJlck1lIjpmYWxzZSwiaWF0IjoxNzcyMDM0MjIyLCJleHAiOjE3NzIwMzUxMjJ9.7WDpUsgLO-WFzFahLYwaP9V1fl7O3G2coPzST8Vw8b8","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async getDoctorAppointments (https://localhost/_next/static/chunks/src_21490138._.js:50:22)\n    at async fetchAppointments (https://localhost/_next/static/chunks/src_3cfbde4d._.js:306:26)","status":404}
+[01:15:57.922] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:57.922] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[01:15:57.922] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:57.922] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[01:17:02.970] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:43:41.678Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[01:17:02.970] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T08:43:41.678Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[01:17:02.970] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:17:02.970] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:17:02.970] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:17:02.970] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:17:02.994] Browser ERROR   Failed to fetch medical info: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"data":"{}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"http://localhost:4000/v1/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async https://localhost/_next/static/chunks/src_fc12f1f7._.js:129:30\n    at async Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9203:20)\n    at async Object.getMedicalInfo (https://localhost/_next/static/chunks/src_e4f9efb7._.js:13:26)\n    at async ProfilePage.useEffect.fetchMedicalInfo (https://localhost/_next/static/chunks/src_e4f9efb7._.js:99:37)","status":401}
+[01:17:03.096] Browser ERROR   Failed to fetch medical info: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"data":"{}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"http://localhost:4000/v1/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async https://localhost/_next/static/chunks/src_fc12f1f7._.js:129:30\n    at async Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9203:20)\n    at async Object.getMedicalInfo (https://localhost/_next/static/chunks/src_e4f9efb7._.js:13:26)\n    at async ProfilePage.useEffect.fetchMedicalInfo (https://localhost/_next/static/chunks/src_e4f9efb7._.js:99:37)","status":401}
+[01:17:05.196] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:17:05.937] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[01:17:05.937] Browser LOG     AuthContext: initializing auth...
+[01:17:05.937] Browser LOG     [API Request] No Token attached
+[01:17:05.937] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[01:17:05.937] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
+[01:17:05.937] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[01:17:05.937] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[01:17:39.895] Browser LOG     [API Request] No Token attached
+[01:17:39.895] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[01:17:40.150] Browser ERROR   Login failed: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"email\":\"duongdaoq@gmail.com\",\"password\":\"Duck130603@\",\"rememberMe\":false}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/login","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 400","name":"AxiosError","stack":"AxiosError: Request failed with status code 400\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async login (https://localhost/_next/static/chunks/src_fc12f1f7._.js:195:22)\n    at async handleLogin (https://localhost/_next/static/chunks/src_app_login_page_tsx_a6b4ed9b._.js:68:13)","status":400}
+[01:17:46.664] Browser LOG     [API Request] No Token attached
+[01:17:46.664] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[01:17:46.664] Browser ERROR   Login failed: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"email\":\"duongdaoq@gmail.com\",\"password\":\"Duck130603@\",\"rememberMe\":false}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/login","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 400","name":"AxiosError","stack":"AxiosError: Request failed with status code 400\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async login (https://localhost/_next/static/chunks/src_fc12f1f7._.js:195:22)\n    at async handleLogin (https://localhost/_next/static/chunks/src_app_login_page_tsx_a6b4ed9b._.js:68:13)","status":400}
+[01:17:52.221] Browser LOG     [API Request] No Token attached
+[01:17:52.221] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[01:17:52.221] Browser ERROR   Login failed: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"email\":\"duongdaoq@gmail.com\",\"password\":\"Duck130603@\",\"rememberMe\":false}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/login","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 400","name":"AxiosError","stack":"AxiosError: Request failed with status code 400\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async login (https://localhost/_next/static/chunks/src_fc12f1f7._.js:195:22)\n    at async handleLogin (https://localhost/_next/static/chunks/src_app_login_page_tsx_a6b4ed9b._.js:68:13)","status":400}
+[01:18:03.637] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:18:03.637] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[01:18:03.803] Browser LOG     AuthContext: initializing auth...
+[01:18:03.803] Browser LOG     [API Request] No Token attached
+[01:18:03.803] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[01:18:04.006] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
+[01:18:04.006] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[01:18:09.120] Browser LOG     [API Request] No Token attached
+[01:18:09.120] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[01:18:09.120] Browser ERROR   Login failed: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"email\":\"duongdaoq@gmail.com\",\"password\":\"Duck130603@\",\"rememberMe\":false}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/login","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 400","name":"AxiosError","stack":"AxiosError: Request failed with status code 400\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async login (https://localhost/_next/static/chunks/src_fc12f1f7._.js:195:22)\n    at async handleLogin (https://localhost/_next/static/chunks/src_app_login_page_tsx_a6b4ed9b._.js:68:13)","status":400}
+[01:22:15.196] Browser LOG     [API Request] No Token attached
+[01:22:15.196] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[01:22:15.993] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:22:15.993] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[01:22:16.212] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T09:46:37.081Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[01:22:16.212] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[01:22:16.212] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:22:16.212] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[01:22:16.212] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:22:16.212] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[01:22:18.895] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T09:46:37.081Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[01:22:18.895] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T09:46:37.081Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[01:22:18.895] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:22:18.895] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:22:18.895] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:22:18.895] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:22:46.523] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:22:46.523] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[01:22:46.523] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:22:46.523] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[01:27:07.283] Server  LOG     ✓ Compiled in 988ms
+[01:27:07.550] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:27:07.550] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[01:27:42.787] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:27:42.787] Browser LOG     [API Request] DELETE http://localhost:4000/v1/doctor/schedule/gen-2026-02-25-m-946701000000
+[01:27:46.718] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:27:46.720] Browser LOG     [API Request] DELETE http://localhost:4000/v1/doctor/schedule/gen-2026-02-25-m-946688400000
+[01:29:39.232] Server  LOG     ✓ Compiled in 209ms
+[01:32:07.709] Server  LOG     ✓ Compiled in 145ms
+[01:33:44.471] Server  LOG     ✓ Compiled in 161ms
+[01:33:44.715] Browser ERROR   uncaughtError: ReferenceError: Cannot access 'currentSlots' before initialization
+[01:34:17.123] Server  LOG     ✓ Compiled in 80ms
+[01:34:17.146] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:34:17.271] Browser LOG     AuthContext: initializing auth...
+[01:34:17.271] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:34:17.271] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[01:34:17.730] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlOTNlYTUzLTJhNTMtNGRkNC04MjI4LTAxNjk5ODYyZTIyYiIsIm5hbWUiOiLEkMOgbyBRdWFuZyBExrDGoW5nIiwiZW1haWwiOiJkdW9uZ2Rhb3FAZ21haWwuY29tIiwicm9sZSI6IkRPQ1RPUiIsImNyZWF0ZWRfYXQiOiIyMDI2LTAyLTExVDA5OjA4OjAwLjkwNVoiLCJyZW1lbWJlck1lIjpmYWxzZSwiaWF0IjoxNzcyMDM3OTk3LCJleHAiOjE3NzIwMzg4OTd9.0Gljv5HVf6lmJrOb5DBEhoMatA59FYMsuOJe8YrOfY0","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
+[01:34:19.788] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:34:19.788] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[01:34:20.520] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/doctor/sc..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[01:34:20.520] Browser LOG     AuthContext: initializing auth...
+[01:34:20.520] Browser LOG     [API Request] No Token attached
+[01:34:20.520] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[01:34:20.520] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
+[01:34:20.520] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[01:34:20.801] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[01:34:20.801] Browser LOG     [API Request] No Token attached
+[01:34:20.801] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[01:34:20.801] Browser LOG     [API Request] No Token attached
+[01:34:20.801] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[01:34:29.284] Browser LOG     [API Request] No Token attached
+[01:34:29.284] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[01:34:29.764] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:34:29.764] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[01:34:29.764] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:34:29.765] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[01:34:29.765] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:34:29.765] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[01:34:29.765] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T09:58:50.761Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[01:34:31.620] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:34:31.620] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[01:34:31.620] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:34:31.620] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[01:40:27.309] Server  LOG     ✓ Compiled in 426ms
+[01:40:27.713] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:40:27.713] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[01:45:48.185] Server  LOG     ✓ Compiled in 241ms
+[01:47:21.532] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:47:21.532] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:47:21.532] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:47:21.532] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[01:47:21.699] Browser ERROR   Failed to load appointments, using mock data: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlOTNlYTUzLTJhNTMtNGRkNC04MjI4LTAxNjk5ODYyZTIyYiIsIm5hbWUiOiLEkMOgbyBRdWFuZyBExrDGoW5nIiwiZW1haWwiOiJkdW9uZ2Rhb3FAZ21haWwuY29tIiwicm9sZSI6IkRPQ1RPUiIsImNyZWF0ZWRfYXQiOiIyMDI2LTAyLTExVDA5OjA4OjAwLjkwNVoiLCJyZW1lbWJlck1lIjpmYWxzZSwiaWF0IjoxNzcyMDM4NzMxLCJleHAiOjE3NzIwMzk2MzF9.RhX7EvpquZPo1szDzA0oLfFReUpcnoahkOIQ4KiaS8s","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async getDoctorAppointments (https://localhost/_next/static/chunks/src_21490138._.js:50:22)\n    at async fetchAppointments (https://localhost/_next/static/chunks/src_3cfbde4d._.js:306:26)","status":404}
+[01:47:21.699] Browser ERROR   Failed to load appointments, using mock data: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlOTNlYTUzLTJhNTMtNGRkNC04MjI4LTAxNjk5ODYyZTIyYiIsIm5hbWUiOiLEkMOgbyBRdWFuZyBExrDGoW5nIiwiZW1haWwiOiJkdW9uZ2Rhb3FAZ21haWwuY29tIiwicm9sZSI6IkRPQ1RPUiIsImNyZWF0ZWRfYXQiOiIyMDI2LTAyLTExVDA5OjA4OjAwLjkwNVoiLCJyZW1lbWJlck1lIjpmYWxzZSwiaWF0IjoxNzcyMDM4NzMxLCJleHAiOjE3NzIwMzk2MzF9.RhX7EvpquZPo1szDzA0oLfFReUpcnoahkOIQ4KiaS8s","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async getDoctorAppointments (https://localhost/_next/static/chunks/src_21490138._.js:50:22)\n    at async fetchAppointments (https://localhost/_next/static/chunks/src_3cfbde4d._.js:306:26)","status":404}
+[01:47:25.415] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:47:25.415] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctor/appointments/mock-1/status
+[01:47:25.415] Browser ERROR   Failed to update: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"status\":\"CONFIRMED\"}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlOTNlYTUzLTJhNTMtNGRkNC04MjI4LTAxNjk5ODYyZTIyYiIsIm5hbWUiOiLEkMOgbyBRdWFuZyBExrDGoW5nIiwiZW1haWwiOiJkdW9uZ2Rhb3FAZ21haWwuY29tIiwicm9sZSI6IkRPQ1RPUiIsImNyZWF0ZWRfYXQiOiIyMDI2LTAyLTExVDA5OjA4OjAwLjkwNVoiLCJyZW1lbWJlck1lIjpmYWxzZSwiaWF0IjoxNzcyMDM4NzMxLCJleHAiOjE3NzIwMzk2MzF9.RhX7EvpquZPo1szDzA0oLfFReUpcnoahkOIQ4KiaS8s","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"patch","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments/mock-1/status","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async updateAppointmentStatus (https://localhost/_next/static/chunks/src_21490138._.js:54:22)\n    at async handleUpdateStatus (https://localhost/_next/static/chunks/src_3cfbde4d._.js:318:13)","status":404}
+[01:47:27.085] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:47:27.085] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[01:47:27.085] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:47:27.085] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/schedule
+[01:47:31.651] Server  LOG     ✓ Compiled in 137ms
+[01:54:24.901] Server  LOG     ✓ Compiled in 99ms
+[01:56:21.183] Server  LOG     ✓ Compiled in 220ms
+[01:57:44.361] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T09:58:50.761Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[01:57:44.361] Browser LOG     ProfilePage: user updated {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-02-25T09:58:50.761Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[01:57:44.361] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:57:44.361] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:57:44.361] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:57:44.361] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:57:44.435] Browser ERROR   Failed to fetch medical info: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"data":"{}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"http://localhost:4000/v1/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async https://localhost/_next/static/chunks/src_fc12f1f7._.js:129:30\n    at async Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9203:20)\n    at async Object.getMedicalInfo (https://localhost/_next/static/chunks/src_e4f9efb7._.js:13:26)\n    at async ProfilePage.useEffect.fetchMedicalInfo (https://localhost/_next/static/chunks/src_e4f9efb7._.js:99:37)","status":401}
+[01:57:44.537] Browser ERROR   Failed to fetch medical info: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"data":"{}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"http://localhost:4000/v1/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async https://localhost/_next/static/chunks/src_fc12f1f7._.js:129:30\n    at async Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9203:20)\n    at async Object.getMedicalInfo (https://localhost/_next/static/chunks/src_e4f9efb7._.js:13:26)\n    at async ProfilePage.useEffect.fetchMedicalInfo (https://localhost/_next/static/chunks/src_e4f9efb7._.js:99:37)","status":401}
+[01:57:46.374] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:57:47.024] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[01:57:47.024] Browser LOG     AuthContext: initializing auth...
+[01:57:47.024] Browser LOG     [API Request] No Token attached
+[01:57:47.024] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[01:57:47.024] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:250:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:371:30)","status":401}
+[01:57:47.024] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[01:57:47.193] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[02:01:34.047] Server  LOG     ✓ Compiled in 281ms

@@ -115,6 +115,16 @@ apiClient.interceptors.request.use((config)=>{
 }, (error)=>{
     return Promise.reject(error);
 });
+// State for managing concurrent refresh requests
+let isRefreshing = false;
+let refreshSubscribers = [];
+const onRefreshed = (token)=>{
+    refreshSubscribers.forEach((callback)=>callback(token));
+    refreshSubscribers = [];
+};
+const addRefreshSubscriber = (callback)=>{
+    refreshSubscribers.push(callback);
+};
 // Response interceptor - Handle errors globally
 apiClient.interceptors.response.use((response)=>{
     return response;
@@ -123,7 +133,17 @@ apiClient.interceptors.response.use((response)=>{
     // If 401 and we haven't retried yet, try to refresh token
     // Skip refresh for logout requests AND wash requests to prevent loops
     if (error.response?.status === 401 && !originalRequest._retry && !originalRequest.url?.includes('/auth/logout') && !originalRequest.url?.includes('/auth/wash')) {
+        if (isRefreshing) {
+            // Wait for the first request to finish refreshing and retry with new token
+            return new Promise((resolve)=>{
+                addRefreshSubscriber((token)=>{
+                    originalRequest.headers.Authorization = `Bearer ${token}`;
+                    resolve(apiClient(originalRequest));
+                });
+            });
+        }
         originalRequest._retry = true;
+        isRefreshing = true;
         try {
             // Call wash endpoint (uses cookie automatically)
             const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post(`${API_URL}/auth/wash`, {}, {
@@ -132,12 +152,17 @@ apiClient.interceptors.response.use((response)=>{
             if (data.data && data.data.accessToken) {
                 const newAccessToken = data.data.accessToken;
                 (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$tokenStore$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["setAccessToken"])(newAccessToken);
+                // Notify subscibers waiting for new token
+                isRefreshing = false;
+                onRefreshed(newAccessToken);
                 // Retry original request with new token
                 originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
                 return apiClient(originalRequest);
             }
         } catch (refreshError) {
             // Refresh failed, logout user
+            isRefreshing = false;
+            refreshSubscribers = [];
             (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$tokenStore$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["setAccessToken"])(null);
             // Also clear storage if anything remains
             (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$storage$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["removeToken"])('accessToken'); // Just in case

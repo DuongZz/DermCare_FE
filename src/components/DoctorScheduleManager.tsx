@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import {
     DoctorScheduleSlot,
     CreateSchedulePayload,
@@ -10,54 +10,223 @@ import {
     deleteScheduleSlot,
 } from "@/services/scheduleService";
 
-/* ─── Helpers ─── */
-const formatDate = (d: string) => {
-    try {
-        return new Date(d).toLocaleDateString("vi-VN", { weekday: "short", day: "2-digit", month: "2-digit", year: "numeric" });
-    } catch { return d; }
-};
+/* ─── Types ─── */
+interface DayTemplate {
+    dayOfWeek: string;
+    label: string;
+    isAvailable: boolean;
+    morningStart: string;
+    morningEnd: string;
+    afternoonStart: string;
+    afternoonEnd: string;
+    slotDuration: number;
+    price: number;
+}
 
+/* ─── Helpers ─── */
 const formatCurrency = (n: number) =>
     new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(n);
 
+/** Convert Date to local "YYYY-MM-DD" string (fixes UTC timezone shift) */
+const toLocalDateStr = (d: Date): string => {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
+};
+
 const isDatePast = (d: string) => new Date(d) < new Date(new Date().toDateString());
 
-/* ─── Mock Data ─── */
-const MOCK_SLOTS: DoctorScheduleSlot[] = [
-    {
-        id: "s1", doctorId: "d1", availableDate: "2026-02-25", startTime: "08:00", endTime: "09:00",
-        isBooked: false, price: 250000, created_at: new Date().toISOString(), updated_at: new Date().toISOString(),
-    },
-    {
-        id: "s2", doctorId: "d1", availableDate: "2026-02-25", startTime: "09:30", endTime: "10:30",
-        isBooked: true, price: 250000, created_at: new Date().toISOString(), updated_at: new Date().toISOString(),
-    },
-    {
-        id: "s3", doctorId: "d1", availableDate: "2026-02-26", startTime: "14:00", endTime: "15:00",
-        isBooked: false, price: 300000, created_at: new Date().toISOString(), updated_at: new Date().toISOString(),
-    },
-    {
-        id: "s4", doctorId: "d1", availableDate: "2026-02-27", startTime: "08:00", endTime: "09:00",
-        isBooked: false, price: 250000, created_at: new Date().toISOString(), updated_at: new Date().toISOString(),
-    },
-    {
-        id: "s5", doctorId: "d1", availableDate: "2026-02-27", startTime: "10:00", endTime: "11:00",
-        isBooked: true, price: 300000, created_at: new Date().toISOString(), updated_at: new Date().toISOString(),
-    },
-];
+const DAY_LABELS = ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "CN"];
+const DAY_KEYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 
-const EMPTY_FORM: CreateSchedulePayload = { availableDate: "", startTime: "", endTime: "", price: 250000 };
+const defaultTemplate = (): DayTemplate[] =>
+    DAY_KEYS.map((key, i) => ({
+        dayOfWeek: key,
+        label: DAY_LABELS[i],
+        isAvailable: i < 5,
+        morningStart: "08:00",
+        morningEnd: "12:00",
+        afternoonStart: "13:30",
+        afternoonEnd: "17:30",
+        slotDuration: 30,
+        price: 250000,
+    }));
+
+/* ─── Generate slots from template for a given week starting date ─── */
+const generateSlotsFromTemplate = (
+    template: DayTemplate[],
+    weekStartDate: Date
+): DoctorScheduleSlot[] => {
+    const slots: DoctorScheduleSlot[] = [];
+    template.forEach((day, dayIndex) => {
+        if (!day.isAvailable) return;
+        const date = new Date(weekStartDate);
+        date.setDate(weekStartDate.getDate() + dayIndex);
+        const dateStr = toLocalDateStr(date);
+
+        // Morning slots
+        if (day.morningStart && day.morningEnd) {
+            let cur = new Date(`2000-01-01T${day.morningStart}:00`);
+            const end = new Date(`2000-01-01T${day.morningEnd}:00`);
+            const dur = day.slotDuration * 60000;
+            while (cur < end) {
+                let next = new Date(cur.getTime() + dur);
+                if (next > end) next = end;
+                slots.push({
+                    id: `gen-${dateStr}-m-${cur.getTime()}`,
+                    doctorId: "",
+                    availableDate: dateStr,
+                    startTime: cur.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }),
+                    endTime: next.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }),
+                    isBooked: false,
+                    price: day.price,
+                    created_at: new Date().toISOString(),
+                    updated_at: new Date().toISOString(),
+                });
+                cur = next;
+            }
+        }
+        // Afternoon slots
+        if (day.afternoonStart && day.afternoonEnd) {
+            let cur = new Date(`2000-01-01T${day.afternoonStart}:00`);
+            const end = new Date(`2000-01-01T${day.afternoonEnd}:00`);
+            const dur = day.slotDuration * 60000;
+            while (cur < end) {
+                let next = new Date(cur.getTime() + dur);
+                if (next > end) next = end;
+                slots.push({
+                    id: `gen-${dateStr}-a-${cur.getTime()}`,
+                    doctorId: "",
+                    availableDate: dateStr,
+                    startTime: cur.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }),
+                    endTime: next.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }),
+                    isBooked: false,
+                    price: day.price,
+                    created_at: new Date().toISOString(),
+                    updated_at: new Date().toISOString(),
+                });
+                cur = next;
+            }
+        }
+    });
+    return slots;
+};
+
+/* ─── Get Monday of the current week ─── */
+const getMonday = (d: Date) => {
+    const date = new Date(d);
+    const day = date.getDay();
+    const diff = date.getDate() - day + (day === 0 ? -6 : 1);
+    date.setDate(diff);
+    date.setHours(0, 0, 0, 0);
+    return date;
+};
+
+/* ══════════════════════════════════════════════════════════════════
+   ConfirmModal — fly-in from top, fade backdrop, fly-out downward
+   ══════════════════════════════════════════════════════════════════ */
+function ConfirmModal({ open, title, message, onConfirm, onCancel }: {
+    open: boolean;
+    title: string;
+    message: string;
+    onConfirm: () => void;
+    onCancel: () => void;
+}) {
+    const [phase, setPhase] = useState<"enter" | "visible" | "exit" | "hidden">("hidden");
+
+    useEffect(() => {
+        if (open) {
+            setPhase("enter");
+            const t = setTimeout(() => setPhase("visible"), 20);
+            return () => clearTimeout(t);
+        } else if (phase === "visible") {
+            setPhase("exit");
+            const t = setTimeout(() => setPhase("hidden"), 350);
+            return () => clearTimeout(t);
+        }
+    }, [open]);
+
+    if (phase === "hidden") return null;
+
+    const isVisible = phase === "visible";
+    const isExit = phase === "exit";
+
+    return (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4" onClick={onCancel}>
+            {/* Backdrop */}
+            <div
+                className={`absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${isVisible ? "opacity-100" : isExit ? "opacity-0" : "opacity-0"}`}
+            />
+            {/* Modal Card */}
+            <div
+                onClick={(e) => e.stopPropagation()}
+                className={`relative bg-white rounded-2xl shadow-2xl border border-slate-200 p-6 w-full max-w-sm transition-all duration-300 ease-out ${isVisible
+                    ? "opacity-100 translate-y-0 scale-100"
+                    : isExit
+                        ? "opacity-0 translate-y-12 scale-95"
+                        : "opacity-0 -translate-y-12 scale-95"
+                    }`}
+            >
+                <div className="flex items-center gap-3 mb-3">
+                    <div className="h-10 w-10 rounded-full bg-rose-100 flex items-center justify-center text-rose-500 flex-shrink-0">
+                        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 className="text-base font-bold text-slate-800">{title}</h4>
+                        <p className="text-sm text-slate-500 mt-0.5">{message}</p>
+                    </div>
+                </div>
+                <div className="flex justify-end gap-2 mt-5">
+                    <button
+                        onClick={onCancel}
+                        className="px-5 py-2 rounded-xl bg-slate-100 text-sm font-bold text-slate-600 hover:bg-slate-200 transition"
+                    >
+                        Huỷ bỏ
+                    </button>
+                    <button
+                        onClick={onConfirm}
+                        className="px-5 py-2 rounded-xl bg-rose-500 text-sm font-bold text-white shadow-sm hover:bg-rose-600 transition"
+                    >
+                        Xác nhận xóa
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+}
 
 /* ═══════════════════════════════════════════ */
 export default function DoctorScheduleManager() {
+    const [template, setTemplate] = useState<DayTemplate[]>(defaultTemplate);
     const [slots, setSlots] = useState<DoctorScheduleSlot[]>([]);
     const [loading, setLoading] = useState(true);
-    const [showForm, setShowForm] = useState(false);
-    const [form, setForm] = useState<CreateSchedulePayload>({ ...EMPTY_FORM });
-    const [editingId, setEditingId] = useState<string | null>(null);
     const [saving, setSaving] = useState(false);
     const [deletingId, setDeletingId] = useState<string | null>(null);
-    const [filterDate, setFilterDate] = useState("");
+    const [editingSlotId, setEditingSlotId] = useState<string | null>(null);
+    const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+    const [editForm, setEditForm] = useState({ startTime: "", endTime: "", price: 0 });
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+
+    // Confirm modal state
+    const [confirmModal, setConfirmModal] = useState<{
+        open: boolean;
+        title: string;
+        message: string;
+        onConfirm: () => void;
+    }>({ open: false, title: "", message: "", onConfirm: () => { } });
+
+    const showConfirm = useCallback((title: string, message: string, onConfirm: () => void) => {
+        setConfirmModal({ open: true, title, message, onConfirm });
+    }, []);
+
+    const closeConfirm = useCallback(() => {
+        setConfirmModal(prev => ({ ...prev, open: false }));
+    }, []);
+
+    const weekStart = useMemo(() => getMonday(selectedDate), [selectedDate]);
 
     useEffect(() => { fetchSlots(); }, []);
 
@@ -65,346 +234,475 @@ export default function DoctorScheduleManager() {
         setLoading(true);
         try {
             const data = await getDoctorSchedule();
-            setSlots(data.length > 0 ? data : MOCK_SLOTS);
+            setSlots(data.length > 0 ? data : []);
         } catch {
-            setSlots(MOCK_SLOTS);
+            setSlots([]);
         } finally {
             setLoading(false);
         }
     };
 
-    /* ─── Create / Update ─── */
-    const handleSubmit = async () => {
-        if (!form.availableDate || !form.startTime || !form.endTime) {
-            alert("Vui lòng điền đầy đủ thông tin!");
-            return;
-        }
-        if (form.startTime >= form.endTime) {
-            alert("Giờ kết thúc phải sau giờ bắt đầu!");
-            return;
-        }
+    /* ─── Template handlers ─── */
+    const updateDay = (index: number, changes: Partial<DayTemplate>) => {
+        setTemplate(prev => prev.map((d, i) => (i === index ? { ...d, ...changes } : d)));
+    };
 
+    /* ─── Generate slots from template ─── */
+    const handleGenerateSlots = () => {
         setSaving(true);
         try {
-            if (editingId) {
-                await updateScheduleSlot(editingId, form);
-                setSlots(prev => prev.map(s => s.id === editingId ? { ...s, ...form } : s));
-            } else {
-                const newSlot = await createScheduleSlot(form);
-                setSlots(prev => [...prev, { ...newSlot, id: newSlot.id || `new-${Date.now()}`, doctorId: "d1", isBooked: false, created_at: new Date().toISOString(), updated_at: new Date().toISOString(), ...form }]);
-            }
-            resetForm();
-        } catch (err) {
-            console.error("Save failed:", err);
-            // Optimistic for mock
-            if (editingId) {
-                setSlots(prev => prev.map(s => s.id === editingId ? { ...s, ...form } : s));
-            } else {
-                setSlots(prev => [...prev, { id: `new-${Date.now()}`, doctorId: "d1", isBooked: false, created_at: new Date().toISOString(), updated_at: new Date().toISOString(), ...form } as DoctorScheduleSlot]);
-            }
-            resetForm();
+            const generated = generateSlotsFromTemplate(template, weekStart);
+            setSlots(prev => {
+                const weekEnd = new Date(weekStart);
+                weekEnd.setDate(weekEnd.getDate() + 7);
+                const weekStartStr = toLocalDateStr(weekStart);
+                const weekEndStr = toLocalDateStr(weekEnd);
+                const kept = prev.filter(s => s.availableDate < weekStartStr || s.availableDate >= weekEndStr || s.isBooked);
+                return [...kept, ...generated];
+            });
+
+            const activeDays = template.filter(d => d.isAvailable).map(d => d.label);
+            alert(`✅ Đã tạo ${generated.length} ca khám cho ${activeDays.length} ngày trong tuần:\n${activeDays.join(", ")}\n\nBấm vào từng ngày ở thanh tuần bên dưới để xem chi tiết.`);
         } finally {
             setSaving(false);
         }
     };
 
-    const handleEdit = (slot: DoctorScheduleSlot) => {
-        setEditingId(slot.id);
-        setForm({
-            availableDate: slot.availableDate?.split("T")[0] || "",
-            startTime: slot.startTime,
-            endTime: slot.endTime,
-            price: slot.price,
+    /* ─── Delete ─── */
+    const handleDelete = (id: string) => {
+        showConfirm(
+            "Xóa ca khám",
+            "Bạn có chắc muốn xóa ca khám này?",
+            async () => {
+                closeConfirm();
+                setDeletingId(id);
+                try { await deleteScheduleSlot(id); } catch { /* ok */ }
+                setSlots(prev => prev.filter(s => s.id !== id));
+                setDeletingId(null);
+                setSelectedIds(prev => { const next = new Set(prev); next.delete(id); return next; });
+            }
+        );
+    };
+
+    /* ─── Bulk Delete ─── */
+    const handleBulkDelete = () => {
+        if (selectedIds.size === 0) return;
+        showConfirm(
+            "Xóa hàng loạt",
+            `Bạn có chắc muốn xóa ${selectedIds.size} ca khám đã chọn?`,
+            () => {
+                closeConfirm();
+                setSlots(prev => prev.filter(s => !selectedIds.has(s.id)));
+                setSelectedIds(new Set());
+            }
+        );
+    };
+
+    /* ─── Edit ─── */
+    const startEdit = (slot: DoctorScheduleSlot) => {
+        setEditingSlotId(slot.id);
+        setEditForm({ startTime: slot.startTime, endTime: slot.endTime, price: slot.price || 0 });
+    };
+    const saveEdit = (id: string) => {
+        setSlots(prev => prev.map(s => s.id === id ? { ...s, startTime: editForm.startTime, endTime: editForm.endTime, price: editForm.price } : s));
+        setEditingSlotId(null);
+    };
+    const cancelEdit = () => setEditingSlotId(null);
+
+    /* ─── Filter for selected date ─── */
+    const currentDateStr = toLocalDateStr(selectedDate);
+    const currentSlots = useMemo(() => {
+        return slots
+            .filter(s => s.availableDate === currentDateStr)
+            .sort((a, b) => a.startTime.localeCompare(b.startTime));
+    }, [slots, currentDateStr]);
+
+    const isPast = isDatePast(currentDateStr);
+
+    /* ─── Selection helpers ─── */
+    const selectableSlots = currentSlots.filter(s => !s.isBooked && !isPast);
+    const allSelected = selectableSlots.length > 0 && selectableSlots.every(s => selectedIds.has(s.id));
+    const toggleSelectAll = () => {
+        if (allSelected) {
+            setSelectedIds(prev => {
+                const next = new Set(prev);
+                selectableSlots.forEach(s => next.delete(s.id));
+                return next;
+            });
+        } else {
+            setSelectedIds(prev => {
+                const next = new Set(prev);
+                selectableSlots.forEach(s => next.add(s.id));
+                return next;
+            });
+        }
+    };
+    const toggleSelect = (id: string) => {
+        setSelectedIds(prev => {
+            const next = new Set(prev);
+            if (next.has(id)) next.delete(id);
+            else next.add(id);
+            return next;
         });
-        setShowForm(true);
     };
-
-    const handleDelete = async (id: string) => {
-        if (!confirm("Bạn có chắc muốn xóa ca khám này?")) return;
-        setDeletingId(id);
-        try {
-            await deleteScheduleSlot(id);
-        } catch { /* ok for mock */ }
-        setSlots(prev => prev.filter(s => s.id !== id));
-        setDeletingId(null);
-    };
-
-    const resetForm = () => {
-        setShowForm(false);
-        setEditingId(null);
-        setForm({ ...EMPTY_FORM });
-    };
-
-    /* ─── Group by Date ─── */
-    const filtered = slots
-        .filter(s => !filterDate || s.availableDate?.startsWith(filterDate))
-        .sort((a, b) => {
-            const dateA = `${a.availableDate}T${a.startTime}`;
-            const dateB = `${b.availableDate}T${b.startTime}`;
-            return dateA.localeCompare(dateB);
-        });
-
-    const grouped = filtered.reduce<Record<string, DoctorScheduleSlot[]>>((acc, slot) => {
-        const date = slot.availableDate?.split("T")[0] || "unknown";
-        if (!acc[date]) acc[date] = [];
-        acc[date].push(slot);
-        return acc;
-    }, {});
 
     /* ─── Stats ─── */
-    const totalSlots = slots.length;
-    const bookedSlots = slots.filter(s => s.isBooked).length;
+    const totalSlots = currentSlots.length;
+    const bookedSlots = currentSlots.filter(s => s.isBooked).length;
     const availableSlots = totalSlots - bookedSlots;
 
-    /* ─── Loading ─── */
     if (loading) {
         return (
             <div className="space-y-4 mt-6">
-                <div className="grid grid-cols-3 gap-3">
-                    {[...Array(3)].map((_, i) => (
-                        <div key={i} className="rounded-2xl border border-slate-200 bg-white p-4 animate-pulse">
-                            <div className="h-3 w-16 bg-slate-200 rounded mb-2" />
-                            <div className="h-7 w-10 bg-slate-200 rounded" />
-                        </div>
-                    ))}
-                </div>
-                {[...Array(3)].map((_, i) => (
-                    <div key={i} className="rounded-2xl border border-slate-200 bg-white p-4 animate-pulse">
-                        <div className="h-4 w-48 bg-slate-200 rounded mb-3" />
-                        <div className="h-10 w-full bg-slate-100 rounded" />
-                    </div>
-                ))}
+                <div className="flex justify-center p-8"><div className="animate-spin h-8 w-8 border-4 border-dermcare border-t-transparent rounded-full" /></div>
             </div>
         );
     }
 
     return (
-        <div className="space-y-5 mt-6">
-            {/* ═══ Stats ═══ */}
-            <div className="grid grid-cols-3 gap-3">
-                <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-4 shadow-soft">
-                    <span className="text-xs font-medium text-slate-500">Tổng ca</span>
-                    <p className="text-2xl font-bold text-slate-900">{totalSlots}</p>
-                </div>
-                <div className="rounded-2xl border border-green-200 bg-gradient-to-br from-green-50 to-white p-4 shadow-soft">
-                    <span className="text-xs font-medium text-green-600">Còn trống</span>
-                    <p className="text-2xl font-bold text-green-600">{availableSlots}</p>
-                </div>
-                <div className="rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50 to-white p-4 shadow-soft">
-                    <span className="text-xs font-medium text-blue-600">Đã đặt</span>
-                    <p className="text-2xl font-bold text-blue-600">{bookedSlots}</p>
-                </div>
-            </div>
+        <div className="space-y-6 mt-6">
 
-            {/* ═══ Toolbar ═══ */}
-            <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
-                <div className="relative">
-                    <input
-                        type="date"
-                        value={filterDate}
-                        onChange={e => setFilterDate(e.target.value)}
-                        className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20 transition"
-                        placeholder="Lọc theo ngày"
-                    />
-                    {filterDate && (
-                        <button
-                            onClick={() => setFilterDate("")}
-                            className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-lg"
-                        >×</button>
-                    )}
+            {/* ═══ Confirm Modal ═══ */}
+            <ConfirmModal
+                open={confirmModal.open}
+                title={confirmModal.title}
+                message={confirmModal.message}
+                onConfirm={confirmModal.onConfirm}
+                onCancel={closeConfirm}
+            />
+
+            {/* ═══ Section 1: Work Template ═══ */}
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                <div className="bg-gradient-to-r from-dermcare/5 to-transparent px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+                    <h3 className="font-bold text-slate-800">
+                        Mẫu lịch làm việc hàng tuần
+                    </h3>
+                    <button
+                        onClick={handleGenerateSlots}
+                        disabled={saving}
+                        className="inline-flex items-center gap-2 rounded-xl bg-dermcare px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-dermcare/20 hover:bg-dermcare-dark transition disabled:opacity-50"
+                    >
+                        {saving ? "⏳..." : "Tạo nhanh lịch hẹn"}
+                    </button>
                 </div>
-                <button
-                    onClick={() => { resetForm(); setShowForm(true); }}
-                    className="inline-flex items-center gap-2 rounded-xl bg-dermcare px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-dermcare/25 hover:bg-dermcare-dark hover:shadow-lg transition-all"
-                >
-                    <span className="text-base">＋</span>
-                    Thêm ca khám mới
-                </button>
-            </div>
 
-            {/* ═══ Add/Edit Form ═══ */}
-            {showForm && (
-                <div className="rounded-2xl border-2 border-dermcare/30 bg-gradient-to-br from-dermcare/5 to-white p-5 shadow-soft animate-in fade-in slide-in-from-top-2 duration-200">
-                    <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-sm font-bold text-slate-900">
-                            {editingId ? "✏️ Chỉnh sửa ca khám" : "➕ Thêm ca khám mới"}
-                        </h3>
-                        <button
-                            onClick={resetForm}
-                            className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition"
-                        >
-                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                        </button>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div>
-                            <label className="block text-[11px] font-semibold text-slate-500 mb-1.5">📅 Ngày làm việc</label>
-                            <input
-                                type="date"
-                                value={form.availableDate}
-                                onChange={e => setForm({ ...form, availableDate: e.target.value })}
-                                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20 transition"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-[11px] font-semibold text-slate-500 mb-1.5">🕐 Giờ bắt đầu</label>
-                            <input
-                                type="time"
-                                value={form.startTime}
-                                onChange={e => setForm({ ...form, startTime: e.target.value })}
-                                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20 transition"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-[11px] font-semibold text-slate-500 mb-1.5">🕑 Giờ kết thúc</label>
-                            <input
-                                type="time"
-                                value={form.endTime}
-                                onChange={e => setForm({ ...form, endTime: e.target.value })}
-                                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20 transition"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-[11px] font-semibold text-slate-500 mb-1.5">💰 Giá khám (VND)</label>
-                            <input
-                                type="number"
-                                value={form.price || ""}
-                                onChange={e => setForm({ ...form, price: Number(e.target.value) })}
-                                min={0}
-                                step={10000}
-                                placeholder="250,000"
-                                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20 transition"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="flex gap-2 mt-4">
-                        <button
-                            onClick={handleSubmit}
-                            disabled={saving}
-                            className="rounded-xl bg-dermcare px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-dermcare-dark transition disabled:opacity-50"
-                        >
-                            {saving ? "⏳ Đang lưu..." : editingId ? "💾 Cập nhật" : "✓ Tạo ca khám"}
-                        </button>
-                        <button
-                            onClick={resetForm}
-                            disabled={saving}
-                            className="rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50 transition disabled:opacity-50"
-                        >
-                            Hủy
-                        </button>
-                    </div>
-                </div>
-            )}
-
-            {/* ═══ Schedule List — Grouped by Date ═══ */}
-            {Object.keys(grouped).length === 0 ? (
-                <div className="rounded-2xl border border-dashed border-slate-300 bg-white py-16 text-center">
-                    <p className="text-5xl mb-3">📅</p>
-                    <p className="text-base font-semibold text-slate-700">Chưa có ca khám nào</p>
-                    <p className="text-sm text-slate-400 mt-1">Bấm &quot;Thêm ca khám mới&quot; để bắt đầu</p>
-                </div>
-            ) : (
-                <div className="space-y-4">
-                    {Object.entries(grouped).map(([date, dateSlots]) => {
-                        const past = isDatePast(date);
-                        return (
-                            <div key={date} className={`rounded-2xl border bg-white shadow-soft overflow-hidden ${past ? "border-slate-200 opacity-70" : "border-slate-200"}`}>
-                                {/* Date Header */}
-                                <div className={`flex items-center justify-between px-5 py-3 ${past ? "bg-slate-50" : "bg-gradient-to-r from-dermcare/5 to-transparent"}`}>
-                                    <div className="flex items-center gap-3">
-                                        <div className={`flex h-10 w-10 items-center justify-center rounded-xl text-sm font-bold ${past ? "bg-slate-200 text-slate-500" : "bg-dermcare/10 text-dermcare"}`}>
-                                            {new Date(date).getDate()}
-                                        </div>
-                                        <div>
-                                            <p className={`text-sm font-bold ${past ? "text-slate-500" : "text-slate-900"}`}>
-                                                {formatDate(date)}
-                                            </p>
-                                            <p className="text-[11px] text-slate-400">
-                                                {dateSlots.length} ca · {dateSlots.filter(s => !s.isBooked).length} trống · {dateSlots.filter(s => s.isBooked).length} đã đặt
-                                            </p>
-                                        </div>
-                                    </div>
-                                    {past && (
-                                        <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-medium text-slate-400">Đã qua</span>
-                                    )}
-                                </div>
-
-                                {/* Time Slots */}
-                                <div className="divide-y divide-slate-100">
-                                    {dateSlots.map(slot => (
-                                        <div
-                                            key={slot.id}
-                                            className={`flex items-center gap-4 px-5 py-3 transition hover:bg-slate-50 ${deletingId === slot.id ? "opacity-40" : ""}`}
+                {/* Template Grid */}
+                <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                        <thead>
+                            <tr className="bg-slate-50 text-[11px] uppercase tracking-wider text-slate-500 font-bold">
+                                <th className="px-4 py-3 text-left w-24">Thứ</th>
+                                <th className="px-4 py-3 text-center w-16">Hoạt động</th>
+                                <th className="px-4 py-3 text-center">Ca sáng</th>
+                                <th className="px-4 py-3 text-center">Ca chiều</th>
+                                <th className="px-4 py-3 text-center w-20">Phút/Ca</th>
+                                <th className="px-4 py-3 text-center w-28">Giá (VND)</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-50">
+                            {template.map((day, i) => (
+                                <tr key={day.dayOfWeek} className={`transition ${day.isAvailable ? "bg-white" : "bg-slate-50/50"}`}>
+                                    <td className="px-4 py-3">
+                                        <span className={`text-sm font-bold ${day.isAvailable ? "text-slate-800" : "text-slate-400"}`}>
+                                            {day.label}
+                                        </span>
+                                    </td>
+                                    <td className="px-4 py-3 text-center">
+                                        <button
+                                            onClick={() => updateDay(i, { isAvailable: !day.isAvailable })}
+                                            className={`relative w-11 h-6 rounded-full transition-colors duration-200 ${day.isAvailable ? "bg-dermcare" : "bg-slate-300"}`}
                                         >
-                                            {/* Time Range */}
-                                            <div className="flex items-center gap-2 min-w-[140px]">
-                                                <svg className="h-4 w-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
-                                                <span className="text-sm font-semibold text-slate-800">
-                                                    {slot.startTime} – {slot.endTime}
-                                                </span>
+                                            <span className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${day.isAvailable ? "translate-x-5" : ""}`} />
+                                        </button>
+                                    </td>
+                                    <td className="px-4 py-3">
+                                        {day.isAvailable ? (
+                                            <div className="flex items-center justify-center gap-1.5">
+                                                <input type="time" value={day.morningStart} onChange={e => updateDay(i, { morningStart: e.target.value })}
+                                                    className="w-[120px] h-8 rounded-lg border border-slate-200 px-2 text-xs font-medium text-slate-800 focus:border-dermcare focus:outline-none transition" />
+                                                <span className="text-slate-400 text-xs">→</span>
+                                                <input type="time" value={day.morningEnd} onChange={e => updateDay(i, { morningEnd: e.target.value })}
+                                                    className="w-[120px] h-8 rounded-lg border border-slate-200 px-2 text-xs font-medium text-slate-800 focus:border-dermcare focus:outline-none transition" />
                                             </div>
+                                        ) : (
+                                            <span className="text-xs text-slate-400 italic">Nghỉ</span>
+                                        )}
+                                    </td>
+                                    <td className="px-4 py-3">
+                                        {day.isAvailable ? (
+                                            <div className="flex items-center justify-center gap-1.5">
+                                                <input type="time" value={day.afternoonStart} onChange={e => updateDay(i, { afternoonStart: e.target.value })}
+                                                    className="w-[120px] h-8 rounded-lg border border-slate-200 px-2 text-xs font-medium text-slate-800 focus:border-dermcare focus:outline-none transition" />
+                                                <span className="text-slate-400 text-xs">→</span>
+                                                <input type="time" value={day.afternoonEnd} onChange={e => updateDay(i, { afternoonEnd: e.target.value })}
+                                                    className="w-[120px] h-8 rounded-lg border border-slate-200 px-2 text-xs font-medium text-slate-800 focus:border-dermcare focus:outline-none transition" />
+                                            </div>
+                                        ) : (
+                                            <span className="text-xs text-slate-400 italic">Nghỉ</span>
+                                        )}
+                                    </td>
+                                    <td className="px-4 py-3 text-center">
+                                        {day.isAvailable ? (
+                                            <input type="number" value={day.slotDuration} onChange={e => updateDay(i, { slotDuration: Number(e.target.value) })}
+                                                min={10} max={120} step={5}
+                                                className="w-16 h-8 rounded-lg border border-slate-200 px-2 text-xs font-medium text-center text-slate-800 focus:border-dermcare focus:outline-none transition" />
+                                        ) : <span className="text-xs text-slate-400">—</span>}
+                                    </td>
+                                    <td className="px-4 py-3 text-center">
+                                        {day.isAvailable ? (
+                                            <input type="number" value={day.price || ""} onChange={e => updateDay(i, { price: Number(e.target.value) })}
+                                                min={0} step={10000}
+                                                className="w-24 h-8 rounded-lg border border-slate-200 px-2 text-xs font-medium text-center text-slate-800 focus:border-dermcare focus:outline-none transition" />
+                                        ) : <span className="text-xs text-slate-400">—</span>}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-                                            {/* Price */}
-                                            <div className="flex items-center gap-1.5 min-w-[100px]">
+            {/* ═══ Section 2: Weekly Day Selector + Stats ═══ */}
+            <div className="flex flex-col sm:flex-row items-stretch gap-4">
+                {/* Week Selector Pill */}
+                <div className="flex items-center gap-3 bg-white px-4 py-3 rounded-2xl shadow-sm border border-slate-100 overflow-x-auto flex-1">
+                    {/* Prev Week Arrow */}
+                    <button
+                        onClick={() => {
+                            const prev = new Date(selectedDate);
+                            prev.setDate(prev.getDate() - 7);
+                            setSelectedDate(prev);
+                        }}
+                        className="h-10 w-10 rounded-xl bg-slate-50 hover:bg-slate-100 flex items-center justify-center text-slate-500 hover:text-dermcare transition flex-shrink-0"
+                        title="Tuần trước"
+                    >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
+                    </button>
+
+                    <div className="text-center min-w-[100px] flex flex-col items-center border-r border-slate-100 pr-3">
+                        <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-0.5">
+                            Tuần làm việc
+                        </p>
+                        <h2 className="text-sm font-extrabold text-slate-800">
+                            {selectedDate.toLocaleDateString("vi-VN", { month: "long", year: "numeric" })}
+                        </h2>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                        {Array.from({ length: 7 }).map((_, i) => {
+                            const currentDay = selectedDate.getDay() === 0 ? 6 : selectedDate.getDay() - 1;
+                            const dateOfThisColumn = new Date(selectedDate);
+                            dateOfThisColumn.setDate(selectedDate.getDate() - currentDay + i);
+                            const isSelected = dateOfThisColumn.toDateString() === selectedDate.toDateString();
+                            const isToday = dateOfThisColumn.toDateString() === new Date().toDateString();
+                            const dayNames = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
+                            const past = isDatePast(toLocalDateStr(dateOfThisColumn));
+
+                            // 3 states: today + selected, today only, selected only, normal
+                            let btnClass = "bg-slate-50 text-slate-500 hover:bg-slate-100 hover:text-dermcare";
+                            let labelClass = "text-slate-400";
+                            if (isSelected && isToday) {
+                                btnClass = "bg-dermcare text-white shadow-md shadow-dermcare/20 ring-2 ring-dermcare ring-offset-2";
+                                labelClass = "text-white/70";
+                            } else if (isSelected) {
+                                btnClass = "bg-slate-700 text-white shadow-md shadow-slate-700/20";
+                                labelClass = "text-white/60";
+                            } else if (isToday) {
+                                btnClass = "bg-dermcare/10 text-dermcare border-2 border-dermcare/40";
+                                labelClass = "text-dermcare/60";
+                            }
+
+                            return (
+                                <button key={i}
+                                    onClick={() => setSelectedDate(dateOfThisColumn)}
+                                    className={`relative flex flex-col items-center justify-center min-w-[44px] h-12 rounded-xl transition duration-200 ${btnClass} ${past ? "opacity-50" : ""}`}
+                                >
+                                    <span className={`text-[10px] font-bold uppercase ${labelClass}`}>{dayNames[i]}</span>
+                                    <span className="text-sm font-extrabold leading-none mt-0.5">{dateOfThisColumn.getDate()}</span>
+                                    {isToday && !isSelected && (
+                                        <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-dermcare" />
+                                    )}
+                                </button>
+                            );
+                        })}
+                    </div>
+
+                    {/* Next Week Arrow */}
+                    <button
+                        onClick={() => {
+                            const next = new Date(selectedDate);
+                            next.setDate(next.getDate() + 7);
+                            setSelectedDate(next);
+                        }}
+                        className="h-10 w-10 rounded-xl bg-slate-50 hover:bg-slate-100 flex items-center justify-center text-slate-500 hover:text-dermcare transition flex-shrink-0"
+                        title="Tuần sau"
+                    >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+                    </button>
+                </div>
+
+                {/* Mini Stats */}
+                <div className="flex gap-2">
+                    <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white px-4 py-3 shadow-soft flex flex-col justify-center min-w-[80px]">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Tổng</span>
+                        <p className="text-xl font-black text-slate-900 leading-none mt-1">{totalSlots}</p>
+                    </div>
+                    <div className="rounded-2xl border border-green-200 bg-gradient-to-br from-green-50 to-white px-4 py-3 shadow-soft flex flex-col justify-center min-w-[80px]">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-green-600">Trống</span>
+                        <p className="text-xl font-black text-green-600 leading-none mt-1">{availableSlots}</p>
+                    </div>
+                    <div className="rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50 to-white px-4 py-3 shadow-soft flex flex-col justify-center min-w-[80px]">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600">Đặt</span>
+                        <p className="text-xl font-black text-blue-600 leading-none mt-1">{bookedSlots}</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* ═══ Section 3: Schedule Slots List ═══ */}
+            <div className="rounded-2xl border border-slate-200 bg-white shadow-soft overflow-hidden">
+                <div className="bg-slate-50 px-5 py-3 border-b border-slate-100 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        {selectableSlots.length > 0 && (
+                            <input
+                                type="checkbox"
+                                checked={allSelected}
+                                onChange={toggleSelectAll}
+                                className="w-4 h-4 text-dermcare rounded border-slate-300 focus:ring-dermcare transition cursor-pointer"
+                                title="Chọn tất cả"
+                            />
+                        )}
+                        <h3 className="font-bold text-slate-800">
+                            Lịch hẹn — {selectedDate.toLocaleDateString("vi-VN", { weekday: "long", day: "2-digit", month: "2-digit" })}
+                        </h3>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        {selectedIds.size > 0 && (
+                            <button
+                                onClick={handleBulkDelete}
+                                className="inline-flex items-center gap-1.5 rounded-xl bg-rose-500 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-rose-600 transition"
+                            >
+                                <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                                Xóa {selectedIds.size} mục
+                            </button>
+                        )}
+                        {isPast && <span className="text-xs text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full font-medium">Đã qua</span>}
+                    </div>
+                </div>
+
+                {currentSlots.length === 0 ? (
+                    <div className="py-14 text-center">
+                        <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-slate-50 text-3xl mb-3">📅</div>
+                        <p className="text-sm font-semibold text-slate-700">Chưa có lịch hẹn</p>
+                    </div>
+                ) : (
+                    <div className="divide-y divide-slate-100">
+                        {currentSlots.map(slot => (
+                            <div
+                                key={slot.id}
+                                className={`flex items-center gap-4 px-5 py-3 transition hover:bg-slate-50 ${deletingId === slot.id ? "opacity-40" : ""}`}
+                            >
+                                {/* Checkbox */}
+                                {!slot.isBooked && !isPast && (
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedIds.has(slot.id)}
+                                        onChange={() => toggleSelect(slot.id)}
+                                        className="w-4 h-4 text-dermcare rounded border-slate-300 focus:ring-dermcare transition cursor-pointer flex-shrink-0"
+                                    />
+                                )}
+                                {editingSlotId === slot.id ? (
+                                    /* ── Inline Edit Mode ── */
+                                    <>
+                                        <div className="flex items-center gap-2">
+                                            <input type="time" value={editForm.startTime}
+                                                onChange={e => setEditForm({ ...editForm, startTime: e.target.value })}
+                                                className="w-[120px] h-8 rounded-lg border border-amber-300 px-2 text-xs font-medium text-slate-800 focus:border-dermcare focus:outline-none transition" />
+                                            <span className="text-slate-400 text-xs">→</span>
+                                            <input type="time" value={editForm.endTime}
+                                                onChange={e => setEditForm({ ...editForm, endTime: e.target.value })}
+                                                className="w-[120px] h-8 rounded-lg border border-amber-300 px-2 text-xs font-medium text-slate-800 focus:border-dermcare focus:outline-none transition" />
+                                        </div>
+                                        <div className="flex items-center gap-1.5">
+                                            <input type="number" value={editForm.price || ""}
+                                                onChange={e => setEditForm({ ...editForm, price: Number(e.target.value) })}
+                                                min={0} step={10000}
+                                                className="w-24 h-8 rounded-lg border border-amber-300 px-2 text-xs font-medium text-slate-800 focus:border-dermcare focus:outline-none transition" />
+                                            <span className="text-[10px] text-slate-400">VND</span>
+                                        </div>
+                                        <div className="flex-1" />
+                                        <div className="flex gap-1.5">
+                                            <button onClick={() => saveEdit(slot.id)}
+                                                className="rounded-lg bg-dermcare px-3 py-1.5 text-xs font-bold text-white hover:bg-dermcare-dark transition">
+                                                Lưu
+                                            </button>
+                                            <button onClick={cancelEdit}
+                                                className="rounded-lg bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-600 hover:bg-slate-200 transition">
+                                                Huỷ
+                                            </button>
+                                        </div>
+                                    </>
+                                ) : (
+                                    /* ── Normal Display Mode ── */
+                                    <>
+                                        <div className="flex items-center gap-2 min-w-[130px]">
+                                            <div className="flex flex-col">
+                                                <span className="text-base font-bold text-slate-800">{slot.startTime}</span>
+                                                <span className="text-xs font-semibold text-slate-400">đến {slot.endTime}</span>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center gap-1.5 min-w-[110px]">
+                                            <div className="flex flex-col">
+                                                <span className="text-[10px] uppercase font-bold text-slate-400">Giá khám</span>
                                                 <span className="text-sm font-bold text-dermcare">
                                                     {slot.price ? formatCurrency(slot.price) : "—"}
                                                 </span>
                                             </div>
-
-                                            {/* Status Badge */}
-                                            <div className="flex-1">
-                                                {slot.isBooked ? (
-                                                    <span className="inline-flex items-center gap-1 rounded-full border border-blue-200 bg-blue-50 px-2.5 py-0.5 text-[11px] font-semibold text-blue-700">
-                                                        <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
-                                                        Đã có bệnh nhân đặt
-                                                    </span>
-                                                ) : (
-                                                    <span className="inline-flex items-center gap-1 rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-[11px] font-semibold text-green-700">
-                                                        <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
-                                                        Còn trống
-                                                    </span>
-                                                )}
-                                            </div>
-
-                                            {/* Action Buttons */}
-                                            {!slot.isBooked && !past && (
-                                                <div className="flex gap-1.5">
-                                                    <button
-                                                        onClick={() => handleEdit(slot)}
-                                                        className="rounded-lg bg-slate-100 p-2 text-slate-500 hover:bg-dermcare/10 hover:text-dermcare transition"
-                                                        title="Chỉnh sửa"
-                                                    >
-                                                        <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                                        </svg>
-                                                    </button>
-                                                    <button
-                                                        onClick={() => handleDelete(slot.id)}
-                                                        disabled={deletingId === slot.id}
-                                                        className="rounded-lg bg-slate-100 p-2 text-slate-500 hover:bg-red-50 hover:text-red-500 transition disabled:opacity-50"
-                                                        title="Xóa"
-                                                    >
-                                                        <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            )}
-                                            {slot.isBooked && (
-                                                <span className="text-xs text-slate-400 italic">Không thể sửa</span>
+                                        </div>
+                                        <div className="flex-1">
+                                            {slot.isBooked ? (
+                                                <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+                                                    <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
+                                                    Đã đặt
+                                                </span>
+                                            ) : (
+                                                <span className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-3 py-1 text-xs font-semibold text-green-700">
+                                                    <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
+                                                    Trống
+                                                </span>
                                             )}
                                         </div>
-                                    ))}
-                                </div>
+                                        {/* Action Buttons */}
+                                        {!slot.isBooked && !isPast ? (
+                                            <div className="flex gap-1.5 flex-shrink-0">
+                                                <button
+                                                    onClick={() => startEdit(slot)}
+                                                    className="rounded-xl border border-amber-100 bg-amber-50 p-2 text-amber-500 hover:bg-amber-100 hover:text-amber-600 transition"
+                                                    title="Sửa"
+                                                >
+                                                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                                    </svg>
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDelete(slot.id)}
+                                                    disabled={deletingId === slot.id}
+                                                    className="rounded-xl border border-rose-100 bg-rose-50 p-2 text-rose-500 hover:bg-rose-100 hover:text-rose-600 transition disabled:opacity-50"
+                                                    title="Xóa"
+                                                >
+                                                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        ) : slot.isBooked ? (
+                                            <span className="text-xs text-slate-400 italic flex-shrink-0">🔒 Đã khóa</span>
+                                        ) : null}
+                                    </>
+                                )}
                             </div>
-                        );
-                    })}
-                </div>
-            )}
+                        ))}
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

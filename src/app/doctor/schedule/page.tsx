@@ -22,7 +22,6 @@ export default function DoctorSchedulePage() {
             <div className="mx-auto max-w-5xl px-4">
                 <div className="mb-1">
                     <h1 className="text-3xl font-bold text-slate-900">Quản lý lịch làm việc</h1>
-                    <p className="text-sm text-slate-500 mt-1">Thêm, chỉnh sửa ca khám để bệnh nhân có thể đặt lịch</p>
                 </div>
                 <DoctorScheduleManager />
             </div>

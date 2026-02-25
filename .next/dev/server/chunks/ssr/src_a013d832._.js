@@ -3,12 +3,16 @@ module.exports = [
 "use strict";
 
 __turbopack_context__.s([
+    "getAllDoctors",
+    ()=>getAllDoctors,
     "getDoctorAppointments",
     ()=>getDoctorAppointments,
     "getDoctorById",
     ()=>getDoctorById,
     "getDoctors",
     ()=>getDoctors,
+    "getPublicDoctors",
+    ()=>getPublicDoctors,
     "searchDoctors",
     ()=>searchDoctors,
     "updateAppointmentDetails",
@@ -21,6 +25,14 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$apiClient$2e$t
 const getDoctors = async ()=>{
     const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$apiClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].get('/doctors');
     return data;
+};
+const getPublicDoctors = async ()=>{
+    const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$apiClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].get('/doctors/public');
+    return data.data;
+};
+const getAllDoctors = async ()=>{
+    const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$apiClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].get('/doctors/all');
+    return data.data;
 };
 const getDoctorById = async (id)=>{
     const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$apiClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].get(`/doctors/${id}`);
