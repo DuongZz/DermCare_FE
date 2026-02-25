@@ -191,7 +191,7 @@ export default function ProfilePage() {
 
     const inputClass = "w-full rounded-md border border-slate-300 bg-white px-2 h-8 text-sm text-slate-900 focus:border-dermcare focus:outline-none focus:ring-1 focus:ring-dermcare/20";
 
-    const EmptyValue = () => <span className="font-normal italic text-slate-400">Chưa cập nhật</span>;
+    const EmptyValue = () => <span className="font-normal text-slate-400">--</span>;
 
     const BLOOD_TYPES = {
         "A_POSITIVE": "A+",
@@ -290,10 +290,10 @@ export default function ProfilePage() {
                                     {user?.qualifications ? `${user.qualifications} ${user.fullName}` : (user?.fullName || 'Bác sĩ')}
                                 </h3>
                                 {user?.specialization && (
-                                    <p className="text-xs text-dermcare font-medium mt-2">{user.specialization}</p>
+                                    <p className="text-sm text-dermcare font-medium mt-2">{user.specialization}</p>
                                 )}
                                 {user?.work_place && (
-                                    <p className="text-xs text-slate-400 mt-0.5">{user.work_place}</p>
+                                    <p className="text-sm text-slate-500 mt-0.5">{user.work_place}</p>
                                 )}
 
                                 {/* Upload Button */}
@@ -305,11 +305,11 @@ export default function ProfilePage() {
                                     {uploadingAvatar ? '⏳ Đang tải...' : '📷 Thay đổi ảnh'}
                                 </button>
 
-                                {user?.rating && (
+                                {user?.rating ? (
                                     <div className="mt-3 flex items-center gap-1 text-sm text-amber-500 font-semibold">
                                         ⭐ {user.rating}/5
                                     </div>
-                                )}
+                                ) : null}
                             </div>
                         ) : (
                             <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft">

@@ -1,7 +1,6 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/doctor/schedule/page": "app/doctor/schedule/page.js",
-  "/doctors/page": "app/doctors/page.js",
+  "/auth/social-callback/page": "app/auth/social-callback/page.js",
+  "/login/page": "app/login/page.js",
   "/page": "app/page.js",
   "/profile/page": "app/profile/page.js"
 }

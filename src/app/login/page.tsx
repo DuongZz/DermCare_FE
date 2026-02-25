@@ -8,6 +8,8 @@ import { login } from "@/services/authService";
 import { useAuth } from "@/contexts/AuthContext";
 import apiClient from '@/lib/apiClient';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://localhost/v1';
+
 type AuthMode = "login" | "forgot-password";
 type ForgotStep = "EMAIL" | "OTP";
 
@@ -271,7 +273,11 @@ export default function LoginPage() {
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-3">
-                                    <button className="flex items-center justify-center gap-2 px-4 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 transition">
+                                    <button
+                                        type="button"
+                                        onClick={() => window.location.href = `${API_BASE_URL}/auth/facebook`}
+                                        className="flex items-center justify-center gap-2 px-4 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 transition"
+                                    >
                                         <svg className="w-5 h-5" viewBox="0 0 24 24">
                                             <path
                                                 fill="#1877F2"
@@ -283,7 +289,11 @@ export default function LoginPage() {
                                         </span>
                                     </button>
 
-                                    <button className="flex items-center justify-center gap-2 px-4 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 transition">
+                                    <button
+                                        type="button"
+                                        onClick={() => window.location.href = `${API_BASE_URL}/auth/google`}
+                                        className="flex items-center justify-center gap-2 px-4 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 transition"
+                                    >
                                         <svg className="w-5 h-5" viewBox="0 0 24 24">
                                             <path
                                                 fill="#4285F4"

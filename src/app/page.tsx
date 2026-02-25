@@ -276,13 +276,13 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {doctors.length > 0 ? doctors.slice(0, 4).map((doctor, idx) => (
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+            {doctors.length > 0 ? doctors.slice(0, 5).map((doctor, idx) => (
               <div
                 key={idx}
                 className="card-elevated flex flex-col overflow-hidden text-center transition hover:shadow-lg h-full"
               >
-                <div className="relative h-56 overflow-hidden bg-gradient-to-br from-dermcare-light to-slate-100 flex-shrink-0">
+                <div className="relative h-52 overflow-hidden bg-gradient-to-br from-dermcare-light to-slate-100 flex-shrink-0">
                   <img
                     src={doctor.avatar || '/default-avatar.png'}
                     alt={doctor.user?.fullName || 'Bác sĩ'}
@@ -290,16 +290,19 @@ export default function HomePage() {
                   />
                 </div>
                 <div className="flex flex-col flex-1 p-4 pb-5">
-                  <h3 className="mb-0.5 text-base font-bold text-slate-900 line-clamp-2">
+                  <h3 className="mb-1 text-base font-bold text-slate-900 line-clamp-2">
                     {doctor.qualifications ? `${doctor.qualifications} ${doctor.user.fullName}` : (doctor.user.fullName || 'Bác sĩ')}
                   </h3>
                   <div className="flex-1">
                     <p className="mb-1.5 text-sm text-dermcare font-medium line-clamp-2">
                       {doctor.specialization || "Chưa cập nhật"}
                     </p>
+                    <p className="mb-3 text-xs text-slate-500 line-clamp-1 flex items-center justify-center">
+                      {doctor.workPlace || "Đang cập nhật"}
+                    </p>
                   </div>
                   <div className="mt-auto">
-                    <div className="mb-3 flex items-center justify-center gap-1 text-sm bg-slate-50 py-1 rounded-lg border border-slate-100">
+                    <div className="mb-3 flex items-center justify-center gap-1 text-sm bg-slate-50 py-1.5 rounded-lg border border-slate-100">
                       <span className="text-amber-500">★</span>
                       <span className="font-bold text-slate-900">
                         {doctor.rating ? doctor.rating : '--'} / 5

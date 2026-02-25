@@ -165,6 +165,8 @@ __turbopack_context__.s([
     ()=>getCurrentUser,
     "login",
     ()=>login,
+    "loginWithFacebook",
+    ()=>loginWithFacebook,
     "loginWithGoogle",
     ()=>loginWithGoogle,
     "logout",
@@ -182,6 +184,7 @@ __turbopack_context__.s([
     "washToken",
     ()=>washToken
 ]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/apiClient.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$storage$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/utils/storage.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$tokenStore$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/tokenStore.ts [app-client] (ecmascript)");
@@ -281,21 +284,14 @@ const getCurrentUser = async ()=>{
     const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get('/users/me');
     return data.data;
 };
-const loginWithGoogle = async (token)=>{
-    const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post('/auth/google', {
-        token
-    });
-    // Save tokens to localStorage (default true or false? usually social login implies remember me)
-    if (data.data && !data.data.isPreAcesss) {
-        (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$storage$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["setToken"])('accessToken', data.data.accessToken, true);
-        if (data.data.refreshToken) {
-            (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$storage$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["setToken"])('refreshToken', data.data.refreshToken, true);
-        }
-        if (data.data.clientId) {
-            (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$storage$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["setToken"])('clientId', data.data.clientId, true);
-        }
-    }
-    return data;
+// Social Login Helpers
+// These redirect to backend OAuth endpoints (Passport.js handles the flow)
+const API_BASE_URL = ("TURBOPACK compile-time value", "http://localhost:4000/v1") || 'https://localhost/v1';
+const loginWithGoogle = ()=>{
+    window.location.href = `${API_BASE_URL}/auth/google`;
+};
+const loginWithFacebook = ()=>{
+    window.location.href = `${API_BASE_URL}/auth/facebook`;
 };
 const forgotPassword = async (email)=>{
     const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post('/auth/forgot-password', {

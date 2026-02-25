@@ -168,24 +168,16 @@ export const getCurrentUser = async (): Promise<User> => {
     return data.data;
 };
 
-// Google OAuth
-export const loginWithGoogle = async (token: string): Promise<AuthResponse> => {
-    const { data } = await apiClient.post('/auth/google', { token });
+// Social Login Helpers
+// These redirect to backend OAuth endpoints (Passport.js handles the flow)
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://localhost/v1';
 
-    // Save tokens to localStorage (default true or false? usually social login implies remember me)
-    if (data.data && !data.data.isPreAcesss) {
-        setToken('accessToken', data.data.accessToken, true);
+export const loginWithGoogle = () => {
+    window.location.href = `${API_BASE_URL}/auth/google`;
+};
 
-        if (data.data.refreshToken) {
-            setToken('refreshToken', data.data.refreshToken, true);
-        }
-
-        if (data.data.clientId) {
-            setToken('clientId', data.data.clientId, true);
-        }
-    }
-
-    return data;
+export const loginWithFacebook = () => {
+    window.location.href = `${API_BASE_URL}/auth/facebook`;
 };
 
 // Forgot password

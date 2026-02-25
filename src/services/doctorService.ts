@@ -57,6 +57,12 @@ export const getPublicDoctors = async (): Promise<PublicDoctor[]> => {
     return data.data;
 };
 
+// Get ALL doctors (public)
+export const getAllDoctors = async (): Promise<PublicDoctor[]> => {
+    const { data } = await apiClient.get('/doctors/all');
+    return data.data;
+};
+
 // Get doctor by ID
 export const getDoctorById = async (id: string): Promise<Doctor> => {
     const { data } = await apiClient.get(`/doctors/${id}`);

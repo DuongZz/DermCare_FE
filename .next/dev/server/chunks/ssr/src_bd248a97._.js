@@ -221,8 +221,8 @@ function ProfilePage() {
     };
     const inputClass = "w-full rounded-md border border-slate-300 bg-white px-2 h-8 text-sm text-slate-900 focus:border-dermcare focus:outline-none focus:ring-1 focus:ring-dermcare/20";
     const EmptyValue = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-            className: "font-normal italic text-slate-400",
-            children: "Chưa cập nhật"
+            className: "font-normal text-slate-400",
+            children: "--"
         }, void 0, false, {
             fileName: "[project]/src/app/profile/page.tsx",
             lineNumber: 194,
@@ -385,7 +385,7 @@ function ProfilePage() {
                                                 columnNumber: 33
                                             }, this),
                                             user?.specialization && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-xs text-dermcare font-medium mt-2",
+                                                className: "text-sm text-dermcare font-medium mt-2",
                                                 children: user.specialization
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/profile/page.tsx",
@@ -393,7 +393,7 @@ function ProfilePage() {
                                                 columnNumber: 37
                                             }, this),
                                             user?.work_place && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-xs text-slate-400 mt-0.5",
+                                                className: "text-sm text-slate-500 mt-0.5",
                                                 children: user.work_place
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/profile/page.tsx",
@@ -410,7 +410,7 @@ function ProfilePage() {
                                                 lineNumber: 300,
                                                 columnNumber: 33
                                             }, this),
-                                            user?.rating && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            user?.rating ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "mt-3 flex items-center gap-1 text-sm text-amber-500 font-semibold",
                                                 children: [
                                                     "⭐ ",
@@ -421,7 +421,7 @@ function ProfilePage() {
                                                 fileName: "[project]/src/app/profile/page.tsx",
                                                 lineNumber: 309,
                                                 columnNumber: 37
-                                            }, this)
+                                            }, this) : null
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/profile/page.tsx",
