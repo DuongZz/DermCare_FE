@@ -44,3 +44,20 @@ export const updateScheduleSlot = async (
 export const deleteScheduleSlot = async (id: string): Promise<void> => {
     await apiClient.delete(`/doctor/schedule/${id}`);
 };
+
+export interface DayTemplateInput {
+    dayOfWeek: string;
+    isAvailable: boolean;
+    morningStartTime: string;
+    morningEndTime: string;
+    afternoonStartTime: string;
+    afternoonEndTime: string;
+    slotDuration: number;
+    price: number;
+}
+
+// Create work template
+export const createWorkTemplate = async (payload: DayTemplateInput[]): Promise<any> => {
+    const { data } = await apiClient.post('/doctors/work-template', payload);
+    return data;
+};

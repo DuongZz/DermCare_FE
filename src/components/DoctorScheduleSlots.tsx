@@ -5,23 +5,9 @@ import {
     DoctorScheduleSlot,
     CreateSchedulePayload,
     getDoctorSchedule,
-    createScheduleSlot,
     updateScheduleSlot,
     deleteScheduleSlot,
 } from "@/services/scheduleService";
-
-/* ─── Types ─── */
-interface DayTemplate {
-    dayOfWeek: string;
-    label: string;
-    isAvailable: boolean;
-    morningStart: string;
-    morningEnd: string;
-    afternoonStart: string;
-    afternoonEnd: string;
-    slotDuration: number;
-    price: number;
-}
 
 /* ─── Helpers ─── */
 const formatCurrency = (n: number) =>
@@ -36,82 +22,6 @@ const toLocalDateStr = (d: Date): string => {
 };
 
 const isDatePast = (d: string) => new Date(d) < new Date(new Date().toDateString());
-
-const DAY_LABELS = ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "CN"];
-const DAY_KEYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
-
-const defaultTemplate = (): DayTemplate[] =>
-    DAY_KEYS.map((key, i) => ({
-        dayOfWeek: key,
-        label: DAY_LABELS[i],
-        isAvailable: i < 5,
-        morningStart: "08:00",
-        morningEnd: "12:00",
-        afternoonStart: "13:30",
-        afternoonEnd: "17:30",
-        slotDuration: 30,
-        price: 250000,
-    }));
-
-/* ─── Generate slots from template for a given week starting date ─── */
-const generateSlotsFromTemplate = (
-    template: DayTemplate[],
-    weekStartDate: Date
-): DoctorScheduleSlot[] => {
-    const slots: DoctorScheduleSlot[] = [];
-    template.forEach((day, dayIndex) => {
-        if (!day.isAvailable) return;
-        const date = new Date(weekStartDate);
-        date.setDate(weekStartDate.getDate() + dayIndex);
-        const dateStr = toLocalDateStr(date);
-
-        // Morning slots
-        if (day.morningStart && day.morningEnd) {
-            let cur = new Date(`2000-01-01T${day.morningStart}:00`);
-            const end = new Date(`2000-01-01T${day.morningEnd}:00`);
-            const dur = day.slotDuration * 60000;
-            while (cur < end) {
-                let next = new Date(cur.getTime() + dur);
-                if (next > end) next = end;
-                slots.push({
-                    id: `gen-${dateStr}-m-${cur.getTime()}`,
-                    doctorId: "",
-                    availableDate: dateStr,
-                    startTime: cur.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }),
-                    endTime: next.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }),
-                    isBooked: false,
-                    price: day.price,
-                    created_at: new Date().toISOString(),
-                    updated_at: new Date().toISOString(),
-                });
-                cur = next;
-            }
-        }
-        // Afternoon slots
-        if (day.afternoonStart && day.afternoonEnd) {
-            let cur = new Date(`2000-01-01T${day.afternoonStart}:00`);
-            const end = new Date(`2000-01-01T${day.afternoonEnd}:00`);
-            const dur = day.slotDuration * 60000;
-            while (cur < end) {
-                let next = new Date(cur.getTime() + dur);
-                if (next > end) next = end;
-                slots.push({
-                    id: `gen-${dateStr}-a-${cur.getTime()}`,
-                    doctorId: "",
-                    availableDate: dateStr,
-                    startTime: cur.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }),
-                    endTime: next.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }),
-                    isBooked: false,
-                    price: day.price,
-                    created_at: new Date().toISOString(),
-                    updated_at: new Date().toISOString(),
-                });
-                cur = next;
-            }
-        }
-    });
-    return slots;
-};
 
 /* ─── Get Monday of the current week ─── */
 const getMonday = (d: Date) => {
@@ -199,11 +109,9 @@ function ConfirmModal({ open, title, message, onConfirm, onCancel }: {
 }
 
 /* ═══════════════════════════════════════════ */
-export default function DoctorScheduleManager() {
-    const [template, setTemplate] = useState<DayTemplate[]>(defaultTemplate);
+export default function DoctorScheduleSlots() {
     const [slots, setSlots] = useState<DoctorScheduleSlot[]>([]);
     const [loading, setLoading] = useState(true);
-    const [saving, setSaving] = useState(false);
     const [deletingId, setDeletingId] = useState<string | null>(null);
     const [editingSlotId, setEditingSlotId] = useState<string | null>(null);
     const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
@@ -226,8 +134,6 @@ export default function DoctorScheduleManager() {
         setConfirmModal(prev => ({ ...prev, open: false }));
     }, []);
 
-    const weekStart = useMemo(() => getMonday(selectedDate), [selectedDate]);
-
     useEffect(() => { fetchSlots(); }, []);
 
     const fetchSlots = async () => {
@@ -239,32 +145,6 @@ export default function DoctorScheduleManager() {
             setSlots([]);
         } finally {
             setLoading(false);
-        }
-    };
-
-    /* ─── Template handlers ─── */
-    const updateDay = (index: number, changes: Partial<DayTemplate>) => {
-        setTemplate(prev => prev.map((d, i) => (i === index ? { ...d, ...changes } : d)));
-    };
-
-    /* ─── Generate slots from template ─── */
-    const handleGenerateSlots = () => {
-        setSaving(true);
-        try {
-            const generated = generateSlotsFromTemplate(template, weekStart);
-            setSlots(prev => {
-                const weekEnd = new Date(weekStart);
-                weekEnd.setDate(weekEnd.getDate() + 7);
-                const weekStartStr = toLocalDateStr(weekStart);
-                const weekEndStr = toLocalDateStr(weekEnd);
-                const kept = prev.filter(s => s.availableDate < weekStartStr || s.availableDate >= weekEndStr || s.isBooked);
-                return [...kept, ...generated];
-            });
-
-            const activeDays = template.filter(d => d.isAvailable).map(d => d.label);
-            alert(`✅ Đã tạo ${generated.length} ca khám cho ${activeDays.length} ngày trong tuần:\n${activeDays.join(", ")}\n\nBấm vào từng ngày ở thanh tuần bên dưới để xem chi tiết.`);
-        } finally {
-            setSaving(false);
         }
     };
 
@@ -303,9 +183,19 @@ export default function DoctorScheduleManager() {
         setEditingSlotId(slot.id);
         setEditForm({ startTime: slot.startTime, endTime: slot.endTime, price: slot.price || 0 });
     };
-    const saveEdit = (id: string) => {
-        setSlots(prev => prev.map(s => s.id === id ? { ...s, startTime: editForm.startTime, endTime: editForm.endTime, price: editForm.price } : s));
-        setEditingSlotId(null);
+    const saveEdit = async (id: string) => {
+        try {
+            await updateScheduleSlot(id, {
+                startTime: editForm.startTime,
+                endTime: editForm.endTime,
+                price: editForm.price
+            });
+            setSlots(prev => prev.map(s => s.id === id ? { ...s, startTime: editForm.startTime, endTime: editForm.endTime, price: editForm.price } : s));
+            setEditingSlotId(null);
+        } catch (error) {
+            console.error("Lỗi cập nhật ca khám", error);
+            alert("Cập nhật ca khám thất bại.");
+        }
     };
     const cancelEdit = () => setEditingSlotId(null);
 
@@ -360,7 +250,7 @@ export default function DoctorScheduleManager() {
     }
 
     return (
-        <div className="space-y-6 mt-6">
+        <div className="space-y-6 mt-0">
 
             {/* ═══ Confirm Modal ═══ */}
             <ConfirmModal
@@ -370,97 +260,6 @@ export default function DoctorScheduleManager() {
                 onConfirm={confirmModal.onConfirm}
                 onCancel={closeConfirm}
             />
-
-            {/* ═══ Section 1: Work Template ═══ */}
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-dermcare/5 to-transparent px-5 py-4 border-b border-slate-100 flex items-center justify-between">
-                    <h3 className="font-bold text-slate-800">
-                        Mẫu lịch làm việc hàng tuần
-                    </h3>
-                    <button
-                        onClick={handleGenerateSlots}
-                        disabled={saving}
-                        className="inline-flex items-center gap-2 rounded-xl bg-dermcare px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-dermcare/20 hover:bg-dermcare-dark transition disabled:opacity-50"
-                    >
-                        {saving ? "⏳..." : "Tạo nhanh lịch hẹn"}
-                    </button>
-                </div>
-
-                {/* Template Grid */}
-                <div className="overflow-x-auto">
-                    <table className="w-full text-sm">
-                        <thead>
-                            <tr className="bg-slate-50 text-[11px] uppercase tracking-wider text-slate-500 font-bold">
-                                <th className="px-4 py-3 text-left w-24">Thứ</th>
-                                <th className="px-4 py-3 text-center w-16">Hoạt động</th>
-                                <th className="px-4 py-3 text-center">Ca sáng</th>
-                                <th className="px-4 py-3 text-center">Ca chiều</th>
-                                <th className="px-4 py-3 text-center w-20">Phút/Ca</th>
-                                <th className="px-4 py-3 text-center w-28">Giá (VND)</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-slate-50">
-                            {template.map((day, i) => (
-                                <tr key={day.dayOfWeek} className={`transition ${day.isAvailable ? "bg-white" : "bg-slate-50/50"}`}>
-                                    <td className="px-4 py-3">
-                                        <span className={`text-sm font-bold ${day.isAvailable ? "text-slate-800" : "text-slate-400"}`}>
-                                            {day.label}
-                                        </span>
-                                    </td>
-                                    <td className="px-4 py-3 text-center">
-                                        <button
-                                            onClick={() => updateDay(i, { isAvailable: !day.isAvailable })}
-                                            className={`relative w-11 h-6 rounded-full transition-colors duration-200 ${day.isAvailable ? "bg-dermcare" : "bg-slate-300"}`}
-                                        >
-                                            <span className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${day.isAvailable ? "translate-x-5" : ""}`} />
-                                        </button>
-                                    </td>
-                                    <td className="px-4 py-3">
-                                        {day.isAvailable ? (
-                                            <div className="flex items-center justify-center gap-1.5">
-                                                <input type="time" value={day.morningStart} onChange={e => updateDay(i, { morningStart: e.target.value })}
-                                                    className="w-[120px] h-8 rounded-lg border border-slate-200 px-2 text-xs font-medium text-slate-800 focus:border-dermcare focus:outline-none transition" />
-                                                <span className="text-slate-400 text-xs">→</span>
-                                                <input type="time" value={day.morningEnd} onChange={e => updateDay(i, { morningEnd: e.target.value })}
-                                                    className="w-[120px] h-8 rounded-lg border border-slate-200 px-2 text-xs font-medium text-slate-800 focus:border-dermcare focus:outline-none transition" />
-                                            </div>
-                                        ) : (
-                                            <span className="text-xs text-slate-400 italic">Nghỉ</span>
-                                        )}
-                                    </td>
-                                    <td className="px-4 py-3">
-                                        {day.isAvailable ? (
-                                            <div className="flex items-center justify-center gap-1.5">
-                                                <input type="time" value={day.afternoonStart} onChange={e => updateDay(i, { afternoonStart: e.target.value })}
-                                                    className="w-[120px] h-8 rounded-lg border border-slate-200 px-2 text-xs font-medium text-slate-800 focus:border-dermcare focus:outline-none transition" />
-                                                <span className="text-slate-400 text-xs">→</span>
-                                                <input type="time" value={day.afternoonEnd} onChange={e => updateDay(i, { afternoonEnd: e.target.value })}
-                                                    className="w-[120px] h-8 rounded-lg border border-slate-200 px-2 text-xs font-medium text-slate-800 focus:border-dermcare focus:outline-none transition" />
-                                            </div>
-                                        ) : (
-                                            <span className="text-xs text-slate-400 italic">Nghỉ</span>
-                                        )}
-                                    </td>
-                                    <td className="px-4 py-3 text-center">
-                                        {day.isAvailable ? (
-                                            <input type="number" value={day.slotDuration} onChange={e => updateDay(i, { slotDuration: Number(e.target.value) })}
-                                                min={10} max={120} step={5}
-                                                className="w-16 h-8 rounded-lg border border-slate-200 px-2 text-xs font-medium text-center text-slate-800 focus:border-dermcare focus:outline-none transition" />
-                                        ) : <span className="text-xs text-slate-400">—</span>}
-                                    </td>
-                                    <td className="px-4 py-3 text-center">
-                                        {day.isAvailable ? (
-                                            <input type="number" value={day.price || ""} onChange={e => updateDay(i, { price: Number(e.target.value) })}
-                                                min={0} step={10000}
-                                                className="w-24 h-8 rounded-lg border border-slate-200 px-2 text-xs font-medium text-center text-slate-800 focus:border-dermcare focus:outline-none transition" />
-                                        ) : <span className="text-xs text-slate-400">—</span>}
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
 
             {/* ═══ Section 2: Weekly Day Selector + Stats ═══ */}
             <div className="flex flex-col sm:flex-row items-stretch gap-4">
@@ -558,8 +357,8 @@ export default function DoctorScheduleManager() {
             </div>
 
             {/* ═══ Section 3: Schedule Slots List ═══ */}
-            <div className="rounded-2xl border border-slate-200 bg-white shadow-soft overflow-hidden">
-                <div className="bg-slate-50 px-5 py-3 border-b border-slate-100 flex items-center justify-between">
+            <div className="rounded-2xl border border-slate-200 bg-white shadow-soft overflow-hidden mt-6">
+                <div className="bg-slate-50 px-5 py-3 border-b border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
                         {selectableSlots.length > 0 && (
                             <input
@@ -574,17 +373,26 @@ export default function DoctorScheduleManager() {
                             Lịch hẹn — {selectedDate.toLocaleDateString("vi-VN", { weekday: "long", day: "2-digit", month: "2-digit" })}
                         </h3>
                     </div>
-                    <div className="flex items-center gap-2">
+
+                    <div className="flex items-center gap-2 self-end sm:self-auto">
+                        <button
+                            onClick={() => alert("Chức năng tạo ca khám sẽ được tích hợp với backend soon! =)")}
+                            className="inline-flex items-center gap-1.5 rounded-xl bg-dermcare px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-dermcare-dark transition whitespace-nowrap"
+                        >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                            Tạo ca khám trong tuần
+                        </button>
+
                         {selectedIds.size > 0 && (
                             <button
                                 onClick={handleBulkDelete}
-                                className="inline-flex items-center gap-1.5 rounded-xl bg-rose-500 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-rose-600 transition"
+                                className="inline-flex items-center gap-1.5 rounded-xl bg-rose-500 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-rose-600 transition whitespace-nowrap"
                             >
                                 <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                                 Xóa {selectedIds.size} mục
                             </button>
                         )}
-                        {isPast && <span className="text-xs text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full font-medium">Đã qua</span>}
+                        {isPast && <span className="text-xs text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">Đã qua</span>}
                     </div>
                 </div>
 

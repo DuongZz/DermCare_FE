@@ -252,13 +252,22 @@ export default function Header() {
                                             <span>Hồ sơ cá nhân</span>
                                         </Link>
                                         {isDoctor && (
-                                            <Link
-                                                href="/doctor/schedule"
-                                                className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
-                                            >
-                                                <span>🗓️</span>
-                                                <span>Lịch làm việc</span>
-                                            </Link>
+                                            <>
+                                                <Link
+                                                    href="/doctor/schedule"
+                                                    className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                                                >
+                                                    <span>📅</span>
+                                                    <span>Lịch làm việc</span>
+                                                </Link>
+                                                <Link
+                                                    href="/doctor/appointments"
+                                                    className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                                                >
+                                                    <span>📋</span>
+                                                    <span>Quản lý ca khám</span>
+                                                </Link>
+                                            </>
                                         )}
                                         {!isDoctor && (
                                             <>
