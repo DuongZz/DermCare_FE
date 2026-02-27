@@ -449,6 +449,10 @@ img, video {
   margin-left: auto;
 }
 
+.mt-0 {
+  margin-top: 0;
+}
+
 .mt-0\.5 {
   margin-top: .125rem;
 }
@@ -487,10 +491,6 @@ img, video {
 
 .mt-auto {
   margin-top: auto;
-}
-
-.mt-0 {
-  margin-top: 0;
 }
 
 .line-clamp-1 {
@@ -1898,6 +1898,10 @@ img, video {
   padding-bottom: 1.25rem;
 }
 
+.pb-6 {
+  padding-bottom: 1.5rem;
+}
+
 .pb-60 {
   padding-bottom: 15rem;
 }
@@ -1956,10 +1960,6 @@ img, video {
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-.pb-6 {
-  padding-bottom: 1.5rem;
 }
 
 .text-left {

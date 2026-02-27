@@ -106,10 +106,10 @@ export default function Header() {
                             {/* Booking/Management Button (Logged In) */}
                             {isDoctor ? (
                                 <Link
-                                    href="/doctor/appointments"
+                                    href="/doctor/shifts"
                                     className="hidden lg:inline-flex rounded-full bg-dermcare px-4 py-1.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark transition whitespace-nowrap"
                                 >
-                                    Quản lý lịch hẹn
+                                    Quản lý ca khám
                                 </Link>
                             ) : (
                                 <Link
@@ -264,9 +264,10 @@ export default function Header() {
                                                     href="/doctor/appointments"
                                                     className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
                                                 >
-                                                    <span>📋</span>
-                                                    <span>Quản lý ca khám</span>
+                                                    <span>📝</span>
+                                                    <span>Quản lý lịch hẹn</span>
                                                 </Link>
+
                                             </>
                                         )}
                                         {!isDoctor && (
