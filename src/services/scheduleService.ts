@@ -20,15 +20,28 @@ export interface CreateSchedulePayload {
 }
 
 // Get my schedule slots
-export const getDoctorSchedule = async (): Promise<DoctorScheduleSlot[]> => {
-    const { data } = await apiClient.get('/doctor/schedule');
+export const getDoctorSchedule = async (date?: string): Promise<DoctorScheduleSlot[]> => {
+    // If date is provided, append it as a query param
+    const { data } = await apiClient.get('/doctors/schedule', { params: { date } });
     return data.data || data;
 };
 
-// Create new schedule slot
 export const createScheduleSlot = async (payload: CreateSchedulePayload): Promise<DoctorScheduleSlot> => {
-    const { data } = await apiClient.post('/doctor/schedule', payload);
+    // Backend expects 'date', not 'availableDate'
+    const requestPayload = {
+        date: payload.availableDate,
+        startTime: payload.startTime,
+        endTime: payload.endTime,
+        price: payload.price
+    };
+    const { data } = await apiClient.post('/doctors/schedule', requestPayload);
     return data.data || data;
+};
+
+// Auto generate schedule for a specific date based on templates
+export const autoGenerateSchedule = async (date: string): Promise<any> => {
+    const { data } = await apiClient.post('/doctors/schedule', { date });
+    return data;
 };
 
 // Update schedule slot
@@ -36,13 +49,13 @@ export const updateScheduleSlot = async (
     id: string,
     payload: Partial<CreateSchedulePayload>
 ): Promise<DoctorScheduleSlot> => {
-    const { data } = await apiClient.patch(`/doctor/schedule/${id}`, payload);
+    const { data } = await apiClient.patch(`/doctors/schedule/${id}`, payload);
     return data.data || data;
 };
 
 // Delete schedule slot
 export const deleteScheduleSlot = async (id: string): Promise<void> => {
-    await apiClient.delete(`/doctor/schedule/${id}`);
+    await apiClient.delete(`/doctors/schedule/${id}`);
 };
 
 export interface DayTemplateInput {

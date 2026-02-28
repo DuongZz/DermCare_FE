@@ -7,6 +7,7 @@ import {
     getDoctorSchedule,
     updateScheduleSlot,
     deleteScheduleSlot,
+    autoGenerateSchedule
 } from "@/services/scheduleService";
 
 /* ─── Helpers ─── */
@@ -21,7 +22,13 @@ const toLocalDateStr = (d: Date): string => {
     return `${y}-${m}-${day}`;
 };
 
-const isDatePast = (d: string) => new Date(d) < new Date(new Date().toDateString());
+const isDatePast = (dateStr: string) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const targetDate = new Date(y, m - 1, d);
+    return targetDate < today;
+};
 
 /* ─── Get Monday of the current week ─── */
 const getMonday = (d: Date) => {
@@ -36,10 +43,12 @@ const getMonday = (d: Date) => {
 /* ══════════════════════════════════════════════════════════════════
    ConfirmModal — fly-in from top, fade backdrop, fly-out downward
    ══════════════════════════════════════════════════════════════════ */
-function ConfirmModal({ open, title, message, onConfirm, onCancel }: {
+function ConfirmModal({ open, title, message, onConfirm, onCancel, confirmText = "Xác nhận xóa", confirmButtonClass = "bg-rose-500 hover:bg-rose-600" }: {
     open: boolean;
     title: string;
     message: string;
+    confirmText?: string;
+    confirmButtonClass?: string;
     onConfirm: () => void;
     onCancel: () => void;
 }) {
@@ -98,11 +107,83 @@ function ConfirmModal({ open, title, message, onConfirm, onCancel }: {
                     </button>
                     <button
                         onClick={onConfirm}
-                        className="px-5 py-2 rounded-xl bg-rose-500 text-sm font-bold text-white shadow-sm hover:bg-rose-600 transition"
+                        className={`px-5 py-2 rounded-xl text-sm font-bold text-white shadow-sm transition ${confirmButtonClass}`}
                     >
-                        Xác nhận xóa
+                        {confirmText}
                     </button>
                 </div>
+            </div>
+        </div>
+    );
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   AlertModal — For beautiful generic alerts
+   ══════════════════════════════════════════════════════════════════ */
+function AlertModal({ open, title, message, isSuccess = true, onClose }: {
+    open: boolean;
+    title: string;
+    message: string;
+    isSuccess?: boolean;
+    onClose: () => void;
+}) {
+    const [phase, setPhase] = useState<"enter" | "visible" | "exit" | "hidden">("hidden");
+
+    useEffect(() => {
+        if (open) {
+            setPhase("enter");
+            const t = setTimeout(() => setPhase("visible"), 20);
+            return () => clearTimeout(t);
+        } else if (phase === "visible") {
+            setPhase("exit");
+            const t = setTimeout(() => setPhase("hidden"), 300);
+            return () => clearTimeout(t);
+        }
+    }, [open]);
+
+    if (phase === "hidden") return null;
+
+    const isVisible = phase === "visible";
+    const isExit = phase === "exit";
+
+    return (
+        <div className="fixed inset-0 z-[10000] flex items-center justify-center px-4" onClick={onClose}>
+            {/* Backdrop */}
+            <div
+                className={`absolute inset-0 bg-slate-900/30 backdrop-blur-sm transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"}`}
+            />
+            {/* Modal Card */}
+            <div
+                onClick={(e) => e.stopPropagation()}
+                className={`relative bg-white rounded-2xl shadow-xl border border-slate-100 p-6 w-full max-w-sm transition-all duration-300 ease-out flex flex-col items-center text-center ${isVisible
+                    ? "opacity-100 translate-y-0 scale-100"
+                    : isExit
+                        ? "opacity-0 translate-y-8 scale-95"
+                        : "opacity-0 translate-y-8 scale-95"
+                    }`}
+            >
+                {/* Icon */}
+                <div className={`h-16 w-16 rounded-full flex items-center justify-center mb-4 ${isSuccess ? "bg-emerald-50 text-emerald-500" : "bg-rose-50 text-rose-500"}`}>
+                    {isSuccess ? (
+                        <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                    ) : (
+                        <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    )}
+                </div>
+
+                <h4 className="text-xl font-black text-slate-800 mb-2">{title}</h4>
+                <p className="text-sm text-slate-500 mb-6 px-2 whitespace-pre-wrap leading-relaxed">{message}</p>
+
+                <button
+                    onClick={onClose}
+                    className="w-full py-3 rounded-xl bg-slate-800 text-sm font-bold text-white shadow-md shadow-slate-200 hover:bg-slate-700 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm transition-all duration-200"
+                >
+                    Đóng
+                </button>
             </div>
         </div>
     );
@@ -123,15 +204,33 @@ export default function DoctorScheduleSlots() {
         open: boolean;
         title: string;
         message: string;
+        confirmText?: string;
+        confirmButtonClass?: string;
         onConfirm: () => void;
     }>({ open: false, title: "", message: "", onConfirm: () => { } });
 
-    const showConfirm = useCallback((title: string, message: string, onConfirm: () => void) => {
-        setConfirmModal({ open: true, title, message, onConfirm });
+    const showConfirm = useCallback((title: string, message: string, onConfirm: () => void, confirmText = "Xác nhận xóa", confirmButtonClass = "bg-rose-500 hover:bg-rose-600") => {
+        setConfirmModal({ open: true, title, message, confirmText, confirmButtonClass, onConfirm });
     }, []);
 
     const closeConfirm = useCallback(() => {
         setConfirmModal(prev => ({ ...prev, open: false }));
+    }, []);
+
+    // Alert modal state
+    const [alertModal, setAlertModal] = useState<{
+        open: boolean;
+        title: string;
+        message: string;
+        isSuccess: boolean;
+    }>({ open: false, title: "", message: "", isSuccess: true });
+
+    const showAlert = useCallback((title: string, message: string, isSuccess = true) => {
+        setAlertModal({ open: true, title, message, isSuccess });
+    }, []);
+
+    const closeAlert = useCallback(() => {
+        setAlertModal(prev => ({ ...prev, open: false }));
     }, []);
 
     useEffect(() => { fetchSlots(); }, []);
@@ -178,6 +277,59 @@ export default function DoctorScheduleSlots() {
         );
     };
 
+    /* ─── Auto Generate Weekly Schedule ─── */
+    const handleGenerateWeeklySchedule = async () => {
+        showConfirm(
+            "Tạo lịch tự động",
+            `Hệ thống sẽ sinh ca khám cho 7 ngày của tuần đang hiển thị. Các ngày đã qua hoặc trống lịch mẫu sẽ tự động được bỏ qua. Bạn có chắc chắn?`,
+            async () => {
+                closeConfirm();
+                setLoading(true);
+                let successCount = 0;
+                let failCount = 0;
+                const successDates: string[] = [];
+
+                // Bắt đầu vòng lặp 7 ngày, tính từ Thứ 2 của tuần đang được xem (selectedDate)
+                const currentDayIndex = selectedDate.getDay() === 0 ? 6 : selectedDate.getDay() - 1;
+                const baseDate = new Date(selectedDate);
+                baseDate.setDate(selectedDate.getDate() - currentDayIndex); // Trượt về ngày Thứ 2 của cái tuần đó
+                baseDate.setHours(0, 0, 0, 0);
+
+                for (let i = 0; i < 7; i++) {
+                    const d = new Date(baseDate);
+                    d.setDate(baseDate.getDate() + i);
+                    const dateStr = toLocalDateStr(d); // YYYY-MM-DD
+
+                    // Bỏ qua nếu là ngày trong quá khứ
+                    if (isDatePast(dateStr)) {
+                        continue;
+                    }
+
+                    try {
+                        await autoGenerateSchedule(dateStr);
+                        successCount++;
+                        successDates.push(dateStr);
+                    } catch (err: any) {
+                        // Chỉ là lỗi ko có khung giờ làm việc hoặc đã trùng thì im lặng fail
+                        failCount++;
+                    }
+                }
+
+                // Re-fetch entire schedule after 1s to allow promises to settle
+                setTimeout(() => {
+                    fetchSlots();
+                    if (successCount > 0) {
+                        showAlert("Thành công", `Tuyệt vời! Đã hoàn tất đối chiếu và tạo ca khám thành công cho ${successCount} ngày.\nCác ngày: ${successDates.join(', ')}`, true);
+                    } else {
+                        showAlert("Thông báo", `Toàn bộ các ngày hợp lệ trong tuần này đều đã được tạo lịch từ trước, hoặc chưa được bạn cấu hình Thời Gian Làm Việc trong Lịch Mẫu.`, false);
+                    }
+                }, 1000);
+            },
+            "Xác nhận tạo",
+            "bg-dermcare hover:bg-dermcare-dark"
+        );
+    };
+
     /* ─── Edit ─── */
     const startEdit = (slot: DoctorScheduleSlot) => {
         setEditingSlotId(slot.id);
@@ -194,7 +346,7 @@ export default function DoctorScheduleSlots() {
             setEditingSlotId(null);
         } catch (error) {
             console.error("Lỗi cập nhật ca khám", error);
-            alert("Cập nhật ca khám thất bại.");
+            showAlert("Thất bại", "Cập nhật ca khám thất bại. Vui lòng thử lại sau.", false);
         }
     };
     const cancelEdit = () => setEditingSlotId(null);
@@ -257,8 +409,19 @@ export default function DoctorScheduleSlots() {
                 open={confirmModal.open}
                 title={confirmModal.title}
                 message={confirmModal.message}
+                confirmText={confirmModal.confirmText}
+                confirmButtonClass={confirmModal.confirmButtonClass}
                 onConfirm={confirmModal.onConfirm}
                 onCancel={closeConfirm}
+            />
+
+            {/* ═══ Alert Modal ═══ */}
+            <AlertModal
+                open={alertModal.open}
+                title={alertModal.title}
+                message={alertModal.message}
+                isSuccess={alertModal.isSuccess}
+                onClose={closeAlert}
             />
 
             {/* ═══ Section 2: Weekly Day Selector + Stats ═══ */}
@@ -376,11 +539,12 @@ export default function DoctorScheduleSlots() {
 
                     <div className="flex items-center gap-2 self-end sm:self-auto">
                         <button
-                            onClick={() => alert("Chức năng tạo ca khám sẽ được tích hợp với backend soon! =)")}
-                            className="inline-flex items-center gap-1.5 rounded-xl bg-dermcare px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-dermcare-dark transition whitespace-nowrap"
+                            onClick={handleGenerateWeeklySchedule}
+                            disabled={loading}
+                            className={`inline-flex items-center gap-1.5 rounded-xl bg-dermcare px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-dermcare-dark transition whitespace-nowrap ${loading ? 'opacity-50' : ''}`}
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
-                            Tạo ca khám trong tuần
+                            {loading ? 'Đang tạo...' : 'Tạo ca khám trong tuần'}
                         </button>
 
                         {selectedIds.size > 0 && (

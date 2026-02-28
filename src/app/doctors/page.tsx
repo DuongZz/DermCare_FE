@@ -23,7 +23,7 @@ export default function DoctorsPage() {
     const { isLoggedIn } = useAuth();
     const [selectedSpecialty, setSelectedSpecialty] = useState("all");
     const [showBookingModal, setShowBookingModal] = useState(false);
-    const [selectedDoctor, setSelectedDoctor] = useState<{ name: string, specialty: string, avatar: string } | null>(null);
+    const [selectedDoctor, setSelectedDoctor] = useState<{ name: string, specialty: string, avatar: string, qualifications?: string } | null>(null);
 
     const [doctors, setDoctors] = useState<PublicDoctor[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -73,7 +73,8 @@ export default function DoctorsPage() {
         setSelectedDoctor({
             name: doctor.user.fullName,
             specialty: doctor.specialization || "Chưa cập nhật",
-            avatar: doctor.avatar || "/default-avatar.png"
+            avatar: doctor.avatar || "/default-avatar.png",
+            qualifications: doctor.qualifications ?? undefined
         });
         setShowBookingModal(true);
     };
@@ -210,7 +211,8 @@ export default function DoctorsPage() {
                     doctor={{
                         name: selectedDoctor.name,
                         specialty: selectedDoctor.specialty,
-                        avatar: selectedDoctor.avatar
+                        avatar: selectedDoctor.avatar,
+                        qualifications: selectedDoctor.qualifications
                     }}
                 />
             )}

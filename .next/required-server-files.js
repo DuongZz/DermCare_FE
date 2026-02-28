@@ -63,7 +63,20 @@ self.__SERVER_FILES_MANIFEST={
           "search": ""
         }
       ],
-      "remotePatterns": [],
+      "remotePatterns": [
+        {
+          "protocol": "https",
+          "hostname": "*.supabase.co",
+          "port": "",
+          "pathname": "/**"
+        },
+        {
+          "protocol": "https",
+          "hostname": "storage.googleapis.com",
+          "port": "",
+          "pathname": "/**"
+        }
+      ],
       "qualities": [
         75
       ],

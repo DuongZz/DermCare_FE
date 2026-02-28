@@ -53,6 +53,12 @@
       "namedRegex": "^/appointments(?:/)?$"
     },
     {
+      "page": "/auth/social-callback",
+      "regex": "^/auth/social\\-callback(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/auth/social\\-callback(?:/)?$"
+    },
+    {
       "page": "/chat",
       "regex": "^/chat(?:/)?$",
       "routeKeys": {},
@@ -69,6 +75,12 @@
       "regex": "^/doctor/schedule(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/doctor/schedule(?:/)?$"
+    },
+    {
+      "page": "/doctor/shifts",
+      "regex": "^/doctor/shifts(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/doctor/shifts(?:/)?$"
     },
     {
       "page": "/doctors",
