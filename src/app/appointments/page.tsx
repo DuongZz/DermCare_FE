@@ -1,81 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { getMyAppointments, Appointment } from "@/services/appointmentService";
 
-interface Appointment {
-    id: string;
-    doctorName: string;
-    doctorAvatar: string;
-    specialty: string;
-    date: string;
-    time: string;
-    status: "upcoming" | "completed" | "cancelled";
-    type: "online" | "offline";
-    reason: string;
-}
+
 
 export default function AppointmentsPage() {
     const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
 
-    // Mock data
-    const appointments: Appointment[] = [
-        {
-            id: "1",
-            doctorName: "BS. Đào Quang Dương",
-            doctorAvatar: "/duong.jpg",
-            specialty: "Da liễu tổng quát",
-            date: "2026-02-15",
-            time: "14:00",
-            status: "upcoming",
-            type: "online",
-            reason: "Tư vấn về mụn trứng cá"
-        },
-        {
-            id: "2",
-            doctorName: "BS. Đào Quang Vệ",
-            doctorAvatar: "/duongtro.jpg",
-            specialty: "Mụn, Thẩm mỹ da",
-            date: "2026-02-20",
-            time: "10:30",
-            status: "upcoming",
-            type: "offline",
-            reason: "Điều trị laser"
-        },
-        {
-            id: "3",
-            doctorName: "TS.BS. Đào Quang Dương",
-            doctorAvatar: "/duong.jpg",
-            specialty: "Da liễu tổng quát",
-            date: "2026-01-10",
-            time: "15:00",
-            status: "completed",
-            type: "online",
-            reason: "Khám định kỳ"
-        },
-        {
-            id: "4",
-            doctorName: "PGS.TS. Phạm Tuấn Hiệp",
-            doctorAvatar: "/hiepdan.jpg",
-            specialty: "Ung thư da, Thẩm mỹ",
-            date: "2025-12-28",
-            time: "09:00",
-            status: "completed",
-            type: "offline",
-            reason: "Kiểm tra nốt ruồi"
-        },
-        {
-            id: "5",
-            doctorName: "BS. Cù Thị Hải Nễ",
-            doctorAvatar: "/khuebeo.jpg",
-            specialty: "Viêm da, Da nhạy cảm",
-            date: "2025-12-15",
-            time: "16:30",
-            status: "cancelled",
-            type: "online",
-            reason: "Tư vấn viêm da"
-        }
-    ];
+    const [appointments, setAppointments] = useState<Appointment[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchAppointments = async () => {
+            try {
+                const data = await getMyAppointments();
+                setAppointments(data);
+            } catch (error) {
+                console.error("Failed to fetch appointments:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchAppointments();
+    }, []);
 
     const upcomingAppointments = appointments.filter(apt => apt.status === "upcoming");
     const pastAppointments = appointments.filter(apt => apt.status !== "upcoming");
@@ -253,40 +203,46 @@ export default function AppointmentsPage() {
 
                 {/* Content */}
                 <div className="space-y-4">
-                    {activeTab === "upcoming" && (
+                    {isLoading ? (
+                        <div className="py-20 text-center text-slate-500">Đang tải lịch hẹn...</div>
+                    ) : (
                         <>
-                            {upcomingAppointments.length === 0 ? (
-                                <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-soft">
-                                    <div className="text-6xl mb-4">📅</div>
-                                    <h3 className="text-xl font-semibold text-slate-900 mb-2">Chưa có lịch hẹn</h3>
-                                    <p className="text-slate-600 mb-6">Bạn chưa có lịch hẹn nào sắp tới</p>
-                                    <Link
-                                        href="/doctors"
-                                        className="inline-flex rounded-full bg-dermcare px-6 py-2.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark transition"
-                                    >
-                                        Đặt lịch ngay
-                                    </Link>
-                                </div>
-                            ) : (
-                                upcomingAppointments.map((appointment) => (
-                                    <AppointmentCard key={appointment.id} appointment={appointment} />
-                                ))
+                            {activeTab === "upcoming" && (
+                                <>
+                                    {upcomingAppointments.length === 0 ? (
+                                        <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-soft">
+                                            <div className="text-6xl mb-4">📅</div>
+                                            <h3 className="text-xl font-semibold text-slate-900 mb-2">Chưa có lịch hẹn</h3>
+                                            <p className="text-slate-600 mb-6">Bạn chưa có lịch hẹn nào sắp tới</p>
+                                            <Link
+                                                href="/doctors"
+                                                className="inline-flex rounded-full bg-dermcare px-6 py-2.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark transition"
+                                            >
+                                                Đặt lịch ngay
+                                            </Link>
+                                        </div>
+                                    ) : (
+                                        upcomingAppointments.map((appointment) => (
+                                            <AppointmentCard key={appointment.id} appointment={appointment} />
+                                        ))
+                                    )}
+                                </>
                             )}
-                        </>
-                    )}
 
-                    {activeTab === "past" && (
-                        <>
-                            {pastAppointments.length === 0 ? (
-                                <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-soft">
-                                    <div className="text-6xl mb-4">📋</div>
-                                    <h3 className="text-xl font-semibold text-slate-900 mb-2">Chưa có lịch sử</h3>
-                                    <p className="text-slate-600">Bạn chưa có lịch hẹn nào trong quá khứ</p>
-                                </div>
-                            ) : (
-                                pastAppointments.map((appointment) => (
-                                    <AppointmentCard key={appointment.id} appointment={appointment} />
-                                ))
+                            {activeTab === "past" && (
+                                <>
+                                    {pastAppointments.length === 0 ? (
+                                        <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-soft">
+                                            <div className="text-6xl mb-4">📋</div>
+                                            <h3 className="text-xl font-semibold text-slate-900 mb-2">Chưa có lịch sử</h3>
+                                            <p className="text-slate-600">Bạn chưa có lịch hẹn nào trong quá khứ</p>
+                                        </div>
+                                    ) : (
+                                        pastAppointments.map((appointment) => (
+                                            <AppointmentCard key={appointment.id} appointment={appointment} />
+                                        ))
+                                    )}
+                                </>
                             )}
                         </>
                     )}

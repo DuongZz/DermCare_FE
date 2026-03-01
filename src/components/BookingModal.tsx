@@ -1,10 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getAvailableDoctorSchedule } from "@/services/scheduleService";
+import { bookAppointment } from "@/services/appointmentService";
+import { createMomoPayment, checkPaymentTimeout } from "@/services/paymentService";
 
 interface TimeSlot {
     time: string;
     available: boolean;
+    price?: number;
 }
 
 interface DaySchedule {
@@ -17,6 +21,7 @@ interface BookingModalProps {
     isOpen: boolean;
     onClose: () => void;
     doctor: {
+        id: string;
         name: string;
         specialty: string;
         avatar: string;
@@ -28,6 +33,8 @@ export default function BookingModal({ isOpen, onClose, doctor }: BookingModalPr
     const [step, setStep] = useState<1 | 2 | 3>(1);
     const [showConfirm, setShowConfirm] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [createdAppointmentId, setCreatedAppointmentId] = useState<string | null>(null);
+    const [timeLeft, setTimeLeft] = useState<number>(6000); // 1h40p = 6000s (khớp với MoMo Sandbox)
     const [selectedDate, setSelectedDate] = useState<string>("");
     const [selectedTime, setSelectedTime] = useState<string>("");
     const [paymentMethod, setPaymentMethod] = useState<"momo" | "zalo">("momo");
@@ -37,77 +44,149 @@ export default function BookingModal({ isOpen, onClose, doctor }: BookingModalPr
         email: "",
         notes: ""
     });
-    const consultationPrice = 200000; // Giá mặc định
 
+    const [schedule, setSchedule] = useState<DaySchedule[]>([]);
 
-    // Mock schedule data - next 7 days
-    const generateSchedule = (): DaySchedule[] => {
-        const schedule: DaySchedule[] = [];
-        const today = new Date();
+    const selectedSlotOption = schedule.find(d => d.date === selectedDate)?.slots.find(s => s.time === selectedTime);
+    const consultationPrice = selectedSlotOption?.price || 250000; // Lấy giá từ database hoặc mặc định 250k
+    const [isLoadingSchedule, setIsLoadingSchedule] = useState(false);
+    const [isBooking, setIsBooking] = useState(false);
 
-        for (let i = 0; i < 7; i++) {
-            const date = new Date(today);
-            date.setDate(today.getDate() + i);
+    useEffect(() => {
+        if (!isOpen) return;
+        const fetchSchedule = async () => {
+            setIsLoadingSchedule(true);
+            try {
+                const data = await getAvailableDoctorSchedule(doctor.id);
+                const grouped: Record<string, DaySchedule> = {};
 
-            const dayOfWeek = date.toLocaleDateString('vi-VN', { weekday: 'long' });
-            const dateStr = date.toISOString().split('T')[0];
+                // Initialize 7 days starting from today to ensure they show up in UI
+                const today = new Date();
+                for (let i = 0; i < 7; i++) {
+                    const nextDay = new Date(today);
+                    nextDay.setDate(today.getDate() + i);
 
-            const slots: TimeSlot[] = [
-                { time: "08:00", available: Math.random() > 0.3 },
-                { time: "09:00", available: Math.random() > 0.3 },
-                { time: "10:00", available: Math.random() > 0.3 },
-                { time: "11:00", available: Math.random() > 0.3 },
-                { time: "14:00", available: Math.random() > 0.3 },
-                { time: "15:00", available: Math.random() > 0.3 },
-                { time: "16:00", available: Math.random() > 0.3 },
-                { time: "17:00", available: Math.random() > 0.3 }
-            ];
+                    const year = nextDay.getFullYear();
+                    const month = String(nextDay.getMonth() + 1).padStart(2, '0');
+                    const day = String(nextDay.getDate()).padStart(2, '0');
+                    const dateStr = `${year}-${month}-${day}`;
 
-            schedule.push({ date: dateStr, dayOfWeek, slots });
-        }
+                    const dayOfWeek = nextDay.toLocaleDateString('vi-VN', { weekday: 'long' });
 
-        return schedule;
-    };
+                    grouped[dateStr] = {
+                        date: dateStr,
+                        dayOfWeek,
+                        slots: []
+                    };
+                }
 
-    const [schedule] = useState(generateSchedule());
+                data.forEach((slot: any) => {
+                    const d = slot.availableDate;
+                    if (grouped[d]) {
+                        grouped[d].slots.push({
+                            time: slot.startTime,
+                            available: !slot.isBooked,
+                            price: slot.price
+                        });
+                    }
+                });
 
-    const handleNextStep = (e: React.FormEvent) => {
+                const scheduleArray = Object.values(grouped).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+                setSchedule(scheduleArray);
+            } catch (error) {
+                console.error("Failed to fetch schedule", error);
+            } finally {
+                setIsLoadingSchedule(false);
+            }
+        };
+        fetchSchedule();
+    }, [isOpen, doctor.id]);
+
+    const handleNextStep = async (e: React.FormEvent) => {
         e.preventDefault();
         if (step === 2) {
-            // Mở popup xác nhận thay vì window.confirm
             setShowConfirm(true);
         } else if (step === 3) {
-            // Handle final payment submission
-            console.log("Processing Payment:", {
-                paymentMethod,
-                amount: consultationPrice
-            });
-            // TODO: Gọi API xử lý thanh toán
-            alert("Đang chuyển hướng đến cổng thanh toán...");
-            onClose();
-            setTimeout(() => setStep(1), 300); // Reset after close animation
+            if (paymentMethod === 'momo' && createdAppointmentId) {
+                try {
+                    const res = await createMomoPayment(createdAppointmentId);
+                    if (res && res.payUrl) {
+                        window.location.href = res.payUrl;
+                    } else {
+                        console.error('Lỗi PayUrl Momo trả về bị rỗng:', res);
+                        alert(`MoMo lỗi Cấu Hình (Missing URL): ${JSON.stringify(res)}`);
+                    }
+                } catch (error: any) {
+                    console.error("Payment Momo Exception:", error?.response?.data || error);
+                    alert(`Lỗi API Thanh toán: ${error?.response?.data?.message || error.message || 'Không xác định'}`);
+                }
+            } else if (paymentMethod === 'zalo') {
+                alert("Thanh toán ZaloPay đang được phát triển.");
+            }
         }
     };
 
-    const handleConfirmBooking = () => {
-        setShowConfirm(false);
-        // Handle initial booking submission
-        console.log("Creating Booking:", {
-            doctor: doctor.name,
-            date: selectedDate,
-            time: selectedTime,
-            ...formData
-        });
+    const handleConfirmBooking = async () => {
+        setIsBooking(true);
+        try {
+            const result: any = await bookAppointment(doctor.id, {
+                appointmentDate: selectedDate,
+                appointmentTime: selectedTime
+            });
 
-        // TODO: Gọi API tạo lịch hẹn tại đây
-        // Thay thế alert bằng custom modal success
-        setShowSuccess(true);
+            // Backend trả về: res.customSuccess(200, '...', booking);
+            // Frontend apiClient axios return res.data
+            const appointment = result.data || result;
+            if (appointment && appointment.id) {
+                setCreatedAppointmentId(appointment.id);
+            }
+
+            setShowConfirm(false);
+            setShowSuccess(true);
+        } catch (error: any) {
+            console.error("Booking error", error);
+            alert(error?.response?.data?.message || "Lỗi đặt lịch, vui lòng thử lại.");
+            setShowConfirm(false);
+        } finally {
+            setIsBooking(false);
+        }
     };
 
     const handleContinueToPayment = () => {
         setShowSuccess(false);
         setStep(3); // Chuyển sang bước thanh toán sau khi đặt lịch thành công
     };
+
+    // Reset data when closing modal or reopen
+    useEffect(() => {
+        if (!isOpen) {
+            setStep(1);
+            setCreatedAppointmentId(null);
+            setShowSuccess(false);
+            setShowConfirm(false);
+            setTimeLeft(300);
+        }
+    }, [isOpen]);
+
+    // Timer Countdown for Step 3
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+        if (step === 3 && timeLeft > 0) {
+            timer = setInterval(() => {
+                setTimeLeft(prev => prev - 1);
+            }, 1000);
+        } else if (step === 3 && timeLeft === 0 && createdAppointmentId) {
+            // Hết giờ
+            const handleTimeout = async () => {
+                await checkPaymentTimeout(createdAppointmentId);
+                alert("Đã hết thời gian thanh toán (5 phút). Lịch khám đã bị hủy. Vui lòng đặt lại.");
+                // Tạm thời bỏ onClose() để user xem form báo lỗi test thanh toán
+                // onClose(); 
+            };
+            handleTimeout();
+        }
+        return () => clearInterval(timer);
+    }, [step, timeLeft, createdAppointmentId, onClose]);
 
     if (!isOpen) return null;
 
@@ -149,41 +228,51 @@ export default function BookingModal({ isOpen, onClose, doctor }: BookingModalPr
                                 <label className="mb-2 block text-sm font-medium text-slate-700">
                                     Chọn ngày và giờ
                                 </label>
-                                <div className="space-y-3">
-                                    {schedule.map((day) => (
-                                        <div
-                                            key={day.date}
-                                            className="rounded-lg border border-slate-200 p-4"
-                                        >
-                                            <div className="mb-3 font-semibold text-slate-900">
-                                                {day.dayOfWeek}, {new Date(day.date).toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                                {isLoadingSchedule ? (
+                                    <div className="py-8 text-center text-sm text-slate-500">Đang tải lịch khám...</div>
+                                ) : schedule.length === 0 ? (
+                                    <div className="py-8 text-center text-sm text-slate-500">Bác sĩ chưa có lịch trống nào trong thời gian tới.</div>
+                                ) : (
+                                    <div className="space-y-3">
+                                        {schedule.map((day) => (
+                                            <div
+                                                key={day.date}
+                                                className="rounded-lg border border-slate-200 p-4"
+                                            >
+                                                <div className="mb-3 font-semibold text-slate-900">
+                                                    {day.dayOfWeek}, {new Date(day.date).toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                                                </div>
+                                                {/* Use flex-wrap to show all slots across multiple rows if needed */}
+                                                <div className="flex flex-wrap gap-2">
+                                                    {day.slots.length > 0 ? (
+                                                        day.slots.map((slot) => (
+                                                            <button
+                                                                key={`${day.date}-${slot.time}`}
+                                                                type="button"
+                                                                disabled={!slot.available}
+                                                                onClick={() => {
+                                                                    setSelectedDate(day.date);
+                                                                    setSelectedTime(slot.time);
+                                                                    setStep(2);
+                                                                }}
+                                                                className={`rounded-lg border px-4 py-2 text-sm font-medium transition ${selectedDate === day.date && selectedTime === slot.time
+                                                                    ? "border-dermcare bg-dermcare text-white shadow-sm"
+                                                                    : slot.available
+                                                                        ? "border-slate-200 bg-white text-slate-700 hover:border-dermcare hover:bg-dermcare/5"
+                                                                        : "border-slate-100 bg-slate-50 text-slate-400 cursor-not-allowed"
+                                                                    }`}
+                                                            >
+                                                                {slot.time}
+                                                            </button>
+                                                        ))
+                                                    ) : (
+                                                        <span className="text-sm italic text-slate-400 py-1">Bác sĩ chưa có lịch khám vào ngày này</span>
+                                                    )}
+                                                </div>
                                             </div>
-                                            {/* Use flex-wrap to show all slots across multiple rows if needed */}
-                                            <div className="flex flex-wrap gap-2">
-                                                {day.slots.map((slot) => (
-                                                    <button
-                                                        key={`${day.date}-${slot.time}`}
-                                                        type="button"
-                                                        disabled={!slot.available}
-                                                        onClick={() => {
-                                                            setSelectedDate(day.date);
-                                                            setSelectedTime(slot.time);
-                                                            setStep(2);
-                                                        }}
-                                                        className={`rounded-lg border px-4 py-2 text-sm font-medium transition ${selectedDate === day.date && selectedTime === slot.time
-                                                            ? "border-dermcare bg-dermcare text-white shadow-sm"
-                                                            : slot.available
-                                                                ? "border-slate-200 bg-white text-slate-700 hover:border-dermcare hover:bg-dermcare/5"
-                                                                : "border-slate-100 bg-slate-50 text-slate-400 cursor-not-allowed"
-                                                            }`}
-                                                    >
-                                                        {slot.time}
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         )}
 
@@ -266,7 +355,12 @@ export default function BookingModal({ isOpen, onClose, doctor }: BookingModalPr
                         {/* Step 3: Payment Method */}
                         {step === 3 && (
                             <div className="animate-in fade-in slide-in-from-right-4 duration-300">
-                                <h3 className="mb-4 font-semibold text-slate-900">Phương thức thanh toán</h3>
+                                <div className="flex items-center justify-between mb-4 font-semibold text-slate-900">
+                                    <h3>Phương thức thanh toán</h3>
+                                    <span className="text-red-500 font-bold bg-red-50 px-3 py-1 rounded-full text-sm">
+                                        Thời gian còn lại: {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+                                    </span>
+                                </div>
                                 <div className="space-y-3">
                                     {/* MoMo */}
                                     <label
@@ -285,9 +379,11 @@ export default function BookingModal({ isOpen, onClose, doctor }: BookingModalPr
                                         />
                                         <div className="flex flex-1 items-center justify-between">
                                             <div className="font-semibold text-slate-900">Ví MoMo</div>
-                                            <div className="h-8 w-8 rounded bg-pink-500 flex items-center justify-center text-white font-bold text-xs">
-                                                MoMo
-                                            </div>
+                                            <img
+                                                src="https://developers.momo.vn/v3/assets/images/MOMO-Logo-App-6262c3743a290ef02396a24ea2b66c35.png"
+                                                alt="MoMo"
+                                                className="h-10 w-10 rounded-full object-contain"
+                                            />
                                         </div>
                                     </label>
 
@@ -308,8 +404,10 @@ export default function BookingModal({ isOpen, onClose, doctor }: BookingModalPr
                                         />
                                         <div className="flex flex-1 items-center justify-between">
                                             <div className="font-semibold text-slate-900">ZaloPay</div>
-                                            <div className="h-8 w-8 rounded bg-blue-500 flex items-center justify-center text-white font-bold text-[10px]">
-                                                ZaloPay
+                                            <div className="h-10 w-10 rounded-lg overflow-hidden flex-shrink-0 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                                                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-8">
+                                                    <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fontSize="11" fontWeight="bold" fill="white" fontFamily="Arial">ZLP</text>
+                                                </svg>
                                             </div>
                                         </div>
                                     </label>
@@ -387,10 +485,11 @@ export default function BookingModal({ isOpen, onClose, doctor }: BookingModalPr
                             </button>
                             <button
                                 type="button"
+                                disabled={isBooking}
                                 onClick={handleConfirmBooking}
-                                className="flex-1 rounded-lg bg-dermcare px-4 py-2.5 font-semibold text-white shadow-soft hover:bg-dermcare-dark transition"
+                                className="flex-1 rounded-lg bg-dermcare px-4 py-2.5 font-semibold text-white shadow-soft hover:bg-dermcare-dark transition disabled:opacity-50"
                             >
-                                Đồng ý
+                                {isBooking ? 'Đang xử lý...' : 'Đồng ý'}
                             </button>
                         </div>
                     </div>

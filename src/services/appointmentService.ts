@@ -2,13 +2,18 @@ import apiClient from '@/lib/apiClient';
 
 export interface Appointment {
     id: string;
-    doctorId: string;
-    patientId: string;
+    doctorId?: string;
+    patientId?: string;
     date: string;
     time: string;
-    status: 'pending' | 'confirmed' | 'completed' | 'cancelled';
+    status: 'upcoming' | 'pending' | 'confirmed' | 'completed' | 'cancelled';
     symptoms?: string;
     notes?: string;
+    doctorName: string;
+    doctorAvatar: string;
+    specialty: string;
+    type: "online" | "offline";
+    reason: string;
 }
 
 export interface CreateAppointmentData {
@@ -20,8 +25,8 @@ export interface CreateAppointmentData {
 
 // Get appointments for current user
 export const getMyAppointments = async (): Promise<Appointment[]> => {
-    const { data } = await apiClient.get('/appointments/my');
-    return data;
+    const { data } = await apiClient.get('/users/me/appointments');
+    return data.data || data;
 };
 
 // Create appointment
@@ -38,5 +43,11 @@ export const cancelAppointment = async (appointmentId: string): Promise<void> =>
 // Get appointment by ID
 export const getAppointmentById = async (id: string): Promise<Appointment> => {
     const { data } = await apiClient.get(`/appointments/${id}`);
+    return data;
+};
+
+// Book an appointment (Patient books a doctor)
+export const bookAppointment = async (doctorId: string, payload: { appointmentDate: string; appointmentTime: string }): Promise<Appointment> => {
+    const { data } = await apiClient.post(`/users/booking/${doctorId}`, payload);
     return data;
 };

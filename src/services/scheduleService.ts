@@ -26,6 +26,12 @@ export const getDoctorSchedule = async (date?: string): Promise<DoctorScheduleSl
     return data.data || data;
 };
 
+// Get public schedule for a specific doctor (User module feature)
+export const getAvailableDoctorSchedule = async (doctorId: string): Promise<DoctorScheduleSlot[]> => {
+    const { data } = await apiClient.get(`/users/doctor-schedule/${doctorId}`);
+    return data.data || data;
+};
+
 export const createScheduleSlot = async (payload: CreateSchedulePayload): Promise<DoctorScheduleSlot> => {
     // Backend expects 'date', not 'availableDate'
     const requestPayload = {
