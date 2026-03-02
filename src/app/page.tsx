@@ -51,9 +51,12 @@ export default function HomePage() {
               >
                 Đặt lịch khám đầu tiên
               </Link>
-              <button className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
+              <Link
+                href="/huong-dan-kham"
+                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+              >
                 Xem quy trình khám
-              </button>
+              </Link>
             </div>
 
             <p className="text-sm text-slate-500">

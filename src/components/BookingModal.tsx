@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { getAvailableDoctorSchedule } from "@/services/scheduleService";
 import { bookAppointment } from "@/services/appointmentService";
-import { createMomoPayment, checkPaymentTimeout } from "@/services/paymentService";
+import { createMomoPayment, createZaloPayment, checkPaymentTimeout } from "@/services/paymentService";
 
 interface TimeSlot {
     time: string;
@@ -30,14 +30,19 @@ interface BookingModalProps {
 }
 
 export default function BookingModal({ isOpen, onClose, doctor }: BookingModalProps) {
+    const PAYMENT_TIMEOUT = {
+        momo: 6000,  // 100 phút (MoMo Sandbox default)
+        zalo: 1200,  // 20 phút (ZaloPay default)
+    };
+
     const [step, setStep] = useState<1 | 2 | 3>(1);
     const [showConfirm, setShowConfirm] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     const [createdAppointmentId, setCreatedAppointmentId] = useState<string | null>(null);
-    const [timeLeft, setTimeLeft] = useState<number>(6000); // 1h40p = 6000s (khớp với MoMo Sandbox)
+    const [paymentMethod, setPaymentMethod] = useState<"momo" | "zalo">("momo");
+    const [timeLeft, setTimeLeft] = useState<number>(PAYMENT_TIMEOUT.momo);
     const [selectedDate, setSelectedDate] = useState<string>("");
     const [selectedTime, setSelectedTime] = useState<string>("");
-    const [paymentMethod, setPaymentMethod] = useState<"momo" | "zalo">("momo");
     const [formData, setFormData] = useState({
         fullName: "",
         phone: "",
@@ -52,9 +57,15 @@ export default function BookingModal({ isOpen, onClose, doctor }: BookingModalPr
     const [isLoadingSchedule, setIsLoadingSchedule] = useState(false);
     const [isBooking, setIsBooking] = useState(false);
 
+    // Reset đếm ngược khi đổi phương thức thanh toán
+    useEffect(() => {
+        setTimeLeft(PAYMENT_TIMEOUT[paymentMethod]);
+    }, [paymentMethod]);
+
     useEffect(() => {
         if (!isOpen) return;
         const fetchSchedule = async () => {
+
             setIsLoadingSchedule(true);
             try {
                 const data = await getAvailableDoctorSchedule(doctor.id);
@@ -120,8 +131,18 @@ export default function BookingModal({ isOpen, onClose, doctor }: BookingModalPr
                     console.error("Payment Momo Exception:", error?.response?.data || error);
                     alert(`Lỗi API Thanh toán: ${error?.response?.data?.message || error.message || 'Không xác định'}`);
                 }
-            } else if (paymentMethod === 'zalo') {
-                alert("Thanh toán ZaloPay đang được phát triển.");
+            } else if (paymentMethod === 'zalo' && createdAppointmentId) {
+                try {
+                    const res = await createZaloPayment(createdAppointmentId);
+                    if (res && res.payUrl) {
+                        window.location.href = res.payUrl;
+                    } else {
+                        alert(`ZaloPay lỗi cấu hình (Missing URL): ${JSON.stringify(res)}`);
+                    }
+                } catch (error: any) {
+                    console.error('Payment ZaloPay Exception:', error?.response?.data || error);
+                    alert(`Lỗi ZaloPay: ${error?.response?.data?.message || error.message || 'Không xác định'}`);
+                }
             }
         }
     };

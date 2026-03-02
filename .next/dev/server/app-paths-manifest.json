@@ -1,8 +1,9 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/appointments/page": "app/appointments/page.js",
   "/doctors/page": "app/doctors/page.js",
+  "/huong-dan-kham/page": "app/huong-dan-kham/page.js",
   "/login/page": "app/login/page.js",
   "/page": "app/page.js",
-  "/payment-result/page": "app/payment-result/page.js"
+  "/payment-result/page": "app/payment-result/page.js",
+  "/profile/page": "app/profile/page.js"
 }

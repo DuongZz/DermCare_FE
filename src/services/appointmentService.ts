@@ -1,26 +1,34 @@
 import apiClient from '@/lib/apiClient';
 
-export interface Appointment {
+export interface AppointmentDoctor {
     id: string;
-    doctorId?: string;
-    patientId?: string;
-    date: string;
-    time: string;
-    status: 'upcoming' | 'pending' | 'confirmed' | 'completed' | 'cancelled';
-    symptoms?: string;
-    notes?: string;
-    doctorName: string;
-    doctorAvatar: string;
-    specialty: string;
-    type: "online" | "offline";
-    reason: string;
+    fullName: string;
+    avatar: string | null;
+    specialization: string | null;
+    qualifications: string | null;
 }
 
-export interface CreateAppointmentData {
-    doctorId: string;
-    date: string;
-    time: string;
-    symptoms?: string;
+
+export interface Appointment {
+    id: string;
+    appointmentDate: string;
+    appointmentTime: string;
+    appointmentEndTime: string | null;
+    appointmentStatus: 'PENDING' | 'CONFIRMED' | 'CANCELLED' | 'COMPLETED';
+    price: number;
+    note?: string;
+    doctor: AppointmentDoctor | null;
+    paymentStatus: 'PENDING' | 'PAID' | 'CANCELLED' | null;
+    paymentMethod: 'MOMO' | 'ZALOPAY' | null;
+    // Legacy fields (giữ lại để không bị lỗi components cũ)
+    status?: string;
+    doctorName?: string;
+    doctorAvatar?: string;
+    specialty?: string;
+    date?: string;
+    time?: string;
+    type?: string;
+    reason?: string;
 }
 
 // Get appointments for current user
@@ -28,6 +36,13 @@ export const getMyAppointments = async (): Promise<Appointment[]> => {
     const { data } = await apiClient.get('/users/me/appointments');
     return data.data || data;
 };
+
+export interface CreateAppointmentData {
+    doctorId: string;
+    date: string;
+    time: string;
+    symptoms?: string;
+}
 
 // Create appointment
 export const createAppointment = async (appointmentData: CreateAppointmentData): Promise<Appointment> => {

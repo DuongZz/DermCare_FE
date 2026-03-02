@@ -124,24 +124,31 @@ export default function ProfilePage() {
                 showToast(res.data?.message || "Cập nhật thông tin thành công!");
                 console.log("Doctor info updated successfully");
             } else {
-                // Patient: save medical info
-                const res = await userService.updateMedicalInfo({
-                    skinType: editData.skinType,
-                    bloodGroup: editData.bloodType,
-                    allergies: editData.allergies,
-                    emergencyContact: editData.emergencyContact,
-                    currentMedications: editData.medications,
-                    chronicConditions: editData.chronicConditions
-                });
-                if (res.success) {
-                    setProfileData(editData);
-                    setIsEditing(false);
-                    showToast("Cập nhật thông tin y tế thành công!");
-                    console.log("Medical info updated successfully");
-                } else {
-                    throw new Error("Update failed");
-                }
+                // Patient: save personal info + medical info song song
+                const [profileRes, medicalRes] = await Promise.all([
+                    userService.updateProfile({
+                        fullName: editData.fullName,
+                        phone: editData.phone,
+                        gender: editData.gender,
+                        dateOfBirth: editData.dateOfBirth || undefined,
+                        address: editData.address,
+                    }),
+                    userService.updateMedicalInfo({
+                        skinType: editData.skinType,
+                        bloodGroup: editData.bloodType,
+                        allergies: editData.allergies,
+                        emergencyContact: editData.emergencyContact,
+                        currentMedications: editData.medications,
+                        chronicConditions: editData.chronicConditions
+                    }),
+                ]);
+
+                await fetchUser(); // Refresh lại user data trên UI
+                setProfileData(editData);
+                setIsEditing(false);
+                showToast("Cập nhật thông tin thành công!");
             }
+
         } catch (error) {
             console.error("Failed to save:", error);
             showToast("Cập nhật thất bại. Vui lòng thử lại.");
@@ -205,7 +212,7 @@ export default function ProfilePage() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 py-2 pt-8 relative">
+        <div className="min-h-screen bg-slate-50 py-2 pt-3 relative">
             {toastMessage && (
                 <div className={`fixed top-28 left-1/2 z-[100] rounded-full border border-dermcare bg-white px-6 py-2.5 text-sm font-semibold text-dermcare shadow-lg transition-all duration-500 ease-in-out transform ${isToastVisible
                     ? 'translate-y-0 opacity-100 -translate-x-1/2'

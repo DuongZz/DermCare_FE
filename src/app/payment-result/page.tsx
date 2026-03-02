@@ -11,25 +11,38 @@ export default function PaymentResultPage() {
     const [message, setMessage] = useState("Đang xử lý kết quả giao dịch...");
 
     useEffect(() => {
-        // Lấy resultCode từ URL do MoMo trả về qua query params
+        // === MoMo params ===
         const resultCode = searchParams.get("resultCode");
-        const orderInfo = searchParams.get("orderInfo");
         const msg = searchParams.get("message");
 
+        // === ZaloPay params ===
+        const status = searchParams.get("status");       // 1 = thành công, 0 = thất bại
+        const apptransid = searchParams.get("apptransid");
+
         if (resultCode !== null) {
+            // Xử lý kết quả MoMo
             if (resultCode === "0") {
                 setStatus("success");
-                setMessage(msg || "Thanh toán thành công. Lịch hẹn của bạn đã được xác nhận (Đã Thanh Toán).");
+                setMessage(msg || "Thanh toán MoMo thành công. Lịch hẹn của bạn đã được xác nhận.");
             } else {
                 setStatus("fail");
-                setMessage(msg || "Giao dịch thanh toán bị hủy hoặc có lỗi xảy ra.");
+                setMessage(msg || "Giao dịch MoMo bị hủy hoặc có lỗi xảy ra.");
+            }
+        } else if (apptransid !== null) {
+            // Xử lý kết quả ZaloPay
+            if (status === "1") {
+                setStatus("success");
+                setMessage("Thanh toán ZaloPay thành công. Lịch hẹn của bạn đã được xác nhận.");
+            } else {
+                setStatus("fail");
+                setMessage("Giao dịch ZaloPay bị hủy hoặc có lỗi xảy ra.");
             }
         } else {
-            // Nếu truy cập thẳng trang này mà không có biến từ Momo
             setStatus("fail");
             setMessage("Không tìm thấy thông tin giao dịch hợp lệ.");
         }
     }, [searchParams]);
+
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">

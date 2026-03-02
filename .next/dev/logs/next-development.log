@@ -1,6 +1,6 @@
-[00:00:02.965] Server  LOG     ✓ Ready in 2.3s
-[00:00:05.419] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:05.913] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:02.495] Server  LOG     ✓ Ready in 1672ms
+[00:03:38.150] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:40.171] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -36,197 +36,46 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:00:05.913] Browser LOG     AuthContext: initializing auth...
-[00:00:05.913] Browser LOG     [API Request] No Token attached
-[00:00:05.913] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:00:05.913] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:275:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:396:30)","status":401}
-[00:00:05.913] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+[00:03:40.171] Browser LOG     AuthContext: initializing auth...
+[00:03:40.171] Browser LOG     [API Request] No Token attached
+[00:03:40.171] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:03:40.171] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[00:03:40.171] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:275:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:396:30)","status":401}
+[00:03:40.171] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:00:05.913] Browser LOG     [API Request] No Token attached
-[00:00:05.913] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:00:05.913] Browser LOG     [API Request] No Token attached
-[00:00:05.913] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:00:07.734] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:00:13.989] Browser LOG     [API Request] No Token attached
-[00:00:13.989] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
-[00:00:14.554] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:14.554] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:00:14.554] Browser LOG     AuthContext: fetchUser success {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-01T08:56:45.755Z"}
-[00:00:14.554] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:14.554] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:00:14.554] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:14.554] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:00:16.545] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:16.545] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:00:16.545] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:16.545] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:00:16.769] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:16.769] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:16.769] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:16.769] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:16.769] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:17.732] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:17.733] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:00:17.733] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:17.733] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:00:35.969] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:35.969] Browser LOG     [API Request] POST http://localhost:4000/v1/users/booking/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:00:38.184] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:38.184] Browser LOG     [API Request] POST http://localhost:4000/v1/payments/momo/create
-[00:11:42.903] Browser ERROR   Payment Momo Exception: {"errorMessage":"Lỗi kết nối tới cổng thanh toán MoMo: Request failed with status code 400","errorRaw":null,"errorType":"General","errors":null,"errorsValidation":null,"stack":"CustomError: Lỗi kết nối tới cổng thanh toán MoMo: Request failed with status code 400\n    at D:\\Code\\Dermcare-BE\\temp-node-empress-type-orm\\src\\service\\payment\\createMomoPaymentService.ts:95:15\n    at Generator.throw (<anonymous>)\n    at rejected (D:\\Code\\Dermcare-BE\\temp-node-empress-type-orm\\src\\service\\payment\\createMomoPaymentService.ts:39:65)\n    at processTicksAndRejections (node:internal/process/task_queues:103:5)"}
-[00:14:00.062] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:14:00.835] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/doctors" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[00:14:00.835] Browser LOG     AuthContext: initializing auth...
-[00:14:00.835] Browser LOG     [API Request] No Token attached
-[00:14:00.835] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:14:00.835] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:275:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:396:30)","status":401}
-[00:14:00.835] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:14:00.835] Browser LOG     [API Request] No Token attached
-[00:14:00.835] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:14:00.835] Browser LOG     [API Request] No Token attached
-[00:14:00.835] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:14:01.326] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:14:01.326] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:14:01.326] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:14:01.326] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:14:01.326] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:14:01.326] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:14:08.691] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:14:16.898] Browser LOG     [API Request] No Token attached
-[00:14:16.899] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
-[00:14:17.933] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:14:17.933] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:14:17.933] Browser LOG     AuthContext: fetchUser success {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-01T09:10:49.093Z"}
-[00:14:17.933] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:14:17.933] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:14:17.933] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:14:17.933] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:14:18.660] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:14:18.660] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:14:18.660] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:14:18.660] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:14:20.119] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:14:20.119] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:14:20.119] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:14:20.119] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:14:35.216] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:14:35.216] Browser LOG     [API Request] POST http://localhost:4000/v1/users/booking/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:14:37.661] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:14:37.661] Browser LOG     [API Request] POST http://localhost:4000/v1/payments/momo/create
-[00:17:57.145] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:17:57.572] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/doctors" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[00:17:57.573] Browser LOG     AuthContext: initializing auth...
-[00:17:57.573] Browser LOG     [API Request] No Token attached
-[00:17:57.573] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:17:57.573] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (https://localhost/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (https://localhost/_next/static/chunks/src_fc12f1f7._.js:275:22)\n    at async initializeAuth (https://localhost/_next/static/chunks/src_fc12f1f7._.js:396:30)","status":401}
-[00:17:57.573] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:17:57.573] Browser LOG     [API Request] No Token attached
-[00:17:57.573] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:17:57.573] Browser LOG     [API Request] No Token attached
-[00:17:57.573] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:17:58.286] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:17:58.286] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:17:58.286] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:17:58.286] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:17:58.286] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:18:01.009] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:18:35.804] Browser LOG     [API Request] No Token attached
-[00:18:35.804] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
-[00:18:36.711] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:18:36.711] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:18:36.711] Browser LOG     AuthContext: fetchUser success {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-01T09:15:07.926Z"}
-[00:18:36.711] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:18:36.711] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:18:36.711] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:18:36.711] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:18:37.575] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:18:37.575] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:18:37.575] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:18:37.575] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:18:38.819] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:18:38.820] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:18:38.820] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:18:38.820] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:18:53.068] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:18:53.069] Browser LOG     [API Request] POST http://localhost:4000/v1/users/booking/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:18:55.353] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:18:55.353] Browser LOG     [API Request] POST http://localhost:4000/v1/payments/momo/create
-[00:20:13.912] Server  LOG     ○ Compiling /payment-result ...
-[00:20:16.988] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:20:17.283] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:03:40.171] Browser LOG     [API Request] No Token attached
+[00:03:40.171] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[00:03:40.171] Browser LOG     [API Request] No Token attached
+[00:03:40.171] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[00:05:21.039] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:05:26.835] Browser LOG     [API Request] No Token attached
+[00:05:26.835] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[00:05:27.725] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:05:27.725] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:05:27.725] Browser LOG     AuthContext: fetchUser success {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T06:38:01.683Z"}
+[00:05:27.725] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:05:27.725] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[00:05:27.725] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:05:27.725] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[00:05:28.895] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:05:28.895] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
+[00:05:28.895] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:05:28.895] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
+[00:05:29.059] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:05:29.059] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:05:29.059] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:05:29.059] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:05:29.059] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:05:30.616] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:05:30.616] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
+[00:05:30.616] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:05:30.616] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
+[00:05:44.148] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:05:44.148] Browser LOG     [API Request] POST http://localhost:4000/v1/users/booking/ce93ea53-2a53-4dd4-8228-01699862e22b
+[00:05:53.644] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:05:53.644] Browser LOG     [API Request] POST http://localhost:4000/v1/payments/zalopay/create
+[00:06:37.451] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:37.758] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -262,15 +111,31 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:20:17.283] Browser LOG     AuthContext: initializing auth...
-[00:20:17.283] Browser LOG     [API Request] No Token attached
-[00:20:17.283] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:20:17.790] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:20:17.790] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:275:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:396:30)","status":401}
-[00:20:17.790] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+[00:06:37.758] Browser LOG     AuthContext: initializing auth...
+[00:06:37.758] Browser LOG     [API Request] No Token attached
+[00:06:37.758] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:06:38.171] Browser LOG     AuthContext: washToken success
+[00:06:38.171] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:06:38.171] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:06:38.171] Browser LOG     AuthContext: fetchUser success {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T06:39:12.055Z"}
+[00:06:38.171] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:20:21.889] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:20:22.281] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:06:38.171] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[00:07:32.057] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:07:32.057] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:07:32.057] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[00:07:32.057] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:07:32.057] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[00:10:26.508] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:10:26.509] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
+[00:10:26.509] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:10:26.509] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
+[00:10:26.509] Browser ERROR   Failed to fetch appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MjQ1ODc1MiwiZXhwIjoxNzcyNDU5NjUyfQ.dhqwL_unnn5n0rZOfleFBqBXw0CMu89mEOpjBohTLEs","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/users/me/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async getMyAppointments (http://localhost:3000/_next/static/chunks/src_fe375e1b._.js:20:22)\n    at async AppointmentsPage.useEffect.fetchAppointments (http://localhost:3000/_next/static/chunks/src_fe375e1b._.js:69:38)","status":404}
+[00:10:26.509] Browser ERROR   Failed to fetch appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MjQ1ODc1MiwiZXhwIjoxNzcyNDU5NjUyfQ.dhqwL_unnn5n0rZOfleFBqBXw0CMu89mEOpjBohTLEs","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/users/me/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async getMyAppointments (http://localhost:3000/_next/static/chunks/src_fe375e1b._.js:20:22)\n    at async AppointmentsPage.useEffect.fetchAppointments (http://localhost:3000/_next/static/chunks/src_fe375e1b._.js:69:38)","status":404}
+[00:23:42.910] Server  LOG     ✓ Compiled in 935ms
+[00:24:25.288] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:24:25.288] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[00:24:25.549] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -288,7 +153,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/user/appo..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/appointments" notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -306,17 +171,22 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:20:22.281] Browser LOG     AuthContext: initializing auth...
-[00:20:22.281] Browser LOG     [API Request] No Token attached
-[00:20:22.281] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:20:22.281] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_249b2432._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_249b2432._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_249b2432._.js:9207:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:275:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:396:30)","status":401}
-[00:20:22.281] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+[00:24:25.549] Browser LOG     AuthContext: initializing auth...
+[00:24:25.549] Browser LOG     [API Request] No Token attached
+[00:24:25.549] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:24:26.707] Browser LOG     AuthContext: washToken success
+[00:24:26.707] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:24:26.707] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:24:26.707] Browser LOG     AuthContext: fetchUser success {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T06:57:00.677Z"}
+[00:24:26.707] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:20:22.584] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:22:19.965] Server  LOG     ✓ Compiled in 2.6s
-[00:30:41.516] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:30:41.516] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:30:42.153] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:24:26.707] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:24:26.708] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
+[00:24:26.708] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:24:26.708] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
+[00:27:16.492] Server  LOG     ✓ Compiled in 479ms
+[01:04:51.162] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:04:51.575] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -334,7 +204,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/user/appo..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/appointments" notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -352,52 +222,76 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:30:42.153] Browser LOG     AuthContext: initializing auth...
-[00:30:42.153] Browser LOG     [API Request] No Token attached
-[00:30:42.153] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:30:42.153] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_249b2432._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_249b2432._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_249b2432._.js:9207:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:275:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:396:30)","status":401}
-[00:30:42.153] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+[01:04:51.575] Browser LOG     AuthContext: initializing auth...
+[01:04:51.575] Browser LOG     [API Request] No Token attached
+[01:04:51.575] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[01:04:51.931] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[01:04:52.242] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:275:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:396:30)","status":401}
+[01:04:52.242] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:30:43.592] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:30:50.397] Browser LOG     [API Request] No Token attached
-[00:30:50.397] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
-[00:30:50.877] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:30:50.877] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:30:51.001] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-03-01T09:27:22.120Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
-[00:30:51.001] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:30:51.001] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:30:51.001] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:30:51.001] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:30:52.842] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:30:52.842] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/logout
-[00:30:59.731] Browser LOG     [API Request] No Token attached
-[00:30:59.731] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
-[00:31:00.175] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:31:00.175] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:31:00.175] Browser LOG     AuthContext: fetchUser success {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-01T09:27:31.426Z"}
-[00:31:00.175] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:31:00.175] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:31:00.175] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:31:00.175] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:31:03.497] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:31:03.497] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:31:03.497] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:31:03.497] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:31:03.647] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:31:03.647] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:31:03.647] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:31:03.647] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:31:03.647] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:31:05.049] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:31:05.049] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:31:05.050] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:31:05.050] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:31:29.918] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:31:29.918] Browser LOG     [API Request] POST http://localhost:4000/v1/users/booking/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:31:37.350] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:31:37.350] Browser LOG     [API Request] POST http://localhost:4000/v1/payments/momo/create
-[00:32:16.145] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:32:16.455] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[01:04:52.242] Browser LOG     [API Request] No Token attached
+[01:04:52.242] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
+[01:04:52.242] Browser LOG     [API Request] No Token attached
+[01:04:52.242] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
+[01:04:52.242] Browser ERROR   Failed to fetch appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/users/me/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 400","name":"AxiosError","stack":"AxiosError: Request failed with status code 400\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async getMyAppointments (http://localhost:3000/_next/static/chunks/src_fe375e1b._.js:20:22)\n    at async AppointmentsPage.useEffect.fetchAppointments (http://localhost:3000/_next/static/chunks/src_fe375e1b._.js:69:38)","status":400}
+[01:04:52.242] Browser ERROR   Failed to fetch appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/users/me/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 400","name":"AxiosError","stack":"AxiosError: Request failed with status code 400\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async getMyAppointments (http://localhost:3000/_next/static/chunks/src_fe375e1b._.js:20:22)\n    at async AppointmentsPage.useEffect.fetchAppointments (http://localhost:3000/_next/static/chunks/src_fe375e1b._.js:69:38)","status":400}
+[01:04:54.236] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[01:05:00.223] Browser LOG     [API Request] No Token attached
+[01:05:00.223] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[01:05:00.890] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:05:00.890] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[01:05:00.890] Browser LOG     AuthContext: fetchUser success {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T07:37:34.709Z"}
+[01:05:00.890] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:05:00.890] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[01:05:00.890] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:05:00.890] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[01:05:03.105] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:05:03.105] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
+[01:05:03.105] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:05:03.105] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
+[01:10:59.795] Server  LOG     ✓ Compiled in 494ms
+[01:13:46.549] Server  LOG     ✓ Compiled in 465ms
+[01:14:16.368] Server  LOG     ✓ Compiled in 1138ms
+[01:15:27.973] Browser LOG     ProfilePage: user updated {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T07:37:34.709Z"}
+[01:15:27.974] Browser LOG     ProfilePage: user updated {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T07:37:34.709Z"}
+[01:15:27.974] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:27.974] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:15:27.974] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:27.974] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:15:29.911] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:29.911] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
+[01:15:29.911] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:29.911] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
+[01:15:32.176] Browser LOG     ProfilePage: user updated {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T07:37:34.709Z"}
+[01:15:32.176] Browser LOG     ProfilePage: user updated {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T07:37:34.709Z"}
+[01:15:32.176] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:32.176] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:15:32.176] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:32.176] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[01:15:34.120] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:34.120] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
+[01:15:34.120] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:34.120] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
+[01:15:36.798] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:36.798] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
+[01:15:36.798] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:36.798] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
+[01:15:36.990] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:15:36.990] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:15:36.990] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:15:36.990] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:15:36.990] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:15:38.119] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:38.119] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
+[01:15:38.119] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:38.119] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
+[01:15:40.873] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:40.873] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[01:15:40.873] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:15:40.873] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:21:38.508] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:21:38.508] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[03:21:38.805] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -415,7 +309,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/payment-r..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -433,39 +327,200 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:32:16.455] Browser LOG     AuthContext: initializing auth...
-[00:32:16.455] Browser LOG     [API Request] No Token attached
-[00:32:16.455] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:32:16.848] Browser LOG     AuthContext: washToken success
-[00:32:16.848] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:32:16.848] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:32:16.848] Browser LOG     AuthContext: fetchUser success {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-01T09:28:48.006Z"}
-[00:32:16.848] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+[03:21:38.805] Browser LOG     AuthContext: initializing auth...
+[03:21:38.805] Browser LOG     [API Request] No Token attached
+[03:21:38.805] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[03:21:39.391] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:275:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:396:30)","status":401}
+[03:21:39.391] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:32:16.848] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:32:19.846] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:32:19.846] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:32:19.846] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:32:19.846] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:32:19.846] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:33:36.106] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:33:36.106] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:33:36.106] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:33:36.106] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:33:37.320] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:33:37.320] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:33:37.320] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:33:37.320] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:33:37.320] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:33:38.318] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:33:38.319] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:33:38.319] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:33:38.319] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:34:04.283] Server  LOG     ✓ Compiled in 2.7s
-[00:39:20.778] Server  LOG     ✓ Compiled in 6.2s
-[00:39:47.092] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:39:47.092] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:39:47.454] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[03:21:39.391] Browser LOG     [API Request] No Token attached
+[03:21:39.391] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:21:39.391] Browser LOG     [API Request] No Token attached
+[03:21:39.391] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:21:59.270] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[03:22:07.695] Browser LOG     [API Request] No Token attached
+[03:22:07.695] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[03:22:08.609] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:22:08.609] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:22:08.609] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:22:08.609] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:22:08.609] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:22:08.609] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:22:08.609] Browser LOG     AuthContext: fetchUser success {"address":"Số 16, xóm 4, Đỗ Xá, Vạn Điểm Thường Tín, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg","created_at":"2026-02-21T11:21:32.554Z","dateOfBirth":"2003-08-08T00:00:00.000Z","email":"cuyenbaongoc05061011@gmail.com","fullName":"Cù Thị Hải Yến","gender":"FEMALE","id":"e9a1cbca-5c8b-4d32-bab9-5e8a709bf350","phone":"0877505255","qualifications":null,"rating":0,"role":"DOCTOR","specialization":null,"updated_at":"2026-03-02T09:54:42.391Z","work_place":null}
+[03:22:11.531] Browser LOG     ProfilePage: user updated {"address":"Số 16, xóm 4, Đỗ Xá, Vạn Điểm Thường Tín, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg","created_at":"2026-02-21T11:21:32.554Z","dateOfBirth":"2003-08-08T00:00:00.000Z","email":"cuyenbaongoc05061011@gmail.com","fullName":"Cù Thị Hải Yến","gender":"FEMALE","id":"e9a1cbca-5c8b-4d32-bab9-5e8a709bf350","phone":"0877505255","qualifications":null,"rating":0,"role":"DOCTOR","specialization":null,"updated_at":"2026-03-02T09:54:42.391Z","work_place":null}
+[03:22:11.531] Browser LOG     ProfilePage: user updated {"address":"Số 16, xóm 4, Đỗ Xá, Vạn Điểm Thường Tín, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg","created_at":"2026-02-21T11:21:32.554Z","dateOfBirth":"2003-08-08T00:00:00.000Z","email":"cuyenbaongoc05061011@gmail.com","fullName":"Cù Thị Hải Yến","gender":"FEMALE","id":"e9a1cbca-5c8b-4d32-bab9-5e8a709bf350","phone":"0877505255","qualifications":null,"rating":0,"role":"DOCTOR","specialization":null,"updated_at":"2026-03-02T09:54:42.391Z","work_place":null}
+[03:22:11.531] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:22:11.531] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:22:11.531] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:22:11.531] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:22:34.500] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:22:34.500] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
+[03:22:35.131] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:22:35.131] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:22:35.248] Browser LOG     AuthContext: fetchUser success {"address":"Số 16, xóm 4, Đỗ Xá, Vạn Điểm Thường Tín, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg","created_at":"2026-02-21T11:21:32.554Z","dateOfBirth":"2003-08-08T00:00:00.000Z","email":"cuyenbaongoc05061011@gmail.com","fullName":"Cù Thị Hải Yến","gender":"FEMALE","id":"e9a1cbca-5c8b-4d32-bab9-5e8a709bf350","phone":"0877505255","qualifications":"TS.BS","rating":0,"role":"DOCTOR","specialization":"Da liễu thẩm mỹ","updated_at":"2026-03-02T09:54:42.391Z","work_place":"Bệnh viện Da liễu Sài Gòn"}
+[03:22:35.248] Browser LOG     Doctor info updated successfully
+[03:22:35.248] Browser LOG     ProfilePage: user updated {"address":"Số 16, xóm 4, Đỗ Xá, Vạn Điểm Thường Tín, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg","created_at":"2026-02-21T11:21:32.554Z","dateOfBirth":"2003-08-08T00:00:00.000Z","email":"cuyenbaongoc05061011@gmail.com","fullName":"Cù Thị Hải Yến","gender":"FEMALE","id":"e9a1cbca-5c8b-4d32-bab9-5e8a709bf350","phone":"0877505255","qualifications":"TS.BS","rating":0,"role":"DOCTOR","specialization":"Da liễu thẩm mỹ","updated_at":"2026-03-02T09:54:42.391Z","work_place":"Bệnh viện Da liễu Sài Gòn"}
+[03:22:35.248] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:22:35.248] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:22:37.966] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:22:37.966] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/logout
+[03:22:38.232] Browser LOG     ProfilePage: user updated null
+[03:22:46.426] Browser LOG     [API Request] No Token attached
+[03:22:46.426] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[03:22:46.426] Browser ERROR   Login failed: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"email\":\"cuyen05061011@gmail.com\",\"password\":\"Duck130603@\",\"rememberMe\":false}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/login","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async login (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:220:22)\n    at async handleLogin (http://localhost:3000/_next/static/chunks/src_app_login_page_tsx_a6b4ed9b._.js:68:13)","status":404}
+[03:22:55.042] Browser LOG     [API Request] No Token attached
+[03:22:55.042] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[03:22:55.042] Browser ERROR   Login failed: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"email\":\"cuyenbaongoc@gmail.com\",\"password\":\"Duck130603@\",\"rememberMe\":false}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/login","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async login (http://localhost:3000/_next/static/chunks/src_fc12f1f7._.js:220:22)\n    at async handleLogin (http://localhost:3000/_next/static/chunks/src_app_login_page_tsx_a6b4ed9b._.js:68:13)","status":404}
+[03:23:07.153] Browser LOG     [API Request] No Token attached
+[03:23:07.153] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[03:23:07.961] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:07.961] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:23:07.961] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:07.961] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:23:07.961] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:07.961] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:23:07.961] Browser LOG     AuthContext: fetchUser success {"address":"Xóm 4, Đỗ Xá, Vạn Nhất, Thường Tín, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg","created_at":"2026-02-25T01:59:29.531Z","dateOfBirth":"2003-08-08T00:00:00.000Z","email":"haiyenbaongoc@gmail.com","fullName":"Cù Thị Hải Nê","gender":"FEMALE","id":"f32eefb5-d583-405e-8516-12bd9c7add21","phone":"0877505256","qualifications":null,"rating":0,"role":"DOCTOR","specialization":null,"updated_at":"2026-03-02T09:55:41.733Z","work_place":null}
+[03:23:08.800] Browser LOG     ProfilePage: user updated {"address":"Xóm 4, Đỗ Xá, Vạn Nhất, Thường Tín, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg","created_at":"2026-02-25T01:59:29.531Z","dateOfBirth":"2003-08-08T00:00:00.000Z","email":"haiyenbaongoc@gmail.com","fullName":"Cù Thị Hải Nê","gender":"FEMALE","id":"f32eefb5-d583-405e-8516-12bd9c7add21","phone":"0877505256","qualifications":null,"rating":0,"role":"DOCTOR","specialization":null,"updated_at":"2026-03-02T09:55:41.733Z","work_place":null}
+[03:23:08.800] Browser LOG     ProfilePage: user updated {"address":"Xóm 4, Đỗ Xá, Vạn Nhất, Thường Tín, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg","created_at":"2026-02-25T01:59:29.531Z","dateOfBirth":"2003-08-08T00:00:00.000Z","email":"haiyenbaongoc@gmail.com","fullName":"Cù Thị Hải Nê","gender":"FEMALE","id":"f32eefb5-d583-405e-8516-12bd9c7add21","phone":"0877505256","qualifications":null,"rating":0,"role":"DOCTOR","specialization":null,"updated_at":"2026-03-02T09:55:41.733Z","work_place":null}
+[03:23:08.800] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:08.800] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:23:08.800] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:08.800] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:23:20.458] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:20.458] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
+[03:23:21.180] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:21.180] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:23:21.180] Browser LOG     AuthContext: fetchUser success {"address":"Xóm 4, Đỗ Xá, Vạn Nhất, Thường Tín, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg","created_at":"2026-02-25T01:59:29.531Z","dateOfBirth":"2003-08-08T00:00:00.000Z","email":"haiyenbaongoc@gmail.com","fullName":"Cù Thị Hải Nê","gender":"FEMALE","id":"f32eefb5-d583-405e-8516-12bd9c7add21","phone":"0877505256","qualifications":"BS.CKII","rating":0,"role":"DOCTOR","specialization":"Da liễu bệnh lý & miễn dịch","updated_at":"2026-03-02T09:55:41.733Z","work_place":"Bệnh viện Chợ Rẫy"}
+[03:23:21.180] Browser LOG     Doctor info updated successfully
+[03:23:21.180] Browser LOG     ProfilePage: user updated {"address":"Xóm 4, Đỗ Xá, Vạn Nhất, Thường Tín, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg","created_at":"2026-02-25T01:59:29.531Z","dateOfBirth":"2003-08-08T00:00:00.000Z","email":"haiyenbaongoc@gmail.com","fullName":"Cù Thị Hải Nê","gender":"FEMALE","id":"f32eefb5-d583-405e-8516-12bd9c7add21","phone":"0877505256","qualifications":"BS.CKII","rating":0,"role":"DOCTOR","specialization":"Da liễu bệnh lý & miễn dịch","updated_at":"2026-03-02T09:55:41.733Z","work_place":"Bệnh viện Chợ Rẫy"}
+[03:23:21.180] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:21.180] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:23:22.743] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:22.743] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/logout
+[03:23:23.024] Browser LOG     ProfilePage: user updated null
+[03:23:36.493] Browser LOG     [API Request] No Token attached
+[03:23:36.493] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[03:23:37.313] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:37.313] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:23:37.313] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:37.313] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:23:37.313] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:37.313] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:23:37.313] Browser LOG     AuthContext: fetchUser success {"address":"Thôn Hóa Lành, xã Ba Sáu, Thanh Hóa","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg","created_at":"2026-02-25T02:03:15.766Z","dateOfBirth":"2003-12-12T00:00:00.000Z","email":"tuanhieppham@gmail.com","fullName":"Phạm Tuấn Hiệp","gender":"MALE","id":"e20f5875-d743-4478-8824-45f7cb8cd188","phone":"0943122828","qualifications":null,"rating":0,"role":"DOCTOR","specialization":null,"updated_at":"2026-03-02T09:56:11.100Z","work_place":null}
+[03:23:38.108] Browser LOG     ProfilePage: user updated {"address":"Thôn Hóa Lành, xã Ba Sáu, Thanh Hóa","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg","created_at":"2026-02-25T02:03:15.766Z","dateOfBirth":"2003-12-12T00:00:00.000Z","email":"tuanhieppham@gmail.com","fullName":"Phạm Tuấn Hiệp","gender":"MALE","id":"e20f5875-d743-4478-8824-45f7cb8cd188","phone":"0943122828","qualifications":null,"rating":0,"role":"DOCTOR","specialization":null,"updated_at":"2026-03-02T09:56:11.100Z","work_place":null}
+[03:23:38.108] Browser LOG     ProfilePage: user updated {"address":"Thôn Hóa Lành, xã Ba Sáu, Thanh Hóa","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg","created_at":"2026-02-25T02:03:15.766Z","dateOfBirth":"2003-12-12T00:00:00.000Z","email":"tuanhieppham@gmail.com","fullName":"Phạm Tuấn Hiệp","gender":"MALE","id":"e20f5875-d743-4478-8824-45f7cb8cd188","phone":"0943122828","qualifications":null,"rating":0,"role":"DOCTOR","specialization":null,"updated_at":"2026-03-02T09:56:11.100Z","work_place":null}
+[03:23:38.108] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:38.108] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:23:38.108] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:38.108] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:23:50.180] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:50.180] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
+[03:23:50.771] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:50.771] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:23:50.771] Browser LOG     AuthContext: fetchUser success {"address":"Thôn Hóa Lành, xã Ba Sáu, Thanh Hóa","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg","created_at":"2026-02-25T02:03:15.766Z","dateOfBirth":"2003-12-12T00:00:00.000Z","email":"tuanhieppham@gmail.com","fullName":"Phạm Tuấn Hiệp","gender":"MALE","id":"e20f5875-d743-4478-8824-45f7cb8cd188","phone":"0943122828","qualifications":"ThS.BS","rating":0,"role":"DOCTOR","specialization":"U & ung thư da","updated_at":"2026-03-02T09:56:11.100Z","work_place":"Bệnh viên K Tân Triều"}
+[03:23:50.771] Browser LOG     Doctor info updated successfully
+[03:23:50.771] Browser LOG     ProfilePage: user updated {"address":"Thôn Hóa Lành, xã Ba Sáu, Thanh Hóa","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg","created_at":"2026-02-25T02:03:15.766Z","dateOfBirth":"2003-12-12T00:00:00.000Z","email":"tuanhieppham@gmail.com","fullName":"Phạm Tuấn Hiệp","gender":"MALE","id":"e20f5875-d743-4478-8824-45f7cb8cd188","phone":"0943122828","qualifications":"ThS.BS","rating":0,"role":"DOCTOR","specialization":"U & ung thư da","updated_at":"2026-03-02T09:56:11.100Z","work_place":"Bệnh viên K Tân Triều"}
+[03:23:50.771] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:50.771] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:23:51.618] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:51.618] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/logout
+[03:23:51.838] Browser LOG     ProfilePage: user updated null
+[03:24:04.175] Browser LOG     [API Request] No Token attached
+[03:24:04.175] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[03:24:05.005] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:24:05.005] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:24:05.005] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:24:05.005] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:24:05.005] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:24:05.005] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:24:05.005] Browser LOG     AuthContext: fetchUser success {"address":"An Mỹ, Mỹ Đức, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg","created_at":"2026-02-25T01:54:08.155Z","dateOfBirth":"2003-03-04T00:00:00.000Z","email":"thangka4323@gmail.com","fullName":"Trương Quang Thắng","gender":"MALE","id":"be64dd66-379a-43f8-a4bd-4e7e75ff730b","phone":"0943112828","qualifications":null,"rating":0,"role":"DOCTOR","specialization":null,"updated_at":"2026-03-02T09:56:38.809Z","work_place":null}
+[03:24:05.690] Browser LOG     ProfilePage: user updated {"address":"An Mỹ, Mỹ Đức, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg","created_at":"2026-02-25T01:54:08.155Z","dateOfBirth":"2003-03-04T00:00:00.000Z","email":"thangka4323@gmail.com","fullName":"Trương Quang Thắng","gender":"MALE","id":"be64dd66-379a-43f8-a4bd-4e7e75ff730b","phone":"0943112828","qualifications":null,"rating":0,"role":"DOCTOR","specialization":null,"updated_at":"2026-03-02T09:56:38.809Z","work_place":null}
+[03:24:05.690] Browser LOG     ProfilePage: user updated {"address":"An Mỹ, Mỹ Đức, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg","created_at":"2026-02-25T01:54:08.155Z","dateOfBirth":"2003-03-04T00:00:00.000Z","email":"thangka4323@gmail.com","fullName":"Trương Quang Thắng","gender":"MALE","id":"be64dd66-379a-43f8-a4bd-4e7e75ff730b","phone":"0943112828","qualifications":null,"rating":0,"role":"DOCTOR","specialization":null,"updated_at":"2026-03-02T09:56:38.809Z","work_place":null}
+[03:24:05.690] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:24:05.690] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:24:05.690] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:24:05.690] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:24:22.847] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:24:22.847] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
+[03:24:23.438] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:24:23.438] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:24:23.559] Browser LOG     AuthContext: fetchUser success {"address":"An Mỹ, Mỹ Đức, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg","created_at":"2026-02-25T01:54:08.155Z","dateOfBirth":"2003-03-04T00:00:00.000Z","email":"thangka4323@gmail.com","fullName":"Trương Quang Thắng","gender":"MALE","id":"be64dd66-379a-43f8-a4bd-4e7e75ff730b","phone":"0943112828","qualifications":"PGS.TS.BS","rating":0,"role":"DOCTOR","specialization":"Nhiễm trùng da & ký sinh trùng","updated_at":"2026-03-02T09:56:38.809Z","work_place":"Bệnh viện Bưu điện Hà Đông"}
+[03:24:23.559] Browser LOG     Doctor info updated successfully
+[03:24:23.559] Browser LOG     ProfilePage: user updated {"address":"An Mỹ, Mỹ Đức, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg","created_at":"2026-02-25T01:54:08.155Z","dateOfBirth":"2003-03-04T00:00:00.000Z","email":"thangka4323@gmail.com","fullName":"Trương Quang Thắng","gender":"MALE","id":"be64dd66-379a-43f8-a4bd-4e7e75ff730b","phone":"0943112828","qualifications":"PGS.TS.BS","rating":0,"role":"DOCTOR","specialization":"Nhiễm trùng da & ký sinh trùng","updated_at":"2026-03-02T09:56:38.809Z","work_place":"Bệnh viện Bưu điện Hà Đông"}
+[03:24:23.559] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:24:23.559] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:24:25.358] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:24:25.358] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/logout
+[03:24:25.628] Browser LOG     ProfilePage: user updated null
+[03:24:43.485] Browser LOG     [API Request] No Token attached
+[03:24:43.485] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[03:24:44.231] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:24:44.232] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:24:44.232] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:24:44.232] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:24:44.232] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:24:44.232] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:24:44.232] Browser LOG     AuthContext: fetchUser success {"address":"Giao Thủy, Nam Định","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg","created_at":"2026-02-25T02:05:29.698Z","dateOfBirth":"2003-03-12T00:00:00.000Z","email":"ducky1203@gmail.com","fullName":"Đỗ Ngọc Đức","gender":"MALE","id":"00a1545a-78c6-4d96-926b-9b13197be34e","phone":"0943132828","qualifications":null,"rating":0,"role":"DOCTOR","specialization":null,"updated_at":"2026-03-02T09:57:18.054Z","work_place":null}
+[03:24:46.730] Browser LOG     ProfilePage: user updated {"address":"Giao Thủy, Nam Định","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg","created_at":"2026-02-25T02:05:29.698Z","dateOfBirth":"2003-03-12T00:00:00.000Z","email":"ducky1203@gmail.com","fullName":"Đỗ Ngọc Đức","gender":"MALE","id":"00a1545a-78c6-4d96-926b-9b13197be34e","phone":"0943132828","qualifications":null,"rating":0,"role":"DOCTOR","specialization":null,"updated_at":"2026-03-02T09:57:18.054Z","work_place":null}
+[03:24:46.730] Browser LOG     ProfilePage: user updated {"address":"Giao Thủy, Nam Định","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg","created_at":"2026-02-25T02:05:29.698Z","dateOfBirth":"2003-03-12T00:00:00.000Z","email":"ducky1203@gmail.com","fullName":"Đỗ Ngọc Đức","gender":"MALE","id":"00a1545a-78c6-4d96-926b-9b13197be34e","phone":"0943132828","qualifications":null,"rating":0,"role":"DOCTOR","specialization":null,"updated_at":"2026-03-02T09:57:18.054Z","work_place":null}
+[03:24:46.730] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:24:46.730] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:24:46.730] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:24:46.730] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:25:22.806] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:25:22.806] Browser LOG     [API Request] PATCH http://localhost:4000/v1/doctors/update-info
+[03:25:23.472] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:25:23.472] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:25:23.472] Browser LOG     AuthContext: fetchUser success {"address":"Giao Thủy, Nam Định","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg","created_at":"2026-02-25T02:05:29.698Z","dateOfBirth":"2003-03-12T00:00:00.000Z","email":"ducky1203@gmail.com","fullName":"Đỗ Ngọc Đức","gender":"MALE","id":"00a1545a-78c6-4d96-926b-9b13197be34e","phone":"0943132828","qualifications":"BS.CKI","rating":0,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-03-02T09:57:18.054Z","work_place":"Bệnh viện Thành Phố Nam Định"}
+[03:25:23.472] Browser LOG     Doctor info updated successfully
+[03:25:23.472] Browser LOG     ProfilePage: user updated {"address":"Giao Thủy, Nam Định","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg","created_at":"2026-02-25T02:05:29.698Z","dateOfBirth":"2003-03-12T00:00:00.000Z","email":"ducky1203@gmail.com","fullName":"Đỗ Ngọc Đức","gender":"MALE","id":"00a1545a-78c6-4d96-926b-9b13197be34e","phone":"0943132828","qualifications":"BS.CKI","rating":0,"role":"DOCTOR","specialization":"Ngoại khoa da liễu","updated_at":"2026-03-02T09:57:18.054Z","work_place":"Bệnh viện Thành Phố Nam Định"}
+[03:25:23.472] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:25:23.472] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:25:39.166] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:25:39.166] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/logout
+[03:25:39.787] Browser LOG     ProfilePage: user updated null
+[03:25:45.061] Browser LOG     [API Request] No Token attached
+[03:25:45.061] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[03:25:45.653] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:25:45.653] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:25:45.653] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:25:45.653] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:25:45.653] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:25:45.653] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:25:45.653] Browser LOG     AuthContext: fetchUser success {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T09:58:19.350Z"}
+[03:25:47.799] Browser LOG     ProfilePage: user updated {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T09:58:19.350Z"}
+[03:25:47.799] Browser LOG     ProfilePage: user updated {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T09:58:19.350Z"}
+[03:25:47.799] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:25:47.799] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:25:47.799] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:25:47.799] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:26:28.669] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:26:28.669] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
+[03:26:28.670] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:26:28.670] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
+[03:27:09.007] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:27:09.007] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:27:09.007] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:27:09.007] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:27:21.323] Server  LOG     ✓ Compiled in 692ms
+[03:27:45.255] Browser LOG     ProfilePage: user updated {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T09:58:19.350Z"}
+[03:27:45.255] Browser LOG     ProfilePage: user updated {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T09:58:19.350Z"}
+[03:27:45.255] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:27:45.255] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:27:45.255] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:27:45.255] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:30:14.475] Server  LOG     ✓ Compiled in 824ms
+[03:30:58.491] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:30:58.491] Browser LOG     [API Request] PATCH http://localhost:4000/v1/users/me/medical-info
+[03:30:59.214] Browser LOG     Medical info updated successfully
+[03:31:19.990] Server  LOG     ✓ Compiled in 884ms
+[03:31:20.191] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[03:32:03.578] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:32:03.578] Browser LOG     [API Request] PATCH http://localhost:4000/v1/users/me/medical-info
+[03:32:04.040] Browser LOG     Medical info updated successfully
+[03:34:28.559] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:34:28.748] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -483,7 +538,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/doctors" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/profile" notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -501,36 +556,60 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:39:47.454] Browser LOG     AuthContext: initializing auth...
-[00:39:47.454] Browser LOG     [API Request] No Token attached
-[00:39:47.454] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:39:49.133] Browser LOG     AuthContext: washToken success
-[00:39:49.133] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:39:49.133] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:39:49.133] Browser LOG     AuthContext: fetchUser success {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-01T09:36:20.334Z"}
-[00:39:49.133] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+[03:34:28.748] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[03:34:28.748] Browser LOG     AuthContext: initializing auth...
+[03:34:28.748] Browser LOG     [API Request] No Token attached
+[03:34:28.748] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[03:34:29.524] Browser LOG     AuthContext: washToken success
+[03:34:29.524] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:34:29.524] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:34:29.524] Browser LOG     AuthContext: fetchUser success {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:07:03.330Z"}
+[03:34:29.524] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:39:49.133] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:39:49.133] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:39:49.133] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:39:49.133] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:39:49.396] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:39:49.396] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:39:49.397] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:39:49.397] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:39:49.397] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:39:49.397] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:39:52.711] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:39:52.711] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:39:52.711] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:39:52.712] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:40:06.770] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:40:06.770] Browser LOG     [API Request] POST http://localhost:4000/v1/users/booking/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:40:11.270] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:40:11.270] Browser LOG     [API Request] POST http://localhost:4000/v1/payments/momo/create
-[00:41:05.716] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:41:07.010] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[03:34:29.524] Browser LOG     ProfilePage: user updated {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:07:03.330Z"}
+[03:34:29.524] Browser LOG     ProfilePage: user updated {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:07:03.330Z"}
+[03:34:29.524] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:34:29.524] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:34:29.524] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:34:29.524] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:34:44.379] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[03:34:44.379] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:34:44.379] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:34:44.379] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:34:44.379] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
+[03:34:48.125] Server  LOG     ○ Compiling /huong-dan-kham ...
+[03:36:07.595] Server  LOG     ✓ Compiled in 200ms
+[03:36:26.235] Server  LOG     ✓ Compiled in 271ms
+[03:38:32.218] Browser LOG     ProfilePage: user updated {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:07:03.330Z"}
+[03:38:32.218] Browser LOG     ProfilePage: user updated {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:07:03.330Z"}
+[03:38:32.218] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:38:32.218] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:38:32.218] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:38:32.218] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:38:33.466] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:38:33.466] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
+[03:38:33.466] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:38:33.466] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
+[03:38:36.392] Browser LOG     ProfilePage: user updated {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:07:03.330Z"}
+[03:38:36.392] Browser LOG     ProfilePage: user updated {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:07:03.330Z"}
+[03:38:36.392] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:38:36.392] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:38:36.392] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:38:36.392] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:38:55.447] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:38:55.447] Browser LOG     [API Request] PATCH http://localhost:4000/v1/users/me
+[03:38:55.447] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:38:55.447] Browser LOG     [API Request] PATCH http://localhost:4000/v1/users/me/medical-info
+[03:38:56.448] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:38:56.449] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:38:56.449] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:11:30.225Z"}
+[03:38:56.449] Browser LOG     ProfilePage: user updated {"address":"Phú Minh","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:11:30.225Z"}
+[03:38:56.449] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:38:56.449] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:39:46.795] Server  LOG     ✓ Compiled in 272ms
+[03:43:11.944] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:43:11.944] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[03:43:12.134] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -548,7 +627,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/payment-r..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/profile" notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -566,40 +645,49 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:41:07.011] Browser LOG     AuthContext: initializing auth...
-[00:41:07.011] Browser LOG     [API Request] No Token attached
-[00:41:07.011] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:41:07.011] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:41:07.011] Browser LOG     AuthContext: washToken success
-[00:41:07.011] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:41:07.011] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:41:07.011] Browser LOG     AuthContext: fetchUser success {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-01T09:37:37.960Z"}
-[00:41:07.011] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+[03:43:12.134] Browser LOG     AuthContext: initializing auth...
+[03:43:12.134] Browser LOG     [API Request] No Token attached
+[03:43:12.134] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[03:43:12.934] Browser LOG     AuthContext: washToken success
+[03:43:12.934] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:43:12.934] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:43:12.934] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:15:46.740Z"}
+[03:43:12.934] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:44:22.106] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:44:22.106] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:44:22.106] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:44:22.106] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:44:22.106] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:47:55.949] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:47:55.949] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:47:55.949] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:47:55.949] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:47:56.286] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:47:56.286] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:47:56.286] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:47:56.286] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:47:56.286] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:47:57.679] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:47:57.679] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:47:57.679] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:47:57.679] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:48:12.775] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:48:12.775] Browser LOG     [API Request] POST http://localhost:4000/v1/users/booking/ce93ea53-2a53-4dd4-8228-01699862e22b
-[00:48:15.515] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:48:15.515] Browser LOG     [API Request] POST http://localhost:4000/v1/payments/momo/create
-[00:48:38.129] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:48:38.440] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[03:43:12.934] Browser LOG     ProfilePage: user updated {"address":"Phú Minh","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:15:46.740Z"}
+[03:43:12.934] Browser LOG     ProfilePage: user updated {"address":"Phú Minh","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:15:46.740Z"}
+[03:43:12.934] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:43:12.934] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:43:12.934] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:43:12.934] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:43:21.766] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:43:21.766] Browser LOG     [API Request] PATCH http://localhost:4000/v1/users/me
+[03:43:21.766] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:43:21.766] Browser LOG     [API Request] PATCH http://localhost:4000/v1/users/me/medical-info
+[03:43:22.315] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:43:22.315] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:43:22.315] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"FEMALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:15:55.974Z"}
+[03:43:22.315] Browser LOG     ProfilePage: user updated {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"FEMALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:15:55.974Z"}
+[03:43:22.315] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:43:22.315] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:43:55.092] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:43:55.092] Browser LOG     [API Request] PATCH http://localhost:4000/v1/users/me
+[03:43:55.092] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:43:55.092] Browser LOG     [API Request] PATCH http://localhost:4000/v1/users/me/medical-info
+[03:43:55.824] Browser ERROR   Failed to save: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","data":"{\"fullName\":\"Đào Quang Nê\",\"phone\":\"0943192828\",\"gender\":\"FEMALE\",\"dateOfBirth\":\"2003-06-13\",\"address\":\"Phú Xuyên\"}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MjQ3MTc0NywiZXhwIjoxNzcyNDcyNjQ3fQ.uIIjKEzpEFoe_mjJ7maYJ2lmp6ZmPVDcJZDAtHzvLpU","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"patch","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/users/me","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7939:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8457:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9263:49)\n    at async Object.updateProfile (http://localhost:3000/_next/static/chunks/src_e4f9efb7._.js:21:26)\n    at async Promise.all (index 0)\n    at async handleSave (http://localhost:3000/_next/static/chunks/src_e4f9efb7._.js:182:50)","status":500}
+[03:45:31.148] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:45:31.148] Browser LOG     [API Request] PATCH http://localhost:4000/v1/users/me
+[03:45:31.148] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:45:31.148] Browser LOG     [API Request] PATCH http://localhost:4000/v1/users/me/medical-info
+[03:45:31.926] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:45:31.926] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:45:31.926] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:18:05.720Z"}
+[03:45:31.926] Browser LOG     ProfilePage: user updated {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:18:05.720Z"}
+[03:45:31.926] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:45:31.926] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:45:36.620] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:45:36.620] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[03:45:37.021] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -617,7 +705,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/payment-r..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/profile" notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -635,24 +723,18 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:48:38.440] Browser LOG     AuthContext: initializing auth...
-[00:48:38.440] Browser LOG     [API Request] No Token attached
-[00:48:38.440] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:48:38.777] Browser LOG     AuthContext: washToken success
-[00:48:38.777] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:48:38.777] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:48:39.018] Browser LOG     AuthContext: fetchUser success {"address":null,"created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":null,"email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":null,"id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-01T09:45:10.007Z"}
-[00:48:39.018] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+[03:45:37.021] Browser LOG     AuthContext: initializing auth...
+[03:45:37.021] Browser LOG     [API Request] No Token attached
+[03:45:37.021] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[03:45:37.333] Browser LOG     AuthContext: washToken success
+[03:45:37.334] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:45:37.334] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:45:37.334] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:18:11.020Z"}
+[03:45:37.334] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 75].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:48:39.018] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:48:54.344] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:48:54.344] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:48:54.344] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:48:54.344] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:48:54.344] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/public
-[00:48:59.521] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:48:59.521] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
-[00:48:59.521] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:48:59.521] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/appointments
-[00:48:59.521] Browser ERROR   Failed to fetch appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MjM4MzUxMCwiZXhwIjoxNzcyMzg0NDEwfQ.lPj6WvQeHzWQpUZ1rbOJABZS3AwEWt86rVtKd8As36s","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/users/me/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async getMyAppointments (http://localhost:3000/_next/static/chunks/src_fe375e1b._.js:20:22)\n    at async AppointmentsPage.useEffect.fetchAppointments (http://localhost:3000/_next/static/chunks/src_fe375e1b._.js:69:38)","status":404}
-[00:48:59.521] Browser ERROR   Failed to fetch appointments: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MjM4MzUxMCwiZXhwIjoxNzcyMzg0NDEwfQ.lPj6WvQeHzWQpUZ1rbOJABZS3AwEWt86rVtKd8As36s","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/users/me/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f7e903bc._.js:9207:49)\n    at async getMyAppointments (http://localhost:3000/_next/static/chunks/src_fe375e1b._.js:20:22)\n    at async AppointmentsPage.useEffect.fetchAppointments (http://localhost:3000/_next/static/chunks/src_fe375e1b._.js:69:38)","status":404}
+[03:45:37.334] Browser LOG     ProfilePage: user updated {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:18:11.020Z"}
+[03:45:37.334] Browser LOG     ProfilePage: user updated {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-02T10:18:11.020Z"}
+[03:45:37.334] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:45:37.334] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info
+[03:45:37.334] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:45:37.334] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me/medical-info

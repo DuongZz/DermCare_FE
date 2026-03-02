@@ -32,6 +32,18 @@ const userService = {
         const response = await apiClient.patch<{ success: boolean; data: MedicalInfo }>('/users/me/medical-info', data);
         return response.data;
     },
+
+    updateProfile: async (data: {
+        fullName?: string;
+        phone?: string;
+        gender?: string;
+        dateOfBirth?: string;
+        address?: string;
+    }) => {
+        const response = await apiClient.patch<{ success: boolean; message: string }>('/users/me', data);
+        return response.data;
+    },
 };
+
 
 export default userService;
