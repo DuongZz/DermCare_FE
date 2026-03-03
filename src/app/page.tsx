@@ -4,10 +4,13 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 import { getPublicDoctors, PublicDoctor } from "@/services/doctorService";
+import userService from "@/services/userService";
+
 
 export default function HomePage() {
   const { isLoggedIn } = useAuth();
   const [doctors, setDoctors] = useState<PublicDoctor[]>([]);
+  const [specializations, setSpecializations] = useState<{ specialization: string; doctorCount: number }[]>([]);
 
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -18,7 +21,16 @@ export default function HomePage() {
         console.error("Failed to fetch doctors:", error);
       }
     };
+    const fetchSpecializations = async () => {
+      try {
+        const data = await userService.getSpecializations();
+        setSpecializations(data);
+      } catch (error) {
+        console.error("Failed to fetch specializations:", error);
+      }
+    };
     fetchDoctors();
+    fetchSpecializations();
   }, []);
 
   return (
@@ -268,9 +280,9 @@ export default function HomePage() {
       </section>
 
       {/* FEATURED DOCTORS */}
-      <section className="bg-white px-4 py-16">
+      <section className="bg-white px-4 py-8">
         <div id="doctors" className="mx-auto max-w-7xl pt-14 -mt-14">
-          <div className="mb-10 text-center">
+          <div className="mb-6 text-center">
             <h2 className="mb-3 text-3xl font-bold text-slate-900 md:text-4xl">
               Bác sĩ tiêu biểu
             </h2>
@@ -285,7 +297,7 @@ export default function HomePage() {
                 key={idx}
                 className="card-elevated flex flex-col overflow-hidden text-center transition hover:shadow-lg h-full"
               >
-                <div className="relative h-52 overflow-hidden bg-gradient-to-br from-dermcare-light to-slate-100 flex-shrink-0">
+                <div className="relative h-44 overflow-hidden bg-gradient-to-br from-dermcare-light to-slate-100 flex-shrink-0">
                   <img
                     src={doctor.avatar || '/default-avatar.png'}
                     alt={doctor.user?.fullName || 'Bác sĩ'}
@@ -322,7 +334,7 @@ export default function HomePage() {
             )}
           </div>
 
-          <div className="mt-8 text-center">
+          <div className="mt-4 text-center">
             <Link
               href="/doctors"
               className="inline-flex items-center gap-2 text-dermcare hover:underline"
@@ -362,34 +374,40 @@ export default function HomePage() {
 
           {/* Grid Container */}
           <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
-            {[
-              { name: "Da liễu Thẩm mỹ", count: "24 bác sĩ", color: "bg-pink-50 text-pink-700 border-pink-100 group-hover:border-pink-300" },
-              { name: "Da liễu Bệnh lý & Miễn dịch", count: "21 bác sĩ", color: "bg-blue-50 text-blue-700 border-blue-100 group-hover:border-blue-300" },
-              { name: "Ngoại khoa Da liễu", count: "12 bác sĩ", color: "bg-emerald-50 text-emerald-700 border-emerald-100 group-hover:border-emerald-300" },
-              { name: "Da liễu Nội khoa", count: "11 bác sĩ", color: "bg-amber-50 text-amber-700 border-amber-100 group-hover:border-amber-300" },
-              { name: "U & Ung thư da", count: "6 bác sĩ", color: "bg-purple-50 text-purple-700 border-purple-100 group-hover:border-purple-300" },
-              { name: "Nhiễm trùng da & Ký sinh trùng", count: "16 bác sĩ", color: "bg-cyan-50 text-cyan-700 border-cyan-100 group-hover:border-cyan-300" },
-            ].map((specialty, idx) => (
-              <div
-                key={idx}
-                className="group cursor-pointer transition hover:-translate-y-1 hover:scale-105 duration-300"
-              >
-                <div className={`flex aspect-square h-full flex-col items-center justify-center overflow-hidden rounded-xl border p-4 text-center shadow-sm hover:shadow-lg transition-all ${specialty.color}`}>
-                  <h3 className="mb-2 line-clamp-2 text-sm font-bold uppercase tracking-wide">
-                    {specialty.name}
-                  </h3>
-                  <p className="text-xs opacity-80 font-medium">{specialty.count}</p>
+            {specializations.length > 0 ? specializations.map((specialty, idx) => {
+              const colorPalette = [
+                "bg-pink-50 text-pink-700 border-pink-100 group-hover:border-pink-300",
+                "bg-blue-50 text-blue-700 border-blue-100 group-hover:border-blue-300",
+                "bg-emerald-50 text-emerald-700 border-emerald-100 group-hover:border-emerald-300",
+                "bg-amber-50 text-amber-700 border-amber-100 group-hover:border-amber-300",
+                "bg-purple-50 text-purple-700 border-purple-100 group-hover:border-purple-300",
+                "bg-cyan-50 text-cyan-700 border-cyan-100 group-hover:border-cyan-300",
+              ];
+              const color = colorPalette[idx % colorPalette.length];
+              return (
+                <div
+                  key={idx}
+                  className="group cursor-pointer transition hover:-translate-y-1 hover:scale-105 duration-300"
+                >
+                  <div className={`flex aspect-square h-full flex-col items-center justify-center overflow-hidden rounded-xl border p-4 text-center shadow-sm hover:shadow-lg transition-all ${color}`}>
+                    <h3 className="mb-2 line-clamp-2 text-sm font-bold uppercase tracking-wide">
+                      {specialty.specialization}
+                    </h3>
+                    <p className="text-xs opacity-80 font-medium">{specialty.doctorCount} bác sĩ</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            }) : (
+              <div className="col-span-full py-8 text-center text-slate-400">Đang tải chuyên khoa...</div>
+            )}
           </div>
         </div>
       </section>
 
       {/* REVIEWS */}
-      <section className="bg-slate-50 px-4 py-16 overflow-hidden">
-        <div id="reviews" className="mx-auto max-w-7xl pt-12 -mt-12">
-          <div className="mb-10 text-center">
+      <section id="reviews" className="bg-slate-50 px-4 py-0 overflow-hidden scroll-mt-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-3 text-center">
             <h2 className="mb-3 text-3xl font-bold text-slate-900 md:text-4xl">
               Đánh giá từ bệnh nhân
             </h2>

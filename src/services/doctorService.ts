@@ -53,7 +53,7 @@ export const getDoctors = async (): Promise<Doctor[]> => {
 
 // Get public doctors catalog
 export const getPublicDoctors = async (): Promise<PublicDoctor[]> => {
-    const { data } = await apiClient.get('/doctors/public');
+    const { data } = await apiClient.get('/users/public-doctors');
     return data.data;
 };
 

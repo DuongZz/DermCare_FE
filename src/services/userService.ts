@@ -43,7 +43,13 @@ const userService = {
         const response = await apiClient.patch<{ success: boolean; message: string }>('/users/me', data);
         return response.data;
     },
+
+    getSpecializations: async (): Promise<{ specialization: string; doctorCount: number }[]> => {
+        const response = await apiClient.get<{ success: boolean; data: { specialization: string; doctorCount: number }[] }>('/users/public-specialization');
+        return response.data.data;
+    },
 };
+
 
 
 export default userService;

@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../src/app/chat/layout.tsx"],"sourcesContent":["export default function ChatLayout({\r\n    children,\r\n}: {\r\n    children: React.ReactNode;\r\n}) {\r\n    return children;\r\n}\r\n"],"names":[],"mappings":"uCAAe,SAAS,EAAW,UAC/B,CAAQ,CAGX,EACG,OAAO,CACX"}
