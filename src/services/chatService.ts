@@ -1,13 +1,8 @@
 import apiClient from '@/lib/apiClient';
 
-export interface Message {
-    id: string;
-    role: 'user' | 'assistant';
-    content: string;
-    image?: string;
-    timestamp: string;
-}
-
+// ============================
+// Types cũ (AI Bot)
+// ============================
 export interface ChatRequest {
     message: string;
     image?: File;
@@ -20,36 +15,110 @@ export interface ChatResponse {
     suggestions?: string[];
 }
 
-// Send chat message to AI
-export const sendChatMessage = async (chatRequest: ChatRequest): Promise<ChatResponse> => {
-    const formData = new FormData();
-    formData.append('message', chatRequest.message);
+// ============================
+// Types mới (Hybrid Conversation)
+// ============================
+export interface ConversationSender {
+    id: string;
+    fullName: string;
+    role: string;
+}
 
-    if (chatRequest.image) {
-        formData.append('image', chatRequest.image);
-    }
+export interface ConversationMessage {
+    id: string;
+    content: string;
+    type: string;
+    timestamp: number;
+    created_at: string;
+    isAiMessage: boolean;
+    conversationId: string;
+    sender: ConversationSender;
+}
 
-    if (chatRequest.sessionId) {
-        formData.append('sessionId', chatRequest.sessionId);
-    }
+export interface Conversation {
+    id: string;
+    type: string;
+    status: string;
+    lastMessage?: string;
+    diagnosisInfo?: any;
+    created_at: string;
+    updated_at: string;
+    patient?: ConversationSender;
+    doctor?: ConversationSender;
+}
 
-    const { data } = await apiClient.post('/ai/chat', formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-    });
+// ============================
+// API REST cho Conversations
+// ============================
 
-    return data;
+/** Tạo hoặc lấy lại conversation AI đang chờ xử lý của bệnh nhân */
+export const createAiConversation = async (): Promise<Conversation> => {
+    const response = await apiClient.post<{ success: boolean; data: Conversation }>('/conversations/ai');
+    return response.data.data;
 };
 
-// Get chat history
-export const getChatHistory = async (sessionId: string): Promise<Message[]> => {
-    const { data } = await apiClient.get(`/ai/chat/${sessionId}`);
-    return data;
+/** Lấy toàn bộ danh sách conversations của user hiện tại */
+export const getConversations = async (): Promise<Conversation[]> => {
+    const response = await apiClient.get<{ success: boolean; data: Conversation[] }>('/conversations');
+    return response.data.data;
 };
 
-// Get all chat sessions
-export const getChatSessions = async (): Promise<any[]> => {
-    const { data } = await apiClient.get('/ai/sessions');
-    return data;
+/** Lấy lich sử tin nhắn của 1 conversation */
+export const getConversationMessages = async (conversationId: string): Promise<ConversationMessage[]> => {
+    const response = await apiClient.get<{ success: boolean; data: ConversationMessage[] }>(
+        `/conversations/${conversationId}/messages`
+    );
+    return response.data.data;
+};
+
+// ============================
+// Gợi ý bác sĩ theo chuyên khoa
+// ============================
+export interface DoctorResult {
+    userId: string;
+    fullName: string;
+    email: string;
+    avatar: string | null;
+    specialization: string;
+    qualifications: string | null;
+    workPlace: string | null;
+    rating: number;
+}
+
+export interface DoctorSchedule {
+    id: string;
+    date: string;
+    startTime: string;
+    endTime: string;
+    availableDate: string;
+    doctorId: string;
+    isBooked: boolean;
+    price?: number;
+}
+
+/** Lấy danh sách bác sĩ theo chuyên khoa (sau khi AI chẩn đoán) */
+export const getDoctorsBySpecialization = async (specialization: string): Promise<DoctorResult[]> => {
+    const response = await apiClient.get<{ success: boolean; data: DoctorResult[] }>(
+        `/conversations/doctors?specialization=${encodeURIComponent(specialization)}`
+    );
+    return response.data.data;
+};
+
+/** Lấy lịch khám công khai của một bác sĩ */
+export const getPublicDoctorSchedule = async (doctorId: string): Promise<DoctorSchedule[]> => {
+    const response = await apiClient.get<{ success: boolean; data: any[] }>(
+        `/users/doctor-schedule/${doctorId}`
+    );
+    // Map dữ liệu trả về từ backend (DoctorSchedule entity) sang DoctorSchedule interface FE
+    const data = response.data.data || response.data;
+    return data.map((slot: any) => ({
+        id: slot.id,
+        date: slot.date,
+        startTime: slot.startTime,
+        endTime: slot.endTime,
+        availableDate: slot.date, // Backend dùng 'date', FE mong đợi 'availableDate' ở một số chỗ
+        isBooked: slot.isBooked,
+        price: slot.price,
+        doctorId: doctorId
+    }));
 };

@@ -11,11 +11,14 @@
   "dependencies": {
     "axios": "^1.13.5",
     "class-variance-authority": "latest",
+    "formik": "^2.4.9",
     "lucide-react": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "tailwind-merge": "latest"
+    "socket.io-client": "^4.8.3",
+    "tailwind-merge": "latest",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@types/node": "latest",
