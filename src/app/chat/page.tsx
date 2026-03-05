@@ -12,6 +12,7 @@ import {
     getConversationMessages,
     getDoctorsBySpecialization,
     getPublicDoctorSchedule,
+    analyzeAiCondition,
     Conversation,
     ConversationMessage,
     DoctorResult,
@@ -28,6 +29,7 @@ export default function ChatPage() {
     const [messages, setMessages] = useState<ConversationMessage[]>([]);
     const [inputText, setInputText] = useState("");
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [selectedImageFile, setSelectedImageFile] = useState<File | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [isConnected, setIsConnected] = useState(false);
     const [showSidebar, setShowSidebar] = useState(true);
@@ -41,6 +43,7 @@ export default function ChatPage() {
     const [bookingDoctorId, setBookingDoctorId] = useState<string | null>(null);
     const [doctorSchedules, setDoctorSchedules] = useState<Record<string, DoctorSchedule[]>>({});
     const [isLoadingSchedule, setIsLoadingSchedule] = useState(false);
+    const [aiStatus, setAiStatus] = useState<string | null>(null);
 
     const fileInputRef = useRef<HTMLInputElement>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -54,12 +57,20 @@ export default function ChatPage() {
     }, [isLoggedIn, router]);
 
     const scrollToBottom = useCallback(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: "auto", block: "end" });
+        }
     }, []);
 
     useEffect(() => {
+        // Cuộn ngay lập tức
         scrollToBottom();
-    }, [messages, scrollToBottom]);
+        // Cuộn chậm 1 nhịp để chờ DOM vẽ xong hoặc ảnh load xong (nếu có)
+        const timeoutId = setTimeout(() => {
+            scrollToBottom();
+        }, 150);
+        return () => clearTimeout(timeoutId);
+    }, [messages, activeConversation, scrollToBottom]);
 
     // Kết nối Socket.io sau khi đã đăng nhập
     useEffect(() => {
@@ -105,21 +116,44 @@ export default function ChatPage() {
 
                 // 2. Chống trùng với tin nhắn optimistic (cùng content, cùng senderId, và mới gửi gần đây)
                 // Chúng ta sẽ thay thế tin nhắn optimistic bằng tin nhắn thực từ server
+                // Với ảnh, content gốc của optimistic là blob URL cục bộ, còn content từ server là URL thật.
+                // Do đó, ta ưu tiên check loại "image" hoặc khớp text nội dung.
                 const optimisticIndex = prev.findIndex(m =>
                     m.id.startsWith("temp-") &&
-                    m.content === msg.content &&
-                    !m.isAiMessage
+                    !m.isAiMessage &&
+                    (
+                        (m.type === "text" && m.content === msg.content) ||
+                        (m.type === "image" && msg.type === "image")
+                    )
                 );
 
                 if (optimisticIndex !== -1) {
                     const newMessages = [...prev];
-                    newMessages[optimisticIndex] = msg; // Ghi đè tin nhắn tạm bằng tin nhắn thật
+                    const optimisticMsg = prev[optimisticIndex];
+
+                    // Giữ lại clientId để React không re-render làm giật hình
+                    // Đối với ảnh, giữ lại blob URL cục bộ để không bị chớp màn hình khi đổi sang URL online
+                    newMessages[optimisticIndex] = {
+                        ...msg,
+                        clientId: optimisticMsg.clientId || optimisticMsg.id,
+                        content: (msg.type === 'image' && optimisticMsg.content.startsWith('blob:')) ? optimisticMsg.content : msg.content
+                    };
                     return newMessages;
                 }
 
                 return [...prev, msg];
             });
-            setIsLoading(false);
+
+            setAiStatus((currentAiStatus) => {
+                if (currentAiStatus && !msg.isAiMessage) {
+                    // Đang chờ AI phân tích, tin nhắn này chỉ là tin nhắn của mình vọng về từ server -> Không tắt loading
+                    return currentAiStatus;
+                }
+
+                // Nếu nhận được tin của AI hoặc đang chat bình thường với bác sĩ -> Tắt loading
+                setIsLoading(false);
+                return null;
+            });
         });
 
         socket.on("error", (err: { message: string }) => {
@@ -176,7 +210,7 @@ export default function ChatPage() {
                 const welcomeMsg: ConversationMessage = {
                     id: `welcome-${Date.now()}`,
                     isAiMessage: true,
-                    content: "Xin chào! 👋 Tôi là **DARA** - Trợ lý AI của Dermcare. Để nhận kết quả chẩn đoán, bạn hãy: 📸 **Tải ảnh** vùng da đang bị bệnh và ✍️ **Mô tả triệu chứng** bạn đang gặp phải. Tôi sẽ phân tích và gợi ý bác sĩ chuyên khoa phù hợp nhất cho bạn!",
+                    content: "Xin chào 👋 Tôi là **DARA** - Trợ lý AI của Dermcare.\n\nĐể nhận kết quả chẩn đoán, bạn hãy:\n📸 **Tải ảnh** vùng da đang bị bệnh.\n✍️ **Mô tả triệu chứng** bạn đang gặp phải.\n\nTôi sẽ phân tích và đưa ra gợi ý phù hợp!\n\n**Lưu ý:** Kết quả chẩn đoán sơ bộ chỉ là số liệu tham khảo. Nếu không chắc chắn về tình trạng bệnh, xin hãy vui lòng đặt lịch khám với bác sĩ để được tư vấn chuẩn nhất.",
                     type: "text",
                     sender: { id: "dara", fullName: "DARA AI", role: "AI" },
                     created_at: new Date().toISOString(),
@@ -217,6 +251,7 @@ export default function ChatPage() {
     const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
+            setSelectedImageFile(file);
             const reader = new FileReader();
             reader.onloadend = () => {
                 setSelectedImage(reader.result as string);
@@ -225,63 +260,124 @@ export default function ChatPage() {
         }
     };
 
-    // Gửi tin nhắn qua Socket
+    // Gửi tin nhắn qua Socket / Hoặc gửi ảnh cho AI phân tích
     const handleSendMessage = async () => {
-        if (!inputText.trim() && !selectedImage) return;
-        if (!activeConversation || !socketRef.current) return;
+        if (!inputText.trim() && !selectedImageFile) return;
+        if (!activeConversation || (!socketRef.current && !selectedImageFile && !inputText.trim())) return;
 
         setIsLoading(true);
         const content = inputText.trim();
+        const imageFile = selectedImageFile;
+
         setInputText("");
         setSelectedImage(null);
+        setSelectedImageFile(null);
+        if (fileInputRef.current) fileInputRef.current.value = "";
 
-        // Optimistic update: Thêm tin nhắn của mình vào UI ngay lập tức
-        const myMessage: ConversationMessage = {
-            id: `temp-${Date.now()}`,
-            content,
-            type: "text",
-            isAiMessage: false,
-            conversationId: activeConversation.id,
-            created_at: new Date().toISOString(),
-            timestamp: Date.now(),
-            sender: currentUser ? {
-                id: String(currentUser.id),
-                fullName: currentUser.fullName,
-                role: currentUser.role
-            } : { id: "me", fullName: "Me", role: "PATIENT" }
-        };
-        setMessages(prev => [...prev, myMessage]);
+        const isAiConsulting = activeConversation.status === 'AI_CONSULTING';
 
-        socketRef.current.emit("send_message", {
-            conversationId: activeConversation.id,
-            content,
-        });
+        // Nếu là phiên chat AI, ta gửi cả ảnh và chữ qua API analyzeAiCondition
+        if (isAiConsulting) {
+            setAiStatus("DARA AI đang phân tích dữ liệu của bạn...");
 
-        // GIẢ LẬP FLOW CHẨN ĐOÁN CHO USER TEST
-        if (selectedImage || content.length > 0) {
-            setTimeout(() => {
-                const diagnosisMsg: ConversationMessage = {
-                    id: `diag-${Date.now()}`,
-                    isAiMessage: true,
-                    content: "Dựa trên hình ảnh và triệu chứng bạn cung cấp, tôi nhận thấy có dấu hiệu của **Viêm da cơ địa**. Đây là một bệnh lý da liễu phổ biến. Bạn hãy bấm nút **Tìm bác sĩ phù hợp** để đặt lịch khám với bác sĩ có cùng chuyên khoa với loại bệnh bạn đang gặp.",
+            // 1. Optimistic Text Message
+            let myTextMessage: ConversationMessage | null = null;
+            if (content) {
+                myTextMessage = {
+                    id: `temp-text-${Date.now()}`,
+                    clientId: `temp-text-${Date.now()}`,
+                    content,
                     type: "text",
-                    sender: { id: "dara", fullName: "DARA AI", role: "AI" },
+                    isAiMessage: false,
+                    conversationId: activeConversation.id,
                     created_at: new Date().toISOString(),
                     timestamp: Date.now(),
-                    conversationId: activeConversation.id
+                    sender: currentUser ? {
+                        id: String(currentUser.id),
+                        fullName: currentUser.fullName,
+                        role: currentUser.role
+                    } : { id: "me", fullName: "Me", role: "PATIENT" }
                 };
-                setMessages(prev => [...prev, diagnosisMsg]);
+                setMessages(prev => [...prev, myTextMessage!]);
+            }
 
-                // Cập nhật diagnosisInfo để hiện nút gợi ý bác sĩ
-                setActiveConversation(prev => prev ? {
-                    ...prev,
-                    diagnosisInfo: {
-                        disease: "Viêm da cơ địa",
-                        specialization: "da liễu"
-                    }
-                } : null);
+            // 2. Optimistic Image Message
+            let tempImageMsg: ConversationMessage | null = null;
+            if (imageFile) {
+                tempImageMsg = {
+                    id: `temp-img-${Date.now()}`,
+                    clientId: `temp-img-${Date.now()}`,
+                    content: URL.createObjectURL(imageFile),
+                    type: "image",
+                    isAiMessage: false,
+                    conversationId: activeConversation.id,
+                    created_at: new Date().toISOString(),
+                    timestamp: Date.now() + 1,
+                    sender: currentUser ? {
+                        id: String(currentUser.id),
+                        fullName: currentUser.fullName,
+                        role: currentUser.role
+                    } : { id: "me", fullName: "Me", role: "PATIENT" }
+                };
+                setMessages(prev => [...prev, tempImageMsg!]);
+            }
+
+            // Gửi API REST đa phương thức
+            try {
+                const analyzeRes = await analyzeAiCondition(activeConversation.id, imageFile, content);
+
+                if (analyzeRes && analyzeRes.aiResult && analyzeRes.aiResult.specialization) {
+                    const newTitle = `Tư vấn: ${analyzeRes.aiResult.disease_name}`;
+                    setActiveConversation(prev => prev ? {
+                        ...prev,
+                        title: newTitle,
+                        diagnosisInfo: {
+                            disease: analyzeRes.aiResult.disease_name,
+                            specialization: analyzeRes.aiResult.specialization
+                        }
+                    } : null);
+
+                    setConversations(prev => prev.map(c =>
+                        c.id === activeConversation.id ? { ...c, title: newTitle } : c
+                    ));
+                }
+            } catch (error) {
+                console.error("Lỗi khi tải dữ liệu đa phương thức hoặc phân tích AI:", error);
+                alert("Có lỗi xảy ra trong quá trình chẩn đoán. Vui lòng thử lại.");
+                setAiStatus(null);
                 setIsLoading(false);
-            }, 1500);
+                // Xóa tin nhắn tạm nếu lỗi
+                if (tempImageMsg) {
+                    setMessages(prev => prev.filter(msg => msg.id !== tempImageMsg!.id));
+                }
+                if (myTextMessage) {
+                    setMessages(prev => prev.filter(msg => msg.id !== myTextMessage!.id));
+                }
+            }
+        } else {
+            // Logic cũ cho Chat với Bác sĩ: Chỉ được gửi websocket văn bản (hiện tại)
+            if (content && socketRef.current) {
+                const myMessage: ConversationMessage = {
+                    id: `temp-${Date.now()}`,
+                    content,
+                    type: "text",
+                    isAiMessage: false,
+                    conversationId: activeConversation.id,
+                    created_at: new Date().toISOString(),
+                    timestamp: Date.now(),
+                    sender: currentUser ? {
+                        id: String(currentUser.id),
+                        fullName: currentUser.fullName,
+                        role: currentUser.role
+                    } : { id: "me", fullName: "Me", role: "PATIENT" }
+                };
+                setMessages(prev => [...prev, myMessage]);
+
+                socketRef.current.emit("send_message", {
+                    conversationId: activeConversation.id,
+                    content,
+                });
+            }
         }
     };
 
@@ -407,7 +503,7 @@ export default function ChatPage() {
                                                 }`}
                                         >
                                             <p className={`text-sm font-medium truncate ${isActive ? "text-dermcare" : "text-slate-900"}`}>
-                                                {conv.lastMessage || "Cuộc hội thoại mới"}
+                                                {conv.title || conv.lastMessage || "Cuộc hội thoại mới"}
                                             </p>
                                             <p className="mt-0.5 text-xs text-slate-500">{formatDate(conv.updated_at)}</p>
                                             <span className={`mt-1 inline-block rounded-full px-2 py-0.5 text-xs font-medium ${conv.status === "AI_CONSULTING"
@@ -505,7 +601,7 @@ export default function ChatPage() {
                                 const isCurrentUser = currentUser && message.sender && String(message.sender.id) === String(currentUser.id);
                                 const isAdminOrDoctor = !message.isAiMessage && !isCurrentUser;
                                 return (
-                                    <div key={message.id} className={`flex ${isCurrentUser ? "justify-end" : "justify-start"}`}>
+                                    <div key={message.clientId || message.id} className={`flex ${isCurrentUser ? "justify-end" : "justify-start"}`}>
                                         {!isCurrentUser && (
                                             <div className="mr-2 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-dermcare to-dermcare-dark text-sm text-white">
                                                 {message.isAiMessage ? "🤖" : "👨‍⚕️"}
@@ -520,7 +616,11 @@ export default function ChatPage() {
                                                     {message.isAiMessage ? "DARA AI" : message.sender?.fullName || "Bác sĩ"}
                                                 </p>
                                             )}
-                                            <p className="whitespace-pre-wrap text-sm">{message.content}</p>
+                                            {message.type === 'image' ? (
+                                                <img src={message.content} alt="Uploaded attachment" className="max-w-full sm:max-w-md w-auto rounded-xl mt-1 object-cover cursor-pointer hover:opacity-90 transition shadow-sm border border-slate-100" onClick={() => window.open(message.content, "_blank")} />
+                                            ) : (
+                                                <div className="whitespace-pre-wrap text-sm" dangerouslySetInnerHTML={{ __html: message.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+                                            )}
                                             <p className={`mt-1 text-xs ${isCurrentUser ? "text-dermcare-light" : "text-slate-500"}`}>
                                                 {formatTime(message.timestamp || message.created_at)}
                                             </p>
@@ -534,11 +634,18 @@ export default function ChatPage() {
                                     <div className="mr-2 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-dermcare to-dermcare-dark text-sm text-white">
                                         🤖
                                     </div>
-                                    <div className="max-w-[75%] rounded-2xl border border-slate-200 bg-white px-4 py-3">
-                                        <div className="flex items-center gap-2">
-                                            <div className="h-2 w-2 animate-bounce rounded-full bg-dermcare" />
-                                            <div className="h-2 w-2 animate-bounce rounded-full bg-dermcare" style={{ animationDelay: "0.2s" }} />
-                                            <div className="h-2 w-2 animate-bounce rounded-full bg-dermcare" style={{ animationDelay: "0.4s" }} />
+                                    <div className="max-w-[75%] rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+                                        <div className="flex flex-col gap-2">
+                                            {aiStatus && (
+                                                <p className="text-sm font-medium text-dermcare italic animate-pulse">
+                                                    {aiStatus}
+                                                </p>
+                                            )}
+                                            <div className="flex items-center gap-1.5 ml-1">
+                                                <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-dermcare" />
+                                                <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-dermcare" style={{ animationDelay: "0.2s" }} />
+                                                <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-dermcare" style={{ animationDelay: "0.4s" }} />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -673,7 +780,11 @@ export default function ChatPage() {
                                     <div className="relative">
                                         <img src={selectedImage} alt="Preview" className="h-20 w-20 rounded-lg border border-slate-200 object-cover" />
                                         <button
-                                            onClick={() => setSelectedImage(null)}
+                                            onClick={() => {
+                                                setSelectedImage(null);
+                                                setSelectedImageFile(null);
+                                                if (fileInputRef.current) fileInputRef.current.value = "";
+                                            }}
                                             className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-xs text-white hover:bg-red-600"
                                         >
                                             ✕

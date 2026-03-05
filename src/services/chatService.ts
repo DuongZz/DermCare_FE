@@ -26,6 +26,7 @@ export interface ConversationSender {
 
 export interface ConversationMessage {
     id: string;
+    clientId?: string;
     content: string;
     type: string;
     timestamp: number;
@@ -40,6 +41,7 @@ export interface Conversation {
     type: string;
     status: string;
     lastMessage?: string;
+    title?: string;
     diagnosisInfo?: any;
     created_at: string;
     updated_at: string;
@@ -67,6 +69,48 @@ export const getConversations = async (): Promise<Conversation[]> => {
 export const getConversationMessages = async (conversationId: string): Promise<ConversationMessage[]> => {
     const response = await apiClient.get<{ success: boolean; data: ConversationMessage[] }>(
         `/conversations/${conversationId}/messages`
+    );
+    return response.data.data;
+};
+
+// ============================
+// Endpoint Phân Tích Hình Ảnh (AI)
+// ============================
+export interface AnalyzeAiResponse {
+    diagnosisId: string;
+    messageId: string;
+    imageUrl: string;
+    aiResult: {
+        disease_name: string;
+        disease_code: string;
+        specialization: string;
+        severity: string;
+        description: string;
+        recommendations: string[];
+        should_see_doctor: boolean;
+        confidence: number;
+    }
+}
+
+/** Tải hình ảnh lên và/hoặc gửi mô tả bệnh cho AI phân tích */
+export const analyzeAiCondition = async (conversationId: string, imageFile: File | null, description: string): Promise<AnalyzeAiResponse> => {
+    const formData = new FormData();
+    if (imageFile) {
+        formData.append('file', imageFile);
+    }
+    if (description.trim()) {
+        formData.append('description', description);
+    }
+
+    const response = await apiClient.post<{ success: boolean; data: AnalyzeAiResponse }>(
+        `/conversations/${conversationId}/analyze`,
+        formData,
+        {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+            timeout: 60000,
+        }
     );
     return response.data.data;
 };

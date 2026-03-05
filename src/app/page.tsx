@@ -58,14 +58,8 @@ export default function HomePage() {
 
             <div className="flex flex-wrap items-center gap-3">
               <Link
-                href="/login"
-                className="inline-flex items-center justify-center rounded-full bg-dermcare px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-dermcare-dark"
-              >
-                Đặt lịch khám đầu tiên
-              </Link>
-              <Link
                 href="/huong-dan-kham"
-                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                className="inline-flex items-center justify-center rounded-full bg-dermcare px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-dermcare-dark"
               >
                 Xem quy trình khám
               </Link>

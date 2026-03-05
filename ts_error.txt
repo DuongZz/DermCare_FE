@@ -1,0 +1,2 @@
+src/app/chat/page.tsx(144,36): error TS2552: Cannot find name 'getConversations'. Did you mean 'setConversations'?
+src/app/chat/page.tsx(205,35): error TS2552: Cannot find name 'createAiConversation'. Did you mean 'setConversations'?

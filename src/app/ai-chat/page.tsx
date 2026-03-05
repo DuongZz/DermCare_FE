@@ -30,7 +30,7 @@ export default function AIChat() {
     const [messages, setMessages] = useState<Message[]>([
         {
             id: "welcome",
-            text: "Xin chào! 👋 Tôi là **DARA** - Trợ lý AI của Dermcare.\n\nĐể nhận kết quả chẩn đoán, bạn hãy:\n\n📸 **Tải ảnh** vùng da đang bị bệnh\n✍️ **Mô tả triệu chứng** bạn đang gặp phải\n\nTôi sẽ phân tích và đưa ra gợi ý phù hợp!",
+            text: "Xin chào 👋 Tôi là **DARA** - Trợ lý AI của Dermcare.\n\nĐể nhận kết quả chẩn đoán, bạn hãy:\n📸 **Tải ảnh** vùng da đang bị bệnh.\n✍️ **Mô tả triệu chứng** bạn đang gặp phải.\n\nTôi sẽ phân tích và đưa ra gợi ý phù hợp!\n\n**Lưu ý:** Kết quả chẩn đoán sơ bộ chỉ là số liệu tham khảo. Nếu không chắc chắn về tình trạng bệnh, xin hãy vui lòng đặt lịch khám với bác sĩ để được tư vấn chuẩn nhất.",
             sender: "ai",
             timestamp: new Date(),
         },
