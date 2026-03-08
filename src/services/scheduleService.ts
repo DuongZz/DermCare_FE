@@ -80,3 +80,9 @@ export const createWorkTemplate = async (payload: DayTemplateInput[]): Promise<a
     const { data } = await apiClient.post('/doctors/work-template', payload);
     return data;
 };
+
+// Get work template
+export const getWorkTemplate = async (): Promise<DayTemplateInput[]> => {
+    const { data } = await apiClient.get('/doctors/work-template');
+    return data.data || data;
+};

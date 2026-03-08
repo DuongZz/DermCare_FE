@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { createWorkTemplate } from "@/services/scheduleService";
+import { useEffect, useState } from "react";
+import { createWorkTemplate, getWorkTemplate } from "@/services/scheduleService";
 
 /* ─── Types ─── */
 interface DayTemplate {
@@ -36,6 +36,47 @@ const defaultTemplate = (): DayTemplate[] =>
 export default function DoctorWorkTemplate() {
     const [template, setTemplate] = useState<DayTemplate[]>(defaultTemplate);
     const [saving, setSaving] = useState(false);
+    const [toastMessage, setToastMessage] = useState<string | null>(null);
+    const [isToastVisible, setIsToastVisible] = useState(false);
+
+    const showToast = (msg: string) => {
+        setToastMessage(msg);
+        setTimeout(() => setIsToastVisible(true), 10);
+        setTimeout(() => setIsToastVisible(false), 2700);
+        setTimeout(() => setToastMessage(null), 3000);
+    };
+
+    useEffect(() => {
+        const fetchExistingTemplate = async () => {
+            try {
+                const data = await getWorkTemplate();
+                if (data && data.length > 0) {
+                    // Map backend objects to frontend DayTemplate structure
+                    const mapped = DAY_KEYS.map((key, i) => {
+                        const existing = data.find((d: any) => d.dayOfWeek === key);
+                        if (existing) {
+                            return {
+                                dayOfWeek: key,
+                                label: DAY_LABELS[i],
+                                isAvailable: existing.isAvailable,
+                                morningStart: existing.morningStartTime,
+                                morningEnd: existing.morningEndTime,
+                                afternoonStart: existing.afternoonStartTime,
+                                afternoonEnd: existing.afternoonEndTime,
+                                slotDuration: existing.slotDuration,
+                                price: existing.price,
+                            };
+                        }
+                        return defaultTemplate()[i];
+                    });
+                    setTemplate(mapped);
+                }
+            } catch (error) {
+                console.error("Failed to fetch template:", error);
+            }
+        };
+        fetchExistingTemplate();
+    }, []);
 
     /* ─── Template handlers ─── */
     const updateDay = (index: number, changes: Partial<DayTemplate>) => {
@@ -57,17 +98,25 @@ export default function DoctorWorkTemplate() {
                 price: t.price,
             }));
             await createWorkTemplate(payload);
-            alert("Đã lưu lịch làm việc thành công!");
+            showToast("Đã lưu lịch làm việc thành công!");
         } catch (error: any) {
             console.error("Save template failed:", error);
-            alert("Lỗi khi lưu: " + (error.response?.data?.message || error.message));
+            showToast("Lỗi khi lưu: " + (error.response?.data?.message || error.message));
         } finally {
             setSaving(false);
         }
     };
 
     return (
-        <div className="space-y-6 mt-0">
+        <div className="space-y-6 mt-0 relative">
+            {toastMessage && (
+                <div className={`fixed top-28 left-1/2 z-[100] rounded-full border border-dermcare bg-white px-6 py-2.5 text-sm font-semibold text-dermcare shadow-lg transition-all duration-500 ease-in-out transform ${isToastVisible
+                    ? 'translate-y-0 opacity-100 -translate-x-1/2'
+                    : '-translate-y-12 opacity-0 -translate-x-1/2'
+                    }`}>
+                    {toastMessage}
+                </div>
+            )}
             {/* ═══ Section 1: Work Template ═══ */}
             <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
                 <div className="bg-gradient-to-r from-dermcare/5 to-transparent px-5 py-4 border-b border-slate-100 flex items-center justify-between">

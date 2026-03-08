@@ -1,6 +1,6 @@
-[00:00:03.201] Server  LOG     ✓ Ready in 2.1s
-[00:00:06.284] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:07.238] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:02.416] Server  LOG     ✓ Ready in 1802ms
+[00:00:12.390] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:13.125] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -36,92 +36,86 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:00:07.238] Browser LOG     AuthContext: initializing auth...
-[00:00:07.238] Browser LOG     [API Request] No Token attached
-[00:00:07.238] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:00:08.582] Browser LOG     AuthContext: washToken success
-[00:00:08.582] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:08.582] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:00:08.583] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-05T00:26:32.894Z"}
-[00:00:08.583] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+[00:00:13.125] Browser LOG     AuthContext: initializing auth...
+[00:00:13.125] Browser LOG     [API Request] No Token attached
+[00:00:13.125] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:00:13.125] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_d31acf77._.js:275:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_d31acf77._.js:396:30)","status":401}
+[00:00:13.125] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:00:08.583] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:08.583] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[00:00:08.583] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:08.583] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[00:00:08.583] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:08.583] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[00:00:08.583] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:08.583] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[00:00:11.866] Browser LOG     [Chat] isLoggedIn: true
-[00:00:11.866] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:00:11.866] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:00:11.866] Browser LOG     [Chat] isLoggedIn: true
-[00:00:11.866] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:00:11.866] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:00:11.866] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:11.866] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[00:00:11.866] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:11.866] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[00:00:11.866] Browser LOG     [Chat] ✅ Socket connected! ID: DIW7u3LQmPXXFWI1AAAE
-[00:00:11.866] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:11.866] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[00:00:11.866] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:11.866] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[00:00:18.143] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:18.143] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/analyze
-[00:00:40.033] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:00:40.033] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/analyze
-[00:03:42.044] Server  LOG     ✓ Compiled in 2.2s
-[00:04:50.287] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:04:50.288] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20D%E1%BB%8B%20%E1%BB%A9ng
-[00:05:00.502] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:05:00.503] Browser LOG     [Chat] Socket disconnected. Reason: io client disconnect
-[00:05:00.503] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:05:00.503] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[00:05:00.503] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:05:00.503] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[00:05:00.503] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:05:00.503] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[00:05:00.503] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:05:00.503] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[00:05:06.273] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:05:06.273] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:05:06.273] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:05:06.273] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[00:05:06.453] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:05:06.453] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:05:06.453] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:05:06.453] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:05:06.453] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:06:19.297] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:06:19.297] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[00:06:19.297] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:06:19.297] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[00:06:19.297] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:06:19.297] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[00:06:19.297] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:06:19.297] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[00:06:22.419] Browser LOG     [Chat] isLoggedIn: true
-[00:06:22.419] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:06:22.419] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:06:22.419] Browser LOG     [Chat] isLoggedIn: true
-[00:06:22.419] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:06:22.419] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:06:22.419] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:06:22.419] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[00:06:22.419] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:06:22.419] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[00:06:22.706] Browser LOG     [Chat] ✅ Socket connected! ID: JpAAwPSAMApwuueMAAAH
-[00:06:22.706] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:06:22.706] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[00:06:22.706] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:06:22.706] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[00:06:43.589] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:06:43.589] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/analyze
-[00:13:24.656] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:13:24.656] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:13:24.907] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:13.125] Browser LOG     [API Request] No Token attached
+[00:00:13.125] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
+[00:00:13.125] Browser LOG     [API Request] No Token attached
+[00:00:13.125] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
+[00:00:13.125] Browser LOG     [API Request] No Token attached
+[00:00:13.125] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
+[00:00:13.125] Browser LOG     [API Request] No Token attached
+[00:00:13.125] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
+[00:00:13.500] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[00:00:17.503] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:00:25.298] Browser LOG     [API Request] No Token attached
+[00:00:25.298] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[00:00:26.143] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:26.143] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:00:26.143] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:26.143] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[00:00:26.143] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:26.143] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
+[00:00:26.143] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:26.143] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
+[00:00:26.143] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:26.143] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
+[00:00:26.143] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:26.143] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
+[00:00:26.143] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-03-08T06:49:09.344Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[00:00:31.482] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:31.482] Browser LOG     AuthContext: initializing auth...
+[00:00:31.482] Browser LOG     [API Request] No Token attached
+[00:00:31.482] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[00:00:31.482] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_d31acf77._.js:275:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_d31acf77._.js:396:30)","status":401}
+[00:00:31.482] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[00:00:31.482] Browser LOG     [API Request] No Token attached
+[00:00:31.482] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
+[00:00:31.482] Browser LOG     [API Request] No Token attached
+[00:00:31.482] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
+[00:00:31.482] Browser LOG     [API Request] No Token attached
+[00:00:31.482] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
+[00:00:31.482] Browser LOG     [API Request] No Token attached
+[00:00:31.482] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
+[00:00:32.727] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:00:46.125] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:46.125] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/work-template
+[00:00:46.125] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:46.125] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/work-template
+[00:00:49.526] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:49.526] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/schedule
+[00:00:49.526] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:00:49.526] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/schedule
+[00:01:02.477] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:01:02.477] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[00:01:02.477] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:01:02.477] Browser LOG     [API Request] GET http://localhost:4000/v1/doctor/appointments
+[00:01:02.477] Browser ERROR   Failed to load appointments, using mock data: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlOTNlYTUzLTJhNTMtNGRkNC04MjI4LTAxNjk5ODYyZTIyYiIsIm5hbWUiOiLEkMOgbyBRdWFuZyBExrDGoW5nIiwiZW1haWwiOiJkdW9uZ2Rhb3FAZ21haWwuY29tIiwicm9sZSI6IkRPQ1RPUiIsImNyZWF0ZWRfYXQiOiIyMDI2LTAyLTExVDA5OjA4OjAwLjkwNVoiLCJyZW1lbWJlck1lIjpmYWxzZSwiaWF0IjoxNzcyOTc3NzQ5LCJleHAiOjE3NzI5Nzg2NDl9.YNeY-2Wq3It2BiwDrfFtwSO3bH_yAmHMDdkSEz3BYvI","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_7bfca0a0._.js:50:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_1ce824bf._.js:357:26)","status":404}
+[00:01:02.477] Browser ERROR   Failed to load appointments, using mock data: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlOTNlYTUzLTJhNTMtNGRkNC04MjI4LTAxNjk5ODYyZTIyYiIsIm5hbWUiOiLEkMOgbyBRdWFuZyBExrDGoW5nIiwiZW1haWwiOiJkdW9uZ2Rhb3FAZ21haWwuY29tIiwicm9sZSI6IkRPQ1RPUiIsImNyZWF0ZWRfYXQiOiIyMDI2LTAyLTExVDA5OjA4OjAwLjkwNVoiLCJyZW1lbWJlck1lIjpmYWxzZSwiaWF0IjoxNzcyOTc3NzQ5LCJleHAiOjE3NzI5Nzg2NDl9.YNeY-2Wq3It2BiwDrfFtwSO3bH_yAmHMDdkSEz3BYvI","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/doctor/appointments","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 404","name":"AxiosError","stack":"AxiosError: Request failed with status code 404\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorAppointments (http://localhost:3000/_next/static/chunks/src_7bfca0a0._.js:50:22)\n    at async fetchAppointments (http://localhost:3000/_next/static/chunks/src_1ce824bf._.js:357:26)","status":404}
+[00:44:09.927] Browser LOG     [API Request] No Token attached
+[00:44:09.943] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[00:44:11.748] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:44:11.748] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[00:44:11.748] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:44:11.748] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[00:44:11.748] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-08T07:32:54.905Z"}
+[00:44:12.170] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:44:12.170] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
+[00:44:12.170] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:44:12.170] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
+[00:44:12.170] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:44:12.170] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
+[00:44:12.170] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[00:44:12.170] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
+[01:24:05.354] Server  LOG     ✓ Compiled in 869ms
+[01:24:21.927] Server  LOG     ✓ Compiled in 1912ms
+[01:32:46.217] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:32:46.568] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -139,7 +133,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/chat" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/doctor/sh..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -157,33 +151,45 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:13:24.907] Browser LOG     AuthContext: initializing auth...
-[00:13:24.907] Browser LOG     [API Request] No Token attached
-[00:13:24.907] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:13:26.817] Browser LOG     AuthContext: washToken success
-[00:13:26.817] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:13:26.817] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:13:26.817] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-05T00:39:50.640Z"}
-[00:13:26.817] Browser LOG     [Chat] isLoggedIn: true
-[00:13:26.817] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:13:26.817] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:13:26.817] Browser LOG     [Chat] isLoggedIn: true
-[00:13:26.817] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:13:26.817] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:13:26.817] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:13:26.817] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[00:13:26.817] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:13:26.817] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[00:13:26.817] Browser LOG     [Chat] ✅ Socket connected! ID: mxiI8PRc9z7OeyXXAAAK
-[00:13:26.817] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:13:26.817] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[00:13:26.817] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:13:26.817] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[00:19:54.867] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[00:19:58.813] Browser LOG     [Chat] ✅ Socket connected! ID: rFeysyFMcwLXsR0DAAAB
-[00:29:01.397] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:29:01.397] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:29:01.648] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[01:32:46.568] Browser LOG     AuthContext: initializing auth...
+[01:32:46.568] Browser LOG     [API Request] No Token attached
+[01:32:46.568] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[01:32:47.216] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_d31acf77._.js:275:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_d31acf77._.js:396:30)","status":401}
+[01:32:47.216] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[01:32:47.462] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[01:32:47.462] Browser LOG     [API Request] No Token attached
+[01:32:47.462] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
+[01:32:47.462] Browser LOG     [API Request] No Token attached
+[01:32:47.462] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
+[01:32:47.462] Browser LOG     [API Request] No Token attached
+[01:32:47.462] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
+[01:32:47.462] Browser LOG     [API Request] No Token attached
+[01:32:47.462] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
+[01:32:53.884] Browser LOG     [API Request] No Token attached
+[01:32:53.884] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[01:32:54.385] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:32:54.385] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[01:32:54.385] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:32:54.385] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[01:32:54.385] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:32:54.385] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
+[01:32:54.385] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:32:54.385] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
+[01:32:54.385] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:32:54.385] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
+[01:32:54.385] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:32:54.385] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
+[01:32:54.385] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-03-08T08:21:37.480Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[01:32:55.421] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:32:55.421] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[01:32:55.421] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:32:55.421] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[01:34:12.196] Server  LOG     ✓ Compiled in 826ms
+[01:37:50.304] Server  LOG     ✓ Compiled in 222ms
+[01:38:58.920] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:38:58.920] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[01:38:59.081] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -201,7 +207,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/chat" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/doctor/sh..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -219,40 +225,27 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:29:01.648] Browser LOG     AuthContext: initializing auth...
-[00:29:01.648] Browser LOG     [API Request] No Token attached
-[00:29:01.648] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:29:02.975] Browser LOG     AuthContext: washToken success
-[00:29:02.975] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:29:02.975] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:29:02.975] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-05T00:55:27.384Z"}
-[00:29:02.975] Browser LOG     [Chat] isLoggedIn: true
-[00:29:02.975] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:29:02.975] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:29:02.975] Browser LOG     [Chat] isLoggedIn: true
-[00:29:02.975] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:29:02.975] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:29:02.975] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:29:02.975] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[00:29:02.975] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:29:02.975] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[00:29:02.975] Browser LOG     [Chat] ✅ Socket connected! ID: 7Mm1jBff2_ZL-4K7AAAE
-[00:29:02.975] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:29:02.975] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[00:29:02.975] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:29:02.975] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[00:29:06.458] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:29:06.458] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD
-[00:29:26.201] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:29:26.202] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/analyze
-[00:29:50.805] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[00:29:55.803] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[00:30:01.803] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[00:30:09.797] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[00:30:17.808] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[00:30:25.809] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[00:34:35.598] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:34:36.624] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[01:38:59.081] Browser LOG     AuthContext: initializing auth...
+[01:38:59.081] Browser LOG     [API Request] No Token attached
+[01:38:59.081] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[01:39:00.129] Browser LOG     AuthContext: washToken success
+[01:39:00.129] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:39:00.129] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[01:39:00.287] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-03-08T08:27:43.334Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[01:39:00.287] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[01:39:00.287] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:39:00.287] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[01:39:00.287] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:39:00.287] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[01:39:00.287] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:39:00.287] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[01:39:00.287] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:39:00.287] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[01:39:57.327] Server  LOG     ✓ Compiled in 109ms
+[01:41:21.521] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:41:21.521] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[01:41:21.855] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -270,7 +263,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/chat" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/doctor/sh..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -285,38 +278,30 @@ It can also happen if the client has a browser extension installed which messes 
                         <html
                           lang="vi"
 -                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
--                         className="mdl-js"
                         >
                   ...
 
-[00:34:36.624] Browser LOG     AuthContext: initializing auth...
-[00:34:36.624] Browser LOG     [API Request] No Token attached
-[00:34:36.624] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:34:37.984] Browser LOG     AuthContext: washToken success
-[00:34:37.984] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:34:37.984] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:34:37.984] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-05T01:01:02.439Z"}
-[00:34:37.984] Browser LOG     [Chat] isLoggedIn: true
-[00:34:37.984] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:34:37.984] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:34:37.984] Browser LOG     [Chat] isLoggedIn: true
-[00:34:37.984] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:34:37.984] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:34:37.984] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:34:37.984] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[00:34:37.984] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:34:37.984] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[00:34:37.984] Browser LOG     [Chat] ✅ Socket connected! ID: -pSPiIcGvG7u_GCpAAAC
-[00:34:37.984] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:34:37.984] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[00:34:37.984] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:34:37.984] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[00:34:55.892] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:34:55.892] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/analyze
-[00:39:15.304] Server  LOG     ✓ Compiled in 1083ms
-[00:42:51.593] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:42:51.593] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:42:52.365] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[01:41:21.855] Browser LOG     AuthContext: initializing auth...
+[01:41:21.855] Browser LOG     [API Request] No Token attached
+[01:41:21.855] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[01:41:22.419] Browser LOG     AuthContext: washToken success
+[01:41:22.419] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:41:22.419] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[01:41:22.543] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-03-08T08:30:05.667Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[01:41:22.543] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[01:41:22.543] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:41:22.543] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[01:41:22.543] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:41:22.543] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[01:41:22.543] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:41:22.543] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[01:41:22.543] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:41:22.543] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[01:43:47.542] Server  LOG     ✓ Compiled in 100ms
+[01:45:48.891] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:45:48.891] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[01:45:49.197] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -334,7 +319,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/chat" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/doctor/sh..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -352,53 +337,28 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[00:42:52.365] Browser LOG     AuthContext: initializing auth...
-[00:42:52.365] Browser LOG     [API Request] No Token attached
-[00:42:52.365] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:42:53.061] Browser LOG     AuthContext: washToken success
-[00:42:53.062] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:42:53.062] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:42:53.062] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-05T01:09:17.429Z"}
-[00:42:53.062] Browser LOG     [Chat] isLoggedIn: true
-[00:42:53.062] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:42:53.062] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:42:53.062] Browser LOG     [Chat] isLoggedIn: true
-[00:42:53.062] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:42:53.062] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:42:53.062] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:42:53.062] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[00:42:53.062] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:42:53.062] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[00:42:53.062] Browser LOG     [Chat] ✅ Socket connected! ID: u0edS0jfh9XYhYi6AAAF
-[00:42:53.062] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:42:53.062] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[00:42:53.062] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:42:53.062] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[00:43:17.761] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:43:17.761] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/analyze
-[00:45:03.954] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:45:03.955] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/analyze
-[00:45:12.365] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:45:12.367] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/69a2fa36-7ecc-4939-9ea1-bb9526e8c8a7/messages
-[00:45:13.031] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:45:13.031] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[01:06:58.093] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:06:58.150] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/69a2fa36-7ecc-4939-9ea1-bb9526e8c8a7/messages
-[01:07:01.537] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:07:01.539] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[01:07:02.033] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:07:02.034] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[01:07:02.034] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:07:02.034] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/69a2fa36-7ecc-4939-9ea1-bb9526e8c8a7/messages
-[01:07:03.397] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[01:07:08.803] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[01:07:13.804] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[01:07:21.803] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[01:07:29.797] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[01:07:37.803] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[01:10:07.099] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:10:07.099] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[01:10:07.561] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[01:45:49.197] Browser LOG     AuthContext: initializing auth...
+[01:45:49.197] Browser LOG     [API Request] No Token attached
+[01:45:49.197] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[01:45:50.035] Browser LOG     AuthContext: washToken success
+[01:45:50.035] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:45:50.035] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[01:45:50.035] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-03-08T08:34:33.139Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[01:45:50.035] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[01:45:50.035] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:45:50.035] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[01:45:50.035] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:45:50.035] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[01:45:50.035] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:45:50.035] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[01:45:50.035] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[01:45:50.035] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[01:46:51.521] Server  LOG     ✓ Compiled in 77ms
+[01:54:32.765] Server  LOG     ✓ Compiled in 181ms
+[03:18:34.715] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:18:34.715] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[03:18:35.021] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -416,7 +376,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/chat" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/doctor/sh..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -434,38 +394,42 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[01:10:07.561] Browser LOG     AuthContext: initializing auth...
-[01:10:07.561] Browser LOG     [API Request] No Token attached
-[01:10:07.561] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[01:10:08.939] Browser LOG     AuthContext: washToken success
-[01:10:08.939] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:10:08.939] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[01:10:09.148] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-05T01:36:33.375Z"}
-[01:10:09.149] Browser LOG     [Chat] isLoggedIn: true
-[01:10:09.149] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:10:09.149] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:10:09.149] Browser LOG     [Chat] isLoggedIn: true
-[01:10:09.149] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:10:09.149] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:10:09.149] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:10:09.149] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[01:10:09.149] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:10:09.149] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[01:10:09.149] Browser LOG     [Chat] ✅ Socket connected! ID: 3UAjfp8NH-vxCx34AAAC
-[01:10:09.344] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:10:09.344] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[01:10:09.345] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:10:09.345] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[01:10:12.096] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:10:12.096] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/analyze
-[01:10:51.093] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:10:51.093] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/analyze
-[01:13:59.429] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:13:59.523] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/analyze
-[01:17:59.129] Server  LOG     ✓ Compiled in 846ms
-[01:19:04.523] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:19:04.523] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[01:19:05.133] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[03:18:35.021] Browser LOG     AuthContext: initializing auth...
+[03:18:35.021] Browser LOG     [API Request] No Token attached
+[03:18:35.021] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[03:18:35.473] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_d31acf77._.js:275:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_d31acf77._.js:396:30)","status":401}
+[03:18:35.473] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[03:18:35.729] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[03:18:35.729] Browser LOG     [API Request] No Token attached
+[03:18:35.729] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
+[03:18:35.729] Browser LOG     [API Request] No Token attached
+[03:18:35.729] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
+[03:18:35.729] Browser LOG     [API Request] No Token attached
+[03:18:35.729] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
+[03:18:35.729] Browser LOG     [API Request] No Token attached
+[03:18:35.729] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
+[03:18:40.907] Browser LOG     [API Request] No Token attached
+[03:18:40.907] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
+[03:18:41.427] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:18:41.427] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:18:41.427] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:18:41.427] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[03:18:41.427] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:18:41.427] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
+[03:18:41.427] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:18:41.427] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
+[03:18:41.427] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:18:41.427] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
+[03:18:41.427] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:18:41.427] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
+[03:18:41.427] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-03-08T10:07:24.390Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[03:18:42.720] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:18:42.720] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[03:18:42.720] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:18:42.720] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[03:21:21.119] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:21:21.403] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -483,7 +447,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/chat" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/doctor/sh..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -501,57 +465,25 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[01:19:05.133] Browser LOG     AuthContext: initializing auth...
-[01:19:05.134] Browser LOG     [API Request] No Token attached
-[01:19:05.134] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[01:19:06.210] Browser LOG     AuthContext: washToken success
-[01:19:06.210] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:19:06.210] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[01:19:06.210] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-05T01:45:30.489Z"}
-[01:19:06.210] Browser LOG     [Chat] isLoggedIn: true
-[01:19:06.210] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:19:06.210] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:19:06.210] Browser LOG     [Chat] isLoggedIn: true
-[01:19:06.210] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:19:06.210] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:19:06.210] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:19:06.210] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[01:19:06.210] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:19:06.210] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[01:19:06.210] Browser LOG     [Chat] ✅ Socket connected! ID: W4S_HjS0MF3PqHrmAAAF
-[01:19:06.210] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:19:06.210] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[01:19:06.210] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:19:06.210] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[01:19:11.281] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:19:11.281] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Nhi%E1%BB%85m%20tr%C3%B9ng%20da%20%26%20K%C3%BD%20sinh%20tr%C3%B9ng
-[01:19:17.216] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:19:17.216] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/69a2fa36-7ecc-4939-9ea1-bb9526e8c8a7/messages
-[01:19:20.043] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:19:20.043] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[01:21:45.558] Server  LOG     ✓ Compiled in 409ms
-[01:21:45.796] Browser ERROR   The final argument passed to %s changed size between renders. The order and size of this array must remain constant.
-
-Previous: %s
-Incoming: %s useEffect [[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object], ()=>{
-            messagesEndRef.current?.scrollIntoView({
-                behavior: "smooth"
-            });
-        }] [[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object], [object Object], ()=>{
-            if (messagesEndRef.current) {
-                messagesEndRef.current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "end"
-                });
-            }
-        }]
-[01:22:58.426] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:22:58.426] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/69a2fa36-7ecc-4939-9ea1-bb9526e8c8a7/messages
-[01:22:59.889] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:22:59.889] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[01:23:04.728] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:23:04.728] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[01:23:05.191] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[03:21:21.403] Browser LOG     AuthContext: initializing auth...
+[03:21:21.403] Browser LOG     [API Request] No Token attached
+[03:21:21.403] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[03:21:21.957] Browser LOG     AuthContext: washToken success
+[03:21:21.957] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:21:21.957] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:21:22.102] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-03-08T10:10:05.072Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[03:21:22.102] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[03:21:22.102] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:21:22.102] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[03:21:22.102] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:21:22.102] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[03:21:22.102] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:21:22.102] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[03:21:22.102] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:21:22.102] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[03:23:18.512] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:23:18.886] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -569,7 +501,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/chat" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/doctor/sh..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -587,63 +519,130 @@ It can also happen if the client has a browser extension installed which messes 
                         >
                   ...
 
-[01:23:05.191] Browser LOG     AuthContext: initializing auth...
-[01:23:05.191] Browser LOG     [API Request] No Token attached
-[01:23:05.191] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[01:23:05.683] Browser LOG     AuthContext: washToken success
-[01:23:05.683] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:23:05.683] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[01:23:05.683] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-05T01:49:30.006Z"}
-[01:23:05.683] Browser LOG     [Chat] isLoggedIn: true
-[01:23:05.683] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:23:05.683] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:23:05.684] Browser LOG     [Chat] isLoggedIn: true
-[01:23:05.684] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:23:05.684] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:23:05.684] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:23:05.684] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[01:23:05.684] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:23:05.684] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations
-[01:23:05.684] Browser LOG     [Chat] ✅ Socket connected! ID: Xu1YhFIgTFTZKYMIAAAI
-[01:23:05.684] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:23:05.684] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[01:23:05.684] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:23:05.684] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[01:24:54.043] Server  LOG     ✓ Compiled in 147ms
-[01:26:47.228] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:26:47.228] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/69a2fa36-7ecc-4939-9ea1-bb9526e8c8a7/messages
-[01:26:48.763] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:26:48.763] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[01:26:53.266] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:26:53.266] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Nhi%E1%BB%85m%20tr%C3%B9ng%20da%20%26%20K%C3%BD%20sinh%20tr%C3%B9ng
-[01:26:56.868] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:26:56.868] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/69a2fa36-7ecc-4939-9ea1-bb9526e8c8a7/messages
-[01:26:58.277] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:26:58.277] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/e3892b81-ef35-4c6c-b358-dec3658397d4/messages
-[01:27:39.798] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[01:27:43.803] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[01:27:47.805] Browser LOG     [Chat] ✅ Socket connected! ID: wL_XkrbTeyUwd1XlAAAB
-[01:28:08.804] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[01:28:12.798] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[01:28:18.807] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[01:28:26.801] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[01:28:34.806] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[01:28:41.806] Browser LOG     [Chat] ✅ Socket connected! ID: xr3jQABX3ja0lTgFAAAB
-[01:28:48.800] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[01:28:51.819] Browser LOG     [Chat] ✅ Socket connected! ID: PPmIzb8JwJ4bwTXNAAAB
-[01:28:54.799] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[01:28:59.803] Browser LOG     [Chat] ✅ Socket connected! ID: 8neCQy1Eql2hfx7-AAAB
-[01:29:10.801] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[01:29:14.800] Browser LOG     [Chat] ✅ Socket connected! ID: 78NT90MxDRBA3KUoAAAB
-[01:29:19.811] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[01:29:23.799] Browser LOG     [Chat] ✅ Socket connected! ID: CnM3EbygQitOD00PAAAB
-[01:30:05.806] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[01:30:09.799] Browser LOG     [Chat] ✅ Socket connected! ID: 9ppvf6-6wsH0R95ZAAAB
-[01:30:10.798] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[01:30:14.803] Browser LOG     [Chat] ✅ Socket connected! ID: sASZi2ygaigvNs8ZAAAB
-[01:30:19.813] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[01:30:22.803] Browser LOG     [Chat] ✅ Socket connected! ID: AjYTn3pfY9u04W7-AAAB
-[01:30:23.810] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[01:30:27.808] Browser LOG     [Chat] ✅ Socket connected! ID: Bnc7vRvJhPzuTD2gAAAB
-[01:30:29.810] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[01:30:33.811] Browser LOG     [Chat] ✅ Socket connected! ID: _t2T_JDPuFa-5slWAAAB
+[03:23:18.886] Browser LOG     AuthContext: initializing auth...
+[03:23:18.886] Browser LOG     [API Request] No Token attached
+[03:23:18.886] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[03:23:19.786] Browser LOG     AuthContext: washToken success
+[03:23:19.786] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:19.786] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:23:19.786] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-03-08T10:12:02.766Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[03:23:19.786] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[03:23:19.786] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:19.786] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[03:23:19.786] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:19.786] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[03:23:19.786] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:19.786] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[03:23:19.786] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:19.786] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[03:23:51.337] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:23:51.337] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[03:23:51.645] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/doctor/sh..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[03:23:51.645] Browser LOG     AuthContext: initializing auth...
+[03:23:51.645] Browser LOG     [API Request] No Token attached
+[03:23:51.645] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[03:23:52.260] Browser LOG     AuthContext: washToken success
+[03:23:52.260] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:52.260] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:23:52.392] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-03-08T10:12:35.355Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[03:23:52.392] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[03:23:52.392] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:52.392] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[03:23:52.392] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:52.392] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[03:23:52.392] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:52.392] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[03:23:52.392] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:23:52.392] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[03:27:44.765] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:27:44.765] Browser LOG     content script: Katalon Waiter v.2 is up and running !
+[03:27:45.115] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/doctor/sh..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="vi"
+-                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
+                        >
+                  ...
+
+[03:27:45.115] Browser LOG     AuthContext: initializing auth...
+[03:27:45.115] Browser LOG     [API Request] No Token attached
+[03:27:45.115] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
+[03:27:45.402] Browser LOG     AuthContext: washToken success
+[03:27:45.402] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:27:45.402] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
+[03:27:45.402] Browser LOG     AuthContext: fetchUser success {"address":"Phú Minh, Phú Xuyên, Hà Nội","avatar":"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg","created_at":"2026-02-11T09:08:00.905Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoq@gmail.com","fullName":"Đào Quang Dương","gender":"MALE","id":"ce93ea53-2a53-4dd4-8228-01699862e22b","phone":"0943192828","qualifications":"GS.TS.BS","rating":null,"role":"DOCTOR","specialization":"Da liễu nội khoa","updated_at":"2026-03-08T10:16:28.371Z","work_place":"Bệnh viện Da Liễu Hà Nội"}
+[03:27:45.402] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[03:27:45.402] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:27:45.402] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[03:27:45.402] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:27:45.402] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me
+[03:27:45.402] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:27:45.402] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
+[03:27:45.402] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
+[03:27:45.402] Browser LOG     [API Request] GET http://localhost:4000/v1/appointment/me

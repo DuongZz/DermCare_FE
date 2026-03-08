@@ -217,13 +217,22 @@ export default function DoctorScheduleSlots() {
         setConfirmModal(prev => ({ ...prev, open: false }));
     }, []);
 
-    // Alert modal state
     const [alertModal, setAlertModal] = useState<{
         open: boolean;
         title: string;
         message: string;
         isSuccess: boolean;
     }>({ open: false, title: "", message: "", isSuccess: true });
+
+    const [toastMessage, setToastMessage] = useState<string | null>(null);
+    const [isToastVisible, setIsToastVisible] = useState(false);
+
+    const showToast = (msg: string) => {
+        setToastMessage(msg);
+        setTimeout(() => setIsToastVisible(true), 10);
+        setTimeout(() => setIsToastVisible(false), 2700);
+        setTimeout(() => setToastMessage(null), 3000);
+    };
 
     const showAlert = useCallback((title: string, message: string, isSuccess = true) => {
         setAlertModal({ open: true, title, message, isSuccess });
@@ -319,9 +328,9 @@ export default function DoctorScheduleSlots() {
                 setTimeout(() => {
                     fetchSlots();
                     if (successCount > 0) {
-                        showAlert("Thành công", `Tuyệt vời! Đã hoàn tất đối chiếu và tạo ca khám thành công cho ${successCount} ngày.\nCác ngày: ${successDates.join(', ')}`, true);
+                        showToast(`Tuyệt vời! Đã tạo ca khám thành công cho ${successCount} ngày.`);
                     } else {
-                        showAlert("Thông báo", `Toàn bộ các ngày hợp lệ trong tuần này đều đã được tạo lịch từ trước, hoặc chưa được bạn cấu hình Thời Gian Làm Việc trong Lịch Mẫu.`, false);
+                        showToast(`Không có ca khám mới nào được tạo.`);
                     }
                 }, 1000);
             },
@@ -343,10 +352,11 @@ export default function DoctorScheduleSlots() {
                 price: editForm.price
             });
             setSlots(prev => prev.map(s => s.id === id ? { ...s, startTime: editForm.startTime, endTime: editForm.endTime, price: editForm.price } : s));
+            showToast("Cập nhật ca khám thành công!");
             setEditingSlotId(null);
         } catch (error) {
             console.error("Lỗi cập nhật ca khám", error);
-            showAlert("Thất bại", "Cập nhật ca khám thất bại. Vui lòng thử lại sau.", false);
+            showToast("Cập nhật ca khám thất bại!");
         }
     };
     const cancelEdit = () => setEditingSlotId(null);
@@ -402,7 +412,15 @@ export default function DoctorScheduleSlots() {
     }
 
     return (
-        <div className="space-y-6 mt-0">
+        <div className="space-y-6 mt-0 relative">
+            {toastMessage && (
+                <div className={`fixed top-28 left-1/2 z-[100] rounded-full border border-dermcare bg-white px-6 py-2.5 text-sm font-semibold text-dermcare shadow-lg transition-all duration-500 ease-in-out transform ${isToastVisible
+                    ? 'translate-y-0 opacity-100 -translate-x-1/2'
+                    : '-translate-y-12 opacity-0 -translate-x-1/2'
+                    }`}>
+                    {toastMessage}
+                </div>
+            )}
 
             {/* ═══ Confirm Modal ═══ */}
             <ConfirmModal
@@ -538,14 +556,16 @@ export default function DoctorScheduleSlots() {
                     </div>
 
                     <div className="flex items-center gap-2 self-end sm:self-auto">
-                        <button
-                            onClick={handleGenerateWeeklySchedule}
-                            disabled={loading}
-                            className={`inline-flex items-center gap-1.5 rounded-xl bg-dermcare px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-dermcare-dark transition whitespace-nowrap ${loading ? 'opacity-50' : ''}`}
-                        >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
-                            {loading ? 'Đang tạo...' : 'Tạo ca khám trong tuần'}
-                        </button>
+                        {!isPast && (
+                            <button
+                                onClick={handleGenerateWeeklySchedule}
+                                disabled={loading}
+                                className={`inline-flex items-center gap-1.5 rounded-xl bg-dermcare px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-dermcare-dark transition whitespace-nowrap ${loading ? 'opacity-50' : ''}`}
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                                {loading ? 'Đang tạo...' : 'Tạo ca khám trong tuần'}
+                            </button>
+                        )}
 
                         {selectedIds.size > 0 && (
                             <button

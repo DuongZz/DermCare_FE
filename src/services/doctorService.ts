@@ -29,6 +29,8 @@ export interface DoctorAppointment {
         email: string;
         phone?: string;
         gender?: string;
+        address?: string;
+        dateOfBirth?: string;
     };
 }
 
@@ -81,8 +83,8 @@ export const searchDoctors = async (query: string): Promise<Doctor[]> => {
 
 // Get my appointments as a doctor
 export const getDoctorAppointments = async (): Promise<DoctorAppointment[]> => {
-    const { data } = await apiClient.get('/doctor/appointments');
-    return data.data || data;
+    const { data } = await apiClient.get('/appointment/me');
+    return data.appointments || data.data || data;
 };
 
 // Update appointment status (confirm, cancel, complete)

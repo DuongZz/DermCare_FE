@@ -1,18 +1,101 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
+import { notificationService } from "@/services/notificationService";
+import { io, Socket } from "socket.io-client";
 
 export default function Header() {
     const { isLoggedIn, isDoctor, user, logout } = useAuth();
+    const router = useRouter();
     const [showUserMenu, setShowUserMenu] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
     const [language, setLanguage] = useState<'vn' | 'en'>('vn');
     const [showLangMenu, setShowLangMenu] = useState(false);
 
+    const [notifications, setNotifications] = useState<any[]>([]);
+    const [unreadCount, setUnreadCount] = useState(0);
+    const socketRef = useRef<Socket | null>(null);
+
     const notifRef = useRef<HTMLDivElement>(null);
     const userMenuRef = useRef<HTMLDivElement>(null);
     const langRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!isLoggedIn) return;
+
+        // Fetch initial notifications
+        const fetchNotifications = async () => {
+            try {
+                const data = await notificationService.getNotifications();
+                setNotifications(data);
+                setUnreadCount(data.filter((n: any) => !n.isRead).length);
+            } catch (error) {
+                console.error("Error fetching notifications:", error);
+            }
+        };
+
+        fetchNotifications();
+
+        // Setup Socket.io
+        const token = localStorage.getItem('token');
+        const socket = io('http://localhost:4000', {
+            auth: { token: `Bearer ${token}` }
+        });
+
+        socketRef.current = socket;
+
+        socket.on('connect', () => {
+            console.log('[Socket] Connected to server');
+        });
+
+        socket.on('new_notification', (notification: any) => {
+            setNotifications(prev => [notification, ...prev]);
+            setUnreadCount(prev => prev + 1);
+        });
+
+        return () => {
+            socket.disconnect();
+        };
+    }, [isLoggedIn]);
+
+    const handleMarkAsRead = async (id: string) => {
+        try {
+            await notificationService.markAsRead(id);
+            setNotifications(prev => prev.map(n => n.id === id ? { ...n, isRead: true } : n));
+            setUnreadCount(prev => Math.max(0, prev - 1));
+        } catch (error) {
+            console.error("Error marking as read:", error);
+        }
+    };
+
+    const handleMarkAllAsRead = async () => {
+        try {
+            await notificationService.markAllAsRead();
+            setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
+            setUnreadCount(0);
+        } catch (error) {
+            console.error("Error marking all as read:", error);
+        }
+    };
+
+    const handleNotificationClick = async (notif: any) => {
+        if (!notif.isRead) {
+            await handleMarkAsRead(notif.id);
+        }
+        setShowNotifications(false);
+
+        if (notif.type === 'NOTI_APPOINTMENT') {
+            if (isDoctor) {
+                router.push(`/doctor/appointments?id=${notif.referenceId}`);
+            } else {
+                router.push(`/appointments/${notif.referenceId}`);
+            }
+        } else if (notif.type === 'NOTI_MESSAGE') {
+            router.push('/chat');
+        }
+    };
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -130,10 +213,12 @@ export default function Header() {
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                                     </svg>
                                     {/* Notification Badge */}
-                                    <span className="absolute right-1 top-1 flex h-2 w-2">
-                                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
-                                        <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
-                                    </span>
+                                    {unreadCount > 0 && (
+                                        <span className="absolute right-1 top-1 flex h-2 w-2">
+                                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                                            <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
+                                        </span>
+                                    )}
                                 </button>
 
                                 {/* Notification Dropdown */}
@@ -141,71 +226,48 @@ export default function Header() {
                                     <div className="absolute right-0 mt-2 w-80 rounded-xl border border-slate-200 bg-white shadow-xl py-2 z-50 animate-in fade-in zoom-in-95 duration-200">
                                         <div className="px-4 py-2 border-b border-slate-100 flex justify-between items-center">
                                             <h3 className="font-semibold text-slate-900">Thông báo</h3>
-                                            <button className="text-xs text-dermcare hover:underline">Đánh dấu đã đọc</button>
+                                            <button
+                                                onClick={handleMarkAllAsRead}
+                                                className="text-xs text-dermcare hover:underline"
+                                            >
+                                                Đánh dấu đã đọc tất cả
+                                            </button>
                                         </div>
                                         <div className="max-h-[400px] overflow-y-auto scrollbar-hide">
-                                            {[
-                                                {
-                                                    id: 1,
-                                                    type: 'appointment',
-                                                    title: 'Nhắc nhở lịch khám',
-                                                    message: 'Bạn có lịch khám với BS. Đào Quang Dương vào 14:00 hôm nay.',
-                                                    time: '30 phút trước',
-                                                    read: false,
-                                                    icon: '📅',
-                                                    bg: 'bg-blue-50 text-blue-600'
-                                                },
-                                                {
-                                                    id: 2,
-                                                    type: 'message',
-                                                    title: 'Tin nhắn mới',
-                                                    message: 'Bác sĩ đã trả lời câu hỏi của bạn về đơn thuốc: "Chào bạn, thuốc này uống sau ăn..."',
-                                                    time: '2 giờ trước',
-                                                    read: true,
-                                                    icon: '💬',
-                                                    bg: 'bg-green-50 text-green-600'
-                                                },
-                                                {
-                                                    id: 3,
-                                                    type: 'system',
-                                                    title: 'Cập nhật hồ sơ',
-                                                    message: 'Hồ sơ sức khỏe của bạn đã được cập nhật thành công.',
-                                                    time: '1 ngày trước',
-                                                    read: true,
-                                                    icon: '📋',
-                                                    bg: 'bg-purple-50 text-purple-600'
-                                                },
-                                                {
-                                                    id: 4,
-                                                    type: 'promotion',
-                                                    title: 'Khuyến mãi hè',
-                                                    message: 'Giảm 20% gói khám tổng quát trong tháng này.',
-                                                    time: '2 ngày trước',
-                                                    read: true,
-                                                    icon: '🎁',
-                                                    bg: 'bg-orange-50 text-orange-600'
-                                                }
-                                            ].map((notif) => (
-                                                <div key={notif.id} className={`px-4 py-3 border-b border-slate-50 hover:bg-slate-50 cursor-pointer transition flex gap-3 ${!notif.read ? 'bg-slate-50' : 'bg-white'}`}>
-                                                    <div className={`mt-1 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm ${notif.bg}`}>
-                                                        {notif.icon}
-                                                    </div>
-                                                    <div className="flex-1">
-                                                        <div className="flex justify-between items-start">
-                                                            <p className={`text-sm ${!notif.read ? 'font-bold text-slate-900' : 'font-medium text-slate-700'}`}>
-                                                                {notif.title}
-                                                            </p>
-                                                            {!notif.read && <span className="h-2 w-2 rounded-full bg-blue-500 mt-1.5"></span>}
-                                                        </div>
-                                                        <p className="text-xs text-slate-500 line-clamp-2 mt-0.5 leading-relaxed">
-                                                            {notif.message}
-                                                        </p>
-                                                        <p className="text-[10px] text-slate-400 mt-1 font-medium">
-                                                            {notif.time}
-                                                        </p>
-                                                    </div>
+                                            {notifications.length === 0 ? (
+                                                <div className="px-4 py-8 text-center text-slate-400 text-sm">
+                                                    Không có thông báo nào
                                                 </div>
-                                            ))}
+                                            ) : (
+                                                notifications.map((notif: any) => (
+                                                    <div
+                                                        key={notif.id}
+                                                        onClick={() => handleNotificationClick(notif)}
+                                                        className={`px-4 py-3 border-b border-slate-50 hover:bg-slate-50 cursor-pointer transition flex gap-3 ${!notif.isRead ? 'bg-slate-50' : 'bg-white'}`}
+                                                    >
+                                                        <div className={`mt-1 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm ${notif.type === 'NOTI_APPOINTMENT' ? 'bg-blue-50 text-blue-600' :
+                                                            notif.type === 'NOTI_MESSAGE' ? 'bg-green-50 text-green-600' :
+                                                                'bg-purple-50 text-purple-600'
+                                                            }`}>
+                                                            {notif.type === 'NOTI_APPOINTMENT' ? '📅' : notif.type === 'NOTI_MESSAGE' ? '💬' : '📋'}
+                                                        </div>
+                                                        <div className="flex-1 flex flex-col items-start">
+                                                            <div className="flex justify-between items-start">
+                                                                <p className={`text-sm w-full text-left ${!notif.isRead ? 'font-bold text-slate-900' : 'font-medium text-slate-700'}`}>
+                                                                    {notif.title}
+                                                                </p>
+                                                                {!notif.isRead && <span className="h-2 w-2 rounded-full bg-blue-500 mt-1.5"></span>}
+                                                            </div>
+                                                            <p className="text-xs text-slate-600 font-medium leading-relaxed mt-1 w-full text-left">
+                                                                {notif.content}
+                                                            </p>
+                                                            <p className="text-[10px] text-slate-400 mt-1 font-medium w-full text-left">
+                                                                {new Date(notif.created_at).toLocaleString()}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                ))
+                                            )}
                                         </div>
                                         <div className="p-2 text-center border-t border-slate-100 bg-slate-50 rounded-b-xl">
                                             <Link href="/notifications" className="text-xs font-semibold text-dermcare hover:text-dermcare-dark transition">

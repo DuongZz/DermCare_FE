@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
 import { DoctorAppointment, getDoctorAppointments, updateAppointmentStatus, updateAppointmentDetails } from "@/services/doctorService";
 
 /* ─── Status Configs ─── */
@@ -30,7 +32,10 @@ const FILTER_TABS = [
 /* ─── Helpers ─── */
 const formatDate = (d: string) => {
     try {
-        return new Date(d).toLocaleDateString("vi-VN", { weekday: "short", day: "2-digit", month: "2-digit", year: "numeric" });
+        if (!d) return "";
+        // Force parse as UTC so it doesn't shift days backward/forward based on user's timezone
+        const dateStr = d.endsWith("Z") ? d : `${d}Z`;
+        return new Date(dateStr).toLocaleDateString("vi-VN", { weekday: "short", day: "2-digit", month: "2-digit", year: "numeric", timeZone: "Asia/Ho_Chi_Minh" });
     } catch { return d; }
 };
 
@@ -38,11 +43,21 @@ const formatCurrency = (n: number) =>
     new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(n);
 
 const timeAgo = (d: string) => {
-    const diff = Date.now() - new Date(d).getTime();
+    if (!d) return "Không rõ";
+    const dateStr = d.endsWith("Z") ? d : `${d}Z`; // Đảm bảo luôn parse theo UTC
+    const reqDate = new Date(dateStr);
+    if (isNaN(reqDate.getTime())) return "Không rõ";
+
+    const diff = Date.now() - reqDate.getTime();
+    if (diff < 0) return "Vừa xong"; // Xử lý nếu server time lệch một chút
+
     const mins = Math.floor(diff / 60000);
+    if (mins < 1) return `Vừa xong`;
     if (mins < 60) return `${mins} phút trước`;
+
     const hrs = Math.floor(mins / 60);
     if (hrs < 24) return `${hrs} giờ trước`;
+
     const days = Math.floor(hrs / 24);
     return `${days} ngày trước`;
 };
@@ -109,17 +124,55 @@ const MOCK_APPOINTMENTS: DoctorAppointment[] = [
 
 /* ─── Component ─── */
 export default function DoctorAppointments() {
+    const { isLoggedIn, isDoctor, user, logout } = useAuth();
+    const searchParams = useSearchParams();
+    const [highlightedId, setHighlightedId] = useState<string | null>(null);
+
     const [appointments, setAppointments] = useState<DoctorAppointment[]>([]);
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState("ALL");
+    const [searchTerm, setSearchTerm] = useState("");
+
     const [updatingId, setUpdatingId] = useState<string | null>(null);
     const [expandedId, setExpandedId] = useState<string | null>(null);
-    const [searchTerm, setSearchTerm] = useState("");
     const [editingId, setEditingId] = useState<string | null>(null);
     const [editForm, setEditForm] = useState({ appointmentDate: "", appointmentTime: "", price: 0 });
     const [savingEdit, setSavingEdit] = useState(false);
 
-    useEffect(() => { fetchAppointments(); }, []);
+    const [toastMessage, setToastMessage] = useState<string | null>(null);
+    const [isToastVisible, setIsToastVisible] = useState(false);
+
+    const showToast = (msg: string) => {
+        setToastMessage(msg);
+        setTimeout(() => setIsToastVisible(true), 10);
+        setTimeout(() => setIsToastVisible(false), 2700);
+        setTimeout(() => setToastMessage(null), 3000);
+    };
+
+    useEffect(() => {
+        if (!isLoggedIn || !isDoctor) return;
+        fetchAppointments();
+    }, [isLoggedIn, isDoctor]);
+
+    useEffect(() => {
+        const id = searchParams.get('id');
+        if (id && appointments.length > 0) {
+            setHighlightedId(id);
+            // Scroll to the element
+            setTimeout(() => {
+                const element = document.getElementById(`apt-${id}`);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 500);
+
+            // Remove highlight after 5 seconds
+            const timer = setTimeout(() => {
+                setHighlightedId(null);
+            }, 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [searchParams, appointments]);
 
     const fetchAppointments = async () => {
         setLoading(true);
@@ -141,9 +194,10 @@ export default function DoctorAppointments() {
             setAppointments(prev =>
                 prev.map(a => a.id === id ? { ...a, appointmentStatus: status } : a)
             );
+            showToast("Cập nhật trạng thái thành công!");
         } catch (err) {
             console.error("Failed to update:", err);
-            alert("Cập nhật trạng thái thất bại!");
+            showToast("Cập nhật trạng thái thất bại!");
         } finally {
             setUpdatingId(null);
         }
@@ -169,10 +223,11 @@ export default function DoctorAppointments() {
             setAppointments(prev =>
                 prev.map(a => a.id === id ? { ...a, ...editForm } : a)
             );
+            showToast("Lưu thay đổi thành công!");
             setEditingId(null);
         } catch (err) {
             console.error("Failed to save:", err);
-            alert("Lưu thay đổi thất bại!");
+            showToast("Lưu thay đổi thất bại!");
         } finally {
             setSavingEdit(false);
         }
@@ -233,7 +288,15 @@ export default function DoctorAppointments() {
     }
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-5 relative">
+            {toastMessage && (
+                <div className={`fixed top-28 left-1/2 z-[100] rounded-full border border-dermcare bg-white px-6 py-2.5 text-sm font-semibold text-dermcare shadow-lg transition-all duration-500 ease-in-out transform ${isToastVisible
+                    ? 'translate-y-0 opacity-100 -translate-x-1/2'
+                    : '-translate-y-12 opacity-0 -translate-x-1/2'
+                    }`}>
+                    {toastMessage}
+                </div>
+            )}
             {/* ═══ Stats Cards ═══ */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 <StatCard label="Tổng lịch hẹn" value={stats.total} icon="📊" color="slate" />
@@ -309,17 +372,21 @@ export default function DoctorAppointments() {
                         return (
                             <div
                                 key={apt.id}
-                                className={`group rounded-2xl border bg-white shadow-soft transition-all hover:shadow-md ${status.border}`}
+                                id={`apt-${apt.id}`}
+                                className={`group relative rounded-2xl border bg-white shadow-sm transition-all duration-300 hover:shadow-md ${highlightedId === apt.id
+                                    ? 'border-dermcare ring-2 ring-dermcare/20 bg-dermcare/5 scale-[1.01] z-10'
+                                    : 'border-slate-200'
+                                    }`}
                             >
+                                {/* Highlight Indicator */}
+                                {highlightedId === apt.id && (
+                                    <div className="absolute -left-1 top-4 bottom-4 w-1.5 bg-dermcare rounded-r-full animate-pulse shadow-[0_0_12px_rgba(10,143,220,0.5)]"></div>
+                                )}
                                 {/* ─ Main Row ─ */}
                                 <div
                                     className="flex flex-col sm:flex-row sm:items-center gap-4 p-5 cursor-pointer"
                                     onClick={() => setExpandedId(isExpanded ? null : apt.id)}
                                 >
-                                    {/* Avatar */}
-                                    <div className={`flex-shrink-0 h-12 w-12 rounded-full ${status.bg} ${status.border} border flex items-center justify-center text-lg font-bold ${status.text}`}>
-                                        {apt.patient?.fullName?.charAt(0)?.toUpperCase() || "?"}
-                                    </div>
 
                                     {/* Info */}
                                     <div className="flex-1 min-w-0">
@@ -354,35 +421,8 @@ export default function DoctorAppointments() {
 
                                     {/* Actions + Expand */}
                                     <div className="flex items-center gap-2 flex-shrink-0">
-                                        {/* Quick Action Buttons (desktop) */}
+                                        {/* Quick Action Buttons (desktop) - Removed as requested */}
                                         <div className="hidden sm:flex gap-2">
-                                            {apt.appointmentStatus === "PENDING" && (
-                                                <>
-                                                    <button
-                                                        onClick={e => { e.stopPropagation(); handleUpdateStatus(apt.id, "CONFIRMED"); }}
-                                                        disabled={isUpdating}
-                                                        className="rounded-lg bg-blue-600 px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-blue-700 hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                                                    >
-                                                        {isUpdating ? "⏳" : "✓ Xác nhận"}
-                                                    </button>
-                                                    <button
-                                                        onClick={e => { e.stopPropagation(); handleUpdateStatus(apt.id, "CANCELLED"); }}
-                                                        disabled={isUpdating}
-                                                        className="rounded-lg border border-red-200 bg-red-50 px-3.5 py-1.5 text-xs font-semibold text-red-600 hover:bg-red-100 hover:border-red-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                                                    >
-                                                        {isUpdating ? "⏳" : "✗ Từ chối"}
-                                                    </button>
-                                                </>
-                                            )}
-                                            {apt.appointmentStatus === "CONFIRMED" && (
-                                                <button
-                                                    onClick={e => { e.stopPropagation(); handleUpdateStatus(apt.id, "COMPLETED"); }}
-                                                    disabled={isUpdating}
-                                                    className="rounded-lg bg-green-600 px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-green-700 hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                                                >
-                                                    {isUpdating ? "⏳" : "✓ Hoàn thành"}
-                                                </button>
-                                            )}
                                         </div>
 
                                         {/* Expand Arrow */}
@@ -404,12 +444,14 @@ export default function DoctorAppointments() {
                                                 <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Thông tin bệnh nhân</h4>
                                                 <div className="space-y-2">
                                                     <DetailRow label="Họ tên" value={apt.patient?.fullName} />
-                                                    <DetailRow label="Email" value={apt.patient?.email} />
-                                                    <DetailRow label="SĐT" value={apt.patient?.phone} />
+                                                    <DetailRow label="Tuổi/Năm sinh" value={apt.patient?.dateOfBirth ? formatDate(apt.patient.dateOfBirth) : null} />
                                                     <DetailRow label="Giới tính" value={
                                                         apt.patient?.gender === "MALE" ? "Nam" :
                                                             apt.patient?.gender === "FEMALE" ? "Nữ" : apt.patient?.gender
                                                     } />
+                                                    <DetailRow label="SĐT" value={apt.patient?.phone} />
+                                                    <DetailRow label="Email" value={apt.patient?.email} />
+                                                    <DetailRow label="Địa chỉ" value={apt.patient?.address} />
                                                 </div>
                                             </div>
 
@@ -483,49 +525,22 @@ export default function DoctorAppointments() {
                                                         <DetailRow label="Giờ khám" value={apt.appointmentTime} />
                                                         <DetailRow label="Giá khám" value={formatCurrency(apt.price)} highlight />
                                                         <DetailRow label="Thanh toán" value={`${payment.icon} ${payment.label}`} />
-                                                        <DetailRow label="Ngày tạo" value={timeAgo(apt.created_at)} />
+                                                        <DetailRow label="Ngày tạo" value={formatDate(apt.created_at)} />
                                                     </div>
                                                 )}
                                             </div>
                                         </div>
 
                                         {/* Note */}
-                                        {apt.note && (
-                                            <div className="mt-4 rounded-xl bg-amber-50 border border-amber-100 p-4">
-                                                <h4 className="text-xs font-bold text-amber-700 uppercase tracking-wider mb-1.5">📝 Ghi chú / Triệu chứng</h4>
-                                                <p className="text-sm text-amber-900 leading-relaxed">{apt.note}</p>
-                                            </div>
-                                        )}
+                                        <div className="mt-4 rounded-xl bg-amber-50 border border-amber-100 p-4">
+                                            <h4 className="text-xs font-bold text-amber-700 uppercase tracking-wider mb-1.5">📝 Ghi chú / Triệu chứng</h4>
+                                            <p className="text-sm text-amber-900 leading-relaxed font-medium">
+                                                {apt.note ? apt.note : <span className="italic font-normal opacity-70">Không có ghi chú.</span>}
+                                            </p>
+                                        </div>
 
-                                        {/* Mobile Action Buttons */}
+                                        {/* Mobile Action Buttons - Removed as requested */}
                                         <div className="flex gap-2 mt-4 sm:hidden">
-                                            {apt.appointmentStatus === "PENDING" && (
-                                                <>
-                                                    <button
-                                                        onClick={() => handleUpdateStatus(apt.id, "CONFIRMED")}
-                                                        disabled={isUpdating}
-                                                        className="flex-1 rounded-xl bg-blue-600 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition disabled:opacity-50"
-                                                    >
-                                                        {isUpdating ? "⏳" : "✓ Xác nhận"}
-                                                    </button>
-                                                    <button
-                                                        onClick={() => handleUpdateStatus(apt.id, "CANCELLED")}
-                                                        disabled={isUpdating}
-                                                        className="flex-1 rounded-xl border border-red-200 bg-red-50 py-2.5 text-sm font-semibold text-red-600 hover:bg-red-100 transition disabled:opacity-50"
-                                                    >
-                                                        {isUpdating ? "⏳" : "✗ Từ chối"}
-                                                    </button>
-                                                </>
-                                            )}
-                                            {apt.appointmentStatus === "CONFIRMED" && (
-                                                <button
-                                                    onClick={() => handleUpdateStatus(apt.id, "COMPLETED")}
-                                                    disabled={isUpdating}
-                                                    className="flex-1 rounded-xl bg-green-600 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-700 transition disabled:opacity-50"
-                                                >
-                                                    {isUpdating ? "⏳" : "✓ Hoàn thành"}
-                                                </button>
-                                            )}
                                         </div>
                                     </div>
                                 )}
