@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { getDoctorsBySpecialization, DoctorResult } from "@/services/chatService";
+import { queryKnowledgeBase } from "@/services/knowledgeService";
 
 // ============================
 // Hardcoded Test Config
@@ -30,7 +31,7 @@ export default function AIChat() {
     const [messages, setMessages] = useState<Message[]>([
         {
             id: "welcome",
-            text: "Xin chào 👋 Tôi là **DARA** - Trợ lý AI của Dermcare.\n\nĐể nhận kết quả chẩn đoán, bạn hãy:\n📸 **Tải ảnh** vùng da đang bị bệnh.\n✍️ **Mô tả triệu chứng** bạn đang gặp phải.\n\nTôi sẽ phân tích và đưa ra gợi ý phù hợp!\n\n**Lưu ý:** Kết quả chẩn đoán sơ bộ chỉ là số liệu tham khảo. Nếu không chắc chắn về tình trạng bệnh, xin hãy vui lòng đặt lịch khám với bác sĩ để được tư vấn chuẩn nhất.",
+            text: "Xin chào 👋 Tôi là DARA - Trợ lý AI của Dermcare.\n\nĐể nhận kết quả chẩn đoán, bạn hãy:\n📸 **Tải ảnh** vùng da đang bị bệnh.\n✍️ **Mô tả triệu chứng** bạn đang gặp phải.\n\nTôi sẽ phân tích và đưa ra gợi ý phù hợp!\n\n**Lưu ý:** Kết quả chẩn đoán sơ bộ chỉ là số liệu tham khảo. Nếu không chắc chắn về tình trạng bệnh, xin hãy vui lòng đặt lịch khám với bác sĩ để được tư vấn chuẩn nhất.",
             sender: "ai",
             timestamp: new Date(),
         },
@@ -68,13 +69,16 @@ export default function AIChat() {
         setMessages((prev) => [...prev, aiMsg]);
     };
 
-    const handleSend = () => {
+    const handleSend = async () => {
         if (!inputValue.trim() && !imagePreview) return;
+
+        const currentInput = inputValue;
+        const currentImage = imagePreview;
 
         // Add user message
         const userMessage: Message = {
             id: Date.now().toString(),
-            text: imagePreview ? `[Hình ảnh đính kèm] ${inputValue}` : inputValue,
+            text: currentImage ? `[Hình ảnh đính kèm] ${currentInput}` : currentInput,
             sender: "user",
             timestamp: new Date(),
         };
@@ -83,20 +87,25 @@ export default function AIChat() {
         setImagePreview(null);
         setIsTyping(true);
 
-        // Simulate AI response following the flow
-        const currentStep = flowStep;
-        setTimeout(() => {
-            if (currentStep < CONVERSATION_FLOW.length) {
-                const isLastStep = currentStep === CONVERSATION_FLOW.length - 1;
-                addAiMessage(CONVERSATION_FLOW[currentStep], isLastStep);
-                setFlowStep((prev) => prev + 1);
+        try {
+            // Nếu có ảnh, chúng ta sẽ gọi analyze (tương lai), 
+            // hiện tại chúng ta tập trung vào RAG (văn bản) cho user test
+            if (!currentImage) {
+                const result = await queryKnowledgeBase(currentInput);
+                addAiMessage(result.answer, false);
             } else {
-                addAiMessage(
-                    "Bạn có muốn tôi hỗ trợ thêm gì không? Bạn cũng có thể đặt lịch với bác sĩ da liễu để được khám trực tiếp."
-                );
+                // Mock cho trường hợp có ảnh vì RAG hiện tại chỉ xử lý text
+                setTimeout(() => {
+                    addAiMessage("DARA đã nhận được ảnh của bạn. Chức năng phân tích ảnh đang được tích hợp. Hãy thử hỏi thông tin về bệnh bằng văn bản!", false);
+                    setIsTyping(false);
+                }, 1000);
             }
-            setIsTyping(false);
-        }, 1500);
+        } catch (error) {
+            console.error("RAG Query Error:", error);
+            addAiMessage("Xin lỗi, tôi gặp sự cố khi kết nối với máy chủ AI. Vui lòng kiểm tra GOOGLE_API_KEY trong .env và thử lại sau.");
+        } finally {
+            if (!currentImage) setIsTyping(false);
+        }
     };
 
     const handleKeyPress = (e: React.KeyboardEvent) => {

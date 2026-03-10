@@ -18,6 +18,7 @@ import {
     DoctorResult,
     DoctorSchedule,
 } from "@/services/chatService";
+import { queryKnowledgeBase } from "@/services/knowledgeService";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/v1\/?$/, "") || "http://localhost:4000";
 
@@ -44,6 +45,7 @@ export default function ChatPage() {
     const [doctorSchedules, setDoctorSchedules] = useState<Record<string, DoctorSchedule[]>>({});
     const [isLoadingSchedule, setIsLoadingSchedule] = useState(false);
     const [aiStatus, setAiStatus] = useState<string | null>(null);
+    const [chatMode, setChatMode] = useState<"diagnosis" | "knowledge">("diagnosis");
 
     const fileInputRef = useRef<HTMLInputElement>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -261,9 +263,66 @@ export default function ChatPage() {
     };
 
     // Gửi tin nhắn qua Socket / Hoặc gửi ảnh cho AI phân tích
+    // Truy vấn kiến thức RAG
+    const handleKnowledgeQuery = async () => {
+        if (!inputText.trim() || !activeConversation) return;
+
+        const question = inputText.trim();
+        setInputText("");
+        setIsLoading(true);
+        setAiStatus("DARA AI đang tra cứu kiến thức...");
+
+        // 1. Optimistic User Message
+        const myMessage: ConversationMessage = {
+            id: `temp-rag-${Date.now()}`,
+            clientId: `temp-rag-${Date.now()}`,
+            content: question,
+            type: "text",
+            isAiMessage: false,
+            conversationId: activeConversation.id,
+            created_at: new Date().toISOString(),
+            timestamp: Date.now(),
+            sender: currentUser ? {
+                id: String(currentUser.id),
+                fullName: currentUser.fullName,
+                role: currentUser.role
+            } : { id: "me", fullName: "Me", role: "PATIENT" }
+        };
+        setMessages(prev => [...prev, myMessage]);
+
+        try {
+            const response = await queryKnowledgeBase(question);
+            console.log("RAG Response:", response);
+
+            // 2. AI RAG Message
+            const aiMsg: ConversationMessage = {
+                id: `ai-rag-${Date.now()}`,
+                content: response.answer,
+                type: "text",
+                isAiMessage: true,
+                conversationId: activeConversation.id,
+                created_at: new Date().toISOString(),
+                timestamp: Date.now() + 10,
+                sender: { id: "dara", fullName: "DARA AI", role: "AI" }
+            };
+            setMessages(prev => [...prev, aiMsg]);
+        } catch (error: any) {
+            console.error("RAG Error Details:", error);
+            const errMsg = error.response?.data?.message || error.message || "Lỗi không xác định";
+            alert(`Không thể tra cứu kiến thức: ${errMsg}. Vui lòng kiểm tra GOOGLE_API_KEY.`);
+        } finally {
+            setIsLoading(false);
+            setAiStatus(null);
+        }
+    };
+
     const handleSendMessage = async () => {
-        if (!inputText.trim() && !selectedImageFile) return;
-        if (!activeConversation || (!socketRef.current && !selectedImageFile && !inputText.trim())) return;
+        if ((!inputText.trim() && !selectedImage) || !activeConversation || isLoading) return;
+
+        if (chatMode === "knowledge") {
+            handleKnowledgeQuery();
+            return;
+        }
 
         setIsLoading(true);
         const content = inputText.trim();
@@ -384,7 +443,9 @@ export default function ChatPage() {
     const handleKeyPress = (e: React.KeyboardEvent) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
-            handleSendMessage();
+            if (!isLoading) {
+                handleSendMessage();
+            }
         }
     };
 
@@ -775,6 +836,30 @@ export default function ChatPage() {
                 {activeConversation && (
                     <div className="border-t border-slate-200 bg-white px-4 py-4 shadow-lg flex-shrink-0">
                         <div className="mx-auto max-w-5xl">
+                            {/* Chat Mode Switcher */}
+                            <div className="mb-3 flex justify-center">
+                                <div className="flex p-1 bg-slate-100 rounded-xl border border-slate-200 shadow-sm">
+                                    <button
+                                        onClick={() => setChatMode("diagnosis")}
+                                        className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${chatMode === "diagnosis"
+                                                ? "bg-white text-dermcare shadow-sm"
+                                                : "text-slate-500 hover:text-slate-700"
+                                            }`}
+                                    >
+                                        <span className="text-base">🩺</span> Chẩn đoán
+                                    </button>
+                                    <button
+                                        onClick={() => setChatMode("knowledge")}
+                                        className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${chatMode === "knowledge"
+                                                ? "bg-blue-600 text-white shadow-sm"
+                                                : "text-slate-500 hover:text-slate-700"
+                                            }`}
+                                    >
+                                        <span className="text-base">📚</span> Tra cứu
+                                    </button>
+                                </div>
+                            </div>
+
                             {selectedImage && (
                                 <div className="mb-3 flex items-start gap-2">
                                     <div className="relative">
@@ -798,24 +883,30 @@ export default function ChatPage() {
                                 <button
                                     onClick={() => fileInputRef.current?.click()}
                                     className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border-2 border-slate-300 bg-white text-xl text-slate-600 transition hover:border-dermcare hover:bg-dermcare/5"
-                                    title="Upload ảnh"
+                                    title="Tải ảnh lên"
                                 >
                                     📷
                                 </button>
+
+
                                 <div className="flex-1">
                                     <textarea
                                         value={inputText}
                                         onChange={(e) => setInputText(e.target.value)}
                                         onKeyDown={handleKeyPress}
-                                        placeholder="Mô tả triệu chứng của bạn..."
+                                        placeholder={chatMode === "diagnosis" ? "Mô tả triệu chứng của bạn..." : "Nhập câu hỏi bạn muốn tra cứu kiến thức..."}
                                         rows={1}
-                                        className="w-full resize-none rounded-xl border-2 border-slate-300 px-4 py-3 text-sm transition focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20"
+                                        className={`w-full resize-none rounded-xl border-2 px-4 py-3 text-sm transition focus:outline-none focus:ring-2 ${chatMode === "diagnosis"
+                                                ? "border-slate-300 focus:border-dermcare focus:ring-dermcare/20"
+                                                : "border-blue-200 bg-blue-50/30 focus:border-blue-500 focus:ring-blue-500/20"
+                                            }`}
                                     />
                                 </div>
                                 <button
                                     onClick={handleSendMessage}
                                     disabled={(!inputText.trim() && !selectedImage) || isLoading}
-                                    className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-dermcare text-xl text-white shadow-soft transition hover:bg-dermcare-dark disabled:cursor-not-allowed disabled:opacity-40"
+                                    className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl text-xl text-white shadow-soft transition disabled:cursor-not-allowed disabled:opacity-40 ${chatMode === "diagnosis" ? "bg-dermcare hover:bg-dermcare-dark" : "bg-blue-600 hover:bg-blue-700"
+                                        }`}
                                 >
                                     ➤
                                 </button>
