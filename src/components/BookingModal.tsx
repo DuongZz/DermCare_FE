@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getAvailableDoctorSchedule } from "@/services/scheduleService";
 import { bookAppointment } from "@/services/appointmentService";
 import { createMomoPayment, createZaloPayment, checkPaymentTimeout } from "@/services/paymentService";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface TimeSlot {
     time: string;
@@ -27,9 +28,14 @@ interface BookingModalProps {
         avatar: string;
         qualifications?: string;
     };
+    conversationId?: string;
+    initialDate?: string;
+    initialTime?: string;
+    initialPrice?: number;
 }
 
-export default function BookingModal({ isOpen, onClose, doctor }: BookingModalProps) {
+export default function BookingModal({ isOpen, onClose, doctor, conversationId, initialDate, initialTime, initialPrice }: BookingModalProps) {
+    const { user } = useAuth();
     const PAYMENT_TIMEOUT = {
         momo: 6000,  // 100 phút (MoMo Sandbox default)
         zalo: 1200,  // 20 phút (ZaloPay default)
@@ -41,19 +47,19 @@ export default function BookingModal({ isOpen, onClose, doctor }: BookingModalPr
     const [createdAppointmentId, setCreatedAppointmentId] = useState<string | null>(null);
     const [paymentMethod, setPaymentMethod] = useState<"momo" | "zalo">("momo");
     const [timeLeft, setTimeLeft] = useState<number>(PAYMENT_TIMEOUT.momo);
-    const [selectedDate, setSelectedDate] = useState<string>("");
-    const [selectedTime, setSelectedTime] = useState<string>("");
+    const [selectedDate, setSelectedDate] = useState<string>(initialDate || "");
+    const [selectedTime, setSelectedTime] = useState<string>(initialTime || "");
     const [formData, setFormData] = useState({
-        fullName: "",
-        phone: "",
-        email: "",
+        fullName: user?.fullName || "",
+        phone: user?.phone || "",
+        email: user?.email || "",
         notes: ""
     });
 
     const [schedule, setSchedule] = useState<DaySchedule[]>([]);
 
     const selectedSlotOption = schedule.find(d => d.date === selectedDate)?.slots.find(s => s.time === selectedTime);
-    const consultationPrice = selectedSlotOption?.price || 250000; // Lấy giá từ database hoặc mặc định 250k
+    const consultationPrice = initialPrice || selectedSlotOption?.price || 250000; // Ưu tiên initialPrice từ prop
     const [isLoadingSchedule, setIsLoadingSchedule] = useState(false);
     const [isBooking, setIsBooking] = useState(false);
 
@@ -152,7 +158,8 @@ export default function BookingModal({ isOpen, onClose, doctor }: BookingModalPr
         try {
             const result: any = await bookAppointment(doctor.id, {
                 appointmentDate: selectedDate,
-                appointmentTime: selectedTime
+                appointmentTime: selectedTime,
+                conversationId: conversationId,
             });
 
             // Backend trả về: res.customSuccess(200, '...', booking);
@@ -186,8 +193,21 @@ export default function BookingModal({ isOpen, onClose, doctor }: BookingModalPr
             setShowSuccess(false);
             setShowConfirm(false);
             setTimeLeft(300);
+        } else if (initialDate && initialTime) {
+            setSelectedDate(initialDate);
+            setSelectedTime(initialTime);
+            setStep(2);
+            // Pre-fill user data if available
+            if (user) {
+                setFormData(prev => ({
+                    ...prev,
+                    fullName: user.fullName || prev.fullName,
+                    phone: user.phone || prev.phone,
+                    email: user.email || prev.email
+                }));
+            }
         }
-    }, [isOpen]);
+    }, [isOpen, initialDate, initialTime, user]);
 
     // Timer Countdown for Step 3
     useEffect(() => {

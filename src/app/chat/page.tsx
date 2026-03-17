@@ -9,6 +9,8 @@ import { getAccessToken } from "@/lib/tokenStore";
 import {
     createAiConversation,
     getConversations,
+    getConversationById,
+    deleteConversation,
     getConversationMessages,
     getDoctorsBySpecialization,
     getPublicDoctorSchedule,
@@ -17,10 +19,22 @@ import {
     ConversationMessage,
     DoctorResult,
     DoctorSchedule,
+    completeConversation,
 } from "@/services/chatService";
 import { queryKnowledgeBase } from "@/services/knowledgeService";
+import BookingModal from "@/components/BookingModal";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/v1\/?$/, "") || "http://localhost:4000";
+
+const WELCOME_MESSAGE_CONTENT = `Xin chào 👋 Tôi là **DARA** - Trợ lý AI của Dermcare.
+
+Để nhận kết quả chẩn đoán, bạn hãy:
+📸 **Tải ảnh** vùng da đang bị bệnh.
+✍️ **Mô tả triệu chứng** bạn đang gặp phải.
+
+Tôi sẽ phân tích và đưa ra gợi ý phù hợp!
+
+**Lưu ý:** Kết quả chẩn đoán sơ bộ chỉ là số liệu tham khảo. Nếu không chắc chắn về tình trạng bệnh, xin hãy vui lòng đặt lịch khám với bác sĩ để được tư vấn chuẩn nhất.`;
 
 export default function ChatPage() {
     const { isLoggedIn, user: currentUser } = useAuth();
@@ -33,7 +47,9 @@ export default function ChatPage() {
     const [selectedImageFile, setSelectedImageFile] = useState<File | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [isConnected, setIsConnected] = useState(false);
-    const [showSidebar, setShowSidebar] = useState(true);
+    const [showSidebar, setShowSidebar] = useState(false);
+    const [showCompleteConfirm, setShowCompleteConfirm] = useState(false);
+    const [isCompleting, setIsCompleting] = useState(false);
 
     // Doctor suggestion state
     const [doctors, setDoctors] = useState<DoctorResult[]>([]);
@@ -45,7 +61,17 @@ export default function ChatPage() {
     const [doctorSchedules, setDoctorSchedules] = useState<Record<string, DoctorSchedule[]>>({});
     const [isLoadingSchedule, setIsLoadingSchedule] = useState(false);
     const [aiStatus, setAiStatus] = useState<string | null>(null);
+    const [activeTab, setActiveTab] = useState<string>("DOCTOR_CONSULTING");
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalConversations, setTotalConversations] = useState(0);
+    const [hasMore, setHasMore] = useState(true);
     const [chatMode, setChatMode] = useState<"diagnosis" | "knowledge">("diagnosis");
+
+    // Booking Modal State
+    const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+    const [selectedSlot, setSelectedSlot] = useState<DoctorSchedule | null>(null);
+
+    const isDoctor = currentUser?.role === "DOCTOR";
 
     const fileInputRef = useRef<HTMLInputElement>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -158,6 +184,19 @@ export default function ChatPage() {
             });
         });
 
+        socket.on("conversation_updated", (data: { id: string; status: string; title: string }) => {
+            console.log("[Chat] Conversation updated:", data);
+            setActiveConversation(prev => {
+                if (prev && prev.id === data.id) {
+                    return { ...prev, status: data.status as any, title: data.title };
+                }
+                return prev;
+            });
+            setConversations(prev => prev.map(c =>
+                c.id === data.id ? { ...c, status: data.status as any, title: data.title } : c
+            ));
+        });
+
         socket.on("error", (err: { message: string }) => {
             console.error("[Socket error]", err.message);
             setIsLoading(false);
@@ -171,31 +210,8 @@ export default function ChatPage() {
         };
     }, []);
 
-    // Tải danh sách conversations khi mở trang
-    useEffect(() => {
-        if (!isLoggedIn) return;
-
-        const loadConversations = async () => {
-            try {
-                const data = await getConversations();
-                setConversations(data || []);
-                // Tự động mở conversation đầu tiên nếu có
-                if (data && data.length > 0) {
-                    handleSelectConversation(data[0]);
-                }
-            } catch (err) {
-                console.error("Failed to load conversations:", err);
-            } finally {
-                setIsLoadingConversations(false);
-            }
-        };
-
-        loadConversations();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isLoggedIn]);
-
     // Chọn vào 1 conversation → join socket room + load messages
-    const handleSelectConversation = async (conv: Conversation) => {
+    const handleSelectConversation = useCallback(async (conv: Conversation) => {
         // Rời room cũ
         if (activeConversation && socketRef.current) {
             socketRef.current.emit("leave_conversation", activeConversation.id);
@@ -206,13 +222,17 @@ export default function ChatPage() {
         setIsLoading(true);
 
         try {
+            console.log("[Chat] Fetching messages for:", conv.id);
             const msgs = await getConversationMessages(conv.id);
+            console.log("[Chat] Messages received (count):", msgs?.length);
+            
             if (!msgs || msgs.length === 0) {
+                console.log("[Chat] No messages found, applying fallback welcome message.");
                 // Nếu hội thoại trống, thêm tin nhắn chào mừng của DARA
                 const welcomeMsg: ConversationMessage = {
                     id: `welcome-${Date.now()}`,
                     isAiMessage: true,
-                    content: "Xin chào 👋 Tôi là **DARA** - Trợ lý AI của Dermcare.\n\nĐể nhận kết quả chẩn đoán, bạn hãy:\n📸 **Tải ảnh** vùng da đang bị bệnh.\n✍️ **Mô tả triệu chứng** bạn đang gặp phải.\n\nTôi sẽ phân tích và đưa ra gợi ý phù hợp!\n\n**Lưu ý:** Kết quả chẩn đoán sơ bộ chỉ là số liệu tham khảo. Nếu không chắc chắn về tình trạng bệnh, xin hãy vui lòng đặt lịch khám với bác sĩ để được tư vấn chuẩn nhất.",
+                    content: WELCOME_MESSAGE_CONTENT,
                     type: "text",
                     sender: { id: "dara", fullName: "DARA AI", role: "AI" },
                     created_at: new Date().toISOString(),
@@ -223,7 +243,8 @@ export default function ChatPage() {
             } else {
                 setMessages(msgs);
             }
-        } catch {
+        } catch (err) {
+            console.error("[Chat] Error loading messages:", err);
             setMessages([]);
         } finally {
             setIsLoading(false);
@@ -233,16 +254,134 @@ export default function ChatPage() {
         if (socketRef.current) {
             socketRef.current.emit("join_conversation", conv.id);
         }
+    }, [activeConversation]);
+
+    const loadConversations = useCallback(async (status: string, page: number = 1, append: boolean = false) => {
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetId = urlParams.get('id');
+
+            // Nếu lần đầu load và có ID trên URL, ta cần biết STATUS của nó để chuyển tab tương ứng
+            if (page === 1 && targetId && !append) {
+                try {
+                    const targetConv = await getConversationById(targetId);
+                    if (targetConv && targetConv.status !== status) {
+                        console.log("[Chat] Auto-switching tab to:", targetConv.status);
+                        setActiveTab(targetConv.status);
+                        // Khi setActiveTab chạy, useEffect sẽ gọi lại loadConversations với status mới
+                        return;
+                    }
+                } catch (err) {
+                    console.error("[Chat] Failed to fetch target conversation metadata:", err);
+                }
+            }
+
+            if (page === 1) setIsLoadingConversations(true);
+            const result = await getConversations(status, page);
+            
+            if (append) {
+                setConversations(prev => [...prev, ...result.conversations]);
+            } else {
+                setConversations(result.conversations);
+            }
+            
+            setTotalConversations(result.total);
+            setHasMore(result.conversations.length === 5 && (page * 5) < result.total);
+            setCurrentPage(page);
+
+            // Kiểm tra xem có ID hội thoại trên URL không (chỉ làm ở lần load đầu tiên)
+            if (page === 1) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const targetId = urlParams.get('id');
+
+                if (result.conversations.length > 0) {
+                    if (targetId) {
+                        const targetConv = result.conversations.find(c => c.id === targetId);
+                        if (targetConv) {
+                            handleSelectConversation(targetConv);
+                        } else {
+                            handleSelectConversation(result.conversations[0]);
+                        }
+                    } else if (!activeConversation) {
+                        handleSelectConversation(result.conversations[0]);
+                    }
+                }
+            }
+        } catch (err) {
+            console.error("Failed to load conversations:", err);
+        } finally {
+            if (page === 1) setIsLoadingConversations(false);
+        }
+    }, [activeConversation, handleSelectConversation]);
+
+    // Tải danh sách conversations khi mở trang hoặc đổi tab
+    useEffect(() => {
+        if (!isLoggedIn) return;
+        loadConversations(activeTab, 1, false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isLoggedIn, activeTab]);
+
+    const [isDeleting, setIsDeleting] = useState<string | null>(null);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [conversationIdToDelete, setConversationIdToDelete] = useState<string | null>(null);
+
+    // Mở modal xác nhận xóa
+    const openDeleteModal = (e: React.MouseEvent, conversationId: string) => {
+        e.stopPropagation();
+        setConversationIdToDelete(conversationId);
+        setShowDeleteModal(true);
+    };
+
+    // Thực hiện xóa hội thoại sau khi xác nhận
+    const handleConfirmDelete = async () => {
+        if (!conversationIdToDelete) return;
+
+        setIsDeleting(conversationIdToDelete);
+        try {
+            await deleteConversation(conversationIdToDelete);
+            
+            // Cập nhật danh sách local
+            const updatedList = conversations.filter(c => c.id !== conversationIdToDelete);
+            setConversations(updatedList);
+            
+            // Cập nhật tổng số lượng và trạng thái hasMore
+            setTotalConversations(prev => {
+                const newTotal = Math.max(0, prev - 1);
+                // Nếu số lượng còn lại nhỏ hơn hoặc bằng 5, không cần "Xem thêm" nữa
+                if (newTotal <= 5) setHasMore(false);
+                return newTotal;
+            });
+
+            if (activeConversation?.id === conversationIdToDelete) {
+                setActiveConversation(null);
+                setMessages([]);
+            }
+            setShowDeleteModal(false);
+            setConversationIdToDelete(null);
+        } catch (err) {
+            console.error("Failed to delete conversation:", err);
+            alert("Không thể xóa cuộc hội thoại. Vui lòng thử lại.");
+        } finally {
+            setIsDeleting(null);
+        }
     };
 
     // Tạo cuộc hội thoại mới với AI
     const handleNewConversation = async () => {
         try {
+            // Chuyển sang tab AI trước để người dùng thấy danh sách được cập nhật
+            setActiveTab("AI_CONSULTING");
+            
             const newConv = await createAiConversation();
-            setConversations((prev) => {
-                if (prev.find((c) => c.id === newConv.id)) return prev;
-                return [newConv, ...prev];
-            });
+            
+            // Nếu đang ở tab AI rồi, cập nhật danh sách ngay lập tức
+            if (activeTab === "AI_CONSULTING") {
+                setConversations((prev) => {
+                    if (prev.find((c) => c.id === newConv.id)) return prev;
+                    return [newConv, ...prev];
+                });
+            }
+            
             handleSelectConversation(newConv);
         } catch (err) {
             console.error("Failed to create ai conversation:", err);
@@ -324,7 +463,6 @@ export default function ChatPage() {
             return;
         }
 
-        setIsLoading(true);
         const content = inputText.trim();
         const imageFile = selectedImageFile;
 
@@ -334,10 +472,17 @@ export default function ChatPage() {
         if (fileInputRef.current) fileInputRef.current.value = "";
 
         const isAiConsulting = activeConversation.status === 'AI_CONSULTING';
+        const isDoctor = currentUser?.role === 'DOCTOR';
 
-        // Nếu là phiên chat AI, ta gửi cả ảnh và chữ qua API analyzeAiCondition
-        if (isAiConsulting) {
+        // Nếu là phiên chat AI và KHÔNG PHẢI bác sĩ nhắn, ta gửi cả ảnh và chữ qua API analyzeAiCondition
+        if (isAiConsulting && !isDoctor) {
+            setIsLoading(true);
             setAiStatus("DARA AI đang phân tích dữ liệu của bạn...");
+
+            // Reset chẩn đoán cũ và ẩn danh sách bác sĩ khi bắt đầu chẩn đoán mới
+            setActiveConversation(prev => prev ? { ...prev, diagnosisInfo: null } : null);
+            setShowDoctors(false);
+            setDoctors([]);
 
             // 1. Optimistic Text Message
             let myTextMessage: ConversationMessage | null = null;
@@ -386,13 +531,15 @@ export default function ChatPage() {
                 const analyzeRes = await analyzeAiCondition(activeConversation.id, imageFile, content);
 
                 if (analyzeRes && analyzeRes.aiResult && analyzeRes.aiResult.specialization) {
-                    const newTitle = `Tư vấn: ${analyzeRes.aiResult.disease_name}`;
+                    const resAi = analyzeRes.aiResult;
+                    const newTitle = `Tư vấn: ${resAi.disease_name}`;
+                    
                     setActiveConversation(prev => prev ? {
                         ...prev,
                         title: newTitle,
                         diagnosisInfo: {
-                            disease: analyzeRes.aiResult.disease_name,
-                            specialization: analyzeRes.aiResult.specialization
+                            disease: resAi.disease_name,
+                            specialization: resAi.specialization
                         }
                     } : null);
 
@@ -412,6 +559,9 @@ export default function ChatPage() {
                 if (myTextMessage) {
                     setMessages(prev => prev.filter(msg => msg.id !== myTextMessage!.id));
                 }
+            } finally {
+                setIsLoading(false);
+                setAiStatus(null);
             }
         } else {
             // Logic cũ cho Chat với Bác sĩ: Chỉ được gửi websocket văn bản (hiện tại)
@@ -505,7 +655,8 @@ export default function ChatPage() {
     };
 
     const handleSelectSlot = (slot: DoctorSchedule) => {
-        alert(`Bạn đã chọn khung giờ ${slot.startTime} ngày ${slot.date}. (Chức năng tạo đơn đặt lịch sẽ được triển khai ở bước tiếp theo)`);
+        setSelectedSlot(slot);
+        setIsBookingModalOpen(true);
     };
 
     const formatTime = (dateStr: string | number) => {
@@ -528,6 +679,113 @@ export default function ChatPage() {
 
     return (
         <div className="fixed inset-0 flex bg-slate-50">
+            {/* Modal xác nhận xóa hội thoại AI */}
+            {showDeleteModal && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                    <div 
+                        className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm"
+                        onClick={() => setShowDeleteModal(false)}
+                    />
+                    <div className="relative w-full max-w-sm rounded-[24px] border border-white/20 bg-white/80 p-6 shadow-2xl shadow-slate-200/50 backdrop-blur-xl transition-all animate-in fade-in zoom-in duration-300">
+                        <div className="mb-4 flex flex-col items-center text-center">
+                            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-red-500 shadow-inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M3 6h18m-2 0v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6m3 0V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                </svg>
+                            </div>
+                            <h3 className="text-xl font-bold text-slate-900">Xác nhận xóa?</h3>
+                            <p className="mt-2 text-sm font-medium text-slate-500 leading-relaxed">
+                                Hành động này không thể hoàn tác. Bạn có chắc chắn muốn xóa cuộc hội thoại này?
+                            </p>
+                        </div>
+                        
+                        <div className="flex gap-3 mt-2">
+                            <button
+                                onClick={() => setShowDeleteModal(false)}
+                                className="flex-1 rounded-xl border border-slate-200 bg-white py-3 text-sm font-bold text-slate-600 transition hover:bg-slate-50 active:scale-95"
+                            >
+                                Hủy
+                            </button>
+                            <button
+                                onClick={handleConfirmDelete}
+                                disabled={!!isDeleting}
+                                className="flex-1 rounded-xl bg-red-500 py-3 text-sm font-bold text-white shadow-lg shadow-red-200 transition hover:bg-red-600 active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"
+                            >
+                                {isDeleting ? (
+                                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                                ) : "Xóa ngay"}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Booking Modal */}
+            {isBookingModalOpen && selectedSlot && bookingDoctorId && (
+                <BookingModal
+                    isOpen={isBookingModalOpen}
+                    onClose={() => setIsBookingModalOpen(false)}
+                    doctor={{
+                        id: bookingDoctorId,
+                        name: doctors.find(d => d.userId === bookingDoctorId)?.fullName || "Bác sĩ",
+                        specialty: doctors.find(d => d.userId === bookingDoctorId)?.specialization || "",
+                        avatar: doctors.find(d => d.userId === bookingDoctorId)?.avatar || "",
+                    }}
+                    conversationId={activeConversation?.id}
+                    initialDate={selectedSlot.date}
+                    initialTime={selectedSlot.startTime}
+                    initialPrice={selectedSlot.price}
+                />
+            )}
+
+            {/* Custom Confirmation Modal for Completing Consultation */}
+            {showCompleteConfirm && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-300">
+                    <div className="mx-4 w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl animate-in zoom-in-95 duration-300">
+                        <div className="mb-4 flex flex-col items-center text-center">
+                            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-3xl text-green-600">
+                                ✓
+                            </div>
+                            <h3 className="mb-2 text-xl font-bold text-slate-900">Hoàn thành ca khám?</h3>
+                            <p className="text-sm text-slate-500">
+                                Bạn có chắc chắn muốn kết thúc phiên tư vấn này không? Hành động này sẽ đóng cuộc hội thoại và cập nhật trạng thái lịch hẹn.
+                            </p>
+                        </div>
+                        <div className="flex gap-3">
+                            <button
+                                onClick={() => setShowCompleteConfirm(false)}
+                                disabled={isCompleting}
+                                className="flex-1 rounded-xl border border-slate-200 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-50 disabled:opacity-50"
+                            >
+                                Hủy
+                            </button>
+                            <button
+                                onClick={async () => {
+                                    if (!activeConversation) return;
+                                    setIsCompleting(true);
+                                    try {
+                                        const updated = await completeConversation(activeConversation.id);
+                                        setActiveConversation(prev => prev ? { ...prev, status: updated.status } : null);
+                                        setConversations(prev => prev.map(c => c.id === activeConversation.id ? { ...c, status: updated.status } : c));
+                                        setShowCompleteConfirm(false);
+                                    } catch (err) {
+                                        console.error("Lỗi hoàn thành ca khám:", err);
+                                        alert("Có lỗi xảy ra khi hoàn thành ca khám. Vui lòng thử lại.");
+                                    } finally {
+                                        setIsCompleting(false);
+                                    }
+                                }}
+                                disabled={isCompleting}
+                                className="flex-1 rounded-xl bg-green-600 py-3 text-sm font-bold text-white shadow-lg shadow-green-200 transition hover:bg-green-700 active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"
+                            >
+                                {isCompleting ? (
+                                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                                ) : "Xác nhận"}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
             {/* Sidebar - Chat History */}
             <div className={`${showSidebar ? "w-72" : "w-0"} border-r border-slate-200 bg-white transition-all duration-300 overflow-hidden flex-shrink-0`}>
                 <div className="flex h-full flex-col">
@@ -543,13 +801,38 @@ export default function ChatPage() {
 
                     {/* Conversation List */}
                     <div className="flex-1 overflow-y-auto p-3">
-                        <p className="mb-2 px-3 text-xs font-semibold text-slate-500">LỊCH SỬ HỘI THOẠI</p>
-                        {isLoadingConversations ? (
+                        {/* Tabs */}
+                        <div className="mb-4 flex rounded-lg bg-slate-100 p-1">
+                            <button
+                                onClick={() => setActiveTab("DOCTOR_CONSULTING")}
+                                className={`flex-1 rounded-md py-1.5 text-xs font-bold transition ${activeTab === "DOCTOR_CONSULTING" ? "bg-white text-dermcare shadow-sm" : "text-slate-500 hover:text-slate-700"}`}
+                            >
+                                Bác sĩ
+                            </button>
+                            <button
+                                onClick={() => setActiveTab("AI_CONSULTING")}
+                                className={`flex-1 rounded-md py-1.5 text-xs font-bold transition ${activeTab === "AI_CONSULTING" ? "bg-white text-dermcare shadow-sm" : "text-slate-500 hover:text-slate-700"}`}
+                            >
+                                AI
+                            </button>
+                            <button
+                                onClick={() => setActiveTab("COMPLETED")}
+                                className={`flex-1 rounded-md py-1.5 text-xs font-bold transition ${activeTab === "COMPLETED" ? "bg-white text-dermcare shadow-sm" : "text-slate-500 hover:text-slate-700"}`}
+                            >
+                                Đã xong
+                            </button>
+                        </div>
+
+                        <p className="mb-2 px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                            {activeTab === "AI_CONSULTING" ? "🤖 AI Tư vấn" : activeTab === "DOCTOR_CONSULTING" ? "👨‍⚕️ Bác sĩ khám" : "✅ Hoàn thành"}
+                        </p>
+                        
+                        {isLoadingConversations && conversations.length === 0 ? (
                             <div className="flex justify-center py-8">
                                 <div className="h-6 w-6 animate-spin rounded-full border-2 border-dermcare border-t-transparent" />
                             </div>
                         ) : conversations.length === 0 ? (
-                            <p className="px-3 text-sm text-slate-400">Chưa có cuộc hội thoại nào</p>
+                            <p className="px-3 py-6 text-center text-sm text-slate-400">Chưa có cuộc hội thoại nào</p>
                         ) : (
                             <div className="space-y-1">
                                 {conversations.map((conv) => {
@@ -558,28 +841,50 @@ export default function ChatPage() {
                                         <button
                                             key={conv.id}
                                             onClick={() => handleSelectConversation(conv)}
-                                            className={`w-full rounded-lg px-3 py-3 text-left transition ${isActive
-                                                ? "bg-dermcare/10 border border-dermcare/20"
-                                                : "hover:bg-slate-50"
+                                            className={`group w-full rounded-xl px-3 py-3 text-left transition ${isActive
+                                                ? "bg-white border border-dermcare/30 shadow-sm"
+                                                : "hover:bg-slate-50 border border-transparent"
                                                 }`}
                                         >
-                                            <p className={`text-sm font-medium truncate ${isActive ? "text-dermcare" : "text-slate-900"}`}>
-                                                {conv.title || conv.lastMessage || "Cuộc hội thoại mới"}
-                                            </p>
-                                            <p className="mt-0.5 text-xs text-slate-500">{formatDate(conv.updated_at)}</p>
-                                            <span className={`mt-1 inline-block rounded-full px-2 py-0.5 text-xs font-medium ${conv.status === "AI_CONSULTING"
-                                                ? "bg-blue-100 text-blue-700"
-                                                : conv.status === "DOCTOR_CONSULTING"
-                                                    ? "bg-green-100 text-green-700"
-                                                    : "bg-slate-100 text-slate-600"
-                                                }`}>
-                                                {conv.status === "AI_CONSULTING" ? "🤖 AI tư vấn"
-                                                    : conv.status === "DOCTOR_CONSULTING" ? "👨‍⚕️ Bác sĩ khám"
-                                                        : "✅ Hoàn thành"}
-                                            </span>
+                                            <div className="flex items-center justify-between gap-2">
+                                                <p className={`text-sm font-bold truncate flex-1 ${isActive ? "text-dermcare" : "text-slate-900"}`}>
+                                                    {conv.title || conv.lastMessage || "Hội thoại mới"}
+                                                </p>
+                                                {activeTab === "AI_CONSULTING" && (
+                                                    <button
+                                                        onClick={(e) => openDeleteModal(e, conv.id)}
+                                                        className="invisible group-hover:visible rounded-md p-1 text-slate-400 hover:bg-red-50 hover:text-red-500 transition-all"
+                                                        title="Xóa hội thoại"
+                                                        disabled={isDeleting === conv.id}
+                                                    >
+                                                        {isDeleting === conv.id ? (
+                                                            <div className="h-3 w-3 animate-spin rounded-full border-2 border-red-500 border-t-transparent" />
+                                                        ) : (
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                                <path d="M3 6h18m-2 0v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6m3 0V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                                            </svg>
+                                                        )}
+                                                    </button>
+                                                )}
+                                            </div>
+                                            <div className="mt-1.5 flex items-center justify-between">
+                                                <p className="text-[10px] font-medium text-slate-400">{formatDate(conv.updated_at)}</p>
+                                                {conv.status !== activeTab && (
+                                                    <span className="h-1.5 w-1.5 rounded-full bg-dermcare animate-pulse" />
+                                                )}
+                                            </div>
                                         </button>
                                     );
                                 })}
+
+                                {hasMore && (
+                                    <button
+                                        onClick={() => loadConversations(activeTab, currentPage + 1, true)}
+                                        className="mt-2 w-full rounded-lg py-2 text-xs font-bold text-dermcare hover:bg-dermcare/5 transition"
+                                    >
+                                        {isLoadingConversations ? "Đang tải..." : "🔽 Xem thêm"}
+                                    </button>
+                                )}
                             </div>
                         )}
                     </div>
@@ -620,21 +925,83 @@ export default function ChatPage() {
                             </Link>
                             <div className="h-8 w-px bg-slate-300" />
                             <div className="flex items-center gap-3">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-dermcare to-dermcare-dark text-2xl text-white shadow-soft">
-                                    🤖
+                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-dermcare to-dermcare-dark text-2xl text-white shadow-soft overflow-hidden">
+                                    {activeConversation?.status === "DOCTOR_CONSULTING" ? (
+                                        // Nếu là tư vấn trực tiếp, hiển thị ảnh của đối phương
+                                        isDoctor ? (
+                                            activeConversation.patient?.avatar ? (
+                                                <img src={activeConversation.patient.avatar} alt={activeConversation.patient.fullName} className="h-full w-full object-cover" />
+                                            ) : (
+                                                <div className="flex h-full w-full items-center justify-center bg-slate-200 text-slate-500 text-lg font-bold">
+                                                    {activeConversation.patient?.fullName?.charAt(0) || "P"}
+                                                </div>
+                                            )
+                                        ) : (
+                                            (activeConversation.doctor as any)?.doctorProfile?.avatar ? (
+                                                <img src={(activeConversation.doctor as any).doctorProfile.avatar} alt={activeConversation.doctor?.fullName} className="h-full w-full object-cover" />
+                                            ) : (
+                                                <div className="flex h-full w-full items-center justify-center bg-dermcare text-white text-lg font-bold">
+                                                    {activeConversation.doctor?.fullName?.charAt(0) || "D"}
+                                                </div>
+                                            )
+                                        )
+                                    ) : (
+                                        "🤖"
+                                    )}
                                 </div>
                                 <div>
-                                    <h1 className="text-lg font-bold text-slate-900">DARA AI</h1>
+                                    <h1 className="text-lg font-bold text-slate-900">
+                                        {activeConversation?.status === "DOCTOR_CONSULTING"
+                                            ? isDoctor 
+                                                ? activeConversation.patient?.fullName || "Bệnh nhân"
+                                                : `${(activeConversation.doctor as any)?.doctorProfile?.qualifications || ""} ${activeConversation.doctor?.fullName || "Bác sĩ tư vấn"}`.trim()
+                                            : "DARA AI"}
+                                    </h1>
                                     <p className="text-xs text-slate-500">
                                         {activeConversation
                                             ? activeConversation.status === "DOCTOR_CONSULTING"
-                                                ? "👨‍⚕️ Bác sĩ đang tham gia"
+                                                ? isDoctor ? "👤 Thông tin bệnh nhân" : "👨‍⚕️ Bác sĩ đang trực tuyến"
                                                 : "Trợ lý da liễu thông minh • 24/7"
                                             : "Trợ lý da liễu thông minh • 24/7"}
                                     </p>
                                 </div>
                             </div>
                         </div>
+
+                        {activeConversation?.status === "DOCTOR_CONSULTING" && (
+                            <div className="flex items-center gap-3">
+                                {isDoctor && (
+                                    <button 
+                                        onClick={() => setShowCompleteConfirm(true)}
+                                        className="mr-2 flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-sm font-bold text-white shadow-soft transition-all hover:bg-green-700 active:scale-95"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                            <polyline points="20 6 9 17 4 12"/>
+                                        </svg>
+                                        Hoàn thành
+                                    </button>
+                                )}
+                                <div className="flex items-center gap-2 border-l border-slate-200 pl-3">
+                                    <button 
+                                        className="group flex h-10 w-10 items-center justify-center rounded-full transition-all hover:bg-slate-100 active:scale-95"
+                                        title="Bắt đầu cuộc gọi thoại"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-600 transition-colors group-hover:text-dermcare">
+                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.19-1.28a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                        </svg>
+                                    </button>
+                                    <button 
+                                        className="group flex h-10 w-10 items-center justify-center rounded-full bg-dermcare/10 transition-all hover:bg-dermcare hover:shadow-md active:scale-95"
+                                        title="Bắt đầu cuộc gọi video"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-dermcare transition-colors group-hover:text-white">
+                                            <path d="m22 8-6 4 6 4V8Z"/>
+                                            <rect width="14" height="12" x="2" y="6" rx="2" ry="2"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
 
@@ -660,12 +1027,33 @@ export default function ChatPage() {
                                 // - Nếu là người khác gửi (bác sĩ) -> Bên trái
                                 // - Nếu là chính mình (currentUser.id == sender.id) -> Bên phải
                                 const isCurrentUser = currentUser && message.sender && String(message.sender.id) === String(currentUser.id);
-                                const isAdminOrDoctor = !message.isAiMessage && !isCurrentUser;
+                                const isSystemMessage = message.sender?.id === 'system';
+
+                                if (isSystemMessage) {
+                                    return (
+                                        <div key={message.clientId || message.id} className="flex justify-center my-4">
+                                            <div className="rounded-full bg-slate-100 px-4 py-1.5 text-xs font-medium text-slate-500 border border-slate-200">
+                                                <span dangerouslySetInnerHTML={{ __html: message.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+                                            </div>
+                                        </div>
+                                    );
+                                }
+
                                 return (
                                     <div key={message.clientId || message.id} className={`flex ${isCurrentUser ? "justify-end" : "justify-start"}`}>
                                         {!isCurrentUser && (
-                                            <div className="mr-2 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-dermcare to-dermcare-dark text-sm text-white">
-                                                {message.isAiMessage ? "🤖" : "👨‍⚕️"}
+                                            <div className="mr-2 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-dermcare to-dermcare-dark text-sm text-white overflow-hidden">
+                                                {message.isAiMessage ? (
+                                                    "🤖"
+                                                ) : (message.sender as any)?.avatar ? (
+                                                    <img src={(message.sender as any).avatar} alt={message.sender.fullName} className="h-full w-full object-cover" />
+                                                ) : (message.sender as any)?.doctorProfile?.avatar ? (
+                                                    <img src={(message.sender as any).doctorProfile.avatar} alt={message.sender.fullName} className="h-full w-full object-cover" />
+                                                ) : activeConversation?.status === "DOCTOR_CONSULTING" && String(message.sender?.id) === String(activeConversation.doctor?.id) ? (
+                                                    "👨‍⚕️"
+                                                ) : (
+                                                    "👤"
+                                                )}
                                             </div>
                                         )}
                                         <div className={`max-w-[75%] rounded-2xl px-4 py-3 ${isCurrentUser
@@ -690,7 +1078,7 @@ export default function ChatPage() {
                                 );
                             })}
 
-                            {isLoading && (
+                            {isLoading && activeConversation?.status === 'AI_CONSULTING' && (
                                 <div className="flex justify-start">
                                     <div className="mr-2 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-dermcare to-dermcare-dark text-sm text-white">
                                         🤖
@@ -714,8 +1102,8 @@ export default function ChatPage() {
 
                             <div ref={messagesEndRef} />
 
-                            {/* Nút gợi ý bác sĩ – hiện khi diagnosisInfo có dữ liệu */}
-                            {activeConversation?.diagnosisInfo && (
+                            {/* Nút gợi ý bác sĩ – hiện khi diagnosisInfo có dữ liệu và đang trong phiên AI */}
+                            {activeConversation?.diagnosisInfo && activeConversation.status === 'AI_CONSULTING' && !isDoctor && (
                                 <div className="flex flex-col items-center gap-3 pt-2">
                                     <button
                                         onClick={handleSuggestDoctors}
@@ -833,32 +1221,34 @@ export default function ChatPage() {
                 </div>
 
                 {/* Input Area */}
-                {activeConversation && (
+                {activeConversation && activeConversation.status !== "COMPLETED" ? (
                     <div className="border-t border-slate-200 bg-white px-4 py-4 shadow-lg flex-shrink-0">
                         <div className="mx-auto max-w-5xl">
                             {/* Chat Mode Switcher */}
-                            <div className="mb-3 flex justify-center">
-                                <div className="flex p-1 bg-slate-100 rounded-xl border border-slate-200 shadow-sm">
-                                    <button
-                                        onClick={() => setChatMode("diagnosis")}
-                                        className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${chatMode === "diagnosis"
+                            {activeConversation?.status !== 'DOCTOR_CONSULTING' && (
+                                <div className="mb-3 flex justify-center">
+                                    <div className="flex p-1 bg-slate-100 rounded-xl border border-slate-200 shadow-sm">
+                                        <button
+                                            onClick={() => setChatMode("diagnosis")}
+                                            className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${chatMode === "diagnosis"
                                                 ? "bg-white text-dermcare shadow-sm"
                                                 : "text-slate-500 hover:text-slate-700"
-                                            }`}
-                                    >
-                                        <span className="text-base">🩺</span> Chẩn đoán
-                                    </button>
-                                    <button
-                                        onClick={() => setChatMode("knowledge")}
-                                        className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${chatMode === "knowledge"
+                                                }`}
+                                        >
+                                            <span className="text-base">🩺</span> Chẩn đoán
+                                        </button>
+                                        <button
+                                            onClick={() => setChatMode("knowledge")}
+                                            className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${chatMode === "knowledge"
                                                 ? "bg-blue-600 text-white shadow-sm"
                                                 : "text-slate-500 hover:text-slate-700"
-                                            }`}
-                                    >
-                                        <span className="text-base">📚</span> Tra cứu
-                                    </button>
+                                                }`}
+                                        >
+                                            <span className="text-base">📚</span> Tra cứu
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
 
                             {selectedImage && (
                                 <div className="mb-3 flex items-start gap-2">
@@ -894,11 +1284,18 @@ export default function ChatPage() {
                                         value={inputText}
                                         onChange={(e) => setInputText(e.target.value)}
                                         onKeyDown={handleKeyPress}
-                                        placeholder={chatMode === "diagnosis" ? "Mô tả triệu chứng của bạn..." : "Nhập câu hỏi bạn muốn tra cứu kiến thức..."}
+                                        placeholder={activeConversation?.status === "DOCTOR_CONSULTING" 
+                                            ? "Nhập tin nhắn..." 
+                                            : chatMode === "diagnosis" 
+                                                ? "Mô tả triệu chứng của bạn..." 
+                                                : "Nhập câu hỏi bạn muốn tra cứu kiến thức..."}
                                         rows={1}
-                                        className={`w-full resize-none rounded-xl border-2 px-4 py-3 text-sm transition focus:outline-none focus:ring-2 ${chatMode === "diagnosis"
+                                        className={`w-full resize-none rounded-xl border-2 px-4 py-3 text-sm transition focus:outline-none focus:ring-2 ${
+                                            activeConversation?.status === "DOCTOR_CONSULTING"
                                                 ? "border-slate-300 focus:border-dermcare focus:ring-dermcare/20"
-                                                : "border-blue-200 bg-blue-50/30 focus:border-blue-500 focus:ring-blue-500/20"
+                                                : chatMode === "diagnosis"
+                                                    ? "border-slate-300 focus:border-dermcare focus:ring-dermcare/20"
+                                                    : "border-blue-200 bg-blue-50/30 focus:border-blue-500 focus:ring-blue-500/20"
                                             }`}
                                     />
                                 </div>
@@ -914,8 +1311,16 @@ export default function ChatPage() {
 
                         </div>
                     </div>
-                )}
+                ) : activeConversation && activeConversation.status === "COMPLETED" ? (
+                    <div className="border-t border-slate-200 bg-slate-50 px-4 py-3 text-center flex-shrink-0">
+                        <div className="mx-auto max-w-lg rounded-full border border-slate-200 bg-white px-6 py-2 shadow-sm flex items-center justify-center gap-2">
+                            <span className="text-green-500 text-sm">✅</span>
+                            <span className="text-sm font-semibold text-slate-700">Phiên tư vấn đã kết thúc.</span>
+                            <span className="text-xs text-slate-500">Ca khám này đã được bác sĩ xác nhận hoàn thành.</span>
+                        </div>
+                    </div>
+                ) : null}
             </div>
-        </div >
+        </div>
     );
 }

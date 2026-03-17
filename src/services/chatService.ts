@@ -22,6 +22,8 @@ export interface ConversationSender {
     id: string;
     fullName: string;
     role: string;
+    avatar?: string;
+    qualifications?: string;
 }
 
 export interface ConversationMessage {
@@ -59,9 +61,23 @@ export const createAiConversation = async (): Promise<Conversation> => {
     return response.data.data;
 };
 
-/** Lấy toàn bộ danh sách conversations của user hiện tại */
-export const getConversations = async (): Promise<Conversation[]> => {
-    const response = await apiClient.get<{ success: boolean; data: Conversation[] }>('/conversations');
+/** Lấy danh sách conversations của user hiện tại với phân trang và lọc */
+export const getConversations = async (status?: string, page: number = 1): Promise<{ conversations: Conversation[]; total: number }> => {
+    const params = new URLSearchParams();
+    if (status) params.append('status', status);
+    params.append('page', page.toString());
+
+    const response = await apiClient.get<{ success: boolean; data: { conversations: Conversation[]; total: number } }>(
+        `/conversations?${params.toString()}`
+    );
+    return response.data.data;
+};
+
+/** Lấy thông tin chi tiết của 1 conversation */
+export const getConversationById = async (conversationId: string): Promise<Conversation> => {
+    const response = await apiClient.get<{ success: boolean; data: Conversation }>(
+        `/conversations/${conversationId}`
+    );
     return response.data.data;
 };
 
@@ -71,6 +87,11 @@ export const getConversationMessages = async (conversationId: string): Promise<C
         `/conversations/${conversationId}/messages`
     );
     return response.data.data;
+};
+
+/** Xóa cuộc hội thoại (Chỉ áp dụng cho AI) */
+export const deleteConversation = async (conversationId: string): Promise<void> => {
+    await apiClient.delete(`/conversations/${conversationId}`);
 };
 
 // ============================
@@ -165,4 +186,12 @@ export const getPublicDoctorSchedule = async (doctorId: string): Promise<DoctorS
         price: slot.price,
         doctorId: doctorId
     }));
+};
+
+/** Hoàn thành ca khám (Bác sĩ thực hiện) */
+export const completeConversation = async (conversationId: string): Promise<Conversation> => {
+    const response = await apiClient.post<{ success: boolean; data: Conversation }>(
+        `/conversations/${conversationId}/complete`
+    );
+    return response.data.data;
 };

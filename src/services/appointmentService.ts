@@ -20,6 +20,7 @@ export interface Appointment {
     doctor: AppointmentDoctor | null;
     paymentStatus: 'PENDING' | 'PAID' | 'CANCELLED' | null;
     paymentMethod: 'MOMO' | 'ZALOPAY' | null;
+    conversationId: string | null;
     // Legacy fields (giữ lại để không bị lỗi components cũ)
     status?: string;
     doctorName?: string;
@@ -62,7 +63,13 @@ export const getAppointmentById = async (id: string): Promise<Appointment> => {
 };
 
 // Book an appointment (Patient books a doctor)
-export const bookAppointment = async (doctorId: string, payload: { appointmentDate: string; appointmentTime: string }): Promise<Appointment> => {
+export const bookAppointment = async (doctorId: string, payload: { appointmentDate: string; appointmentTime: string; conversationId?: string }): Promise<Appointment> => {
     const { data } = await apiClient.post(`/users/booking/${doctorId}`, payload);
     return data;
+};
+
+// Get or create conversation for appointment
+export const getOrCreateConversation = async (appointmentId: string): Promise<{ id: string }> => {
+    const { data } = await apiClient.get(`/conversations/appointments/${appointmentId}`);
+    return data.data;
 };

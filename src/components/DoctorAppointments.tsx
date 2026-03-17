@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { DoctorAppointment, getDoctorAppointments, updateAppointmentStatus, updateAppointmentDetails } from "@/services/doctorService";
@@ -60,6 +61,34 @@ const timeAgo = (d: string) => {
 
     const days = Math.floor(hrs / 24);
     return `${days} ngày trước`;
+};
+
+/** Precise time check: Is current time within the appointment slot? */
+const isAppointmentActive = (dateStr: string, startTime: string) => {
+    const now = new Date();
+    const d = dateStr.includes("T") ? dateStr.split("T")[0] : dateStr;
+    const [y, m, day] = d.split('-').map(Number);
+    const [h, min] = startTime.split(':').map(Number);
+    const slotStart = new Date(y, m - 1, day, h, min);
+    
+    // Assume 30 mins duration for session if not specified, 
+    // or just check if it's the same day and after start time
+    const slotEnd = new Date(slotStart.getTime() + 30 * 60000); 
+    
+    return now >= slotStart && now <= slotEnd;
+};
+
+/** Has the appointment slot already ended? */
+const isAppointmentEnded = (dateStr: string, startTime: string) => {
+    const now = new Date();
+    const d = dateStr.includes("T") ? dateStr.split("T")[0] : dateStr;
+    const [y, m, day] = d.split('-').map(Number);
+    const [h, min] = startTime.split(':').map(Number);
+    const slotStart = new Date(y, m - 1, day, h, min);
+    
+    // Appointment ends 30 mins after start time
+    const slotEnd = new Date(slotStart.getTime() + 30 * 60000);
+    return now > slotEnd;
 };
 
 /* ─── Mock Data (remove when BE is ready) ─── */
@@ -157,7 +186,23 @@ export default function DoctorAppointments() {
     useEffect(() => {
         const id = searchParams.get('id');
         if (id && appointments.length > 0) {
+            const targetApt = appointments.find(a => a.id === id);
+            if (targetApt) {
+                // Ensure the status filter doesn't hide the appointment
+                setFilter(prev => {
+                    if (prev !== "ALL" && prev !== targetApt.appointmentStatus) {
+                        return "ALL"; // Reset to ALL if current filter would hide it
+                    }
+                    return prev;
+                });
+                
+                // Switch to the correct date if that was a thing (it's not yet)
+                // But the scrollIntoView needs the filter to be applied first
+                // So we'll delay the scroll a bit more
+            }
+
             setHighlightedId(id);
+            setExpandedId(id);
             // Scroll to the element
             setTimeout(() => {
                 const element = document.getElementById(`apt-${id}`);
@@ -178,6 +223,7 @@ export default function DoctorAppointments() {
         setLoading(true);
         try {
             const data = await getDoctorAppointments();
+            console.log("Fetched Appointments:", data);
             setAppointments(data.length > 0 ? data : MOCK_APPOINTMENTS);
         } catch (err) {
             console.error("Failed to load appointments, using mock data:", err);
@@ -390,30 +436,33 @@ export default function DoctorAppointments() {
 
                                     {/* Info */}
                                     <div className="flex-1 min-w-0">
-                                        <div className="flex items-center gap-2 flex-wrap">
-                                            <h3 className="text-sm font-bold text-slate-900 truncate">
+                                        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                                            <h3 className="text-sm font-bold text-slate-900 truncate max-w-[200px] sm:max-w-[300px]" title={apt.patient?.fullName || ""}>
                                                 {apt.patient?.fullName || "Bệnh nhân"}
                                             </h3>
-                                            {/* Appointment Status Badge */}
-                                            <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${status.text} ${status.bg} ${status.border} border`}>
-                                                <span className={`h-1.5 w-1.5 rounded-full ${status.dot}`} />
-                                                {status.label}
-                                            </span>
-                                            {/* Payment Status Badge */}
-                                            <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium ${payment.text} ${payment.bg}`}>
-                                                {payment.icon} {payment.label}
-                                            </span>
+                                            <div className="flex items-center gap-2 flex-wrap">
+                                                {/* Appointment Status Badge */}
+                                                <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${status.text} ${status.bg} ${status.border} border whitespace-nowrap`}>
+                                                    <span className={`h-1.5 w-1.5 rounded-full ${status.dot}`} />
+                                                    {status.label}
+                                                </span>
+                                                {/* Payment Status Badge */}
+                                                <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium ${payment.text} ${payment.bg} whitespace-nowrap`}>
+                                                    {payment.icon} {payment.label}
+                                                </span>
+                                            </div>
                                         </div>
                                         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1.5 text-xs text-slate-500">
-                                            <span className="inline-flex items-center gap-1">
-                                                <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                            <span className="inline-flex items-center gap-1 whitespace-nowrap">
+                                                <svg className="h-3.5 w-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                                                 {formatDate(apt.appointmentDate)}
                                             </span>
-                                            <span className="inline-flex items-center gap-1">
-                                                <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                            <span className="inline-flex items-center gap-1 whitespace-nowrap">
+                                                <svg className="h-3.5 w-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                                 {apt.appointmentTime}
                                             </span>
-                                            <span className="inline-flex items-center gap-1 font-semibold text-dermcare">
+                                            <span className="inline-flex items-center gap-1 font-semibold text-dermcare whitespace-nowrap">
+                                                <span className="text-slate-300 font-normal">|</span>
                                                 {formatCurrency(apt.price)}
                                             </span>
                                         </div>
@@ -421,10 +470,6 @@ export default function DoctorAppointments() {
 
                                     {/* Actions + Expand */}
                                     <div className="flex items-center gap-2 flex-shrink-0">
-                                        {/* Quick Action Buttons (desktop) - Removed as requested */}
-                                        <div className="hidden sm:flex gap-2">
-                                        </div>
-
                                         {/* Expand Arrow */}
                                         <svg
                                             className={`h-5 w-5 text-slate-400 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}

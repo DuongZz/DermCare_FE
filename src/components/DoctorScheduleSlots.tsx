@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 import {
     DoctorScheduleSlot,
     CreateSchedulePayload,
@@ -9,6 +10,8 @@ import {
     deleteScheduleSlot,
     autoGenerateSchedule
 } from "@/services/scheduleService";
+import { completeConversation } from "@/services/chatService";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 /* ─── Helpers ─── */
 const formatCurrency = (n: number) =>
@@ -28,6 +31,41 @@ const isDatePast = (dateStr: string) => {
     const [y, m, d] = dateStr.split('-').map(Number);
     const targetDate = new Date(y, m - 1, d);
     return targetDate < today;
+};
+
+const isSlotPast = (dateStr: string, startTime: string) => {
+    const now = new Date();
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const [hours, minutes] = startTime.split(':').map(Number);
+    const slotDate = new Date(y, m - 1, d, hours, minutes);
+    return slotDate < now;
+};
+
+/** Precise time check: Is current time within the appointment slot? */
+const isAppointmentActive = (dateStr: string, startTime: string) => {
+    const now = new Date();
+    const d = dateStr.includes("T") ? dateStr.split("T")[0] : dateStr;
+    const [y, m, day] = d.split('-').map(Number);
+    const [h, min] = startTime.split(':').map(Number);
+    const slotStart = new Date(y, m - 1, day, h, min);
+
+    // Assume 30 mins duration for session 
+    const slotEnd = new Date(slotStart.getTime() + 30 * 60000);
+
+    return now >= slotStart && now <= slotEnd;
+};
+
+/** Has the appointment slot already ended? */
+const isAppointmentEnded = (dateStr: string, startTime: string) => {
+    const now = new Date();
+    const d = dateStr.includes("T") ? dateStr.split("T")[0] : dateStr;
+    const [y, m, day] = d.split('-').map(Number);
+    const [h, min] = startTime.split(':').map(Number);
+    const slotStart = new Date(y, m - 1, day, h, min);
+
+    // Appointment ends 30 mins after start time
+    const slotEnd = new Date(slotStart.getTime() + 30 * 60000);
+    return now > slotEnd;
 };
 
 /* ─── Get Monday of the current week ─── */
@@ -120,12 +158,14 @@ function ConfirmModal({ open, title, message, onConfirm, onCancel, confirmText =
 /* ══════════════════════════════════════════════════════════════════
    AlertModal — For beautiful generic alerts
    ══════════════════════════════════════════════════════════════════ */
-function AlertModal({ open, title, message, isSuccess = true, onClose }: {
+function AlertModal({ open, title, message, isSuccess = true, onClose, actionButton, onAction }: {
     open: boolean;
     title: string;
     message: string;
     isSuccess?: boolean;
     onClose: () => void;
+    actionButton?: string;
+    onAction?: () => void;
 }) {
     const [phase, setPhase] = useState<"enter" | "visible" | "exit" | "hidden">("hidden");
 
@@ -178,12 +218,22 @@ function AlertModal({ open, title, message, isSuccess = true, onClose }: {
                 <h4 className="text-xl font-black text-slate-800 mb-2">{title}</h4>
                 <p className="text-sm text-slate-500 mb-6 px-2 whitespace-pre-wrap leading-relaxed">{message}</p>
 
-                <button
-                    onClick={onClose}
-                    className="w-full py-3 rounded-xl bg-slate-800 text-sm font-bold text-white shadow-md shadow-slate-200 hover:bg-slate-700 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm transition-all duration-200"
-                >
-                    Đóng
-                </button>
+                <div className="flex flex-col gap-2 w-full">
+                    {actionButton && onAction && (
+                        <button
+                            onClick={onAction}
+                            className="w-full py-3 rounded-xl bg-dermcare text-sm font-bold text-white shadow-md shadow-dermcare/20 hover:bg-dermcare-dark hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+                        >
+                            {actionButton}
+                        </button>
+                    )}
+                    <button
+                        onClick={onClose}
+                        className={`w-full py-3 rounded-xl text-sm font-bold transition-all duration-200 ${actionButton ? "bg-slate-100 text-slate-600 hover:bg-slate-200" : "bg-slate-800 text-white shadow-md shadow-slate-200 hover:bg-slate-700 hover:-translate-y-0.5 active:translate-y-0"}`}
+                    >
+                        {actionButton ? "Bỏ qua" : "Đóng"}
+                    </button>
+                </div>
             </div>
         </div>
     );
@@ -191,6 +241,7 @@ function AlertModal({ open, title, message, isSuccess = true, onClose }: {
 
 /* ═══════════════════════════════════════════ */
 export default function DoctorScheduleSlots() {
+    const router = useRouter();
     const [slots, setSlots] = useState<DoctorScheduleSlot[]>([]);
     const [loading, setLoading] = useState(true);
     const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -198,6 +249,8 @@ export default function DoctorScheduleSlots() {
     const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
     const [editForm, setEditForm] = useState({ startTime: "", endTime: "", price: 0 });
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+    const searchParams = useSearchParams();
+    const [highlightedId, setHighlightedId] = useState<string | null>(null);
 
     // Confirm modal state
     const [confirmModal, setConfirmModal] = useState<{
@@ -222,6 +275,8 @@ export default function DoctorScheduleSlots() {
         title: string;
         message: string;
         isSuccess: boolean;
+        actionButton?: string;
+        onAction?: () => void;
     }>({ open: false, title: "", message: "", isSuccess: true });
 
     const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -234,8 +289,8 @@ export default function DoctorScheduleSlots() {
         setTimeout(() => setToastMessage(null), 3000);
     };
 
-    const showAlert = useCallback((title: string, message: string, isSuccess = true) => {
-        setAlertModal({ open: true, title, message, isSuccess });
+    const showAlert = useCallback((title: string, message: string, isSuccess = true, actionButton?: string, onAction?: () => void) => {
+        setAlertModal({ open: true, title, message, isSuccess, actionButton, onAction });
     }, []);
 
     const closeAlert = useCallback(() => {
@@ -255,6 +310,32 @@ export default function DoctorScheduleSlots() {
             setLoading(false);
         }
     };
+
+    /** Handle Highlighting from Notifications */
+    useEffect(() => {
+        const id = searchParams.get('id');
+        if (id && slots.length > 0) {
+            // Find slot by id or appointmentId
+            const targetSlot = slots.find(s => s.id === id || s.appointmentId === id);
+            if (targetSlot) {
+                // Switch to that date
+                setSelectedDate(new Date(targetSlot.availableDate));
+                setHighlightedId(targetSlot.id);
+
+                // Scroll to it
+                setTimeout(() => {
+                    const el = document.getElementById(`slot-${targetSlot.id}`);
+                    if (el) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 600);
+
+                // Clear highlight after 5s
+                const timer = setTimeout(() => setHighlightedId(null), 5000);
+                return () => clearTimeout(timer);
+            }
+        }
+    }, [searchParams, slots]);
 
     /* ─── Delete ─── */
     const handleDelete = (id: string) => {
@@ -294,7 +375,7 @@ export default function DoctorScheduleSlots() {
             async () => {
                 closeConfirm();
                 setLoading(true);
-                let successCount = 0;
+                let totalCreated = 0;
                 let failCount = 0;
                 const successDates: string[] = [];
 
@@ -315,11 +396,29 @@ export default function DoctorScheduleSlots() {
                     }
 
                     try {
-                        await autoGenerateSchedule(dateStr);
-                        successCount++;
+                        const res = await autoGenerateSchedule(dateStr);
+                        // res is likely { success: true, message: ..., data: { totalGenerated: ... } }
+                        const generated = res?.data?.totalGenerated || 0;
+                        totalCreated += generated;
                         successDates.push(dateStr);
                     } catch (err: any) {
-                        // Chỉ là lỗi ko có khung giờ làm việc hoặc đã trùng thì im lặng fail
+                        const errorMsg = err.response?.data?.errorMessage || err.message;
+                        const errorType = err.response?.data?.errorType;
+
+                        if (errorType === "NOT_FOUND") {
+                            showAlert(
+                                "Thiếu mẫu lịch làm việc",
+                                errorMsg,
+                                false,
+                                "Tới trang cấu hình",
+                                () => {
+                                    closeAlert();
+                                    router.push("/doctor/schedule");
+                                }
+                            );
+                            setLoading(false);
+                            return;
+                        }
                         failCount++;
                     }
                 }
@@ -327,10 +426,12 @@ export default function DoctorScheduleSlots() {
                 // Re-fetch entire schedule after 1s to allow promises to settle
                 setTimeout(() => {
                     fetchSlots();
-                    if (successCount > 0) {
-                        showToast(`Tuyệt vời! Đã tạo ca khám thành công cho ${successCount} ngày.`);
+                    if (totalCreated > 0) {
+                        showToast(`Hoàn tất! Đã tạo thêm ${totalCreated} ca khám mới.`);
+                    } else if (successDates.length > 0) {
+                        showToast(`Xử lý hoàn tất. Không có ca khám mới nào cần tạo.`);
                     } else {
-                        showToast(`Không có ca khám mới nào được tạo.`);
+                        showToast(`Không thể tạo ca khám. Vui lòng kiểm tra lại cấu hình.`);
                     }
                 }, 1000);
             },
@@ -361,6 +462,33 @@ export default function DoctorScheduleSlots() {
     };
     const cancelEdit = () => setEditingSlotId(null);
 
+    /* ─── Complete Consultation ─── */
+    const handleComplete = (slot: DoctorScheduleSlot) => {
+        if (!slot.conversationId) return;
+        showConfirm(
+            "Hoàn thành ca khám",
+            "Bạn có chắc chắn muốn đánh dấu ca khám này là đã hoàn thành? Hành động này sẽ kết thúc cuộc hội thoại và cập nhật trạng thái lịch hẹn.",
+            async () => {
+                closeConfirm();
+                setLoading(true);
+                const convoId = slot.conversationId;
+                if (!convoId) return;
+                try {
+                    await completeConversation(convoId);
+                    setSlots(prev => prev.map(s => s.id === slot.id ? { ...s, appointmentStatus: 'COMPLETED' } : s));
+                    showToast("Đã hoàn thành ca khám!");
+                } catch (error) {
+                    console.error("Lỗi hoàn thành ca khám:", error);
+                    showToast("Không thể hoàn thành ca khám. Vui lòng thử lại!");
+                } finally {
+                    setLoading(false);
+                }
+            },
+            "Xác nhận hoàn thành",
+            "bg-emerald-500 hover:bg-emerald-600"
+        );
+    };
+
     /* ─── Filter for selected date ─── */
     const currentDateStr = toLocalDateStr(selectedDate);
     const currentSlots = useMemo(() => {
@@ -372,7 +500,7 @@ export default function DoctorScheduleSlots() {
     const isPast = isDatePast(currentDateStr);
 
     /* ─── Selection helpers ─── */
-    const selectableSlots = currentSlots.filter(s => !s.isBooked && !isPast);
+    const selectableSlots = currentSlots.filter(s => !s.isBooked && !isSlotPast(currentDateStr, s.startTime));
     const allSelected = selectableSlots.length > 0 && selectableSlots.every(s => selectedIds.has(s.id));
     const toggleSelectAll = () => {
         if (allSelected) {
@@ -439,6 +567,8 @@ export default function DoctorScheduleSlots() {
                 title={alertModal.title}
                 message={alertModal.message}
                 isSuccess={alertModal.isSuccess}
+                actionButton={alertModal.actionButton}
+                onAction={alertModal.onAction}
                 onClose={closeAlert}
             />
 
@@ -590,17 +720,24 @@ export default function DoctorScheduleSlots() {
                         {currentSlots.map(slot => (
                             <div
                                 key={slot.id}
-                                className={`flex items-center gap-4 px-5 py-3 transition hover:bg-slate-50 ${deletingId === slot.id ? "opacity-40" : ""}`}
+                                id={`slot-${slot.id}`}
+                                className={`group relative flex items-center gap-4 px-5 py-3 transition-all duration-300 hover:bg-slate-50 ${deletingId === slot.id ? "opacity-40" : ""} ${highlightedId === slot.id ? "bg-dermcare/5 ring-1 ring-inset ring-dermcare z-10" : ""}`}
                             >
-                                {/* Checkbox */}
-                                {!slot.isBooked && !isPast && (
-                                    <input
-                                        type="checkbox"
-                                        checked={selectedIds.has(slot.id)}
-                                        onChange={() => toggleSelect(slot.id)}
-                                        className="w-4 h-4 text-dermcare rounded border-slate-300 focus:ring-dermcare transition cursor-pointer flex-shrink-0"
-                                    />
+                                {/* Highlight Indicator */}
+                                {highlightedId === slot.id && (
+                                    <div className="absolute left-0 top-1 bottom-1 w-1 bg-dermcare rounded-r-full shadow-[0_0_8px_rgba(10,143,220,0.4)]" />
                                 )}
+                                { /* Checkbox Container (Fixed Width to prevent jump) */ }
+                                <div className="w-5 flex-shrink-0 flex items-center justify-center">
+                                    {!slot.isBooked && !isSlotPast(slot.availableDate, slot.startTime) && (
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedIds.has(slot.id)}
+                                            onChange={() => toggleSelect(slot.id)}
+                                            className="w-4 h-4 text-dermcare rounded border-slate-300 focus:ring-dermcare transition cursor-pointer"
+                                        />
+                                    )}
+                                </div>
                                 {editingSlotId === slot.id ? (
                                     /* ── Inline Edit Mode ── */
                                     <>
@@ -635,13 +772,13 @@ export default function DoctorScheduleSlots() {
                                 ) : (
                                     /* ── Normal Display Mode ── */
                                     <>
-                                        <div className="flex items-center gap-2 min-w-[130px]">
+                                        <div className="flex items-center gap-2 w-28 sm:w-32 flex-shrink-0">
                                             <div className="flex flex-col">
                                                 <span className="text-base font-bold text-slate-800">{slot.startTime}</span>
                                                 <span className="text-xs font-semibold text-slate-400">đến {slot.endTime}</span>
                                             </div>
                                         </div>
-                                        <div className="flex items-center gap-1.5 min-w-[110px]">
+                                        <div className="flex items-center gap-1.5 w-24 sm:w-28 flex-shrink-0">
                                             <div className="flex flex-col">
                                                 <span className="text-[10px] uppercase font-bold text-slate-400">Giá khám</span>
                                                 <span className="text-sm font-bold text-dermcare">
@@ -649,22 +786,35 @@ export default function DoctorScheduleSlots() {
                                                 </span>
                                             </div>
                                         </div>
-                                        <div className="flex-1">
+                                        <div className="w-28 sm:w-32 flex-shrink-0">
                                             {slot.isBooked ? (
-                                                <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
-                                                    <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
-                                                    Đã đặt
+                                                slot.appointmentStatus === 'COMPLETED' ? (
+                                                    <span className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-3 py-1 text-xs font-semibold text-green-700">
+                                                        <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
+                                                        Hoàn thành
+                                                    </span>
+                                                ) : (
+                                                    <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+                                                        <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
+                                                        Đã đặt
+                                                    </span>
+                                                )
+                                            ) : isSlotPast(slot.availableDate, slot.startTime) ? (
+                                                <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-500">
+                                                    <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
+                                                    Đã qua
                                                 </span>
                                             ) : (
-                                                <span className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-3 py-1 text-xs font-semibold text-green-700">
-                                                    <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
+                                                <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-500">
+                                                    <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
                                                     Trống
                                                 </span>
                                             )}
                                         </div>
                                         {/* Action Buttons */}
-                                        {!slot.isBooked && !isPast ? (
-                                            <div className="flex gap-1.5 flex-shrink-0">
+                                        <div className="flex-1 flex justify-end gap-1.5 overflow-x-auto no-scrollbar">
+                                            {/* Edit Button - only show for unbooked slots (if not past) */}
+                                            {!slot.isBooked && !isSlotPast(slot.availableDate, slot.startTime) && (
                                                 <button
                                                     onClick={() => startEdit(slot)}
                                                     className="rounded-xl border border-amber-100 bg-amber-50 p-2 text-amber-500 hover:bg-amber-100 hover:text-amber-600 transition"
@@ -674,6 +824,10 @@ export default function DoctorScheduleSlots() {
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                                     </svg>
                                                 </button>
+                                            )}
+
+                                            {/* Delete Button - only for unbooked slots */}
+                                            {!slot.isBooked && !isSlotPast(slot.availableDate, slot.startTime) && (
                                                 <button
                                                     onClick={() => handleDelete(slot.id)}
                                                     disabled={deletingId === slot.id}
@@ -684,10 +838,69 @@ export default function DoctorScheduleSlots() {
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                     </svg>
                                                 </button>
-                                            </div>
-                                        ) : slot.isBooked ? (
-                                            <span className="text-xs text-slate-400 italic flex-shrink-0">🔒 Đã khóa</span>
-                                        ) : null}
+                                            )}
+
+                                            {/* Consultation Buttons for Booked Slots */}
+                                            {slot.isBooked && slot.conversationId && (
+                                                slot.appointmentStatus === "COMPLETED" ? (
+                                                    <Link
+                                                        href={`/chat?id=${slot.conversationId}`}
+                                                        className="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-[11px] font-bold text-slate-600 hover:bg-slate-100 transition whitespace-nowrap"
+                                                    >
+                                                        <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                        </svg>
+                                                        Xem lại
+                                                    </Link>
+                                                ) : isAppointmentActive(slot.availableDate, slot.startTime) ? (
+                                                    <Link
+                                                        href={`/chat?id=${slot.conversationId}`}
+                                                        className="flex items-center gap-1.5 rounded-xl bg-emerald-500 px-3 py-1.5 text-[11px] font-bold text-white hover:bg-emerald-600 transition shadow-sm shadow-emerald-200 animate-pulse whitespace-nowrap"
+                                                    >
+                                                        <span className="relative flex h-2 w-2">
+                                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                                            <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                                        </span>
+                                                        Tư vấn ngay
+                                                    </Link>
+                                                ) : isAppointmentEnded(slot.availableDate, slot.startTime) ? (
+                                                    <div className="flex gap-2">
+                                                        <button
+                                                            onClick={() => handleComplete(slot)}
+                                                            className="flex items-center gap-1.5 rounded-xl bg-emerald-600 px-3 py-1.5 text-[11px] font-bold text-white hover:bg-emerald-700 transition shadow-sm shadow-emerald-100 whitespace-nowrap"
+                                                        >
+                                                            Hoàn thành
+                                                        </button>
+                                                        <Link
+                                                            href={`/chat?id=${slot.conversationId}`}
+                                                            className="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-[11px] font-bold text-slate-600 hover:bg-slate-50 transition whitespace-nowrap shadow-sm"
+                                                        >
+                                                            Nhắn tin
+                                                        </Link>
+                                                    </div>
+                                                ) : (
+                                                    <Link
+                                                        href={`/chat?id=${slot.conversationId}`}
+                                                        className="flex items-center gap-1.5 rounded-xl border border-dermcare/20 bg-dermcare/5 px-3 py-1.5 text-[11px] font-bold text-dermcare hover:bg-dermcare hover:text-white transition whitespace-nowrap"
+                                                    >
+                                                        <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                                        </svg>
+                                                        Nhắn tin
+                                                    </Link>
+                                                )
+                                            )}
+
+                                            {/* Fallback for booked slots without conversation */}
+                                            {slot.isBooked && !slot.conversationId && !isSlotPast(slot.availableDate, slot.startTime) && (
+                                                <span className="text-xs text-slate-400 italic flex items-center">🔒 Chờ khởi tạo</span>
+                                            )}
+
+                                            {/* Past indicator */}
+                                            {isSlotPast(slot.availableDate, slot.startTime) && !slot.isBooked && (
+                                                <span className="text-xs text-slate-400 italic flex items-center flex-shrink-0">📅 Quá hạn</span>
+                                            )}
+                                        </div>
                                     </>
                                 )}
                             </div>

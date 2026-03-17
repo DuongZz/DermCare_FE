@@ -10,6 +10,9 @@ export interface DoctorScheduleSlot {
     price?: number;
     created_at: string;
     updated_at: string;
+    conversationId?: string;
+    appointmentId?: string;
+    appointmentStatus?: string;
 }
 
 export interface CreateSchedulePayload {

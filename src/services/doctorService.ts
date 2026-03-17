@@ -21,6 +21,7 @@ export interface DoctorAppointment {
     note: string;
     price: number;
     paymentStatus: string;
+    conversationId?: string;
     created_at: string;
     updated_at: string;
     patient?: {
@@ -83,7 +84,7 @@ export const searchDoctors = async (query: string): Promise<Doctor[]> => {
 
 // Get my appointments as a doctor
 export const getDoctorAppointments = async (): Promise<DoctorAppointment[]> => {
-    const { data } = await apiClient.get('/appointment/me');
+    const { data } = await apiClient.get('/appointments/me');
     return data.appointments || data.data || data;
 };
 

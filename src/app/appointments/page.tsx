@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { getMyAppointments, Appointment } from "@/services/appointmentService";
+import { getMyAppointments, Appointment, getOrCreateConversation } from "@/services/appointmentService";
 import LoadingOverlay from "@/components/LoadingOverlay";
 
 export default function AppointmentsPage() {
@@ -110,6 +110,48 @@ export default function AppointmentsPage() {
                     <span className="text-xs font-bold text-slate-700 uppercase tracking-wide">Ghi chú</span>
                     <span className="text-sm text-slate-600">{appointment.note || 'Không có'}</span>
                 </div>
+            </div>
+
+            {/* Nút hành động */}
+            <div className="mt-6 flex justify-end">
+                <button
+                    onClick={async () => {
+                        if (appointment.conversationId) {
+                            window.location.href = `/chat?id=${appointment.conversationId}`;
+                        } else {
+                            try {
+                                setIsLoading(true);
+                                const convo = await getOrCreateConversation(appointment.id);
+                                window.location.href = `/chat?id=${convo.id}`;
+                            } catch (error) {
+                                console.error("Failed to get/create conversation:", error);
+                                setIsLoading(false);
+                            }
+                        }
+                    }}
+                    className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition ${
+                        appointment.appointmentStatus === 'COMPLETED' 
+                        ? 'bg-slate-100 text-slate-600 hover:bg-slate-200' 
+                        : 'bg-blue-50 text-blue-600 hover:bg-blue-100'
+                    }`}
+                >
+                    {appointment.appointmentStatus === 'COMPLETED' ? (
+                        <>
+                            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            Xem lại
+                        </>
+                    ) : (
+                        <>
+                            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                            </svg>
+                            Nhắn tin cho bác sĩ
+                        </>
+                    )}
+                </button>
             </div>
         </div>
     );

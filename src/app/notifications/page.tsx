@@ -54,7 +54,7 @@ export default function NotificationsPage() {
 
         if (notif.type === 'NOTI_APPOINTMENT') {
             if (isDoctor) {
-                router.push(`/doctor/appointments?id=${notif.referenceId}`);
+                router.push(`/doctor/shifts?id=${notif.referenceId}`);
             } else {
                 router.push(`/appointments/${notif.referenceId}`);
             }
@@ -114,11 +114,11 @@ export default function NotificationsPage() {
                                         {notif.type === 'NOTI_APPOINTMENT' ? '📅' : notif.type === 'NOTI_MESSAGE' ? '💬' : '📋'}
                                     </div>
                                     <div className="flex-1 min-w-0">
-                                        <div className="flex items-start justify-between">
-                                            <h3 className={`text-base truncate w-full text-left ${!notif.isRead ? 'font-bold text-slate-900' : 'font-semibold text-slate-700'}`}>
+                                        <div className="flex items-start justify-between w-full">
+                                            <h3 className={`text-base truncate text-left ${!notif.isRead ? 'font-bold text-slate-900' : 'font-semibold text-slate-700'}`}>
                                                 {notif.title}
                                             </h3>
-                                            {!notif.isRead && <span className="h-2.5 w-2.5 rounded-full bg-blue-500"></span>}
+                                            {!notif.isRead && <span className="h-2.5 w-2.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0 ml-2"></span>}
                                         </div>
                                         <p className="text-sm text-slate-600 mt-1 leading-relaxed w-full text-left">
                                             {notif.content}

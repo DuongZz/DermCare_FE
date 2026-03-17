@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { getDoctorsBySpecialization, DoctorResult } from "@/services/chatService";
 import { queryKnowledgeBase } from "@/services/knowledgeService";
+import BookingModal from "@/components/BookingModal";
 
 // ============================
 // Hardcoded Test Config
@@ -46,6 +47,11 @@ export default function AIChat() {
     const [isFetchingDoctors, setIsFetchingDoctors] = useState(false);
     const [showDoctors, setShowDoctors] = useState(false);
     const [fetchError, setFetchError] = useState<string | null>(null);
+
+    // Booking state
+    const [conversationId, setConversationId] = useState<string | null>(null);
+    const [showBookingModal, setShowBookingModal] = useState(false);
+    const [selectedDoctorForBooking, setSelectedDoctorForBooking] = useState<any>(null);
 
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -302,10 +308,24 @@ export default function AIChat() {
                                                 <p className="truncate text-xs text-slate-400">🏥 {doc.workPlace}</p>
                                             )}
                                         </div>
-                                        <div className="flex flex-shrink-0 flex-col items-end gap-1">
+                                        <div className="flex flex-shrink-0 flex-col items-end gap-2">
                                             <span className="flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-600">
                                                 ⭐ {doc.rating ?? "N/A"}
                                             </span>
+                                            <button
+                                                onClick={() => {
+                                                    setSelectedDoctorForBooking({
+                                                        id: doc.userId,
+                                                        name: doc.fullName,
+                                                        specialty: doc.specialization,
+                                                        avatar: doc.avatar || "/default-avatar.png",
+                                                    });
+                                                    setShowBookingModal(true);
+                                                }}
+                                                className="rounded-full bg-dermcare px-3 py-1 text-[10px] font-bold text-white hover:bg-dermcare-dark transition"
+                                            >
+                                                Đặt lịch
+                                            </button>
                                         </div>
                                     </div>
                                 ))}
@@ -389,6 +409,15 @@ export default function AIChat() {
                     </p>
                 </div>
             </div>
+            {/* Booking Modal */}
+            {selectedDoctorForBooking && (
+                <BookingModal
+                    isOpen={showBookingModal}
+                    onClose={() => setShowBookingModal(false)}
+                    doctor={selectedDoctorForBooking}
+                    conversationId={conversationId || undefined}
+                />
+            )}
         </div>
     );
 }

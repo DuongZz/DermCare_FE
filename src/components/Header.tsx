@@ -88,7 +88,7 @@ export default function Header() {
 
         if (notif.type === 'NOTI_APPOINTMENT') {
             if (isDoctor) {
-                router.push(`/doctor/appointments?id=${notif.referenceId}`);
+                router.push(`/doctor/shifts?id=${notif.referenceId}`);
             } else {
                 router.push(`/appointments/${notif.referenceId}`);
             }
@@ -252,11 +252,11 @@ export default function Header() {
                                                             {notif.type === 'NOTI_APPOINTMENT' ? '📅' : notif.type === 'NOTI_MESSAGE' ? '💬' : '📋'}
                                                         </div>
                                                         <div className="flex-1 flex flex-col items-start">
-                                                            <div className="flex justify-between items-start">
-                                                                <p className={`text-sm w-full text-left ${!notif.isRead ? 'font-bold text-slate-900' : 'font-medium text-slate-700'}`}>
+                                                            <div className="flex justify-between items-start w-full">
+                                                                <p className={`text-sm text-left ${!notif.isRead ? 'font-bold text-slate-900' : 'font-medium text-slate-700'}`}>
                                                                     {notif.title}
                                                                 </p>
-                                                                {!notif.isRead && <span className="h-2 w-2 rounded-full bg-blue-500 mt-1.5"></span>}
+                                                                {!notif.isRead && <span className="h-2 w-2 rounded-full bg-blue-500 mt-1.5 flex-shrink-0 ml-2"></span>}
                                                             </div>
                                                             <p className="text-xs text-slate-600 font-medium leading-relaxed mt-1 w-full text-left">
                                                                 {notif.content}

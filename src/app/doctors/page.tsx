@@ -138,10 +138,12 @@ export default function DoctorsPage() {
 
                             {/* Doctor Info */}
                             <div className="p-4 flex-1 flex flex-col">
-                                <h3 className="text-lg font-bold text-slate-900 leading-tight mb-1">
-                                    {doctor.qualifications ? `${doctor.qualifications} ${doctor.user.fullName}` : (doctor.user.fullName || 'Bác sĩ')}
-                                </h3>
-                                <p className="text-xs font-medium text-dermcare mb-1.5">{doctor.workPlace || "Đang cập nhật"}</p>
+                                <div className="min-h-[3.2rem] mb-1 flex items-start">
+                                    <h3 className="text-lg font-bold text-slate-900 leading-tight line-clamp-2">
+                                        {doctor.qualifications ? `${doctor.qualifications} ${doctor.user.fullName}` : (doctor.user.fullName || 'Bác sĩ')}
+                                    </h3>
+                                </div>
+                                <p className="text-xs font-medium text-dermcare mb-1.5 truncate">{doctor.workPlace || "Đang cập nhật"}</p>
 
                                 {/* Stats */}
                                 <div className="mb-2.5 flex items-center gap-2 text-sm border-b border-slate-100 pb-1.5">
@@ -172,7 +174,7 @@ export default function DoctorsPage() {
                                 </div>
                                 <button
                                     onClick={() => handleBookClick(doctor)}
-                                    className="mt-2 w-full rounded-xl bg-dermcare py-2 text-sm font-bold text-white shadow-soft transition hover:bg-dermcare-dark hover:shadow-lg active:scale-[0.98]"
+                                    className="mt-auto w-full rounded-xl bg-dermcare py-2 text-sm font-bold text-white shadow-soft transition hover:bg-dermcare-dark hover:shadow-lg active:scale-[0.98]"
                                 >
                                     Đặt lịch khám
                                 </button>
