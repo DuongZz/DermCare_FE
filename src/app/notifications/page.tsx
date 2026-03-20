@@ -124,9 +124,15 @@ export default function NotificationsPage() {
                                             {notif.content}
                                         </p>
                                         <div className="mt-2 flex items-center gap-3">
-                                            <span className="text-xs text-slate-400 text-left">
-                                                {new Date(notif.created_at).toLocaleString('vi-VN')}
-                                            </span>
+                                             <span className="text-xs text-slate-400 text-left" suppressHydrationWarning>
+                                                 {(() => {
+                                                     const d = new Date(notif.created_at);
+                                                     if (notif.created_at && !notif.created_at.toString().includes('Z') && !notif.created_at.toString().includes('+')) {
+                                                         return new Date(notif.created_at + 'Z').toLocaleString('vi-VN');
+                                                     }
+                                                     return d.toLocaleString('vi-VN');
+                                                 })()}
+                                             </span>
                                             {notif.type === 'NOTI_APPOINTMENT' && (
                                                 <Link
                                                     href={notif.referenceId ? `/appointments/${notif.referenceId}` : '/appointments'}

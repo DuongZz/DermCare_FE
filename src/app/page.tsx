@@ -129,31 +129,35 @@ export default function HomePage() {
                 </div>
 
                 {/* CTA - Chat Input */}
-                <div>
+                <div className="space-y-3">
                   {isLoggedIn ? (
                     <>
                       <Link
-                        href="/chat"
-                        className="flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-semibold text-dermcare transition hover:bg-dermcare-light"
+                        href="/chat?tab=AI_CONSULTING"
+                        className="group flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-4 text-sm font-bold text-dermcare shadow-lg transition-all hover:scale-[1.02] hover:bg-slate-50 active:scale-95"
                       >
+                        <span className="text-lg">🔬</span>
                         <span>Bắt đầu chẩn đoán bệnh</span>
-                        <span>🔬</span>
                       </Link>
-                      <p className="mt-2 text-center text-xs text-dermcare-light">
-                        Nhấn để bắt đầu tư vấn với AI 💬
-                      </p>
+                      <Link
+                        href="/chat?tab=DOCTOR_CONSULTING"
+                        className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-4 py-3 text-sm font-semibold transition-all hover:bg-white/20 active:scale-95"
+                      >
+                        <span className="text-lg">💬</span>
+                        <span>Xem hội thoại & Tin nhắn</span>
+                      </Link>
                     </>
                   ) : (
                     <>
                       <Link
                         href="/login"
-                        className="flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-semibold text-dermcare transition hover:bg-dermcare-light"
+                        className="group flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-4 text-sm font-bold text-dermcare shadow-lg transition-all hover:scale-[1.02] hover:bg-slate-50 active:scale-95"
                       >
-                        <span>Bắt đầu chẩn đoán bệnh</span>
-                        <span>🔬</span>
+                        <span className="text-lg">🔬</span>
+                        <span>Bắt đầu chẩn đoán ngay</span>
                       </Link>
-                      <p className="mt-2 text-center text-xs text-dermcare-light">
-                        Chỉ cần đăng ký tài khoản và bắt đầu
+                      <p className="text-center text-xs font-medium text-dermcare-light">
+                        Đăng nhập để lưu lại lịch sử tư vấn
                       </p>
                     </>
                   )}

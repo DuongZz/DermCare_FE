@@ -1,1009 +1,215 @@
-[00:00:02.430] Server  LOG     ✓ Ready in 1781ms
-[00:21:18.612] Server  LOG     ○ Compiling / ...
-[00:21:24.350] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:21:24.651] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[00:21:24.651] Browser LOG     AuthContext: initializing auth...
-[00:21:24.651] Browser LOG     [API Request] No Token attached
-[00:21:24.651] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:21:25.053] Browser ERROR   AuthContext: Valid session not found (wash failed or fetchUser failed) {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/auth/wash","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 401","name":"AxiosError","stack":"AxiosError: Request failed with status code 401\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async washToken (http://localhost:3000/_next/static/chunks/src_d31acf77._.js:275:22)\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_d31acf77._.js:396:30)","status":401}
-[00:21:25.053] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:21:25.053] Browser LOG     [API Request] No Token attached
-[00:21:25.053] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[00:21:25.053] Browser LOG     [API Request] No Token attached
-[00:21:25.053] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[00:21:25.053] Browser LOG     [API Request] No Token attached
-[00:21:25.053] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[00:21:25.053] Browser LOG     [API Request] No Token attached
-[00:21:25.053] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[00:21:25.240] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:21:34.376] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:21:39.583] Browser LOG     [API Request] No Token attached
-[00:21:39.584] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
-[00:21:40.432] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:21:40.432] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:21:40.432] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:21:40.432] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
-[00:21:40.432] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:21:40.432] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[00:21:40.432] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:21:40.432] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[00:21:40.432] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:21:40.432] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[00:21:40.432] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:21:40.432] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[00:21:40.432] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-16T20:20:37.228Z"}
-[00:21:41.543] Browser LOG     [Chat] isLoggedIn: true
-[00:21:41.543] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:21:41.543] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:21:41.543] Browser LOG     [Chat] isLoggedIn: true
-[00:21:41.543] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:21:41.543] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:21:41.543] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:21:41.543] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[00:21:41.543] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:21:41.543] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[00:21:41.543] Browser LOG     [Chat] ✅ Socket connected! ID: bcvVDtS1E2gCbS7xAAAE
-[00:21:41.699] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[00:21:41.699] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:21:41.699] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[00:21:41.869] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[00:21:41.869] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:21:41.869] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[00:21:41.869] Browser LOG     [Chat] Messages received (count): 6
-[00:21:42.007] Browser LOG     [Chat] Messages received (count): 6
-[00:21:44.636] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
-This will cause a hydration error.%s <button> button 
-
-  ...
-    <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
-      <RedirectBoundary>
-        <RedirectErrorBoundary router={{...}}>
-          <InnerLayoutRouter url="/chat" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
-            <SegmentViewNode type="page" pagePath="chat/page.tsx">
-              <SegmentTrieNode>
-              <ClientPageRoot Component={function ChatPage} serverProvidedParams={{...}}>
-                <ChatPage params={Promise} searchParams={Promise}>
-                  <div className="fixed inse...">
-                    <div className="w-72 borde...">
-                      <div className="flex h-ful...">
-                        <div>
-                        <div className="flex-1 ove...">
-                          <div>
-                          <p>
-                          <div className="space-y-1">
->                           <button
->                             onClick={function onClick}
->                             className="group w-full rounded-xl px-3 py-3 text-left transition bg-white border border..."
->                           >
-                              <div className="flex items...">
-                                <p>
->                               <button
->                                 onClick={function onClick}
->                                 className="invisible group-hover:visible rounded-md p-1 text-slate-400 hover:bg-red-..."
->                                 title="Xóa hội thoại"
->                                 disabled={false}
->                               >
-                              ...
-                        ...
-                    ...
-            ...
-          ...
-
-[00:21:44.636] Browser ERROR   <%s> cannot contain a nested %s.
-See this log for the ancestor stack trace. button <button>
-[00:21:44.636] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:21:44.636] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/ai
-[00:21:44.636] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:21:44.636] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[00:21:44.917] Browser LOG     [Chat] Fetching messages for: 9782da3c-1e6f-4565-942d-c23fe0505ff9
-[00:21:44.917] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:21:44.917] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/9782da3c-1e6f-4565-942d-c23fe0505ff9/messages
-[00:21:45.058] Browser LOG     [Chat] Messages received (count): 1
-[00:21:46.593] Browser LOG     [Chat] Fetching messages for: f41a2286-a244-4988-b9af-333c8b63e863
-[00:21:46.593] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:21:46.593] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/f41a2286-a244-4988-b9af-333c8b63e863/messages
-[00:21:46.738] Browser LOG     [Chat] Messages received (count): 1
-[00:23:03.188] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:23:03.188] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/f41a2286-a244-4988-b9af-333c8b63e863/analyze
-[00:35:57.877] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:35:57.881] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=2
-[00:35:59.067] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 4e1dc4cb-8876-41df-8549-f3b7900d6fb2
-[00:36:00.902] Browser LOG     [Chat] Fetching messages for: 0d05efbf-473a-426e-bc5f-14e237052335
-[00:36:00.902] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 4e1dc4cb-8876-41df-8549-f3b7900d6fb2
-[00:36:00.902] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:36:00.902] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/0d05efbf-473a-426e-bc5f-14e237052335/messages
-[00:36:01.052] Browser LOG     [Chat] Messages received (count): 1
-[00:36:01.052] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 4e1dc4cb-8876-41df-8549-f3b7900d6fb2
-[00:36:02.627] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 4e1dc4cb-8876-41df-8549-f3b7900d6fb2
-[00:36:02.627] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:36:02.627] Browser LOG     [API Request] DELETE http://localhost:4000/v1/conversations/0d05efbf-473a-426e-bc5f-14e237052335
-[00:36:02.880] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 4e1dc4cb-8876-41df-8549-f3b7900d6fb2
-[00:36:05.715] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 4e1dc4cb-8876-41df-8549-f3b7900d6fb2
-[00:36:05.715] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:36:05.715] Browser LOG     [API Request] DELETE http://localhost:4000/v1/conversations/4e1dc4cb-8876-41df-8549-f3b7900d6fb2
-[00:36:21.123] Server  LOG     ✓ Compiled in 9.8s
-[00:36:21.304] Browser LOG     [Chat] Socket disconnected. Reason: io client disconnect
-[00:36:21.304] Browser LOG     [Chat] isLoggedIn: true
-[00:36:21.304] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:36:21.304] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:36:21.304] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:36:21.304] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[00:36:21.304] Browser LOG     [Chat] ✅ Socket connected! ID: T5M485AxOIn3NPI1AAAG
-[00:36:21.698] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[00:36:21.698] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:36:21.698] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[00:36:21.823] Browser LOG     [Chat] Messages received (count): 6
-[00:36:38.207] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:36:38.207] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[00:37:04.994] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:37:04.994] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=COMPLETED&page=1
-[00:37:05.576] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:37:05.576] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[00:37:05.576] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:37:05.576] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[00:37:05.576] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:37:05.576] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=COMPLETED&page=1
-[00:37:07.328] Browser LOG     [Chat] Fetching messages for: 5deffce5-7028-454e-83b2-35713210c8f7
-[00:37:07.328] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:37:07.328] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/5deffce5-7028-454e-83b2-35713210c8f7/messages
-[00:37:07.464] Browser LOG     [Chat] Messages received (count): 8
-[00:37:09.488] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:37:09.488] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[00:37:10.903] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:37:10.903] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[00:37:11.640] Browser LOG     [Chat] Fetching messages for: f41a2286-a244-4988-b9af-333c8b63e863
-[00:37:11.640] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:37:11.640] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/f41a2286-a244-4988-b9af-333c8b63e863/messages
-[00:37:11.783] Browser LOG     [Chat] Messages received (count): 5
-[00:37:17.601] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:37:17.601] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch
-[00:37:17.602] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcxODU2MiwiZXhwIjoxNzczNzE5NDYyfQ.gnV8SGhyH1IQRCBeTFF9lr-JWR8mfDM5g2eB4X7d0dI","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fchat%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:656:26)","status":500}
-[00:37:20.743] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:37:20.743] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch
-[00:37:20.743] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcxODU2MiwiZXhwIjoxNzczNzE5NDYyfQ.gnV8SGhyH1IQRCBeTFF9lr-JWR8mfDM5g2eB4X7d0dI","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fchat%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:656:26)","status":500}
-[00:37:51.469] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:37:51.469] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch
-[00:37:51.800] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcxODU2MiwiZXhwIjoxNzczNzE5NDYyfQ.gnV8SGhyH1IQRCBeTFF9lr-JWR8mfDM5g2eB4X7d0dI","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fchat%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:656:26)","status":500}
-[00:45:39.933] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:45:39.933] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[00:45:40.354] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/chat" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[00:45:40.354] Browser LOG     AuthContext: initializing auth...
-[00:45:40.354] Browser LOG     [API Request] No Token attached
-[00:45:40.354] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[00:45:41.403] Browser LOG     AuthContext: washToken success
-[00:45:41.403] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:45:41.403] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[00:45:41.403] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-16T20:44:38.196Z"}
-[00:45:41.403] Browser LOG     [Chat] isLoggedIn: true
-[00:45:41.403] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:45:41.403] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:45:41.403] Browser LOG     [Chat] isLoggedIn: true
-[00:45:41.403] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[00:45:41.403] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[00:45:41.403] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:45:41.403] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[00:45:41.403] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:45:41.403] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[00:45:41.403] Browser LOG     [Chat] ✅ Socket connected! ID: NXYZv0YubcAckj8LAAAJ
-[00:45:41.598] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[00:45:41.598] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:45:41.599] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[00:45:41.731] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[00:45:41.731] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:45:41.731] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[00:45:42.168] Browser LOG     [Chat] Messages received (count): 6
-[00:45:42.294] Browser LOG     [Chat] Messages received (count): 6
-[00:45:44.538] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
-This will cause a hydration error.%s <button> button 
-
-  ...
-    <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
-      <RedirectBoundary>
-        <RedirectErrorBoundary router={{...}}>
-          <InnerLayoutRouter url="/chat" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
-            <SegmentViewNode type="page" pagePath="chat/page.tsx">
-              <SegmentTrieNode>
-              <ClientPageRoot Component={function ChatPage} serverProvidedParams={{...}}>
-                <ChatPage params={Promise} searchParams={Promise}>
-                  <div className="fixed inse...">
-                    <div className="w-72 borde...">
-                      <div className="flex h-ful...">
-                        <div>
-                        <div className="flex-1 ove...">
-                          <div>
-                          <p>
-                          <div className="space-y-1">
->                           <button
->                             onClick={function onClick}
->                             className="group w-full rounded-xl px-3 py-3 text-left transition bg-white border border..."
->                           >
-                              <div className="flex items...">
-                                <p>
->                               <button
->                                 onClick={function onClick}
->                                 className="invisible group-hover:visible rounded-md p-1 text-slate-400 hover:bg-red-..."
->                                 title="Xóa hội thoại"
->                                 disabled={false}
->                               >
-                              ...
-                        ...
-                    ...
-            ...
-          ...
-
-[00:45:44.538] Browser ERROR   <%s> cannot contain a nested %s.
-See this log for the ancestor stack trace. button <button>
-[00:45:44.538] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[00:45:44.538] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[01:20:27.539] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:20:27.540] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=2
-[01:20:28.705] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:20:28.705] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=2
-[01:20:30.456] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:20:30.456] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[01:20:30.788] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/chat" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[01:20:30.788] Browser LOG     AuthContext: initializing auth...
-[01:20:30.789] Browser LOG     [API Request] No Token attached
-[01:20:30.789] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[01:20:31.103] Browser LOG     AuthContext: washToken success
-[01:20:31.103] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:20:31.103] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[01:20:31.103] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-16T21:19:27.730Z"}
-[01:20:31.103] Browser LOG     [Chat] isLoggedIn: true
-[01:20:31.103] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:20:31.103] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:20:31.103] Browser LOG     [Chat] isLoggedIn: true
-[01:20:31.103] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:20:31.103] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:20:31.103] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:20:31.103] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[01:20:31.103] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:20:31.103] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[01:20:31.103] Browser LOG     [Chat] ✅ Socket connected! ID: joJqc2sWsTgZRNgkAAAM
-[01:20:31.216] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[01:20:31.216] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:20:31.216] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[01:20:31.337] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[01:20:31.337] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:20:31.337] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[01:20:31.697] Browser LOG     [Chat] Messages received (count): 6
-[01:20:31.827] Browser LOG     [Chat] Messages received (count): 6
-[01:20:34.471] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
-This will cause a hydration error.%s <button> button 
-
-  ...
-    <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
-      <RedirectBoundary>
-        <RedirectErrorBoundary router={{...}}>
-          <InnerLayoutRouter url="/chat" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
-            <SegmentViewNode type="page" pagePath="chat/page.tsx">
-              <SegmentTrieNode>
-              <ClientPageRoot Component={function ChatPage} serverProvidedParams={{...}}>
-                <ChatPage params={Promise} searchParams={Promise}>
-                  <div className="fixed inse...">
-                    <div className="w-72 borde...">
-                      <div className="flex h-ful...">
-                        <div>
-                        <div className="flex-1 ove...">
-                          <div>
-                          <p>
-                          <div className="space-y-1">
->                           <button
->                             onClick={function onClick}
->                             className="group w-full rounded-xl px-3 py-3 text-left transition bg-white border border..."
->                           >
-                              <div className="flex items...">
-                                <p>
->                               <button
->                                 onClick={function onClick}
->                                 className="invisible group-hover:visible rounded-md p-1 text-slate-400 hover:bg-red-..."
->                                 title="Xóa hội thoại"
->                                 disabled={false}
->                               >
-                              ...
-                        ...
-                    ...
-            ...
-          ...
-
-[01:20:34.471] Browser ERROR   <%s> cannot contain a nested %s.
-See this log for the ancestor stack trace. button <button>
-[01:20:34.471] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:20:34.471] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[01:20:52.935] Browser LOG     [Chat] Fetching messages for: 8c3f399e-3b98-475c-aa3c-1fab448adbab
-[01:20:52.936] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:20:52.936] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/8c3f399e-3b98-475c-aa3c-1fab448adbab/messages
-[01:20:53.371] Browser LOG     [Chat] Messages received (count): 1
-[01:20:55.336] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:20:55.336] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=COMPLETED&page=1
-[01:20:56.550] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:20:56.550] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[01:21:22.959] Server  LOG     ✓ Compiled in 703ms
-[01:22:00.471] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:22:00.471] Browser LOG     [API Request] DELETE http://localhost:4000/v1/conversations/8c3f399e-3b98-475c-aa3c-1fab448adbab
-[01:22:03.166] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:22:03.166] Browser LOG     [API Request] DELETE http://localhost:4000/v1/conversations/9782da3c-1e6f-4565-942d-c23fe0505ff9
-[01:22:05.110] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:22:05.110] Browser LOG     [API Request] DELETE http://localhost:4000/v1/conversations/a187cf96-37cb-4f25-9e10-b354bb829c66
-[01:22:05.911] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:22:05.911] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=2
-[01:22:07.575] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:22:07.575] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[01:22:07.743] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[01:22:07.743] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:22:07.743] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[01:22:08.008] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:22:08.008] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[01:22:08.008] Browser LOG     [Chat] Messages received (count): 6
-[01:22:08.792] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:22:08.792] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=COMPLETED&page=1
-[01:22:09.431] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:22:09.431] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[01:23:00.463] Server  LOG     ✓ Compiled in 124ms
-[01:23:07.870] Browser LOG     [Chat] Fetching messages for: f41a2286-a244-4988-b9af-333c8b63e863
-[01:23:07.870] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:23:07.870] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/f41a2286-a244-4988-b9af-333c8b63e863/messages
-[01:23:08.348] Browser LOG     [Chat] Messages received (count): 5
-[01:23:25.826] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:23:25.826] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/f41a2286-a244-4988-b9af-333c8b63e863/analyze
-[01:23:38.936] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:23:38.936] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=U%20%26%20Ung%20th%C6%B0%20da
-[01:23:38.936] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMTE2NywiZXhwIjoxNzczNzIyMDY3fQ.Ca1SnzQsQ-67eRc3jIwSUWCee1S7NkcNDAE7vBfXiEI","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=U%20%26%20Ung%20th%C6%B0%20da","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fchat%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:656:26)","status":500}
-[01:23:40.641] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:23:40.641] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=U%20%26%20Ung%20th%C6%B0%20da
-[01:23:40.641] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMTE2NywiZXhwIjoxNzczNzIyMDY3fQ.Ca1SnzQsQ-67eRc3jIwSUWCee1S7NkcNDAE7vBfXiEI","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=U%20%26%20Ung%20th%C6%B0%20da","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fchat%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:656:26)","status":500}
-[01:23:56.806] Server  LOG     ✓ Compiled in 117ms
-[01:24:01.472] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:01.473] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/f41a2286-a244-4988-b9af-333c8b63e863/analyze
-[01:24:06.669] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:06.669] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Nhi%E1%BB%85m%20tr%C3%B9ng%20da%20%26%20K%C3%BD%20sinh%20tr%C3%B9ng
-[01:24:06.669] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMTE2NywiZXhwIjoxNzczNzIyMDY3fQ.Ca1SnzQsQ-67eRc3jIwSUWCee1S7NkcNDAE7vBfXiEI","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Nhi%E1%BB%85m%20tr%C3%B9ng%20da%20%26%20K%C3%BD%20sinh%20tr%C3%B9ng","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fchat%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:668:26)","status":500}
-[01:24:10.576] Server  LOG     ✓ Compiled in 121ms
-[01:24:17.294] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:17.294] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Nhi%E1%BB%85m%20tr%C3%B9ng%20da%20%26%20K%C3%BD%20sinh%20tr%C3%B9ng
-[01:24:17.645] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMTE2NywiZXhwIjoxNzczNzIyMDY3fQ.Ca1SnzQsQ-67eRc3jIwSUWCee1S7NkcNDAE7vBfXiEI","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Nhi%E1%BB%85m%20tr%C3%B9ng%20da%20%26%20K%C3%BD%20sinh%20tr%C3%B9ng","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fchat%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:668:26)","status":500}
-[01:24:48.991] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:48.991] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Nhi%E1%BB%85m%20tr%C3%B9ng%20da%20%26%20K%C3%BD%20sinh%20tr%C3%B9ng
-[01:24:49.312] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMTE2NywiZXhwIjoxNzczNzIyMDY3fQ.Ca1SnzQsQ-67eRc3jIwSUWCee1S7NkcNDAE7vBfXiEI","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Nhi%E1%BB%85m%20tr%C3%B9ng%20da%20%26%20K%C3%BD%20sinh%20tr%C3%B9ng","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fchat%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:668:26)","status":500}
-[01:24:51.077] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[01:24:51.078] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[01:24:51.078] Browser LOG     [Chat] Socket disconnected. Reason: io client disconnect
-[01:24:51.078] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:51.078] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
-[01:24:51.078] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:51.078] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[01:24:51.078] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:51.078] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[01:24:51.078] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:51.078] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
-[01:24:51.078] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:51.078] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[01:24:51.078] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:51.078] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[01:24:52.513] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:52.514] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/logout
-[01:24:58.159] Browser LOG     [API Request] No Token attached
-[01:24:58.159] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
-[01:24:58.615] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:58.616] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[01:24:58.616] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:58.616] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
-[01:24:58.616] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-16T21:23:55.272Z"}
-[01:24:58.616] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:58.616] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[01:24:58.616] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:58.616] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[01:24:58.616] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:58.616] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[01:24:58.616] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:58.616] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[01:24:59.596] Browser LOG     [Chat] isLoggedIn: true
-[01:24:59.597] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:24:59.597] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:24:59.597] Browser LOG     [Chat] isLoggedIn: true
-[01:24:59.597] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:24:59.597] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:24:59.597] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:59.597] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[01:24:59.597] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:59.597] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[01:24:59.597] Browser LOG     [Chat] ✅ Socket connected! ID: wmmdHhSAUWhGKLDAAAAU
-[01:24:59.717] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[01:24:59.717] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:59.717] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[01:24:59.868] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[01:24:59.868] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:24:59.868] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[01:24:59.868] Browser LOG     [Chat] Messages received (count): 6
-[01:24:59.992] Browser LOG     [Chat] Messages received (count): 6
-[01:25:01.575] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:01.575] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[01:25:02.244] Browser LOG     [Chat] Fetching messages for: f41a2286-a244-4988-b9af-333c8b63e863
-[01:25:02.244] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:02.244] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/f41a2286-a244-4988-b9af-333c8b63e863/messages
-[01:25:02.418] Browser LOG     [Chat] Messages received (count): 13
-[01:25:03.527] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:03.527] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Nhi%E1%BB%85m%20tr%C3%B9ng%20da%20%26%20K%C3%BD%20sinh%20tr%C3%B9ng
-[01:25:03.527] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMTQzNSwiZXhwIjoxNzczNzIyMzM1fQ.079OHiWw8lDRTkBefZmqf3Tyh-3_Aat9GnIIfJz2Ijw","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Nhi%E1%BB%85m%20tr%C3%B9ng%20da%20%26%20K%C3%BD%20sinh%20tr%C3%B9ng","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fchat%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:668:26)","status":500}
-[01:25:11.951] Browser LOG     [Chat] Socket disconnected. Reason: io client disconnect
-[01:25:11.951] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:11.951] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
-[01:25:11.951] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:11.951] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[01:25:11.951] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:11.951] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[01:25:11.951] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:11.951] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
-[01:25:11.951] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:11.951] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[01:25:11.951] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:11.951] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[01:25:16.565] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:16.565] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[01:25:16.565] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:16.565] Browser LOG     [API Request] GET http://localhost:4000/v1/doctors/all
-[01:25:16.742] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:25:16.742] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:25:16.742] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:25:16.742] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:25:16.742] Browser WARN    Image with src "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:25:19.878] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:19.878] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
-[01:25:19.878] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:19.878] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/ce93ea53-2a53-4dd4-8228-01699862e22b
-[01:25:22.934] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:22.934] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/f32eefb5-d583-405e-8516-12bd9c7add21
-[01:25:22.934] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:22.934] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/f32eefb5-d583-405e-8516-12bd9c7add21
-[01:25:25.099] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:25.099] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[01:25:25.099] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:25.099] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[01:25:25.099] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:25.099] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[01:25:25.099] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:25.099] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[01:25:25.901] Browser LOG     [Chat] isLoggedIn: true
-[01:25:25.902] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:25:25.902] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:25:25.902] Browser LOG     [Chat] isLoggedIn: true
-[01:25:25.902] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:25:25.902] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:25:25.902] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:25.902] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[01:25:25.902] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:25.902] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[01:25:25.902] Browser LOG     [Chat] ✅ Socket connected! ID: Zl6WksmePcmaPiXxAAAa
-[01:25:26.015] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[01:25:26.015] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:26.015] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[01:25:26.149] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[01:25:26.149] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:26.149] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[01:25:26.780] Browser LOG     [Chat] Messages received (count): 6
-[01:25:26.926] Browser LOG     [Chat] Messages received (count): 6
-[01:25:28.598] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:28.598] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[01:25:29.975] Browser LOG     [Chat] Fetching messages for: f41a2286-a244-4988-b9af-333c8b63e863
-[01:25:29.975] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:25:29.975] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/f41a2286-a244-4988-b9af-333c8b63e863/messages
-[01:25:30.145] Browser LOG     [Chat] Messages received (count): 13
-[01:26:14.219] Server  LOG     ✓ Compiled in 108ms
-[01:26:42.785] Server  LOG     ✓ Compiled in 85ms
-[01:27:11.143] Server  LOG     ✓ Compiled in 199ms
-[01:27:11.832] Browser ERROR   ./src/app/chat/page.tsx:1349:14
-Parsing ecmascript source code failed
-  1347 |             </div>
-  1348 |
-> 1349 |             )}
-       |              ^
-  1350 |         </div>
-  1351 |     );
-  1352 | }
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./src/app/chat/page.tsx [Client Component Browser]
-    ./src/app/chat/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/chat/page.tsx [Client Component SSR]
-    ./src/app/chat/page.tsx [Server Component]
-[01:27:21.086] Server  LOG     ✓ Compiled in 149ms
-[01:45:52.836] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:45:52.847] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Nhi%E1%BB%85m%20tr%C3%B9ng%20da%20%26%20K%C3%BD%20sinh%20tr%C3%B9ng
-[01:45:54.242] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:45:54.242] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Nhi%E1%BB%85m%20tr%C3%B9ng%20da%20%26%20K%C3%BD%20sinh%20tr%C3%B9ng
-[01:45:54.242] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"_retry":true,"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMjY5MSwiZXhwIjoxNzczNzIzNTkxfQ.dOV7ULEHh54Aus-YCkkDD7RR4h-SSLRkbMgqjaBJdMY","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Nhi%E1%BB%85m%20tr%C3%B9ng%20da%20%26%20K%C3%BD%20sinh%20tr%C3%B9ng","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9203:20)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fchat%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:698:26)","status":500}
-[01:46:20.627] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:46:20.627] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/f41a2286-a244-4988-b9af-333c8b63e863/analyze
-[01:46:53.870] Server  LOG     ✓ Compiled in 484ms
-[01:47:11.928] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:47:11.928] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch
-[01:47:12.305] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMjY5MSwiZXhwIjoxNzczNzIzNTkxfQ.dOV7ULEHh54Aus-YCkkDD7RR4h-SSLRkbMgqjaBJdMY","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js?id=%255Bproject%255D%252Fsrc%252Fapp%252Fchat%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:669:26)","status":500}
-[01:47:16.788] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:47:19.824] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/chat" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[01:47:19.824] Browser LOG     AuthContext: initializing auth...
-[01:47:19.824] Browser LOG     [API Request] No Token attached
-[01:47:19.824] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[01:47:19.824] Browser LOG     AuthContext: washToken success
-[01:47:19.824] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:47:19.824] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[01:47:19.824] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-16T21:46:14.925Z"}
-[01:47:19.824] Browser LOG     [Chat] isLoggedIn: true
-[01:47:19.824] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:47:19.824] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:47:19.824] Browser LOG     [Chat] isLoggedIn: true
-[01:47:19.824] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:47:19.824] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:47:19.824] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:47:19.824] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[01:47:19.824] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:47:19.824] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[01:47:19.824] Browser LOG     [Chat] ✅ Socket connected! ID: sI68f85F-rq33B17AAAd
-[01:47:19.824] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[01:47:19.824] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:47:19.824] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[01:47:19.824] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[01:47:19.824] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:47:19.824] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[01:47:19.824] Browser LOG     [Chat] Messages received (count): 6
-[01:47:19.824] Browser LOG     [Chat] Messages received (count): 6
-[01:48:26.927] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
-This will cause a hydration error.%s <button> button 
-
-  ...
-    <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
-      <RedirectBoundary>
-        <RedirectErrorBoundary router={{...}}>
-          <InnerLayoutRouter url="/chat" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
-            <SegmentViewNode type="page" pagePath="chat/page.tsx">
-              <SegmentTrieNode>
-              <ClientPageRoot Component={function ChatPage} serverProvidedParams={{...}}>
-                <ChatPage params={Promise} searchParams={Promise}>
-                  <div className="fixed inse...">
-                    <div className="w-72 borde...">
-                      <div className="flex h-ful...">
-                        <div>
-                        <div className="flex-1 ove...">
-                          <div>
-                          <p>
-                          <div className="space-y-1">
->                           <button
->                             onClick={function onClick}
->                             className="group w-full rounded-xl px-3 py-3 text-left transition bg-white border border..."
->                           >
-                              <div className="flex items...">
-                                <p>
->                               <button
->                                 onClick={function onClick}
->                                 className="invisible group-hover:visible rounded-md p-1 text-slate-400 hover:bg-red-..."
->                                 title="Xóa hội thoại"
->                                 disabled={false}
->                               >
-                              ...
-                        ...
-                    ...
-            ...
-          ...
-
-[01:48:26.927] Browser ERROR   <%s> cannot contain a nested %s.
-See this log for the ancestor stack trace. button <button>
-[01:48:26.927] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:48:26.927] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[01:48:27.939] Browser LOG     [Chat] Fetching messages for: f41a2286-a244-4988-b9af-333c8b63e863
-[01:48:27.939] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:48:27.939] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/f41a2286-a244-4988-b9af-333c8b63e863/messages
-[01:48:28.110] Browser LOG     [Chat] Messages received (count): 16
-[01:48:30.788] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:48:30.788] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch
-[01:48:30.788] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMjc3NSwiZXhwIjoxNzczNzIzNjc1fQ.AxJg5_g7Zr-KqP74b_2bvR-5Xf3zHHFxkFcKa2NQLK4","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:2050:26)","status":500}
-[01:48:48.397] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:48:48.397] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[01:48:49.335] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[01:48:49.335] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:48:49.335] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[01:48:49.480] Browser LOG     [Chat] Messages received (count): 6
-[01:48:52.815] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:48:52.815] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[01:48:54.099] Browser LOG     [Chat] Fetching messages for: f41a2286-a244-4988-b9af-333c8b63e863
-[01:48:54.099] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:48:54.099] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/f41a2286-a244-4988-b9af-333c8b63e863/messages
-[01:48:54.290] Browser LOG     [Chat] Messages received (count): 16
-[01:51:25.647] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:51:25.647] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch
-[01:51:26.029] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMjc3NSwiZXhwIjoxNzczNzIzNjc1fQ.AxJg5_g7Zr-KqP74b_2bvR-5Xf3zHHFxkFcKa2NQLK4","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:2050:26)","status":500}
-[01:51:33.917] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:51:33.917] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch
-[01:51:33.918] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMjc3NSwiZXhwIjoxNzczNzIzNjc1fQ.AxJg5_g7Zr-KqP74b_2bvR-5Xf3zHHFxkFcKa2NQLK4","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:2050:26)","status":500}
-[01:51:34.383] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:51:34.383] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch
-[01:51:34.383] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMjc3NSwiZXhwIjoxNzczNzIzNjc1fQ.AxJg5_g7Zr-KqP74b_2bvR-5Xf3zHHFxkFcKa2NQLK4","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:2050:26)","status":500}
-[01:51:51.517] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:51:51.517] Browser LOG     content script: Katalon Waiter v.2 is up and running !
-[01:51:52.036] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/chat" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="vi"
--                         katalonextensionid="ljdobmomdgdljniojadhoplhkpialdid"
-                        >
-                  ...
-
-[01:51:52.036] Browser LOG     AuthContext: initializing auth...
-[01:51:52.036] Browser LOG     [API Request] No Token attached
-[01:51:52.036] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/wash
-[01:51:52.429] Browser LOG     AuthContext: washToken success
-[01:51:52.429] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:51:52.429] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[01:51:52.429] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-16T21:50:49.123Z"}
-[01:51:52.429] Browser LOG     [Chat] isLoggedIn: true
-[01:51:52.429] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:51:52.429] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:51:52.429] Browser LOG     [Chat] isLoggedIn: true
-[01:51:52.429] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:51:52.429] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:51:52.429] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:51:52.429] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[01:51:52.429] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:51:52.429] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[01:51:52.568] Browser LOG     [Chat] ✅ Socket connected! ID: qdlgChE54gOrEvxgAAAg
-[01:51:52.568] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[01:51:52.568] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:51:52.568] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[01:51:52.710] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[01:51:52.710] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:51:52.710] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[01:51:53.085] Browser LOG     [Chat] Messages received (count): 6
-[01:51:53.227] Browser LOG     [Chat] Messages received (count): 6
-[01:51:59.803] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
-This will cause a hydration error.%s <button> button 
-
-  ...
-    <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
-      <RedirectBoundary>
-        <RedirectErrorBoundary router={{...}}>
-          <InnerLayoutRouter url="/chat" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
-            <SegmentViewNode type="page" pagePath="chat/page.tsx">
-              <SegmentTrieNode>
-              <ClientPageRoot Component={function ChatPage} serverProvidedParams={{...}}>
-                <ChatPage params={Promise} searchParams={Promise}>
-                  <div className="fixed inse...">
-                    <div className="w-72 borde...">
-                      <div className="flex h-ful...">
-                        <div>
-                        <div className="flex-1 ove...">
-                          <div>
-                          <p>
-                          <div className="space-y-1">
->                           <button
->                             onClick={function onClick}
->                             className="group w-full rounded-xl px-3 py-3 text-left transition bg-white border border..."
->                           >
-                              <div className="flex items...">
-                                <p>
->                               <button
->                                 onClick={function onClick}
->                                 className="invisible group-hover:visible rounded-md p-1 text-slate-400 hover:bg-red-..."
->                                 title="Xóa hội thoại"
->                                 disabled={false}
->                               >
-                              ...
-                        ...
-                    ...
-            ...
-          ...
-
-[01:51:59.803] Browser ERROR   <%s> cannot contain a nested %s.
-See this log for the ancestor stack trace. button <button>
-[01:51:59.803] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:51:59.803] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[01:52:00.597] Browser LOG     [Chat] Fetching messages for: f41a2286-a244-4988-b9af-333c8b63e863
-[01:52:00.597] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:52:00.597] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/f41a2286-a244-4988-b9af-333c8b63e863/messages
-[01:52:00.904] Browser LOG     [Chat] Messages received (count): 16
-[01:52:02.390] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:52:02.390] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch
-[01:52:02.564] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMzA0OSwiZXhwIjoxNzczNzIzOTQ5fQ.ocANwjJuN26sTaiNzksSxA3UY2ZqQp-gHtCGvToWBJ4","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:2050:26)","status":500}
-[01:53:14.835] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[01:53:16.823] Browser LOG     [Chat] ✅ Socket connected! ID: -pXAaMMIPOf_n3HCAAAB
-[01:53:50.717] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:53:50.717] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch
-[01:53:51.098] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMzA0OSwiZXhwIjoxNzczNzIzOTQ5fQ.ocANwjJuN26sTaiNzksSxA3UY2ZqQp-gHtCGvToWBJ4","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:2050:26)","status":500}
-[01:54:08.668] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:08.668] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch
-[01:54:09.137] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMzA0OSwiZXhwIjoxNzczNzIzOTQ5fQ.ocANwjJuN26sTaiNzksSxA3UY2ZqQp-gHtCGvToWBJ4","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:2050:26)","status":500}
-[01:54:24.953] Browser WARN    Image with src "/logo_dermcare.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[01:54:24.953] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[01:54:24.953] Browser LOG     [Chat] Socket disconnected. Reason: io client disconnect
-[01:54:24.953] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:24.953] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
-[01:54:24.953] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:24.953] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[01:54:24.953] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:24.953] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[01:54:24.953] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:24.953] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
-[01:54:24.953] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:24.953] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[01:54:24.953] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:24.953] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[01:54:26.431] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:26.431] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/logout
-[01:54:31.535] Browser LOG     [API Request] No Token attached
-[01:54:31.535] Browser LOG     [API Request] POST http://localhost:4000/v1/auth/login
-[01:54:32.010] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:32.010] Browser LOG     [API Request] GET http://localhost:4000/v1/users/me
-[01:54:32.010] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:32.010] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
-[01:54:32.011] Browser LOG     AuthContext: fetchUser success {"address":"Phú Xuyên","created_at":"2026-02-28T09:07:14.883Z","dateOfBirth":"2003-06-13T00:00:00.000Z","email":"duongdaoqq@gmail.com","fullName":"Đào Quang Nê","gender":"MALE","id":"8879ddd1-43b6-4692-ba63-3b57dac23239","phone":"0943142828","role":"PATIENT","updated_at":"2026-03-16T21:53:28.646Z"}
-[01:54:32.011] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:32.011] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[01:54:32.011] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:32.011] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[01:54:32.011] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:32.011] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[01:54:32.011] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:32.011] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[01:54:32.902] Browser LOG     [Chat] isLoggedIn: true
-[01:54:32.902] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:54:32.902] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:54:32.902] Browser LOG     [Chat] isLoggedIn: true
-[01:54:32.902] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[01:54:32.902] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[01:54:32.902] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:32.902] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[01:54:32.902] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:32.902] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[01:54:32.902] Browser LOG     [Chat] ✅ Socket connected! ID: mLKk-hK6oYlD3Wp8AAAJ
-[01:54:33.026] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[01:54:33.026] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:33.026] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[01:54:33.161] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[01:54:33.161] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:33.161] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[01:54:33.161] Browser LOG     [Chat] Messages received (count): 6
-[01:54:33.289] Browser LOG     [Chat] Messages received (count): 6
-[01:54:35.168] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:35.168] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[01:54:37.159] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:37.159] Browser LOG     [API Request] DELETE http://localhost:4000/v1/conversations/f41a2286-a244-4988-b9af-333c8b63e863
-[01:54:37.953] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:37.953] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/ai
-[01:54:38.201] Browser LOG     [Chat] Fetching messages for: 908a1c9f-1523-439a-b6cc-ff02bd59fa73
-[01:54:38.201] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:38.201] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/908a1c9f-1523-439a-b6cc-ff02bd59fa73/messages
-[01:54:38.327] Browser LOG     [Chat] Messages received (count): 1
-[01:54:46.517] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:46.517] Browser LOG     [API Request] POST http://localhost:4000/v1/conversations/908a1c9f-1523-439a-b6cc-ff02bd59fa73/analyze
-[01:54:53.084] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[01:54:53.084] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch
-[01:54:53.084] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMzIwOCwiZXhwIjoxNzczNzI0MTA4fQ.7yShqJv698AZxWOkkTwEjI5VrspeFuwcKaWGLQLxhoU","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:2050:26)","status":500}
-[01:56:04.834] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[01:56:07.834] Browser LOG     [Chat] ✅ Socket connected! ID: KbGGJ7b-4y3xTUfsAAAB
-[02:01:22.850] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[02:01:28.824] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[02:01:33.827] Browser LOG     [Chat] ✅ Socket connected! ID: ifbcZ-FRmXzPS8_RAAAB
-[02:02:11.641] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[02:02:11.642] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch
-[02:02:12.479] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMzIwOCwiZXhwIjoxNzczNzI0MTA4fQ.7yShqJv698AZxWOkkTwEjI5VrspeFuwcKaWGLQLxhoU","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:2050:26)","status":500}
-[02:02:14.995] Browser LOG     [Chat] Socket disconnected. Reason: io client disconnect
-[02:02:14.996] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[02:02:14.996] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
-[02:02:14.996] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[02:02:14.996] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[02:02:14.996] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[02:02:14.996] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[02:02:14.996] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[02:02:14.996] Browser LOG     [API Request] GET http://localhost:4000/v1/notifications
-[02:02:14.996] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[02:02:14.996] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-doctors
-[02:02:14.996] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[02:02:14.996] Browser LOG     [API Request] GET http://localhost:4000/v1/users/public-specialization
-[02:02:16.170] Browser LOG     [Chat] isLoggedIn: true
-[02:02:16.170] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[02:02:16.170] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[02:02:16.170] Browser LOG     [Chat] isLoggedIn: true
-[02:02:16.170] Browser LOG     [Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)
-[02:02:16.170] Browser LOG     [Chat] BACKEND_URL: http://localhost:4000
-[02:02:16.170] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[02:02:16.170] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[02:02:16.170] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[02:02:16.170] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1
-[02:02:16.170] Browser LOG     [Chat] ✅ Socket connected! ID: IzVDxvD3O-CbK4LWAAAH
-[02:02:16.300] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[02:02:16.300] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[02:02:16.300] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[02:02:16.457] Browser LOG     [Chat] Fetching messages for: c2725416-2c32-4751-81f5-b8673946bafe
-[02:02:16.457] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[02:02:16.457] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/c2725416-2c32-4751-81f5-b8673946bafe/messages
-[02:02:16.457] Browser LOG     [Chat] Messages received (count): 6
-[02:02:16.592] Browser LOG     [Chat] Messages received (count): 6
-[02:02:18.735] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[02:02:18.735] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1
-[02:02:19.555] Browser LOG     [Chat] Fetching messages for: 908a1c9f-1523-439a-b6cc-ff02bd59fa73
-[02:02:19.555] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[02:02:19.555] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/908a1c9f-1523-439a-b6cc-ff02bd59fa73/messages
-[02:02:19.700] Browser LOG     [Chat] Messages received (count): 4
-[02:02:21.299] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[02:02:21.299] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch
-[02:02:21.299] Browser ERROR   Failed to fetch doctors: {"code":"ERR_BAD_RESPONSE","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"baseURL":"http://localhost:4000/v1","env":{},"headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzlkZGQxLTQzYjYtNDY5Mi1iYTYzLTNiNTdkYWMyMzIzOSIsIm5hbWUiOiLEkMOgbyBRdWFuZyBOw6oiLCJlbWFpbCI6ImR1b25nZGFvcXFAZ21haWwuY29tIiwicm9sZSI6IlBBVElFTlQiLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yOFQwOTowNzoxNC44ODNaIiwicmVtZW1iZXJNZSI6ZmFsc2UsImlhdCI6MTc3MzcyMzIwOCwiZXhwIjoxNzczNzI0MTA4fQ.7yShqJv698AZxWOkkTwEjI5VrspeFuwcKaWGLQLxhoU","Content-Type":"application/json","x-platform":"WEB"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":10000,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"legacyInterceptorReqResOrdering":true,"silentJSONParsing":true},"url":"/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch","withCredentials":true,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 500","name":"AxiosError","stack":"AxiosError: Request failed with status code 500\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:7883:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:8401:174)\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_f89d9814._.js:9207:49)\n    at async getDoctorsBySpecialization (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:66:22)\n    at async handleSuggestDoctors (http://localhost:3000/_next/static/chunks/src_8e1c495f._.js:2050:26)","status":500}
-[02:03:02.827] Browser LOG     [Chat] Socket disconnected. Reason: transport close
-[02:03:07.848] Browser ERROR   [Chat] ❌ Socket connect_error: xhr poll error {"context":{},"description":0,"type":"TransportError"}
-[02:03:17.057] Browser LOG     [Chat] ✅ Socket connected! ID: SlZLKRZX9DAdDjfEAAAB
-[02:04:25.646] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[02:04:25.646] Browser LOG     [API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch
-[02:04:28.848] Browser LOG     [API Request] Attached Token: eyJhbGciOi...
-[02:04:28.848] Browser LOG     [API Request] GET http://localhost:4000/v1/users/doctor-schedule/f32eefb5-d583-405e-8516-12bd9c7add21
+{"timestamp":"00:00:03.529","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:07:11.008","source":"Server","level":"LOG","message":"○ Compiling / ..."}
+{"timestamp":"00:07:16.488","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:07:16.895","source":"Browser","level":"LOG","message":"content script: Katalon Waiter v.2 is up and running !"}
+{"timestamp":"00:07:17.140","source":"Browser","level":"LOG","message":"AuthContext: initializing auth..."}
+{"timestamp":"00:07:17.140","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:07:17.140","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/auth/wash"}
+{"timestamp":"00:07:17.574","source":"Browser","level":"ERROR","message":"AuthContext: Valid session not found (wash failed or fetchUser failed) {\"code\":\"ERR_BAD_REQUEST\",\"config\":{\"adapter\":[\"xhr\",\"http\",\"fetch\"],\"allowAbsoluteUrls\":true,\"baseURL\":\"http://localhost:4000/v1\",\"env\":{},\"headers\":{\"Accept\":\"application/json, text/plain, */*\",\"Content-Type\":\"application/json\",\"x-platform\":\"WEB\"},\"maxBodyLength\":-1,\"maxContentLength\":-1,\"method\":\"post\",\"timeout\":10000,\"transformRequest\":[null],\"transformResponse\":[null],\"transitional\":{\"clarifyTimeoutError\":false,\"forcedJSONParsing\":true,\"legacyInterceptorReqResOrdering\":true,\"silentJSONParsing\":true},\"url\":\"/auth/wash\",\"withCredentials\":true,\"xsrfCookieName\":\"XSRF-TOKEN\",\"xsrfHeaderName\":\"X-XSRF-TOKEN\"},\"message\":\"Request failed with status code 401\",\"name\":\"AxiosError\",\"stack\":\"AxiosError: Request failed with status code 401\\n    at settle (http://localhost:3000/_next/static/chunks/node_modules_0kwo.77._.js:8013:16)\\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/node_modules_0kwo.77._.js:8529:174)\\n    at Axios.request (http://localhost:3000/_next/static/chunks/node_modules_0kwo.77._.js:9335:49)\\n    at async washToken (http://localhost:3000/_next/static/chunks/src_0_as11c._.js:275:22)\\n    at async initializeAuth (http://localhost:3000/_next/static/chunks/src_0_as11c._.js:396:30)\",\"status\":401}"}
+{"timestamp":"00:07:17.574","source":"Browser","level":"WARN","message":"Image with src \"/logo_dermcare.jpg\" is using quality \"100\" which is not configured in images.qualities [75]. Please update your config to [100, 75].\nRead more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities"}
+{"timestamp":"00:07:17.574","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:07:17.574","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:07:17.574","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:07:17.574","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:07:17.574","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:07:17.574","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:07:17.574","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:07:17.574","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:07:17.690","source":"Server","level":"ERROR","message":"[browser] \"AuthContext: Valid session not found (wash failed or fetchUser failed)\" \"\\u001b[31mAxiosError: Request failed with status code 401\\u001b[39m\\n\\u001b[31m    at async washToken (src/services/authService.ts:126:22)\\n    at async initializeAuth (src/contexts/AuthContext.tsx:45:30)\\u001b[39m\\n  \\u001b[90m124 |\\u001b[0m \\u001b[90m// Wash Token (Refresh)\\u001b[0m\\n  \\u001b[90m125 |\\u001b[0m \\u001b[36mexport\\u001b[0m \\u001b[36mconst\\u001b[0m washToken = \\u001b[36masync\\u001b[0m (): \\u001b[33mPromise\\u001b[0m<\\u001b[33mAuthResponse\\u001b[0m> => {\\n\\u001b[31m\\u001b[1m>\\u001b[0m \\u001b[90m126 |\\u001b[0m     \\u001b[36mconst\\u001b[0m { data } = \\u001b[36mawait\\u001b[0m apiClient.post(\\u001b[32m'/auth/wash'\\u001b[0m);\\n  \\u001b[90m    |\\u001b[0m                      \\u001b[31m\\u001b[1m^\\u001b[0m\\n  \\u001b[90m127 |\\u001b[0m     \\u001b[36mreturn\\u001b[0m data;\\n  \\u001b[90m128 |\\u001b[0m };\\n  \\u001b[90m129 |\\u001b[0m\" \"\\u001b[2m(src/contexts/AuthContext.tsx:53:21)\\u001b[22m\""}
+{"timestamp":"00:07:17.696","source":"Browser","level":"ERROR","message":"AuthContext: Valid session not found (wash failed or fetchUser failed) \"\\u001b[31mAxiosError: Request failed with status code 401\\u001b[39m\\n\\u001b[31m    at async washToken (src/services/authService.ts:126:22)\\n    at async initializeAuth (src/contexts/AuthContext.tsx:45:30)\\u001b[39m\\n  \\u001b[90m124 |\\u001b[0m \\u001b[90m// Wash Token (Refresh)\\u001b[0m\\n  \\u001b[90m125 |\\u001b[0m \\u001b[36mexport\\u001b[0m \\u001b[36mconst\\u001b[0m washToken = \\u001b[36masync\\u001b[0m (): \\u001b[33mPromise\\u001b[0m<\\u001b[33mAuthResponse\\u001b[0m> => {\\n\\u001b[31m\\u001b[1m>\\u001b[0m \\u001b[90m126 |\\u001b[0m     \\u001b[36mconst\\u001b[0m { data } = \\u001b[36mawait\\u001b[0m apiClient.post(\\u001b[32m'/auth/wash'\\u001b[0m);\\n  \\u001b[90m    |\\u001b[0m                      \\u001b[31m\\u001b[1m^\\u001b[0m\\n  \\u001b[90m127 |\\u001b[0m     \\u001b[36mreturn\\u001b[0m data;\\n  \\u001b[90m128 |\\u001b[0m };\\n  \\u001b[90m129 |\\u001b[0m\" \"\\u001b[2m(src/contexts/AuthContext.tsx:53:21)\\u001b[22m\""}
+{"timestamp":"00:07:17.808","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mImage with src \\\"/logo_dermcare.jpg\\\" is using quality \\\"100\\\" which is not configured in images.qualities [75]. Please update your config to [100, 75].\\nRead more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities\\u001b[39m\""}
+{"timestamp":"00:07:17.811","source":"Browser","level":"WARN","message":"\u001b[33mImage with src \"/logo_dermcare.jpg\" is using quality \"100\" which is not configured in images.qualities [75]. Please update your config to [100, 75].\nRead more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities\u001b[39m"}
+{"timestamp":"00:07:20.571","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
+{"timestamp":"00:07:20.638","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
+{"timestamp":"00:07:20.639","source":"Browser","level":"WARN","message":"\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\u001b[39m"}
+{"timestamp":"00:07:27.113","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:07:27.113","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/auth/login"}
+{"timestamp":"00:07:27.619","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:07:27.620","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/me"}
+{"timestamp":"00:07:27.620","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:07:27.620","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
+{"timestamp":"00:07:27.810","source":"Browser","level":"LOG","message":"AuthContext: fetchUser success {\"address\":\"Phú Xuyên\",\"created_at\":\"2026-02-28T09:07:14.883Z\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\",\"role\":\"PATIENT\",\"updated_at\":\"2026-03-20T09:35:11.616Z\"}"}
+{"timestamp":"00:07:27.811","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:07:27.811","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:07:27.811","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:07:27.811","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:07:27.811","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:07:27.811","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:07:27.811","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:07:27.811","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:07:30.272","source":"Browser","level":"LOG","message":"[Chat] isLoggedIn: true"}
+{"timestamp":"00:07:30.272","source":"Browser","level":"LOG","message":"[Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)"}
+{"timestamp":"00:07:30.272","source":"Browser","level":"LOG","message":"[Chat] BACKEND_URL: http://localhost:4000"}
+{"timestamp":"00:07:30.272","source":"Browser","level":"LOG","message":"[Chat] isLoggedIn: true"}
+{"timestamp":"00:07:30.272","source":"Browser","level":"LOG","message":"[Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)"}
+{"timestamp":"00:07:30.272","source":"Browser","level":"LOG","message":"[Chat] BACKEND_URL: http://localhost:4000"}
+{"timestamp":"00:07:30.272","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:07:30.272","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1"}
+{"timestamp":"00:07:30.272","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:07:30.272","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1"}
+{"timestamp":"00:07:30.325","source":"Browser","level":"LOG","message":"[Chat] ✅ Socket connected! ID: -e3AC4jPuTpJjJLYAAAE"}
+{"timestamp":"00:07:32.278","source":"Browser","level":"ERROR","message":"In HTML, %s cannot be a descendant of <%s>.\nThis will cause a hydration error.%s <button> button \n\n  ...\n    <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>\n      <RedirectBoundary>\n        <RedirectErrorBoundary router={{...}}>\n          <InnerLayoutRouter url=\"/chat?tab=...\" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>\n            <SegmentViewNode type=\"page\" pagePath=\"chat/page.tsx\">\n              <SegmentTrieNode>\n              <ClientPageRoot Component={function ChatPage} serverProvidedParams={{...}}>\n                <ChatPage params={Promise} searchParams={Promise}>\n                  <div className=\"fixed inse...\">\n                    <div className=\"w-72 borde...\">\n                      <div className=\"flex h-ful...\">\n                        <div>\n                        <div className=\"flex-1 ove...\">\n                          <div>\n                          <p>\n                          <div className=\"space-y-1\">\n>                           <button\n>                             onClick={function onClick}\n>                             className=\"group w-full rounded-xl px-3 py-3 text-left transition hover:bg-slate-50 bord...\"\n>                           >\n                              <div className=\"flex items...\">\n                                <p>\n>                               <button\n>                                 onClick={function onClick}\n>                                 className=\"invisible group-hover:visible rounded-md p-1 text-slate-400 hover:bg-red-...\"\n>                                 title=\"Xóa hội thoại\"\n>                                 disabled={false}\n>                               >\n                              ...\n                        ...\n                    ...\n            ...\n          ...\n"}
+{"timestamp":"00:07:32.278","source":"Browser","level":"ERROR","message":"<%s> cannot contain a nested %s.\nSee this log for the ancestor stack trace. button <button>"}
+{"timestamp":"00:07:32.278","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:07:32.278","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1"}
+{"timestamp":"00:07:32.612","source":"Server","level":"ERROR","message":"[browser] \"In HTML, <button> cannot be a descendant of <button>.\\nThis will cause a hydration error.\\n\\n  ...\\n    <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>\\n      <RedirectBoundary>\\n        <RedirectErrorBoundary router={{...}}>\\n          <InnerLayoutRouter url=\\\"/chat?tab=...\\\" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>\\n            <SegmentViewNode type=\\\"page\\\" pagePath=\\\"chat/page.tsx\\\">\\n              <SegmentTrieNode>\\n              <ClientPageRoot Component={function ChatPage} serverProvidedParams={{...}}>\\n                <ChatPage params={Promise} searchParams={Promise}>\\n                  <div className=\\\"fixed inse...\\\">\\n                    <div className=\\\"w-72 borde...\\\">\\n                      <div className=\\\"flex h-ful...\\\">\\n                        <div>\\n                        <div className=\\\"flex-1 ove...\\\">\\n                          <div>\\n                          <p>\\n                          <div className=\\\"space-y-1\\\">\\n>                           <button\\n>                             onClick={function onClick}\\n>                             className=\\\"group w-full rounded-xl px-3 py-3 text-left transition hover:bg-slate-50 bord...\\\"\\n>                           >\\n                              <div className=\\\"flex items...\\\">\\n                                <p>\\n>                               <button\\n>                                 onClick={function onClick}\\n>                                 className=\\\"invisible group-hover:visible rounded-md p-1 text-slate-400 hover:bg-red-...\\\"\\n>                                 title=\\\"Xóa hội thoại\\\"\\n>                                 disabled={false}\\n>                               >\\n                              ...\\n                        ...\\n                    ...\\n            ...\\n          ...\\n\" \"\""}
+{"timestamp":"00:07:32.613","source":"Browser","level":"ERROR","message":"In HTML, <button> cannot be a descendant of <button>.\nThis will cause a hydration error.\n\n  ...\n    <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>\n      <RedirectBoundary>\n        <RedirectErrorBoundary router={{...}}>\n          <InnerLayoutRouter url=\"/chat?tab=...\" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>\n            <SegmentViewNode type=\"page\" pagePath=\"chat/page.tsx\">\n              <SegmentTrieNode>\n              <ClientPageRoot Component={function ChatPage} serverProvidedParams={{...}}>\n                <ChatPage params={Promise} searchParams={Promise}>\n                  <div className=\"fixed inse...\">\n                    <div className=\"w-72 borde...\">\n                      <div className=\"flex h-ful...\">\n                        <div>\n                        <div className=\"flex-1 ove...\">\n                          <div>\n                          <p>\n                          <div className=\"space-y-1\">\n>                           <button\n>                             onClick={function onClick}\n>                             className=\"group w-full rounded-xl px-3 py-3 text-left transition hover:bg-slate-50 bord...\"\n>                           >\n                              <div className=\"flex items...\">\n                                <p>\n>                               <button\n>                                 onClick={function onClick}\n>                                 className=\"invisible group-hover:visible rounded-md p-1 text-slate-400 hover:bg-red-...\"\n>                                 title=\"Xóa hội thoại\"\n>                                 disabled={false}\n>                               >\n                              ...\n                        ...\n                    ...\n            ...\n          ...\n \"\""}
+{"timestamp":"00:07:32.639","source":"Server","level":"ERROR","message":"[browser] \"<button> cannot contain a nested <button>.\\nSee this log for the ancestor stack trace.\" \"\""}
+{"timestamp":"00:07:32.639","source":"Browser","level":"ERROR","message":"<button> cannot contain a nested <button>.\nSee this log for the ancestor stack trace. \"\""}
+{"timestamp":"00:07:33.938","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:07:33.938","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/conversations?status=COMPLETED&page=1"}
+{"timestamp":"00:07:34.852","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:07:34.852","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1"}
+{"timestamp":"00:07:35.703","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:07:35.703","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/conversations?status=AI_CONSULTING&page=1"}
+{"timestamp":"00:07:37.674","source":"Browser","level":"LOG","message":"[Chat] Fetching messages for: 908a1c9f-1523-439a-b6cc-ff02bd59fa73"}
+{"timestamp":"00:07:37.674","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:07:37.674","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/conversations/908a1c9f-1523-439a-b6cc-ff02bd59fa73/messages"}
+{"timestamp":"00:07:38.055","source":"Browser","level":"LOG","message":"[Chat] Messages received (count): 4"}
+{"timestamp":"00:08:17.832","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:08:17.832","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/conversations/908a1c9f-1523-439a-b6cc-ff02bd59fa73/analyze"}
+{"timestamp":"00:09:49.685","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:09:49.687","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/conversations/908a1c9f-1523-439a-b6cc-ff02bd59fa73/analyze"}
+{"timestamp":"00:11:31.891","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:11:31.894","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/conversations/908a1c9f-1523-439a-b6cc-ff02bd59fa73/analyze"}
+{"timestamp":"00:12:12.473","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:12:12.474","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/conversations/knowledge"}
+{"timestamp":"00:12:15.435","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:12:15.435","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Nhi%E1%BB%85m%20tr%C3%B9ng%20da%20%26%20K%C3%BD%20sinh%20tr%C3%B9ng"}
+{"timestamp":"00:12:20.348","source":"Browser","level":"LOG","message":"RAG Response: {\"answer\":\"Chào bạn, tôi là trợ lý y khoa chuyên về da liễu. Dựa trên thông tin bạn cung cấp, đối với bệnh mụn cóc (Warts), bạn cần lưu ý thực hiện các biện pháp kiêng kỵ trong chế độ dinh dưỡng và thói quen sinh hoạt như sau:\\n\\n### 1. Về chế độ dinh dưỡng\\nMặc dù không có thực phẩm nào cần kiêng kỵ tuyệt đối, nhưng để hỗ trợ quá trình điều trị và tăng cường khả năng tự chống lại virus HPV của cơ thể, bạn nên:\\n*   **Hạn chế đồ ăn nhiều đường:** Đường có thể làm suy giảm hệ miễn dịch, khiến cơ thể khó chống lại sự phát triển của virus.\\n*   **Hạn chế các chất kích thích:** Tránh sử dụng các chất có thể làm yếu hệ thống miễn dịch của cơ thể.\\n\\n### 2. Về thói quen chăm sóc và sinh hoạt (Cực kỳ quan trọng)\\nĐể tránh mụn cóc lây lan sang các vùng da khác hoặc lây cho người xung quanh, bạn cần tuyệt đối kiêng những điều sau:\\n*   **Không tự ý can thiệp vào nốt mụn:** Tuyệt đối không tự ý cắt, nặn hoặc dùng kim chọc mụn cóc. Hành động này sẽ làm virus phát tán và khiến mụn lây lan rộng hơn.\\n*   **Không dùng chung đồ dùng cá nhân:** Tránh dùng chung khăn tắm, dao cạo râu hoặc giày dép với người khác.\\n*   **Tránh để vùng da bị mụn ẩm ướt:** Virus HPV phát triển mạnh trong môi trường ẩm ướt, do đó bạn cần giữ vùng da này luôn khô ráo.\\n*   **Tránh chạm tay vào mụn:** Nếu đã chạm vào mụn cóc, bạn cần vệ sinh tay sạch sẽ ngay lập tức để tránh virus lây lan sang vùng da khác hoặc người khác.\\n\\n### 3. Cảnh báo y tế\\nBạn cần tìm đến bác sĩ chuyên khoa để được thăm khám nếu mụn cóc có các dấu hiệu sau:\\n*   Mụn gây đau đớn.\\n*   Mụn thay đổi màu sắc hoặc có dấu hiệu chảy máu.\\n*   Mụn lây lan nhanh chóng dù đã chăm sóc tại nhà.\\n*   Đặc biệt cần thận trọng nếu bạn là người mắc bệnh tiểu đường hoặc có hệ miễn dịch suy giảm.\\n\\nHy vọng những thông tin trên sẽ giúp ích cho bạn trong việc chăm sóc và xử lý mụn cóc hiệu quả.\",\"sources\":[\"bongnuoc.txt\",\"muncoc.txt\"]}"}
+{"timestamp":"00:14:03.605","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:14:03.607","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/conversations/908a1c9f-1523-439a-b6cc-ff02bd59fa73/analyze"}
+{"timestamp":"00:15:05.142","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:15:05.142","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/conversations/908a1c9f-1523-439a-b6cc-ff02bd59fa73/analyze"}
+{"timestamp":"00:15:35.645","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:15:35.645","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/conversations/doctors?specialization=Da%20li%E1%BB%85u%20B%E1%BB%87nh%20l%C3%BD%20%26%20Mi%E1%BB%85n%20d%E1%BB%8Bch"}
+{"timestamp":"00:17:43.171","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:17:43.173","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/conversations/908a1c9f-1523-439a-b6cc-ff02bd59fa73/analyze"}
+{"timestamp":"00:21:49.753","source":"Browser","level":"LOG","message":"[Chat] Socket disconnected. Reason: io client disconnect"}
+{"timestamp":"00:21:49.753","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:21:49.753","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
+{"timestamp":"00:21:49.753","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:21:49.753","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:21:49.753","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:21:49.753","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:21:49.753","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:21:49.753","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
+{"timestamp":"00:21:49.753","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:21:49.753","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:21:49.753","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:21:49.753","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:22:34.677","source":"Server","level":"LOG","message":"○ Compiling /doctors ..."}
+{"timestamp":"00:22:43.629","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:22:43.629","source":"Browser","level":"LOG","message":"content script: Katalon Waiter v.2 is up and running !"}
+{"timestamp":"00:22:45.021","source":"Browser","level":"LOG","message":"AuthContext: initializing auth..."}
+{"timestamp":"00:22:45.021","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:22:45.021","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/auth/wash"}
+{"timestamp":"00:22:45.663","source":"Browser","level":"LOG","message":"AuthContext: washToken success"}
+{"timestamp":"00:22:45.663","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:22:45.663","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/me"}
+{"timestamp":"00:22:45.800","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mImage with src \\\"/logo_dermcare.jpg\\\" is using quality \\\"100\\\" which is not configured in images.qualities [75]. Please update your config to [100, 75].\\nRead more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities\\u001b[39m\""}
+{"timestamp":"00:22:45.801","source":"Browser","level":"WARN","message":"\u001b[33mImage with src \"/logo_dermcare.jpg\" is using quality \"100\" which is not configured in images.qualities [75]. Please update your config to [100, 75].\nRead more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities\u001b[39m"}
+{"timestamp":"00:22:45.801","source":"Browser","level":"LOG","message":"AuthContext: fetchUser success {\"address\":\"Phú Xuyên\",\"created_at\":\"2026-02-28T09:07:14.883Z\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\",\"role\":\"PATIENT\",\"updated_at\":\"2026-03-20T09:50:29.704Z\"}"}
+{"timestamp":"00:22:45.802","source":"Browser","level":"WARN","message":"Image with src \"/logo_dermcare.jpg\" is using quality \"100\" which is not configured in images.qualities [75]. Please update your config to [100, 75].\nRead more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities"}
+{"timestamp":"00:22:45.862","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:22:45.862","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
+{"timestamp":"00:22:45.862","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:22:45.862","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:22:45.862","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:22:45.862","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:22:45.862","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:22:45.862","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
+{"timestamp":"00:22:45.862","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:22:45.862","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:22:45.862","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:22:45.862","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:22:47.837","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
+{"timestamp":"00:22:47.837","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:22:47.837","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/me/appointments"}
+{"timestamp":"00:22:47.837","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:22:47.837","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/me/appointments"}
+{"timestamp":"00:22:47.837","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:22:47.837","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/me/appointments"}
+{"timestamp":"00:22:47.838","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:22:47.838","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/me/appointments"}
+{"timestamp":"00:22:47.844","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
+{"timestamp":"00:22:47.846","source":"Browser","level":"WARN","message":"\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\u001b[39m"}
+{"timestamp":"00:22:56.432","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:22:56.432","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/auth/logout"}
+{"timestamp":"00:23:02.195","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:23:02.195","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/auth/login"}
+{"timestamp":"00:23:02.539","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:02.539","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/me"}
+{"timestamp":"00:23:02.539","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:02.539","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
+{"timestamp":"00:23:02.734","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:02.734","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:23:02.734","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:02.734","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:23:02.734","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:02.734","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:23:02.734","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:02.734","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:23:03.155","source":"Browser","level":"LOG","message":"AuthContext: fetchUser success {\"address\":\"Phú Minh, Phú Xuyên, Hà Nội\",\"avatar\":\"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg\",\"created_at\":\"2026-02-11T09:08:00.905Z\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoq@gmail.com\",\"fullName\":\"Đào Quang Dương\",\"gender\":\"MALE\",\"id\":\"ce93ea53-2a53-4dd4-8228-01699862e22b\",\"phone\":\"0943192828\",\"qualifications\":\"GS.TS.BS\",\"rating\":null,\"role\":\"DOCTOR\",\"specialization\":\"Nhiễm trùng da & ký sinh trùng\",\"updated_at\":\"2026-03-20T09:50:46.544Z\",\"work_place\":\"Bệnh viện Da Liễu Hà Nội\"}"}
+{"timestamp":"00:23:07.847","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:07.847","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/appointments/me"}
+{"timestamp":"00:23:07.847","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:07.847","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/appointments/me"}
+{"timestamp":"00:23:08.141","source":"Browser","level":"LOG","message":"Fetched Appointments: [{\"appointmentDate\":\"2026-03-16T00:00:00.000Z\",\"appointmentStatus\":\"COMPLETED\",\"appointmentTime\":\"09:00\",\"created_at\":\"2026-03-13T21:16:35.955Z\",\"id\":\"c4cfacca-86f3-46ce-a5c5-565c826d494d\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-16T00:00:00.000Z\",\"appointmentStatus\":\"COMPLETED\",\"appointmentTime\":\"08:30\",\"created_at\":\"2026-03-13T10:57:36.481Z\",\"id\":\"ce5e9a53-7a2d-456e-a0b5-7e6ea44dd63e\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-16T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"08:00\",\"created_at\":\"2026-03-13T10:41:08.295Z\",\"id\":\"b30368c3-c335-4a9e-998a-be318f6964a0\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-12T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"08:30\",\"created_at\":\"2026-03-12T00:11:43.005Z\",\"id\":\"bae6149e-bc48-45a4-b720-bc88de03bb6f\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-07T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"11:30\",\"created_at\":\"2026-03-07T09:04:58.381Z\",\"id\":\"88de4781-fda9-478f-910c-824e2cab006b\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-06T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"10:00\",\"created_at\":\"2026-03-06T01:18:52.399Z\",\"id\":\"b7611613-bf1b-4413-9b69-45a83c29d3a0\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-06T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"09:30\",\"created_at\":\"2026-03-06T01:16:27.683Z\",\"id\":\"7ad8e6f4-4221-4a2d-a15b-9c325ab1bbcd\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-06T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"09:00\",\"created_at\":\"2026-03-06T01:07:19.545Z\",\"id\":\"618e8d06-b6b8-43ec-b16a-3a76734b5ee2\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-05T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"17:00\",\"created_at\":\"2026-03-05T04:25:40.569Z\",\"id\":\"633035ea-badd-4030-aaa5-2491daf9e522\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-06T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"17:00\",\"created_at\":\"2026-03-02T06:38:18.935Z\",\"id\":\"94d04617-e941-4970-b1b4-d3c8c4a72532\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-04T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"11:30\",\"created_at\":\"2026-03-02T02:30:02.579Z\",\"id\":\"1eaafa34-34dc-4b19-8771-9f546c6136eb\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-03T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"17:00\",\"created_at\":\"2026-03-02T01:51:24.534Z\",\"id\":\"5badac92-5e8e-4a54-ad07-476a94acb50c\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-03T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"09:30\",\"created_at\":\"2026-03-02T01:39:59.098Z\",\"id\":\"23567ff1-a9ce-4aba-bf12-a8244f2ff900\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"17:00\",\"created_at\":\"2026-03-02T00:46:48.180Z\",\"id\":\"d1e1cfd4-ee54-4100-8610-96598fb19bd6\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"09:00\",\"created_at\":\"2026-03-01T09:44:44.817Z\",\"id\":\"b69d9bdf-9c28-48fd-b2ec-9d760620c4c3\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"08:30\",\"created_at\":\"2026-03-01T09:36:38.763Z\",\"id\":\"12ec1c76-c901-46d8-8d71-7f7874a564d9\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"08:00\",\"created_at\":\"2026-03-01T09:28:01.951Z\",\"id\":\"a13fcc3f-7cf9-414f-83b4-9c53606e3ab9\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"10:00\",\"created_at\":\"2026-03-01T09:15:25.134Z\",\"id\":\"a0c272fa-27c0-4563-8c1e-d0bbc77651be\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000}]"}
+{"timestamp":"00:23:08.142","source":"Browser","level":"LOG","message":"Fetched Appointments: [{\"appointmentDate\":\"2026-03-16T00:00:00.000Z\",\"appointmentStatus\":\"COMPLETED\",\"appointmentTime\":\"09:00\",\"created_at\":\"2026-03-13T21:16:35.955Z\",\"id\":\"c4cfacca-86f3-46ce-a5c5-565c826d494d\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-16T00:00:00.000Z\",\"appointmentStatus\":\"COMPLETED\",\"appointmentTime\":\"08:30\",\"created_at\":\"2026-03-13T10:57:36.481Z\",\"id\":\"ce5e9a53-7a2d-456e-a0b5-7e6ea44dd63e\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-16T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"08:00\",\"created_at\":\"2026-03-13T10:41:08.295Z\",\"id\":\"b30368c3-c335-4a9e-998a-be318f6964a0\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-12T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"08:30\",\"created_at\":\"2026-03-12T00:11:43.005Z\",\"id\":\"bae6149e-bc48-45a4-b720-bc88de03bb6f\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-07T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"11:30\",\"created_at\":\"2026-03-07T09:04:58.381Z\",\"id\":\"88de4781-fda9-478f-910c-824e2cab006b\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-06T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"10:00\",\"created_at\":\"2026-03-06T01:18:52.399Z\",\"id\":\"b7611613-bf1b-4413-9b69-45a83c29d3a0\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-06T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"09:30\",\"created_at\":\"2026-03-06T01:16:27.683Z\",\"id\":\"7ad8e6f4-4221-4a2d-a15b-9c325ab1bbcd\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-06T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"09:00\",\"created_at\":\"2026-03-06T01:07:19.545Z\",\"id\":\"618e8d06-b6b8-43ec-b16a-3a76734b5ee2\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-05T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"17:00\",\"created_at\":\"2026-03-05T04:25:40.569Z\",\"id\":\"633035ea-badd-4030-aaa5-2491daf9e522\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-06T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"17:00\",\"created_at\":\"2026-03-02T06:38:18.935Z\",\"id\":\"94d04617-e941-4970-b1b4-d3c8c4a72532\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-04T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"11:30\",\"created_at\":\"2026-03-02T02:30:02.579Z\",\"id\":\"1eaafa34-34dc-4b19-8771-9f546c6136eb\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-03T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"17:00\",\"created_at\":\"2026-03-02T01:51:24.534Z\",\"id\":\"5badac92-5e8e-4a54-ad07-476a94acb50c\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-03T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"09:30\",\"created_at\":\"2026-03-02T01:39:59.098Z\",\"id\":\"23567ff1-a9ce-4aba-bf12-a8244f2ff900\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"17:00\",\"created_at\":\"2026-03-02T00:46:48.180Z\",\"id\":\"d1e1cfd4-ee54-4100-8610-96598fb19bd6\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"09:00\",\"created_at\":\"2026-03-01T09:44:44.817Z\",\"id\":\"b69d9bdf-9c28-48fd-b2ec-9d760620c4c3\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"08:30\",\"created_at\":\"2026-03-01T09:36:38.763Z\",\"id\":\"12ec1c76-c901-46d8-8d71-7f7874a564d9\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"08:00\",\"created_at\":\"2026-03-01T09:28:01.951Z\",\"id\":\"a13fcc3f-7cf9-414f-83b4-9c53606e3ab9\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"10:00\",\"created_at\":\"2026-03-01T09:15:25.134Z\",\"id\":\"a0c272fa-27c0-4563-8c1e-d0bbc77651be\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000}]"}
+{"timestamp":"00:23:33.771","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:33.771","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/doctors/work-template"}
+{"timestamp":"00:23:33.772","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:33.772","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/doctors/work-template"}
+{"timestamp":"00:23:38.463","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:38.463","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/doctors/schedule"}
+{"timestamp":"00:23:38.463","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:38.463","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/doctors/schedule"}
+{"timestamp":"00:23:44.093","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:44.093","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/doctors/schedule"}
+{"timestamp":"00:23:44.460","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:44.460","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/doctors/schedule"}
+{"timestamp":"00:23:44.736","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:44.736","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/doctors/schedule"}
+{"timestamp":"00:23:45.014","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:45.014","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/doctors/schedule"}
+{"timestamp":"00:23:45.278","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:45.278","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/doctors/schedule"}
+{"timestamp":"00:23:45.569","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:45.570","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/doctors/schedule"}
+{"timestamp":"00:23:45.667","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:45.667","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/doctors/schedule"}
+{"timestamp":"00:23:46.785","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:23:46.785","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/doctors/schedule"}
+{"timestamp":"00:24:02.507","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:24:02.507","source":"Browser","level":"LOG","message":"[API Request] PATCH http://localhost:4000/v1/notifications/9cf304c3-103e-40af-bdf7-7f99f06a8c06/read"}
+{"timestamp":"00:24:03.264","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:24:03.264","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/appointments/me"}
+{"timestamp":"00:24:03.264","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:24:03.264","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/appointments/me"}
+{"timestamp":"00:24:03.572","source":"Browser","level":"LOG","message":"Fetched Appointments: [{\"appointmentDate\":\"2026-03-16T00:00:00.000Z\",\"appointmentStatus\":\"COMPLETED\",\"appointmentTime\":\"09:00\",\"created_at\":\"2026-03-13T21:16:35.955Z\",\"id\":\"c4cfacca-86f3-46ce-a5c5-565c826d494d\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-16T00:00:00.000Z\",\"appointmentStatus\":\"COMPLETED\",\"appointmentTime\":\"08:30\",\"created_at\":\"2026-03-13T10:57:36.481Z\",\"id\":\"ce5e9a53-7a2d-456e-a0b5-7e6ea44dd63e\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-16T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"08:00\",\"created_at\":\"2026-03-13T10:41:08.295Z\",\"id\":\"b30368c3-c335-4a9e-998a-be318f6964a0\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-12T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"08:30\",\"created_at\":\"2026-03-12T00:11:43.005Z\",\"id\":\"bae6149e-bc48-45a4-b720-bc88de03bb6f\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-07T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"11:30\",\"created_at\":\"2026-03-07T09:04:58.381Z\",\"id\":\"88de4781-fda9-478f-910c-824e2cab006b\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-06T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"10:00\",\"created_at\":\"2026-03-06T01:18:52.399Z\",\"id\":\"b7611613-bf1b-4413-9b69-45a83c29d3a0\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-06T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"09:30\",\"created_at\":\"2026-03-06T01:16:27.683Z\",\"id\":\"7ad8e6f4-4221-4a2d-a15b-9c325ab1bbcd\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-06T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"09:00\",\"created_at\":\"2026-03-06T01:07:19.545Z\",\"id\":\"618e8d06-b6b8-43ec-b16a-3a76734b5ee2\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-05T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"17:00\",\"created_at\":\"2026-03-05T04:25:40.569Z\",\"id\":\"633035ea-badd-4030-aaa5-2491daf9e522\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-06T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"17:00\",\"created_at\":\"2026-03-02T06:38:18.935Z\",\"id\":\"94d04617-e941-4970-b1b4-d3c8c4a72532\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-04T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"11:30\",\"created_at\":\"2026-03-02T02:30:02.579Z\",\"id\":\"1eaafa34-34dc-4b19-8771-9f546c6136eb\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-03T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"17:00\",\"created_at\":\"2026-03-02T01:51:24.534Z\",\"id\":\"5badac92-5e8e-4a54-ad07-476a94acb50c\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-03T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"09:30\",\"created_at\":\"2026-03-02T01:39:59.098Z\",\"id\":\"23567ff1-a9ce-4aba-bf12-a8244f2ff900\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"17:00\",\"created_at\":\"2026-03-02T00:46:48.180Z\",\"id\":\"d1e1cfd4-ee54-4100-8610-96598fb19bd6\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"09:00\",\"created_at\":\"2026-03-01T09:44:44.817Z\",\"id\":\"b69d9bdf-9c28-48fd-b2ec-9d760620c4c3\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"08:30\",\"created_at\":\"2026-03-01T09:36:38.763Z\",\"id\":\"12ec1c76-c901-46d8-8d71-7f7874a564d9\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"08:00\",\"created_at\":\"2026-03-01T09:28:01.951Z\",\"id\":\"a13fcc3f-7cf9-414f-83b4-9c53606e3ab9\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"10:00\",\"created_at\":\"2026-03-01T09:15:25.134Z\",\"id\":\"a0c272fa-27c0-4563-8c1e-d0bbc77651be\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000}]"}
+{"timestamp":"00:24:03.763","source":"Browser","level":"LOG","message":"Fetched Appointments: [{\"appointmentDate\":\"2026-03-16T00:00:00.000Z\",\"appointmentStatus\":\"COMPLETED\",\"appointmentTime\":\"09:00\",\"created_at\":\"2026-03-13T21:16:35.955Z\",\"id\":\"c4cfacca-86f3-46ce-a5c5-565c826d494d\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-16T00:00:00.000Z\",\"appointmentStatus\":\"COMPLETED\",\"appointmentTime\":\"08:30\",\"created_at\":\"2026-03-13T10:57:36.481Z\",\"id\":\"ce5e9a53-7a2d-456e-a0b5-7e6ea44dd63e\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-16T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"08:00\",\"created_at\":\"2026-03-13T10:41:08.295Z\",\"id\":\"b30368c3-c335-4a9e-998a-be318f6964a0\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-12T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"08:30\",\"created_at\":\"2026-03-12T00:11:43.005Z\",\"id\":\"bae6149e-bc48-45a4-b720-bc88de03bb6f\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-07T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"11:30\",\"created_at\":\"2026-03-07T09:04:58.381Z\",\"id\":\"88de4781-fda9-478f-910c-824e2cab006b\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-06T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"10:00\",\"created_at\":\"2026-03-06T01:18:52.399Z\",\"id\":\"b7611613-bf1b-4413-9b69-45a83c29d3a0\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-06T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"09:30\",\"created_at\":\"2026-03-06T01:16:27.683Z\",\"id\":\"7ad8e6f4-4221-4a2d-a15b-9c325ab1bbcd\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-06T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"09:00\",\"created_at\":\"2026-03-06T01:07:19.545Z\",\"id\":\"618e8d06-b6b8-43ec-b16a-3a76734b5ee2\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-05T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"17:00\",\"created_at\":\"2026-03-05T04:25:40.569Z\",\"id\":\"633035ea-badd-4030-aaa5-2491daf9e522\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-06T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"17:00\",\"created_at\":\"2026-03-02T06:38:18.935Z\",\"id\":\"94d04617-e941-4970-b1b4-d3c8c4a72532\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-04T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"11:30\",\"created_at\":\"2026-03-02T02:30:02.579Z\",\"id\":\"1eaafa34-34dc-4b19-8771-9f546c6136eb\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-03T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"17:00\",\"created_at\":\"2026-03-02T01:51:24.534Z\",\"id\":\"5badac92-5e8e-4a54-ad07-476a94acb50c\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-03T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"09:30\",\"created_at\":\"2026-03-02T01:39:59.098Z\",\"id\":\"23567ff1-a9ce-4aba-bf12-a8244f2ff900\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"17:00\",\"created_at\":\"2026-03-02T00:46:48.180Z\",\"id\":\"d1e1cfd4-ee54-4100-8610-96598fb19bd6\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"09:00\",\"created_at\":\"2026-03-01T09:44:44.817Z\",\"id\":\"b69d9bdf-9c28-48fd-b2ec-9d760620c4c3\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"08:30\",\"created_at\":\"2026-03-01T09:36:38.763Z\",\"id\":\"12ec1c76-c901-46d8-8d71-7f7874a564d9\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"CONFIRMED\",\"appointmentTime\":\"08:00\",\"created_at\":\"2026-03-01T09:28:01.951Z\",\"id\":\"a13fcc3f-7cf9-414f-83b4-9c53606e3ab9\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PAID\",\"price\":250000},{\"appointmentDate\":\"2026-03-02T00:00:00.000Z\",\"appointmentStatus\":\"PENDING\",\"appointmentTime\":\"10:00\",\"created_at\":\"2026-03-01T09:15:25.134Z\",\"id\":\"a0c272fa-27c0-4563-8c1e-d0bbc77651be\",\"note\":\"\",\"patient\":{\"address\":\"Phú Xuyên\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\"},\"paymentStatus\":\"PENDING\",\"price\":250000}]"}
+{"timestamp":"00:24:06.604","source":"Browser","level":"LOG","message":"[Chat] isLoggedIn: true"}
+{"timestamp":"00:24:06.605","source":"Browser","level":"LOG","message":"[Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)"}
+{"timestamp":"00:24:06.605","source":"Browser","level":"LOG","message":"[Chat] BACKEND_URL: http://localhost:4000"}
+{"timestamp":"00:24:06.605","source":"Browser","level":"LOG","message":"[Chat] isLoggedIn: true"}
+{"timestamp":"00:24:06.605","source":"Browser","level":"LOG","message":"[Chat] getAccessToken(): OK (eyJhbGciOiJIUzI1NiIs...)"}
+{"timestamp":"00:24:06.605","source":"Browser","level":"LOG","message":"[Chat] BACKEND_URL: http://localhost:4000"}
+{"timestamp":"00:24:06.605","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:24:06.605","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1"}
+{"timestamp":"00:24:06.605","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:24:06.605","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/conversations?status=DOCTOR_CONSULTING&page=1"}
+{"timestamp":"00:24:06.619","source":"Browser","level":"LOG","message":"[Chat] ✅ Socket connected! ID: 4iw1IRPDWoxSONYNAAAP"}
+{"timestamp":"00:24:11.667","source":"Browser","level":"LOG","message":"[Chat] Socket disconnected. Reason: io client disconnect"}
+{"timestamp":"00:24:11.667","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:24:11.667","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
+{"timestamp":"00:24:11.667","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:24:11.667","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:24:11.667","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:24:11.667","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:24:11.667","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:24:11.667","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
+{"timestamp":"00:24:11.667","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:24:11.667","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:24:11.667","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:24:11.667","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}

@@ -7,31 +7,61 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 
 export default function AppointmentsPage() {
     const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
-    const [appointments, setAppointments] = useState<Appointment[]>([]);
+    const [upcomingData, setUpcomingData] = useState<{ items: Appointment[], total: number, hasMore: boolean }>({ items: [], total: 0, hasMore: true });
+    const [pastData, setPastData] = useState<{ items: Appointment[], total: number, hasMore: boolean }>({ items: [], total: 0, hasMore: true });
     const [isLoading, setIsLoading] = useState(true);
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+    const LIMIT = 10;
+
+    const fetchInitialData = async () => {
+        setIsLoading(true);
+        try {
+            const [upcoming, past] = await Promise.all([
+                getMyAppointments("upcoming", 1, LIMIT),
+                getMyAppointments("past", 1, LIMIT)
+            ]);
+            setUpcomingData(upcoming);
+            setPastData(past);
+        } catch (error) {
+            console.error("Failed to fetch initial appointments:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchAppointments = async () => {
-            try {
-                const data = await getMyAppointments();
-                setAppointments(data);
-            } catch (error) {
-                console.error("Failed to fetch appointments:", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchAppointments();
+        fetchInitialData();
     }, []);
 
-    // Sắp tới: PENDING hoặc CONFIRMED
-    const upcomingAppointments = appointments.filter(
-        apt => apt.appointmentStatus === "PENDING" || apt.appointmentStatus === "CONFIRMED"
-    );
-    // Lịch sử: COMPLETED hoặc CANCELLED
-    const pastAppointments = appointments.filter(
-        apt => apt.appointmentStatus === "COMPLETED" || apt.appointmentStatus === "CANCELLED"
-    );
+    const loadMore = async () => {
+        if (isLoadingMore) return;
+        
+        const currentData = activeTab === "upcoming" ? upcomingData : pastData;
+        if (!currentData.hasMore) return;
+
+        setIsLoadingMore(true);
+        try {
+            const nextPage = Math.floor(currentData.items.length / LIMIT) + 1;
+            const newData = await getMyAppointments(activeTab, nextPage, LIMIT);
+            
+            if (activeTab === "upcoming") {
+                setUpcomingData(prev => ({
+                    ...newData,
+                    items: [...prev.items, ...newData.items]
+                }));
+            } else {
+                setPastData(prev => ({
+                    ...newData,
+                    items: [...prev.items, ...newData.items]
+                }));
+            }
+        } catch (error) {
+            console.error("Failed to load more appointments:", error);
+        } finally {
+            setIsLoadingMore(false);
+        }
+    };
 
     const getStatusStyle = (status: Appointment["appointmentStatus"]) => {
         switch (status) {
@@ -114,44 +144,54 @@ export default function AppointmentsPage() {
 
             {/* Nút hành động */}
             <div className="mt-6 flex justify-end">
-                <button
-                    onClick={async () => {
-                        if (appointment.conversationId) {
-                            window.location.href = `/chat?id=${appointment.conversationId}`;
-                        } else {
-                            try {
-                                setIsLoading(true);
-                                const convo = await getOrCreateConversation(appointment.id);
-                                window.location.href = `/chat?id=${convo.id}`;
-                            } catch (error) {
-                                console.error("Failed to get/create conversation:", error);
-                                setIsLoading(false);
+                {appointment.appointmentStatus === 'COMPLETED' ? (
+                    <button
+                        onClick={async () => {
+                            if (appointment.conversationId) {
+                                window.location.href = `/chat?id=${appointment.conversationId}`;
+                            } else {
+                                try {
+                                    setIsLoading(true);
+                                    const convo = await getOrCreateConversation(appointment.id);
+                                    window.location.href = `/chat?id=${convo.id}`;
+                                } catch (error) {
+                                    console.error("Failed to get/create conversation:", error);
+                                    setIsLoading(false);
+                                }
                             }
-                        }
-                    }}
-                    className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition ${
-                        appointment.appointmentStatus === 'COMPLETED' 
-                        ? 'bg-slate-100 text-slate-600 hover:bg-slate-200' 
-                        : 'bg-blue-50 text-blue-600 hover:bg-blue-100'
-                    }`}
-                >
-                    {appointment.appointmentStatus === 'COMPLETED' ? (
-                        <>
-                            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
-                            Xem lại
-                        </>
-                    ) : (
-                        <>
-                            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                            </svg>
-                            Nhắn tin cho bác sĩ
-                        </>
-                    )}
-                </button>
+                        }}
+                        className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200"
+                    >
+                        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                        Xem lại
+                    </button>
+                ) : appointment.appointmentStatus === 'CONFIRMED' ? (
+                    <button
+                        onClick={async () => {
+                            if (appointment.conversationId) {
+                                window.location.href = `/chat?id=${appointment.conversationId}`;
+                            } else {
+                                try {
+                                    setIsLoading(true);
+                                    const convo = await getOrCreateConversation(appointment.id);
+                                    window.location.href = `/chat?id=${convo.id}`;
+                                } catch (error) {
+                                    console.error("Failed to get/create conversation:", error);
+                                    setIsLoading(false);
+                                }
+                            }
+                        }}
+                        className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition bg-blue-50 text-blue-600 hover:bg-blue-100"
+                    >
+                        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                        Nhắn tin cho bác sĩ
+                    </button>
+                ) : null}
             </div>
         </div>
     );
@@ -180,7 +220,7 @@ export default function AppointmentsPage() {
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-slate-600 mb-1">Sắp tới</p>
-                                <p className="text-3xl font-bold text-blue-600">{upcomingAppointments.length}</p>
+                                <p className="text-3xl font-bold text-blue-600">{upcomingData.total}</p>
                             </div>
                             <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center text-2xl">📅</div>
                         </div>
@@ -189,7 +229,7 @@ export default function AppointmentsPage() {
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-slate-600 mb-1">Đã hoàn thành</p>
-                                <p className="text-3xl font-bold text-green-600">{pastAppointments.filter(a => a.appointmentStatus === "COMPLETED").length}</p>
+                                <p className="text-3xl font-bold text-green-600">{pastData.total}</p>
                             </div>
                             <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center text-2xl">✅</div>
                         </div>
@@ -198,7 +238,7 @@ export default function AppointmentsPage() {
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-slate-600 mb-1">Đã hủy</p>
-                                <p className="text-3xl font-bold text-red-600">{pastAppointments.filter(a => a.appointmentStatus === "CANCELLED").length}</p>
+                                <p className="text-3xl font-bold text-red-600">-</p>
                             </div>
                             <div className="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center text-2xl">❌</div>
                         </div>
@@ -211,14 +251,14 @@ export default function AppointmentsPage() {
                         onClick={() => setActiveTab("upcoming")}
                         className={`pb-3 text-sm font-medium transition relative ${activeTab === "upcoming" ? "text-dermcare" : "text-slate-600 hover:text-slate-900"}`}
                     >
-                        Sắp tới ({upcomingAppointments.length})
+                        Sắp tới ({upcomingData.total})
                         {activeTab === "upcoming" && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-dermcare" />}
                     </button>
                     <button
                         onClick={() => setActiveTab("past")}
                         className={`pb-3 text-sm font-medium transition relative ${activeTab === "past" ? "text-dermcare" : "text-slate-600 hover:text-slate-900"}`}
                     >
-                        Lịch sử ({pastAppointments.length})
+                        Hoàn thành ({pastData.total})
                         {activeTab === "past" && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-dermcare" />}
                     </button>
                 </div>
@@ -228,7 +268,7 @@ export default function AppointmentsPage() {
                     {!isLoading && (
                         <>
                             {activeTab === "upcoming" && (
-                                upcomingAppointments.length === 0 ? (
+                                upcomingData.items.length === 0 ? (
                                     <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-soft">
                                         <div className="text-6xl mb-4">📅</div>
                                         <h3 className="text-xl font-semibold text-slate-900 mb-2">Chưa có lịch hẹn</h3>
@@ -238,19 +278,32 @@ export default function AppointmentsPage() {
                                         </Link>
                                     </div>
                                 ) : (
-                                    upcomingAppointments.map(apt => <AppointmentCard key={apt.id} appointment={apt} />)
+                                    upcomingData.items.map(apt => <AppointmentCard key={apt.id} appointment={apt} />)
                                 )
                             )}
                             {activeTab === "past" && (
-                                pastAppointments.length === 0 ? (
+                                pastData.items.length === 0 ? (
                                     <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-soft">
                                         <div className="text-6xl mb-4">📋</div>
                                         <h3 className="text-xl font-semibold text-slate-900 mb-2">Chưa có lịch sử</h3>
                                         <p className="text-slate-600">Bạn chưa có lịch hẹn nào trong quá khứ</p>
                                     </div>
                                 ) : (
-                                    pastAppointments.map(apt => <AppointmentCard key={apt.id} appointment={apt} />)
+                                    pastData.items.map(apt => <AppointmentCard key={apt.id} appointment={apt} />)
                                 )
+                            )}
+
+                            {/* Load more button */}
+                            {(activeTab === "upcoming" ? upcomingData.hasMore : pastData.hasMore) && (
+                                <div className="flex justify-center pt-4 pb-8">
+                                    <button
+                                        onClick={loadMore}
+                                        disabled={isLoadingMore}
+                                        className="rounded-full bg-white border border-slate-200 px-8 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 transition shadow-sm disabled:opacity-50"
+                                    >
+                                        {isLoadingMore ? "Đang tải thêm..." : "Xem thêm lịch hẹn"}
+                                    </button>
+                                </div>
                             )}
                         </>
                     )}

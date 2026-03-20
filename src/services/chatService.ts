@@ -49,6 +49,14 @@ export interface Conversation {
     updated_at: string;
     patient?: ConversationSender;
     doctor?: ConversationSender;
+    appointment?: {
+        id: string;
+        feedback?: {
+            id: string;
+            rate: number;
+            comment: string;
+        };
+    };
 }
 
 // ============================
@@ -192,6 +200,15 @@ export const getPublicDoctorSchedule = async (doctorId: string): Promise<DoctorS
 export const completeConversation = async (conversationId: string): Promise<Conversation> => {
     const response = await apiClient.post<{ success: boolean; data: Conversation }>(
         `/conversations/${conversationId}/complete`
+    );
+    return response.data.data;
+};
+
+/** Gửi đánh giá cho buổi tư vấn */
+export const submitFeedback = async (conversationId: string, rating: number, comment: string): Promise<any> => {
+    const response = await apiClient.post<{ success: boolean; data: any }>(
+        `/conversations/${conversationId}/feedback`,
+        { rate: rating, comment }
     );
     return response.data.data;
 };

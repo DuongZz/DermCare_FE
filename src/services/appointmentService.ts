@@ -32,9 +32,11 @@ export interface Appointment {
     reason?: string;
 }
 
-// Get appointments for current user
-export const getMyAppointments = async (): Promise<Appointment[]> => {
-    const { data } = await apiClient.get('/users/me/appointments');
+// Get appointments for current user with pagination and tab filtering
+export const getMyAppointments = async (tab: 'upcoming' | 'past' = 'upcoming', page: number = 1, limit: number = 10): Promise<{ items: Appointment[], total: number, hasMore: boolean }> => {
+    const { data } = await apiClient.get('/users/me/appointments', {
+        params: { tab, page, limit }
+    });
     return data.data || data;
 };
 

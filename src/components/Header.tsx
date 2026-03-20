@@ -128,12 +128,12 @@ export default function Header() {
                     >
                         <Image
                             src="/logo_dermcare.jpg"
-                            alt="Dermcare - Phòng khám da liễu trực tuyến"
-                            width={650}
-                            height={180}
+                            alt="Dermcare"
+                            width={320}
+                            height={96}
                             quality={100}
                             priority
-                            className="h-16 w-auto object-contain object-left"
+                            className="h-20 w-auto object-contain"
                         />
                     </Link>
                     <span className="sr-only">
@@ -261,8 +261,15 @@ export default function Header() {
                                                             <p className="text-xs text-slate-600 font-medium leading-relaxed mt-1 w-full text-left">
                                                                 {notif.content}
                                                             </p>
-                                                            <p className="text-[10px] text-slate-400 mt-1 font-medium w-full text-left">
-                                                                {new Date(notif.created_at).toLocaleString()}
+                                                            <p className="text-[10px] text-slate-400 mt-1 font-medium w-full text-left" suppressHydrationWarning>
+                                                                {(() => {
+                                                                    const d = new Date(notif.created_at);
+                                                                    // Nếu là NaN hoặc không có Z, thử ép về UTC nếu backend gửi thiếu Z
+                                                                    if (notif.created_at && !notif.created_at.toString().includes('Z') && !notif.created_at.toString().includes('+')) {
+                                                                        return new Date(notif.created_at + 'Z').toLocaleString('vi-VN');
+                                                                    }
+                                                                    return d.toLocaleString('vi-VN');
+                                                                })()}
                                                             </p>
                                                         </div>
                                                     </div>

@@ -6,7 +6,10 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Dermcare - Hệ thống phòng khám da liễu trực tuyến",
   description:
-    "Đặt lịch, tư vấn và quản lý hồ sơ da liễu trực tuyến với Dermcare."
+    "Đặt lịch, tư vấn và quản lý hồ sơ da liễu trực tuyến với Dermcare.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -15,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="vi">
+    <html lang="vi" suppressHydrationWarning>
       <body className="page-shell">
         <div className="flex min-h-screen flex-col">
           <ClientLayout>{children}</ClientLayout>
@@ -27,11 +30,11 @@ export default function RootLayout({
                 <div>
                   <div className="flex items-center gap-2 mb-4">
                     <img
-                      src="/logo.jpg"
+                      src="/logo_dermcare.jpg"
                       alt="Dermcare"
-                      className="h-10 w-10 rounded-full"
+                      className="h-12 w-auto object-contain"
                     />
-                    <div>
+                    <div className="sr-only">
                       <div className="text-lg font-bold text-dermcare">Dermcare</div>
                       <div className="text-xs text-slate-500">Hệ thống phòng khám</div>
                     </div>
