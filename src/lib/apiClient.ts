@@ -29,6 +29,10 @@ apiClient.interceptors.request.use(
             console.log(`[API Request] No Token attached`);
         }
 
+        // Add Accept-Language header
+        const language = typeof window !== 'undefined' ? localStorage.getItem('language') || 'vi' : 'vi';
+        config.headers['Accept-Language'] = language;
+
         console.log(`[API Request] ${config.method?.toUpperCase()} ${config.baseURL}${config.url}`);
 
         return config;

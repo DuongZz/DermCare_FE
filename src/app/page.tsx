@@ -3,14 +3,18 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { getPublicDoctors, PublicDoctor } from "@/services/doctorService";
 import userService from "@/services/userService";
+import { getPublicFeedbacks, PublicFeedback } from "@/services/feedbackService";
 
 
 export default function HomePage() {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isDoctor } = useAuth();
+  const { t, language } = useLanguage();
   const [doctors, setDoctors] = useState<PublicDoctor[]>([]);
   const [specializations, setSpecializations] = useState<{ specialization: string; doctorCount: number }[]>([]);
+  const [feedbacks, setFeedbacks] = useState<PublicFeedback[]>([]);
 
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -29,8 +33,17 @@ export default function HomePage() {
         console.error("Failed to fetch specializations:", error);
       }
     };
+    const fetchFeedbacks = async () => {
+      try {
+        const data = await getPublicFeedbacks();
+        setFeedbacks(data);
+      } catch (error) {
+        console.error("Failed to fetch feedbacks:", error);
+      }
+    };
     fetchDoctors();
     fetchSpecializations();
+    fetchFeedbacks();
   }, []);
 
   return (
@@ -41,18 +54,16 @@ export default function HomePage() {
           {/* Left - Intro */}
           <div className="space-y-6">
             <span className="inline-flex items-center rounded-full bg-dermcare-light px-3 py-1 text-xs font-medium text-dermcare-dark">
-              Chăm sóc da liễu trực tuyến • 24/7
+              {t('home.hero.badge')}
             </span>
 
             <div className="space-y-4">
               <h1 className="text-balance text-4xl font-bold tracking-tight text-slate-900 md:text-5xl lg:text-6xl">
-                Hệ thống phòng khám da liễu trực tuyến{" "}
+                {t('home.hero.title')}{" "}
                 <span className="text-dermcare">Dermcare</span>
               </h1>
               <p className="text-lg text-slate-600 md:text-xl">
-                Đặt lịch khám nhanh chóng, kết nối với bác sĩ da liễu hàng đầu,
-                theo dõi liệu trình điều trị và lưu trữ hồ sơ da liễu của bạn
-                trên một nền tảng duy nhất.
+                {t('home.hero.description')}
               </p>
             </div>
 
@@ -61,12 +72,12 @@ export default function HomePage() {
                 href="/huong-dan-kham"
                 className="inline-flex items-center justify-center rounded-full bg-dermcare px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-dermcare-dark"
               >
-                Xem quy trình khám
+                {t('home.hero.cta')}
               </Link>
             </div>
 
             <p className="text-sm text-slate-500">
-              ✓ Không cần xếp hàng • ✓ Bảo mật thông tin bệnh nhân
+              {t('home.hero.benefits')}
             </p>
           </div>
 
@@ -94,7 +105,7 @@ export default function HomePage() {
                       <div>
                         <h3 className="text-2xl font-bold">DARA</h3>
                         <p className="text-xs text-dermcare-light">
-                          AI Assistant • 24/7
+                          {t('home.ai.assistant')}
                         </p>
                       </div>
                     </div>
@@ -104,11 +115,10 @@ export default function HomePage() {
                 {/* Description */}
                 <div>
                   <h4 className="mb-2 text-xl font-semibold">
-                    Tư vấn với trợ lý ảo
+                    {t('home.ai.title')}
                   </h4>
                   <p className="text-sm leading-relaxed text-dermcare-light">
-                    Trợ lý AI thông minh, sẵn sàng tư vấn và chẩn đoán sơ bộ
-                    bệnh da của bạn 24/7
+                    {t('home.ai.description')}
                   </p>
                 </div>
 
@@ -116,15 +126,15 @@ export default function HomePage() {
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-sm">
                     <span className="text-lg">💬</span>
-                    <span>Tư vấn miễn phí ngay lập tức</span>
+                    <span>{t('home.ai.features.instant')}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
                     <span className="text-lg">🎯</span>
-                    <span>Chẩn đoán sơ bộ bằng AI</span>
+                    <span>{t('home.ai.features.diagnosis')}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
                     <span className="text-lg">⚡</span>
-                    <span>Phản hồi trong vài giây</span>
+                    <span>{t('home.ai.features.seconds')}</span>
                   </div>
                 </div>
 
@@ -132,19 +142,25 @@ export default function HomePage() {
                 <div className="space-y-3">
                   {isLoggedIn ? (
                     <>
-                      <Link
-                        href="/chat?tab=AI_CONSULTING"
-                        className="group flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-4 text-sm font-bold text-dermcare shadow-lg transition-all hover:scale-[1.02] hover:bg-slate-50 active:scale-95"
-                      >
-                        <span className="text-lg">🔬</span>
-                        <span>Bắt đầu chẩn đoán bệnh</span>
-                      </Link>
+                      {!isDoctor && (
+                        <Link
+                          href="/chat?tab=AI_CONSULTING"
+                          className="group flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-4 text-sm font-bold text-dermcare shadow-lg transition-all hover:scale-[1.02] hover:bg-slate-50 active:scale-95"
+                        >
+                          <span className="text-lg">🔬</span>
+                          <span>{t('home.ai.cta.start')}</span>
+                        </Link>
+                      )}
                       <Link
                         href="/chat?tab=DOCTOR_CONSULTING"
-                        className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-4 py-3 text-sm font-semibold transition-all hover:bg-white/20 active:scale-95"
+                        className={`flex w-full items-center justify-center gap-2 rounded-xl transition-all active:scale-95 ${
+                          isDoctor 
+                            ? "bg-white px-4 py-4 text-sm font-bold text-dermcare shadow-lg hover:scale-[1.02] hover:bg-slate-50" 
+                            : "border border-white/30 bg-white/10 px-4 py-3 text-sm font-semibold hover:bg-white/20"
+                        }`}
                       >
-                        <span className="text-lg">💬</span>
-                        <span>Xem hội thoại & Tin nhắn</span>
+                        {!isDoctor && <span className="text-lg">💬</span>}
+                        <span>{t('home.ai.cta.messages')}</span>
                       </Link>
                     </>
                   ) : (
@@ -154,10 +170,10 @@ export default function HomePage() {
                         className="group flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-4 text-sm font-bold text-dermcare shadow-lg transition-all hover:scale-[1.02] hover:bg-slate-50 active:scale-95"
                       >
                         <span className="text-lg">🔬</span>
-                        <span>Bắt đầu chẩn đoán ngay</span>
+                        <span>{t('home.ai.cta.start_now')}</span>
                       </Link>
                       <p className="text-center text-xs font-medium text-dermcare-light">
-                        Đăng nhập để lưu lại lịch sử tư vấn
+                        {t('home.ai.cta.login_save')}
                       </p>
                     </>
                   )}
@@ -173,102 +189,99 @@ export default function HomePage() {
         <div id="services" className="mx-auto max-w-7xl pt-12 -mt-12">
           <div className="mb-10 text-center">
             <h2 className="mb-3 text-3xl font-bold text-slate-900 md:text-4xl">
-              Dịch vụ chăm sóc da
+              {t('home.services.title')}
             </h2>
             <p className="text-lg text-slate-600">
-              Chẩn đoán bằng AI và đặt lịch với bác sĩ da liễu
+              {t('home.services.subtitle')}
             </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
             {/* Service 1 - AI Diagnosis */}
-            <div className="card-elevated p-8">
-              <div className="mb-4 text-5xl">🤖</div>
-              <h3 className="mb-3 text-2xl font-bold text-slate-900">
-                Chẩn đoán bằng AI
+            <div className="card-elevated p-8 group hover:border-dermcare/30 transition-all duration-300">
+              <h3 className="mb-4 text-2xl font-bold text-slate-900">
+                {t('home.services.ai_diagnosis.title')}
               </h3>
               <div className="space-y-3 text-slate-600">
                 <p>
-                  <strong>DARA AI</strong> - Trợ lý ảo thông minh được huấn luyện trên hàng triệu ca bệnh da liễu thực tế.
+                  {t('home.services.ai_diagnosis.description')}
                 </p>
                 <ul className="space-y-2 pl-5">
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-dermcare">✓</span>
-                    <span>Phân tích hình ảnh và triệu chứng chỉ trong vài giây</span>
+                    <span>{t('home.services.ai_diagnosis.benefit1')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-dermcare">✓</span>
-                    <span>Độ chính xác cao từ 85% trở lên tùy loại bệnh</span>
+                    <span>{t('home.services.ai_diagnosis.benefit2')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-dermcare">✓</span>
-                    <span>Tư vấn sơ bộ và gợi ý phương pháp điều trị</span>
+                    <span>{t('home.services.ai_diagnosis.benefit3')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-dermcare">✓</span>
-                    <span>Hoàn toàn miễn phí, không giới hạn số lần sử dụng</span>
+                    <span>{t('home.services.ai_diagnosis.benefit4')}</span>
                   </li>
                 </ul>
               </div>
             </div>
 
             {/* Service 2 - Doctor Consultation */}
-            <div className="card-elevated p-8">
-              <div className="mb-4 text-5xl">👨‍⚕️</div>
-              <h3 className="mb-3 text-2xl font-bold text-slate-900">
-                Khám bệnh với bác sĩ chuyên môn
+            <div className="card-elevated p-8 group hover:border-dermcare/30 transition-all duration-300">
+              <h3 className="mb-4 text-2xl font-bold text-slate-900">
+                {t('home.services.doctor_consultation.title')}
               </h3>
               <div className="space-y-3 text-slate-600">
                 <p>
-                  Đội ngũ <strong>bác sĩ da liễu hàng đầu</strong> với nhiều năm kinh nghiệm, sẵn sàng tư vấn trực tuyến 24/7.
+                  {t('home.services.doctor_consultation.description')}
                 </p>
                 <ul className="space-y-2 pl-5">
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-dermcare">✓</span>
-                    <span>Kết nối video call trực tuyến với bác sĩ chuyên khoa</span>
+                    <span>{t('home.services.doctor_consultation.benefit1')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-dermcare">✓</span>
-                    <span>Tư vấn chi tiết, chẩn đoán chính xác từ chuyên gia</span>
+                    <span>{t('home.services.doctor_consultation.benefit2')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-dermcare">✓</span>
-                    <span>Nhận đơn thuốc điện tử và hướng dẫn điều trị cụ thể</span>
+                    <span>{t('home.services.doctor_consultation.benefit3')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-dermcare">✓</span>
-                    <span>Theo dõi liệu trình và tái khám định kỳ tiện lợi</span>
+                    <span>{t('home.services.doctor_consultation.benefit4')}</span>
                   </li>
                 </ul>
               </div>
             </div>
 
             {/* Service 3 - Medical Records */}
-            <div className="card-elevated p-8">
-              <div className="mb-4 text-5xl">📋</div>
-              <h3 className="mb-3 text-2xl font-bold text-slate-900">
-                Theo dõi hồ sơ y tế
+            <div className="card-elevated p-8 group hover:border-dermcare/30 transition-all duration-300">
+              <h3 className="mb-4 text-2xl font-bold text-slate-900">
+                {t('home.services.medical_records.title')}
               </h3>
               <div className="space-y-3 text-slate-600">
                 <p>
-                  Quản lý <strong>hồ sơ sức khỏe</strong> cá nhân một cách khoa học, dễ dàng tra cứu mọi lúc mọi nơi.
+                  {t('home.services.medical_records.description')}
                 </p>
                 <ul className="space-y-2 pl-5">
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-dermcare">✓</span>
-                    <span>Lưu trữ lịch sử khám bệnh và kết quả chẩn đoán</span>
+                    <span>{t('home.services.medical_records.benefit1')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-dermcare">✓</span>
-                    <span>Theo dõi tiến triển bệnh qua hình ảnh và ghi chú</span>
+                    <span>{t('home.services.medical_records.benefit2')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-dermcare">✓</span>
-                    <span>Quản lý đơn thuốc và lịch uống thuốc nhắc nhở</span>
+                    <span>{t('home.services.medical_records.benefit3')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-dermcare">✓</span>
-                    <span>Bảo mật tuyệt đối, chỉ bạn và bác sĩ truy cập</span>
+                    <span>{t('home.services.medical_records.benefit4')}</span>
                   </li>
                 </ul>
               </div>
@@ -282,10 +295,10 @@ export default function HomePage() {
         <div id="doctors" className="mx-auto max-w-7xl pt-14 -mt-14">
           <div className="mb-6 text-center">
             <h2 className="mb-3 text-3xl font-bold text-slate-900 md:text-4xl">
-              Bác sĩ tiêu biểu
+              {t('home.doctors.title')}
             </h2>
             <p className="text-lg text-slate-600">
-              Đội ngũ bác sĩ da liễu hàng đầu, giàu kinh nghiệm
+              {t('home.doctors.subtitle')}
             </p>
           </div>
 
@@ -322,13 +335,13 @@ export default function HomePage() {
                       </span>
                     </div>
                     <button className="w-full rounded-xl bg-dermcare py-2 text-sm font-semibold text-white transition hover:bg-dermcare-dark shadow-soft">
-                      Đặt lịch khám
+                      {t('header.actions.book_now')}
                     </button>
                   </div>
                 </div>
               </div>
             )) : (
-              <div className="col-span-full py-12 text-slate-500 text-center">Đang tải danh sách bác sĩ...</div>
+              <div className="col-span-full py-12 text-slate-500 text-center">{t('home.doctors.loading')}</div>
             )}
           </div>
 
@@ -337,7 +350,7 @@ export default function HomePage() {
               href="/doctors"
               className="inline-flex items-center gap-2 text-dermcare hover:underline"
             >
-              <span className="font-medium">Xem tất cả bác sĩ</span>
+              <span className="font-medium">{t('home.doctors.view_all')}</span>
               <svg
                 className="h-5 w-5"
                 fill="none"
@@ -360,13 +373,12 @@ export default function HomePage() {
       <section className="bg-slate-50 px-4 py-16">
         <div id="specialties" className="mx-auto max-w-7xl pt-24 -mt-24">
           {/* Section Header */}
-          {/* Section Header */}
           <div className="mb-8 text-center">
             <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">
-              Chuyên khoa
+              {t('home.specialties.title')}
             </h2>
             <p className="mt-1 text-slate-600">
-              Danh sách các chuyên khoa da liễu phổ biến
+              {t('home.specialties.subtitle')}
             </p>
           </div>
 
@@ -391,12 +403,12 @@ export default function HomePage() {
                     <h3 className="mb-2 line-clamp-2 text-sm font-bold uppercase tracking-wide">
                       {specialty.specialization}
                     </h3>
-                    <p className="text-xs opacity-80 font-medium">{specialty.doctorCount} bác sĩ</p>
+                    <p className="text-xs opacity-80 font-medium">{specialty.doctorCount} {t('home.specialties.doctor_count')}</p>
                   </div>
                 </div>
               );
             }) : (
-              <div className="col-span-full py-8 text-center text-slate-400">Đang tải chuyên khoa...</div>
+              <div className="col-span-full py-8 text-center text-slate-400">{t('home.specialties.loading')}</div>
             )}
           </div>
         </div>
@@ -407,131 +419,89 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-3 text-center">
             <h2 className="mb-3 text-3xl font-bold text-slate-900 md:text-4xl">
-              Đánh giá từ bệnh nhân
+              {t('home.reviews.title')}
             </h2>
             <p className="text-lg text-slate-600">
-              Hàng nghìn bệnh nhân hài lòng với dịch vụ của chúng tôi
+              {t('home.reviews.subtitle')}
             </p>
           </div>
 
           <div className="space-y-6">
-            {/* Row 1 - Scroll Left to Right */}
-            <div className="relative">
-              <div className="reviews-scroll-ltr flex gap-6">
-                {[
-                  ...Array(3).fill([
-                    {
-                      name: "Nguyễn Minh Ly",
-                      age: 28,
-                      location: "Hà Nội",
-                      rating: 5,
-                      text: "Dịch vụ tuyệt vời! AI chẩn đoán chính xác, bác sĩ tư vấn nhiệt tình. Sau 2 tuần điều trị da mụn của em đã cải thiện rõ rệt.",
-                      avatar: "NL"
-                    },
-                    {
-                      name: "Anh Khuất Bá Phúc",
-                      age: 35,
-                      location: "Hà Nội",
-                      rating: 5,
-                      text: "Tôi có vấn đề về viêm da, thăm khám trực tuyến không cần đến bệnh viện rất tiện. Bác sĩ tư vấn chi tiết, đơn thuốc hiệu quả.",
-                      avatar: "KP"
-                    },
-                    {
-                      name: "Bé Trần Minh Trang",
-                      age: 6,
-                      location: "TP.HCM",
-                      rating: 5,
-                      text: "Bé bị dị ứng da, app giúp bố mẹ theo dõi tiến triển rất tốt. AI chẩn đoán nhanh, các bác sĩ rất chuyên nghiệp.",
-                      avatar: "MT"
-                    },
-                  ])
-                ].flat().map((review, idx) => (
-                  <div
-                    key={idx}
-                    className="min-w-[280px] max-w-[280px] rounded-2xl border border-slate-200 bg-white p-5 shadow-sm flex-shrink-0"
-                  >
-                    <div className="mb-3 flex gap-1">
-                      {[...Array(review.rating)].map((_, i) => (
-                        <span key={i} className="text-amber-400">★</span>
-                      ))}
-                    </div>
-                    <p className="mb-4 text-sm leading-relaxed text-slate-700">
-                      "{review.text}"
-                    </p>
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-dermcare text-white font-semibold">
-                        {review.avatar}
-                      </div>
-                      <div>
-                        <p className="font-semibold text-slate-900">{review.name}</p>
-                        <p className="text-xs text-slate-500">
-                          {review.age} tuổi • {review.location}
+            {feedbacks.length > 0 ? (
+              <>
+                {/* Row 1 - Scroll Left to Right */}
+                <div className="relative">
+                  <div className="reviews-scroll-ltr flex gap-6">
+                    {[
+                      ...Array(3).fill(feedbacks.slice(0, Math.ceil(feedbacks.length / 2)))
+                    ].flat().map((review, idx) => (
+                      <div
+                        key={`${review.id}-${idx}`}
+                        className="min-w-[280px] max-w-[280px] rounded-2xl border border-slate-200 bg-white p-5 shadow-sm flex-shrink-0"
+                      >
+                        <div className="mb-3 flex gap-1">
+                          {[...Array(review.rate)].map((_, i) => (
+                            <span key={i} className="text-amber-400">★</span>
+                          ))}
+                        </div>
+                        <p className="mb-4 text-sm leading-relaxed text-slate-700">
+                          "{review.comment}"
                         </p>
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-dermcare text-white font-semibold">
+                            {review.patientName.charAt(0).toUpperCase()}
+                          </div>
+                          <div>
+                            <p className="font-semibold text-slate-900">{review.patientName}</p>
+                            <p className="text-xs text-slate-500">
+                              {t('home.reviews.patient')} • {new Date(review.created_at).toLocaleDateString(language === 'vi' ? 'vi-VN' : 'en-US')}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
 
-            {/* Row 2 - Scroll Right to Left */}
-            <div className="relative">
-              <div className="reviews-scroll-rtl flex gap-6">
-                {[
-                  ...Array(3).fill([
-                    {
-                      name: "Bác Võ Thị Mai",
-                      age: 60,
-                      location: "Đà Nẵng",
-                      rating: 5,
-                      text: "Tôi 60 tuổi vẫn dùng app dễ dàng. Bác sĩ nhiệt tình, giải đáp tận tâm. Vấn đề zona của tôi được điều trị kịp thời.",
-                      avatar: "VM"
-                    },
-                    {
-                      name: "Phạm Văn Hùng",
-                      age: 42,
-                      location: "Hải Phòng",
-                      rating: 5,
-                      text: "Dermcare giúp tôi tiết kiệm thời gian. Không phải xếp hàng, bác sĩ tư vấn online rất tiện lợi. Đơn thuốc được giao tận nhà.",
-                      avatar: "PH"
-                    },
-                    {
-                      name: "Lê Thị Hương",
-                      age: 24,
-                      location: "Cần Thơ",
-                      rating: 5,
-                      text: "Mình từng ngại đến bệnh viện vì vấn đề da mặt. Dermcare giúp mình tự tin hơn, AI chẩn đoán chính xác, bác sĩ tư vấn kín đáo.",
-                      avatar: "LH"
-                    },
-                  ])
-                ].flat().map((review, idx) => (
-                  <div
-                    key={idx}
-                    className="min-w-[280px] max-w-[280px] rounded-2xl border border-slate-200 bg-white p-5 shadow-sm flex-shrink-0"
-                  >
-                    <div className="mb-3 flex gap-1">
-                      {[...Array(review.rating)].map((_, i) => (
-                        <span key={i} className="text-amber-400">★</span>
-                      ))}
-                    </div>
-                    <p className="mb-4 text-sm leading-relaxed text-slate-700">
-                      "{review.text}"
-                    </p>
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-dermcare text-white font-semibold">
-                        {review.avatar}
-                      </div>
-                      <div>
-                        <p className="font-semibold text-slate-900">{review.name}</p>
-                        <p className="text-xs text-slate-500">
-                          {review.age} tuổi • {review.location}
+                {/* Row 2 - Scroll Right to Left */}
+                <div className="relative">
+                  <div className="reviews-scroll-rtl flex gap-6">
+                    {[
+                      ...Array(3).fill(feedbacks.slice(Math.ceil(feedbacks.length / 2)))
+                    ].flat().map((review, idx) => (
+                      <div
+                        key={`${review.id}-${idx}`}
+                        className="min-w-[280px] max-w-[280px] rounded-2xl border border-slate-200 bg-white p-5 shadow-sm flex-shrink-0"
+                      >
+                        <div className="mb-3 flex gap-1">
+                          {[...Array(review.rate)].map((_, i) => (
+                            <span key={i} className="text-amber-400">★</span>
+                          ))}
+                        </div>
+                        <p className="mb-4 text-sm leading-relaxed text-slate-700">
+                          "{review.comment}"
                         </p>
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-dermcare text-white font-semibold">
+                            {review.patientName.charAt(0).toUpperCase()}
+                          </div>
+                          <div>
+                            <p className="font-semibold text-slate-900">{review.patientName}</p>
+                            <p className="text-xs text-slate-500">
+                              {t('home.reviews.patient')} • {new Date(review.created_at).toLocaleDateString(language === 'vi' ? 'vi-VN' : 'en-US')}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+              </>
+            ) : (
+              <div className="py-12 text-center text-slate-400 border-2 border-dashed border-slate-200 rounded-3xl">
+                {t('home.reviews.empty')}
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>
@@ -541,10 +511,10 @@ export default function HomePage() {
         <div id="partners" className="mx-auto max-w-7xl pt-24 -mt-24">
           <div className="mb-10 text-center">
             <h2 className="mb-3 text-3xl font-bold text-slate-900 md:text-4xl">
-              Đối tác & Hợp tác
+              {t('home.partners.title')}
             </h2>
             <p className="text-lg text-slate-600">
-              Được tin tưởng bởi các đơn vị hàng đầu
+              {t('home.partners.subtitle')}
             </p>
           </div>
 

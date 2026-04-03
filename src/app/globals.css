@@ -42,6 +42,26 @@ body {
   @apply bg-white text-slate-900 antialiased;
 }
 
+/* Ensure interactive elements have correct cursor */
+a, 
+button, 
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  cursor: pointer;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+textarea {
+  cursor: text;
+}
+
 .page-shell {
   @apply min-h-screen bg-gradient-to-b from-dermcare-light to-white;
 }
@@ -50,14 +70,35 @@ body {
   @apply bg-white shadow-soft border border-slate-100 rounded-2xl;
 }
 
-/* Hide scrollbar but keep functionality */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+/* Custom elegant scrollbar - Global for all containers */
+::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important; /* slate-300 */
+  border-radius: 10px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8 !important; /* slate-400 */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin !important;
+  scrollbar-color: #cbd5e1 transparent !important;
+}
+
+/* Specific class just in case */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
 }
 
 /* Auto-scrolling reviews animations - 2 directions */

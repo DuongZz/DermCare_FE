@@ -9,30 +9,42 @@ export default function PaymentResultPage() {
     const router = useRouter();
     const [status, setStatus] = useState<"loading" | "success" | "fail">("loading");
     const [message, setMessage] = useState("Đang xử lý kết quả giao dịch...");
+    const [appointmentId, setAppointmentId] = useState<string | null>(null);
 
     useEffect(() => {
         // === MoMo params ===
         const resultCode = searchParams.get("resultCode");
         const msg = searchParams.get("message");
+        const extraData = searchParams.get("extraData"); // MoMo pass appointmentId here
 
         // === ZaloPay params ===
-        const status = searchParams.get("status");       // 1 = thành công, 0 = thất bại
+        const zaloStatus = searchParams.get("status");       // 1 = thành công, 0 = thất bại
         const apptransid = searchParams.get("apptransid");
+        const embedDataStr = searchParams.get("embeddata"); // ZaloPay pass JSON string here
 
         if (resultCode !== null) {
             // Xử lý kết quả MoMo
             if (resultCode === "0") {
                 setStatus("success");
                 setMessage(msg || "Thanh toán MoMo thành công. Lịch hẹn của bạn đã được xác nhận.");
+                if (extraData) setAppointmentId(extraData);
             } else {
                 setStatus("fail");
                 setMessage(msg || "Giao dịch MoMo bị hủy hoặc có lỗi xảy ra.");
             }
         } else if (apptransid !== null) {
             // Xử lý kết quả ZaloPay
-            if (status === "1") {
+            if (zaloStatus === "1") {
                 setStatus("success");
                 setMessage("Thanh toán ZaloPay thành công. Lịch hẹn của bạn đã được xác nhận.");
+                try {
+                    if (embedDataStr) {
+                        const parsed = JSON.parse(embedDataStr);
+                        if (parsed.appointmentId) setAppointmentId(parsed.appointmentId);
+                    }
+                } catch (e) {
+                    console.error("Failed to parse ZaloPay embeddata", e);
+                }
             } else {
                 setStatus("fail");
                 setMessage("Giao dịch ZaloPay bị hủy hoặc có lỗi xảy ra.");
@@ -65,7 +77,7 @@ export default function PaymentResultPage() {
                         <h2 className="text-2xl font-bold border-b border-slate-100 uppercase pb-4 mb-2 text-emerald-600">Thanh toán thành công</h2>
                         <p className="text-slate-600 mb-8">{message}</p>
                         <div className="flex flex-col gap-3 w-full">
-                            <Link href="/user/appointments" className="w-full rounded-xl bg-dermcare px-4 py-3 text-base font-semibold text-white shadow-md hover:bg-dermcare-dark transition-colors">
+                            <Link href={`/appointments${appointmentId ? `?id=${appointmentId}` : ''}`} className="w-full rounded-xl bg-dermcare px-4 py-3 text-base font-semibold text-white shadow-md hover:bg-dermcare-dark transition-colors">
                                 Quản lý Lịch hẹn
                             </Link>
                             <Link href="/" className="w-full rounded-xl border-2 border-slate-200 bg-white px-4 py-3 text-base font-medium text-slate-700 hover:border-slate-300 hover:bg-slate-50 transition-colors">

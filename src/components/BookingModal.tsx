@@ -46,7 +46,6 @@ export default function BookingModal({ isOpen, onClose, doctor, conversationId, 
     const [showSuccess, setShowSuccess] = useState(false);
     const [createdAppointmentId, setCreatedAppointmentId] = useState<string | null>(null);
     const [paymentMethod, setPaymentMethod] = useState<"momo" | "zalo">("momo");
-    const [timeLeft, setTimeLeft] = useState<number>(PAYMENT_TIMEOUT.momo);
     const [selectedDate, setSelectedDate] = useState<string>(initialDate || "");
     const [selectedTime, setSelectedTime] = useState<string>(initialTime || "");
     const [formData, setFormData] = useState({
@@ -62,11 +61,6 @@ export default function BookingModal({ isOpen, onClose, doctor, conversationId, 
     const consultationPrice = initialPrice || selectedSlotOption?.price || 250000; // Ưu tiên initialPrice từ prop
     const [isLoadingSchedule, setIsLoadingSchedule] = useState(false);
     const [isBooking, setIsBooking] = useState(false);
-
-    // Reset đếm ngược khi đổi phương thức thanh toán
-    useEffect(() => {
-        setTimeLeft(PAYMENT_TIMEOUT[paymentMethod]);
-    }, [paymentMethod]);
 
     useEffect(() => {
         if (!isOpen) return;
@@ -192,7 +186,6 @@ export default function BookingModal({ isOpen, onClose, doctor, conversationId, 
             setCreatedAppointmentId(null);
             setShowSuccess(false);
             setShowConfirm(false);
-            setTimeLeft(300);
         } else if (initialDate && initialTime) {
             setSelectedDate(initialDate);
             setSelectedTime(initialTime);
@@ -209,31 +202,11 @@ export default function BookingModal({ isOpen, onClose, doctor, conversationId, 
         }
     }, [isOpen, initialDate, initialTime, user]);
 
-    // Timer Countdown for Step 3
-    useEffect(() => {
-        let timer: NodeJS.Timeout;
-        if (step === 3 && timeLeft > 0) {
-            timer = setInterval(() => {
-                setTimeLeft(prev => prev - 1);
-            }, 1000);
-        } else if (step === 3 && timeLeft === 0 && createdAppointmentId) {
-            // Hết giờ
-            const handleTimeout = async () => {
-                await checkPaymentTimeout(createdAppointmentId);
-                alert("Đã hết thời gian thanh toán (5 phút). Lịch khám đã bị hủy. Vui lòng đặt lại.");
-                // Tạm thời bỏ onClose() để user xem form báo lỗi test thanh toán
-                // onClose(); 
-            };
-            handleTimeout();
-        }
-        return () => clearInterval(timer);
-    }, [step, timeLeft, createdAppointmentId, onClose]);
-
     if (!isOpen) return null;
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-            <div className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-2xl bg-white shadow-xl">
+            <div className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto custom-scrollbar rounded-2xl bg-white shadow-xl">
                 {/* Header */}
                 <div className="sticky top-0 z-10 border-b border-slate-200 bg-white px-6 py-4">
                     <div className="flex items-center justify-between">
@@ -398,9 +371,6 @@ export default function BookingModal({ isOpen, onClose, doctor, conversationId, 
                             <div className="animate-in fade-in slide-in-from-right-4 duration-300">
                                 <div className="flex items-center justify-between mb-4 font-semibold text-slate-900">
                                     <h3>Phương thức thanh toán</h3>
-                                    <span className="text-red-500 font-bold bg-red-50 px-3 py-1 rounded-full text-sm">
-                                        Thời gian còn lại: {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
-                                    </span>
                                 </div>
                                 <div className="space-y-3">
                                     {/* MoMo */}

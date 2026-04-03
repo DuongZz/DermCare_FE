@@ -48,6 +48,11 @@ const userService = {
         const response = await apiClient.get<{ success: boolean; data: { specialization: string; doctorCount: number }[] }>('/users/public-specialization');
         return response.data.data;
     },
+
+    getUserStatistics: async () => {
+        const response = await apiClient.get<{ success: boolean; data: { appointmentsCount: number; medicalRecordsCount: number; doctorsCount: number } }>('/users/me/statistics');
+        return response.data;
+    },
 };
 
 

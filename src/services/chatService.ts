@@ -51,6 +51,7 @@ export interface Conversation {
     doctor?: ConversationSender;
     appointment?: {
         id: string;
+        medicalRecord?: any;
         feedback?: {
             id: string;
             rate: number;
@@ -209,6 +210,52 @@ export const submitFeedback = async (conversationId: string, rating: number, com
     const response = await apiClient.post<{ success: boolean; data: any }>(
         `/conversations/${conversationId}/feedback`,
         { rate: rating, comment }
+    );
+    return response.data.data;
+};
+
+/** Lấy tất cả ảnh trong 1 cuộc hội thoại */
+export const getConversationImages = async (conversationId: string): Promise<string[]> => {
+    const response = await apiClient.get<{ success: boolean; data: string[] }>(
+        `/conversations/${conversationId}/images`
+    );
+    return response.data.data;
+};
+
+/** Tạo hồ sơ bệnh án mới (Bác sĩ thực hiện) */
+export const createMedicalRecord = async (data: {
+    appointmentId: string;
+    treatment: string;
+    note: string;
+    images: string[];
+    patientInfo: any;
+    doctorInfo: any;
+}): Promise<any> => {
+    const response = await apiClient.post<{ success: boolean; data: any }>(
+        '/medical-records',
+        data
+    );
+    return response.data.data;
+};
+
+/** Gửi tin nhắn mới (Văn bản hoặc Ảnh) trong cuộc hội thoại (Doctor/Patient) */
+export const sendConversationMessage = async (
+    conversationId: string,
+    content: string,
+    file?: File
+): Promise<any> => {
+    const formData = new FormData();
+    if (content) formData.append('content', content);
+    if (file) formData.append('file', file);
+
+    const response = await apiClient.post<{ success: boolean; data: any }>(
+        `/conversations/${conversationId}/messages`,
+        formData,
+        {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        }
     );
     return response.data.data;
 };

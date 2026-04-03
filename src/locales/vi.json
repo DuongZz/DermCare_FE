@@ -1,0 +1,114 @@
+{
+  "header": {
+    "nav": {
+      "services": "Dịch vụ",
+      "doctors": "Bác sĩ",
+      "specialties": "Chuyên khoa",
+      "reviews": "Đánh giá",
+      "partners": "Hợp tác",
+      "about": "Về chúng tôi"
+    },
+    "actions": {
+      "login": "Đăng nhập",
+      "book_now": "Đặt lịch ngay",
+      "manage_shifts": "Quản lý ca khám"
+    },
+    "user_menu": {
+      "profile": "Hồ sơ cá nhân",
+      "schedule": "Lịch làm việc",
+      "appointments": "Quản lý lịch hẹn",
+      "logout": "Đăng xuất"
+    }
+  },
+  "footer": {
+    "description": "Nền tảng chăm sóc da liễu trực tuyến với công nghệ AI tiên tiến",
+    "quick_links": "Liên kết",
+    "contact": "Liên hệ",
+    "follow": "Theo dõi",
+    "privacy": "Chính sách bảo mật",
+    "terms": "Điều khoản sử dụng"
+  },
+  "profile": {
+    "stats": {
+      "title": "Thống kê tài khoản",
+      "appointments": "Lượt khám",
+      "medical_records": "Hồ sơ y tế",
+      "followed_doctors": "Bác sĩ theo dõi"
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "Chăm sóc da liễu trực tuyến • 24/7",
+      "title": "Hệ thống phòng khám da liễu trực tuyến",
+      "description": "Đặt lịch khám nhanh chóng, kết nối với bác sĩ da liễu hàng đầu, theo dõi liệu trình điều trị và lưu trữ hồ sơ da liễu của bạn trên một nền tảng duy nhất.",
+      "cta": "Xem quy trình khám",
+      "benefits": "✓ Không cần xếp hàng • ✓ Bảo mật thông tin bệnh nhân"
+    },
+    "ai": {
+      "assistant": "AI Assistant • 24/7",
+      "title": "Tư vấn với trợ lý ảo",
+      "description": "Trợ lý AI thông minh, sẵn sàng tư vấn và chẩn đoán sơ bộ bệnh da của bạn 24/7",
+      "features": {
+        "instant": "Tư vấn miễn phí ngay lập tức",
+        "diagnosis": "Chẩn đoán sơ bộ bằng AI",
+        "seconds": "Phản hồi trong vài giây"
+      },
+      "cta": {
+        "start": "Bắt đầu chẩn đoán bệnh",
+        "start_now": "Bắt đầu chẩn đoán ngay",
+        "messages": "Xem hội thoại & Tin nhắn",
+        "login_save": "Đăng nhập để lưu lại lịch sử tư vấn"
+      }
+    },
+    "services": {
+      "title": "Dịch vụ chăm sóc da",
+      "subtitle": "Chẩn đoán bằng AI và đặt lịch với bác sĩ da liễu",
+      "ai_diagnosis": {
+        "title": "Chẩn đoán bằng AI",
+        "description": "DARA AI - Trợ lý ảo thông minh được huấn luyện trên hàng triệu ca bệnh da liễu thực tế.",
+        "benefit1": "Phân tích hình ảnh và triệu chứng chỉ trong vài giây",
+        "benefit2": "Độ chính xác cao từ 85% trở lên tùy loại bệnh",
+        "benefit3": "Tư vấn sơ bộ và gợi ý phương pháp điều trị",
+        "benefit4": "Hoàn toàn miễn phí, không giới hạn số lần sử dụng"
+      },
+      "doctor_consultation": {
+        "title": "Khám bệnh với bác sĩ chuyên môn",
+        "description": "Đội ngũ bác sĩ da liễu hàng đầu với nhiều năm kinh nghiệm, sẵn sàng tư vấn trực tuyến 24/7.",
+        "benefit1": "Kết nối video call trực tuyến với bác sĩ chuyên khoa",
+        "benefit2": "Tư vấn chi tiết, chẩn đoán chính xác từ chuyên gia",
+        "benefit3": "Nhận đơn thuốc điện tử và hướng dẫn điều trị cụ thể",
+        "benefit4": "Theo dõi liệu trình và tái khám định kỳ tiện lợi"
+      },
+      "medical_records": {
+        "title": "Theo dõi hồ sơ y tế",
+        "description": "Quản lý hồ sơ sức khỏe cá nhân một cách khoa học, dễ dàng tra cứu mọi lúc mọi nơi.",
+        "benefit1": "Lưu trữ lịch sử khám bệnh và kết quả chẩn đoán",
+        "benefit2": "Theo dõi tiến triển bệnh qua hình ảnh và ghi chú",
+        "benefit3": "Quản lý đơn thuốc và lịch uống thuốc nhắc nhở",
+        "benefit4": "Bảo mật tuyệt đối, chỉ bạn và bác sĩ truy cập"
+      }
+    },
+    "doctors": {
+      "title": "Bác sĩ tiêu biểu",
+      "subtitle": "Đội ngũ bác sĩ da liễu hàng đầu, giàu kinh nghiệm",
+      "view_all": "Xem tất cả bác sĩ",
+      "loading": "Đang tải danh sách bác sĩ..."
+    },
+    "specialties": {
+      "title": "Chuyên khoa",
+      "subtitle": "Danh sách các chuyên khoa da liễu phổ biến",
+      "doctor_count": "bác sĩ",
+      "loading": "Đang tải chuyên khoa..."
+    },
+    "reviews": {
+      "title": "Đánh giá từ bệnh nhân",
+      "subtitle": "Hàng nghìn bệnh nhân hài lòng với dịch vụ của chúng tôi",
+      "patient": "Bệnh nhân",
+      "empty": "Chưa có đánh giá nào từ bệnh nhân. Hãy là người đầu tiên trải nghiệm dịch vụ của chúng tôi!"
+    },
+    "partners": {
+      "title": "Đối tác & Hợp tác",
+      "subtitle": "Được tin tưởng bởi các đơn vị hàng đầu"
+    }
+  }
+}

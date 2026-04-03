@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import { io, Socket } from "socket.io-client";
+import { useSocket } from "@/contexts/SocketContext";
+import { useVideoCall } from "@/contexts/VideoCallContext";
+import { useVoiceCall } from "@/contexts/VoiceCallContext";
 import { getAccessToken } from "@/lib/tokenStore";
 import {
     createAiConversation,
@@ -21,7 +24,11 @@ import {
     DoctorSchedule,
     completeConversation,
     submitFeedback,
+    getConversationImages,
+    createMedicalRecord,
+    sendConversationMessage,
 } from "@/services/chatService";
+import { useToast } from "@/components/Toast";
 import { queryKnowledgeBase } from "@/services/knowledgeService";
 import BookingModal from "@/components/BookingModal";
 import RatingModal from "@/components/RatingModal";
@@ -41,6 +48,7 @@ Tôi sẽ phân tích và đưa ra gợi ý phù hợp!
 export default function ChatPage() {
     const { isLoggedIn, user: currentUser } = useAuth();
     const router = useRouter();
+    const { showToast } = useToast();
     const [conversations, setConversations] = useState<Conversation[]>([]);
     const [activeConversation, setActiveConversation] = useState<Conversation | null>(null);
     const [messages, setMessages] = useState<ConversationMessage[]>([]);
@@ -52,7 +60,6 @@ export default function ChatPage() {
     const [showSidebar, setShowSidebar] = useState(true);
     const [showCompleteConfirm, setShowCompleteConfirm] = useState(false);
     const [showMedicalRecordModal, setShowMedicalRecordModal] = useState(false);
-    const [isSavingMedicalRecord, setIsSavingMedicalRecord] = useState(false);
     const [medicalRecordData, setMedicalRecordData] = useState({
         fullName: "",
         email: "",
@@ -61,6 +68,11 @@ export default function ChatPage() {
         advice: "",
         images: [] as string[]
     });
+    const [showViewMedicalRecordModal, setShowViewMedicalRecordModal] = useState(false);
+    const [viewingMedicalRecord, setViewingMedicalRecord] = useState<any>(null);
+    const [chatImages, setChatImages] = useState<string[]>([]);
+    const [isLoadingImages, setIsLoadingImages] = useState(false);
+    const [isSavingMedicalRecord, setIsSavingMedicalRecord] = useState(false);
     const [isCompleting, setIsCompleting] = useState(false);
 
     // Doctor suggestion state
@@ -89,9 +101,12 @@ export default function ChatPage() {
 
     const isDoctor = currentUser?.role === "DOCTOR";
 
+    const { socket, isConnected: isGlobalConnected } = useSocket();
+    const { initiateCall: initiateVideoCall } = useVideoCall();
+    const { initiateCall: initiateVoiceCall } = useVoiceCall();
+
     const fileInputRef = useRef<HTMLInputElement>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
-    const socketRef = useRef<Socket | null>(null);
 
     // Redirect về login nếu chưa đăng nhập
     useEffect(() => {
@@ -116,67 +131,30 @@ export default function ChatPage() {
         return () => clearTimeout(timeoutId);
     }, [messages, activeConversation, scrollToBottom]);
 
-    // Kết nối Socket.io sau khi đã đăng nhập
+    // Lắng nghe các sự kiện từ Socket
     useEffect(() => {
-        if (!isLoggedIn) return;
-
-        // Lấy token từ in-memory store (AuthContext dùng cookie + tokenStore, không lưu localStorage)
-        const token = getAccessToken();
-        console.log("[Chat] isLoggedIn:", isLoggedIn);
-        console.log("[Chat] getAccessToken():", token ? `OK (${token.substring(0, 20)}...)` : "NULL - no token!");
-        console.log("[Chat] BACKEND_URL:", BACKEND_URL);
-        if (!token) {
-            console.warn("[Chat] No access token found, cannot connect socket");
+        if (!isLoggedIn || !socket) {
+            setIsConnected(false);
             return;
         }
 
-        const socket = io(BACKEND_URL, {
-            auth: { token },
-            transports: ["polling", "websocket"],
-            reconnection: true,
-            reconnectionAttempts: 5,
-            reconnectionDelay: 2000,
-        });
-
-        socket.on("connect", () => {
-            setIsConnected(true);
-            console.log("[Chat] ✅ Socket connected! ID:", socket.id);
-        });
-
-        socket.on("connect_error", (err) => {
-            console.error("[Chat] ❌ Socket connect_error:", err.message, err);
-        });
-
-        socket.on("disconnect", (reason) => {
-            setIsConnected(false);
-            console.log("[Chat] Socket disconnected. Reason:", reason);
-        });
+        setIsConnected(true);
 
         // Nhận tin nhắn mới từ server
         socket.on("new_message", (msg: ConversationMessage) => {
             setMessages((prev) => {
-                // 1. Kiểm tra theo ID thực (từ DB)
                 if (prev.find((m) => m.id === msg.id)) return prev;
 
-                // 2. Chống trùng với tin nhắn optimistic (cùng content, cùng senderId, và mới gửi gần đây)
-                // Chúng ta sẽ thay thế tin nhắn optimistic bằng tin nhắn thực từ server
-                // Với ảnh, content gốc của optimistic là blob URL cục bộ, còn content từ server là URL thật.
-                // Do đó, ta ưu tiên check loại "image" hoặc khớp text nội dung.
                 const optimisticIndex = prev.findIndex(m =>
                     m.id.startsWith("temp-") &&
                     !m.isAiMessage &&
-                    (
-                        (m.type === "text" && m.content === msg.content) ||
-                        (m.type === "image" && msg.type === "image")
-                    )
+                    ((m.type === "text" && m.content === msg.content) || (m.type === "image" && msg.type === "image"))
                 );
 
                 if (optimisticIndex !== -1) {
                     const newMessages = [...prev];
                     const optimisticMsg = prev[optimisticIndex];
 
-                    // Giữ lại clientId để React không re-render làm giật hình
-                    // Đối với ảnh, giữ lại blob URL cục bộ để không bị chớp màn hình khi đổi sang URL online
                     newMessages[optimisticIndex] = {
                         ...msg,
                         clientId: optimisticMsg.clientId || optimisticMsg.id,
@@ -189,12 +167,7 @@ export default function ChatPage() {
             });
 
             setAiStatus((currentAiStatus) => {
-                if (currentAiStatus && !msg.isAiMessage) {
-                    // Đang chờ AI phân tích, tin nhắn này chỉ là tin nhắn của mình vọng về từ server -> Không tắt loading
-                    return currentAiStatus;
-                }
-
-                // Nếu nhận được tin của AI hoặc đang chat bình thường với bác sĩ -> Tắt loading
+                if (currentAiStatus && !msg.isAiMessage) return currentAiStatus;
                 setIsLoading(false);
                 return null;
             });
@@ -202,10 +175,14 @@ export default function ChatPage() {
 
         socket.on("conversation_updated", (data: { id: string; status: string; title: string }) => {
             console.log("[Chat] Conversation updated:", data);
+            
+            if (data.id === activeConversation?.id && data.status === "COMPLETED") {
+                setActiveTab("COMPLETED");
+            }
+
             setActiveConversation(prev => {
                 if (prev && prev.id === data.id) {
                     const nextStatus = data.status as any;
-                    // Nếu bác sĩ vừa hoàn thành và mình là bệnh nhân -> Hiện modal đánh giá
                     if (nextStatus === "COMPLETED" && currentUser?.role === "PATIENT") {
                         setIsRatingModalOpen(true);
                     }
@@ -213,9 +190,15 @@ export default function ChatPage() {
                 }
                 return prev;
             });
-            setConversations(prev => prev.map(c =>
-                c.id === data.id ? { ...c, status: data.status as any, title: data.title } : c
-            ));
+
+            setConversations(prev => {
+                if (data.status !== activeTab) {
+                    return prev.filter(c => c.id !== data.id);
+                }
+                return prev.map(c =>
+                    c.id === data.id ? { ...c, status: data.status as any, title: data.title } : c
+                );
+            });
         });
 
         socket.on("error", (err: { message: string }) => {
@@ -223,19 +206,18 @@ export default function ChatPage() {
             setIsLoading(false);
         });
 
-        socketRef.current = socket;
-
         return () => {
-            socket.disconnect();
-            socketRef.current = null;
+            socket.off("new_message");
+            socket.off("conversation_updated");
+            socket.off("error");
         };
-    }, []);
+    }, [isLoggedIn, socket, activeConversation?.id, activeTab, currentUser?.role]);
 
     // Chọn vào 1 conversation → join socket room + load messages
     const handleSelectConversation = useCallback(async (conv: Conversation) => {
         // Rời room cũ
-        if (activeConversation && socketRef.current) {
-            socketRef.current.emit("leave_conversation", activeConversation.id);
+        if (activeConversation && socket) {
+            socket.emit("leave_conversation", activeConversation.id);
         }
 
         setActiveConversation(conv);
@@ -245,11 +227,8 @@ export default function ChatPage() {
         try {
             console.log("[Chat] Fetching messages for:", conv.id);
             const msgs = await getConversationMessages(conv.id);
-            console.log("[Chat] Messages received (count):", msgs?.length);
-
+            
             if (!msgs || msgs.length === 0) {
-                console.log("[Chat] No messages found, applying fallback welcome message.");
-                // Nếu hội thoại trống, thêm tin nhắn chào mừng của DARA
                 const welcomeMsg: ConversationMessage = {
                     id: `welcome-${Date.now()}`,
                     isAiMessage: true,
@@ -272,15 +251,53 @@ export default function ChatPage() {
         }
 
         // Join socket room
-        if (socketRef.current) {
-            socketRef.current.emit("join_conversation", conv.id);
+        if (socket) {
+            socket.emit("join_conversation", conv.id);
         }
 
         // Nếu cuộc hội thoại đã hoàn thành và chưa đánh giá (với bệnh nhân)
         if (conv.status === 'COMPLETED' && currentUser?.role === 'PATIENT' && !conv.appointment?.feedback) {
-            setIsRatingModalOpen(true);
+            setTimeout(() => {
+                setIsRatingModalOpen(true);
+            }, 800);
         }
-    }, [activeConversation, currentUser]);
+    }, [activeConversation, currentUser, socket]);
+
+    // Xử lý gửi đánh giá
+    const handleRatingSubmit = async (rating: number, comment: string) => {
+        if (!activeConversation || isSubmittingRating) return;
+        
+        setIsSubmittingRating(true);
+        try {
+            const feedback = await submitFeedback(activeConversation.id, rating, comment);
+            showToast("Cảm ơn bạn đã gửi đánh giá!", "success");
+            
+            // Cập nhật state để ẩn nút đánh giá và hiển thị sao
+            const updatedConv = {
+                ...activeConversation,
+                appointment: {
+                    ...activeConversation.appointment,
+                    feedback: feedback
+                }
+            };
+            
+            setActiveConversation(updatedConv as any);
+            setConversations(prev => prev.map(c => c.id === activeConversation.id ? {
+                ...c,
+                appointment: {
+                    ...(c.appointment || {}),
+                    feedback: feedback
+                }
+            } as any : c));
+            
+            setIsRatingModalOpen(false);
+        } catch (err) {
+            console.error("Lỗi gửi đánh giá:", err);
+            showToast("Không thể gửi đánh giá. Vui lòng thử lại sau.", "error");
+        } finally {
+            setIsSubmittingRating(false);
+        }
+    };
 
     const loadConversations = useCallback(async (status: string, page: number = 1, append: boolean = false) => {
         try {
@@ -601,28 +618,57 @@ export default function ChatPage() {
                 setAiStatus(null);
             }
         } else {
-            // Logic cũ cho Chat với Bác sĩ: Chỉ được gửi websocket văn bản (hiện tại)
-            if (content && socketRef.current) {
-                const myMessage: ConversationMessage = {
-                    id: `temp-${Date.now()}`,
-                    content,
-                    type: "text",
-                    isAiMessage: false,
-                    conversationId: activeConversation.id,
-                    created_at: new Date().toISOString(),
-                    timestamp: Date.now(),
-                    sender: currentUser ? {
-                        id: String(currentUser.id),
-                        fullName: currentUser.fullName,
-                        role: currentUser.role
-                    } : { id: "me", fullName: "Me", role: "PATIENT" }
-                };
-                setMessages(prev => [...prev, myMessage]);
+            // Logic cho Chat với Bác sĩ: Hỗ trợ cả text và image qua REST API
+            setIsLoading(true);
+            try {
+                // Optimistic UI for text
+                let tempTextMsg: ConversationMessage | null = null;
+                if (content && !imageFile) {
+                     tempTextMsg = {
+                        id: `temp-${Date.now()}`,
+                        content,
+                        type: "text",
+                        isAiMessage: false,
+                        conversationId: activeConversation.id,
+                        created_at: new Date().toISOString(),
+                        timestamp: Date.now(),
+                        sender: currentUser ? {
+                            id: String(currentUser.id),
+                            fullName: currentUser.fullName,
+                            role: currentUser.role
+                        } : { id: "me", fullName: "Me", role: "PATIENT" }
+                    };
+                    setMessages(prev => [...prev, tempTextMsg!]);
+                }
 
-                socketRef.current.emit("send_message", {
-                    conversationId: activeConversation.id,
-                    content,
-                });
+                // Optimistic UI for image
+                let tempImageMsg: ConversationMessage | null = null;
+                if (imageFile) {
+                    tempImageMsg = {
+                        id: `temp-img-${Date.now()}`,
+                        clientId: `temp-img-${Date.now()}`,
+                        content: URL.createObjectURL(imageFile),
+                        type: "image",
+                        isAiMessage: false,
+                        conversationId: activeConversation.id,
+                        created_at: new Date().toISOString(),
+                        timestamp: Date.now() + 1,
+                        sender: currentUser ? {
+                            id: String(currentUser.id),
+                            fullName: currentUser.fullName,
+                            role: currentUser.role
+                        } : { id: "me", fullName: "Me", role: "PATIENT" }
+                    };
+                    setMessages(prev => [...prev, tempImageMsg!]);
+                }
+
+                await sendConversationMessage(activeConversation.id, content, imageFile || undefined);
+
+            } catch (err) {
+                console.error("Lỗi gửi tin nhắn:", err);
+                showToast("Không thể gửi tin nhắn. Vui lòng thử lại.", "error");
+            } finally {
+                setIsLoading(false);
             }
         }
     };
@@ -684,7 +730,7 @@ export default function ChatPage() {
             setDoctorSchedules(grouped);
         } catch (err) {
             console.error("Failed to fetch doctor schedule:", err);
-            alert("Không thể lấy lịch khám của bác sĩ.");
+            showToast("Không thể lấy lịch khám của bác sĩ.", "error");
             setBookingDoctorId(null);
         } finally {
             setIsLoadingSchedule(false);
@@ -696,28 +742,6 @@ export default function ChatPage() {
         setIsBookingModalOpen(true);
     };
 
-    const handleRatingSubmit = async (rating: number, comment: string) => {
-        if (!activeConversation) return;
-        setIsSubmittingRating(true);
-        try {
-            await submitFeedback(activeConversation.id, rating, comment);
-            // Cập nhật local state để biết đã đánh giá (hoặc reload data)
-            setActiveConversation(prev => prev ? {
-                ...prev,
-                appointment: {
-                    ...prev.appointment!,
-                    feedback: { id: 'temp', rate: rating, comment }
-                }
-            } as any : null);
-            setIsRatingModalOpen(false);
-            alert("Cảm ơn bạn đã đánh giá!");
-        } catch (err) {
-            console.error("Lỗi gửi đánh giá:", err);
-            alert("Có lỗi xảy ra khi gửi đánh giá. Vui lòng thử lại.");
-        } finally {
-            setIsSubmittingRating(false);
-        }
-    };
 
     const formatTime = (dateStr: string | number) => {
         return new Date(dateStr).toLocaleTimeString("vi-VN", {
@@ -791,7 +815,9 @@ export default function ChatPage() {
                         specialty: doctors.find(d => d.userId === bookingDoctorId)?.specialization || "",
                         avatar: doctors.find(d => d.userId === bookingDoctorId)?.avatar || "",
                     }}
-                    conversationId={activeConversation?.id}
+                    // Chỉ truyền conversationId nếu đang ở trong AI Chat để kế thừa dữ liệu chẩn đoán
+                    // Nếu là bác sĩ tư vấn rồi thì đặt lịch mới sẽ tạo cuộc hội thoại mới (Tránh trùng lặp)
+                    conversationId={activeConversation?.type === 'AI_ASSISTANT' ? activeConversation.id : undefined}
                     initialDate={selectedSlot.date}
                     initialTime={selectedSlot.startTime}
                     initialPrice={selectedSlot.price}
@@ -826,7 +852,8 @@ export default function ChatPage() {
                                     try {
                                         const updated = await completeConversation(activeConversation.id);
                                         setActiveConversation(prev => prev ? { ...prev, status: updated.status } : null);
-                                        setConversations(prev => prev.map(c => c.id === activeConversation.id ? { ...c, status: updated.status } : c));
+                                        // Chuyển sang tab Đã xong ngay lập tức
+                                        setActiveTab("COMPLETED");
                                         setShowCompleteConfirm(false);
                                     } catch (err) {
                                         console.error("Lỗi hoàn thành ca khám:", err);
@@ -875,7 +902,7 @@ export default function ChatPage() {
                         </div>
 
                         {/* Modal Body */}
-                        <div className="flex-1 overflow-y-auto p-8 space-y-8">
+                        <div className="flex-1 overflow-y-auto custom-scrollbar p-8 space-y-8">
                             {/* Form Fields */}
                             <div className="space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -935,13 +962,46 @@ export default function ChatPage() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">Hình ảnh chẩn đoán</label>
-                                    <div className="grid grid-cols-4 gap-3">
-                                        <button className="aspect-square rounded-xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center text-slate-400 hover:border-dermcare hover:text-dermcare hover:bg-dermcare/5 transition-all">
-                                            <span className="text-2xl">+</span>
-                                            <span className="text-[10px] font-bold">Thêm ảnh</span>
-                                        </button>
-                                    </div>
+                                    <label className="block text-sm font-bold text-slate-700 mb-2">Hình ảnh chẩn đoán (Chọn từ cuộc hội thoại)</label>
+                                    {isLoadingImages ? (
+                                        <div className="flex items-center gap-2 py-4">
+                                            <div className="h-4 w-4 animate-spin rounded-full border-2 border-dermcare border-t-transparent" />
+                                            <span className="text-sm text-slate-500">Đang tải ảnh từ chat...</span>
+                                        </div>
+                                    ) : chatImages.length === 0 ? (
+                                        <p className="text-sm text-slate-400 italic py-2">Không tìm thấy ảnh nào trong cuộc hội thoại này.</p>
+                                    ) : (
+                                        <div className="grid grid-cols-4 gap-3">
+                                            {chatImages.map((img, idx) => {
+                                                const isSelected = medicalRecordData.images.includes(img);
+                                                return (
+                                                    <div 
+                                                        key={idx} 
+                                                        onClick={() => {
+                                                            const newImages = isSelected 
+                                                                ? medicalRecordData.images.filter(i => i !== img)
+                                                                : [...medicalRecordData.images, img];
+                                                            setMedicalRecordData({...medicalRecordData, images: newImages});
+                                                        }}
+                                                        className={`relative aspect-square rounded-xl overflow-hidden border-2 cursor-pointer transition-all ${
+                                                            isSelected ? "border-dermcare ring-2 ring-dermcare/20" : "border-slate-100 opacity-60 hover:opacity-100"
+                                                        }`}
+                                                    >
+                                                        <img src={img} alt="Chat image" className="h-full w-full object-cover" />
+                                                        {isSelected && (
+                                                            <div className="absolute inset-0 bg-dermcare/10 flex items-center justify-center text-white">
+                                                                <div className="bg-dermcare rounded-full p-1 shadow-md">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                                                        <polyline points="20 6 9 17 4 12" />
+                                                                    </svg>
+                                                                </div>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -955,24 +1015,75 @@ export default function ChatPage() {
                             >
                                 Đóng
                             </button>
-                            <button
-                                onClick={() => {
-                                    alert("Đã lưu bệnh án! (Chế độ UI demo)");
-                                    setShowMedicalRecordModal(false);
+                             <button
+                                onClick={async () => {
+                                    if (!activeConversation) return;
+                                    setIsSavingMedicalRecord(true);
+                                    try {
+                                        const result = await createMedicalRecord({
+                                            appointmentId: activeConversation.appointment?.id || "",
+                                            treatment: medicalRecordData.treatment,
+                                            note: medicalRecordData.advice,
+                                            images: medicalRecordData.images,
+                                            patientInfo: {
+                                                fullName: medicalRecordData.fullName,
+                                                email: medicalRecordData.email,
+                                                phone: medicalRecordData.phone
+                                            },
+                                            doctorInfo: {
+                                                fullName: currentUser?.fullName,
+                                                specialization: (currentUser as any)?.doctorProfile?.specialization
+                                            }
+                                        });
+                                        showToast("Đã lưu bệnh án thành công!", "success");
+                                        setShowMedicalRecordModal(false);
+                                        
+                                        // Cập nhật activeConversation để nút chuyển sang "Xem hồ sơ"
+                                        setActiveConversation(prev => prev ? {
+                                            ...prev,
+                                            appointment: {
+                                                ...prev.appointment!,
+                                                medicalRecord: result.data || result // result có thể bọc trong data tùy response
+                                            }
+                                        } as any : null);
+                                    } catch (err: any) {
+                                        console.error("Lỗi lưu bệnh án:", err);
+                                        showToast("Có lỗi xảy ra khi lưu bệnh án. Vui lòng thử lại.", "error");
+                                    } finally {
+                                        setIsSavingMedicalRecord(false);
+                                    }
                                 }}
-                                className="flex-[2] rounded-xl bg-dermcare py-3.5 text-sm font-bold text-white shadow-lg shadow-dermcare/20 transition hover:bg-dermcare-dark active:scale-95 flex items-center justify-center gap-2"
+                                disabled={isSavingMedicalRecord}
+                                className="flex-[2] rounded-xl bg-dermcare py-3.5 text-sm font-bold text-white shadow-lg shadow-dermcare/20 transition hover:bg-dermcare-dark active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50"
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
-                                    <polyline points="17 21 17 13 7 13 7 21" />
-                                    <polyline points="7 3 7 8 15 8" />
-                                </svg>
-                                Lưu bệnh án cho bệnh nhân
+                                {isSavingMedicalRecord ? (
+                                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                                ) : (
+                                    <>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+                                            <polyline points="17 21 17 13 7 13 7 21" />
+                                            <polyline points="7 3 7 8 15 8" />
+                                        </svg>
+                                        Lưu bệnh án cho bệnh nhân
+                                    </>
+                                )}
                             </button>
                         </div>
                     </div>
                 </div>
             )}
+
+            {/* View Medical Record Modal for Both Patient and Doctor */}
+            {showViewMedicalRecordModal && viewingMedicalRecord && (
+                <ViewMedicalRecordModal
+                    isOpen={showViewMedicalRecordModal}
+                    onClose={() => setShowViewMedicalRecordModal(false)}
+                    record={viewingMedicalRecord}
+                    patientName={activeConversation?.patient?.fullName}
+                />
+            )}
+
             {/* Sidebar - Chat History */}
             <div className={`${showSidebar ? "w-72" : "w-0"} border-r border-slate-200 bg-white transition-all duration-300 overflow-hidden flex-shrink-0`}>
                 <div className="flex h-full flex-col">
@@ -989,7 +1100,7 @@ export default function ChatPage() {
                     )}
 
                     {/* Conversation List */}
-                    <div className="flex-1 overflow-y-auto p-3">
+                    <div className="flex-1 overflow-y-auto custom-scrollbar p-3">
                         {/* Tabs */}
                         <div className="mb-4 flex rounded-lg bg-slate-100 p-1">
                             <button
@@ -1038,9 +1149,16 @@ export default function ChatPage() {
                                                 }`}
                                         >
                                             <div className="flex items-center justify-between gap-2">
-                                                <p className={`text-sm font-bold truncate flex-1 ${isActive ? "text-dermcare" : "text-slate-900"}`}>
-                                                    {conv.title || conv.lastMessage || "Hội thoại mới"}
-                                                </p>
+                                                <div className="flex items-center justify-between gap-2 flex-1 min-w-0">
+                                                    <p className={`text-sm font-bold truncate ${isActive ? "text-dermcare" : "text-slate-900"}`}>
+                                                        {conv.title || conv.lastMessage || "Hội thoại mới"}
+                                                    </p>
+                                                    {conv.appointment?.feedback && (
+                                                        <span className="flex-shrink-0 inline-flex items-center gap-0.5 text-[10px] text-amber-500 bg-amber-50 px-1.5 py-0.5 rounded-full border border-amber-100">
+                                                            ⭐ {conv.appointment.feedback.rate}
+                                                        </span>
+                                                    )}
+                                                </div>
                                                 {activeTab === "AI_CONSULTING" && (
                                                     <button
                                                         onClick={(e) => openDeleteModal(e, conv.id)}
@@ -1083,9 +1201,9 @@ export default function ChatPage() {
                     {/* Sidebar Footer */}
                     <div className="border-t border-slate-200 p-4">
                         <div className="text-xs text-slate-500">
-                            <div className={`flex items-center gap-1.5 mb-1 ${isConnected ? "text-green-600" : "text-red-500"}`}>
-                                <span className={`h-2 w-2 rounded-full ${isConnected ? "bg-green-500" : "bg-red-400"}`} />
-                                {isConnected ? "Trực tuyến" : isLoggedIn ? "Mất kết nối" : "Chưa đăng nhập"}
+                            <div className={`flex items-center gap-1.5 mb-1 ${isGlobalConnected ? "text-green-600" : "text-red-500"}`}>
+                                <span className={`h-2 w-2 rounded-full ${isGlobalConnected ? "bg-green-500" : "bg-red-400"}`} />
+                                {isGlobalConnected ? "Trực tuyến" : isLoggedIn ? "Mất kết nối" : "Chưa đăng nhập"}
                             </div>
                             <p>💡 Mô tả chi tiết triệu chứng để được tư vấn chính xác</p>
                             <p>💡 Đảm bảo ảnh rõ nét, chất lượng tốt nhất</p>
@@ -1141,20 +1259,30 @@ export default function ChatPage() {
                                     )}
                                 </div>
                                 <div>
-                                    <h1 className="text-lg font-bold text-slate-900">
-                                        {activeConversation?.status === "DOCTOR_CONSULTING"
+                                    <h1 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                                        {activeConversation?.status === "DOCTOR_CONSULTING" || activeConversation?.status === "COMPLETED"
                                             ? isDoctor
                                                 ? activeConversation.patient?.fullName || "Bệnh nhân"
                                                 : `${(activeConversation.doctor as any)?.doctorProfile?.qualifications || ""} ${activeConversation.doctor?.fullName || "Bác sĩ tư vấn"}`.trim()
                                             : "DARA AI"}
+                                        {activeConversation?.appointment?.feedback && (
+                                            <span className="inline-flex items-center gap-0.5 text-[12px] text-amber-500 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-100">
+                                                ⭐ {activeConversation.appointment.feedback.rate}
+                                            </span>
+                                        )}
                                     </h1>
-                                    <p className="text-xs text-slate-500">
-                                        {activeConversation
-                                            ? activeConversation.status === "DOCTOR_CONSULTING"
-                                                ? isDoctor ? "👤 Thông tin bệnh nhân" : "👨‍⚕️ Bác sĩ đang trực tuyến"
-                                                : "Trợ lý da liễu thông minh • 24/7"
-                                            : "Trợ lý da liễu thông minh • 24/7"}
-                                    </p>
+                                    <div className="flex items-center gap-1.5 mt-0.5">
+                                        {activeConversation?.status === "DOCTOR_CONSULTING" ? (
+                                            <>
+                                                <div className={`h-2 w-2 rounded-full ${isGlobalConnected ? "bg-green-500 animate-pulse" : "bg-slate-300"}`} />
+                                                <span className="text-xs text-slate-500">
+                                                    {isGlobalConnected ? "Đang trực tuyến" : "Ngoại tuyến"}
+                                                </span>
+                                            </>
+                                        ) : (
+                                            <span className="text-xs text-slate-500">Trợ lý da liễu thông minh • 24/7</span>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1164,16 +1292,31 @@ export default function ChatPage() {
                                 {isDoctor && (
                                     <div className="flex items-center gap-2">
                                         <button
-                                            onClick={() => {
-                                                setMedicalRecordData({
-                                                    fullName: activeConversation.patient?.fullName || "",
-                                                    email: (activeConversation.patient as any)?.email || "",
-                                                    phone: (activeConversation.patient as any)?.phone || "",
-                                                    treatment: "",
-                                                    advice: "",
-                                                    images: []
-                                                });
-                                                setShowMedicalRecordModal(true);
+                                            onClick={async () => {
+                                                const hasRecord = activeConversation.appointment?.medicalRecord;
+                                                if (hasRecord) {
+                                                    setViewingMedicalRecord(activeConversation.appointment?.medicalRecord);
+                                                    setShowViewMedicalRecordModal(true);
+                                                } else {
+                                                    setMedicalRecordData({
+                                                        fullName: activeConversation.patient?.fullName || "",
+                                                        email: (activeConversation.patient as any)?.email || "",
+                                                        phone: (activeConversation.patient as any)?.phone || "",
+                                                        treatment: "",
+                                                        advice: "",
+                                                        images: []
+                                                    });
+                                                    setShowMedicalRecordModal(true);
+                                                    setIsLoadingImages(true);
+                                                    try {
+                                                        const imgs = await getConversationImages(activeConversation.id);
+                                                        setChatImages(imgs);
+                                                    } catch (err) {
+                                                        console.error("Lỗi lấy ảnh:", err);
+                                                    } finally {
+                                                        setIsLoadingImages(false);
+                                                    }
+                                                }
                                             }}
                                             className="flex items-center gap-2 rounded-lg border-2 border-dermcare bg-dermcare/5 px-4 py-2 text-sm font-bold text-dermcare transition-all hover:bg-dermcare hover:text-white active:scale-95"
                                         >
@@ -1184,7 +1327,7 @@ export default function ChatPage() {
                                                 <line x1="16" y1="17" x2="8" y2="17" />
                                                 <line x1="10" y1="9" x2="8" y2="9" />
                                             </svg>
-                                            Ghi chú bệnh án
+                                            {activeConversation.appointment?.medicalRecord ? "Xem hồ sơ bệnh án" : "Ghi chú bệnh án"}
                                         </button>
                                         <button
                                             onClick={() => setShowCompleteConfirm(true)}
@@ -1201,6 +1344,24 @@ export default function ChatPage() {
                                     <button
                                         className="group flex h-10 w-10 items-center justify-center rounded-full transition-all hover:bg-slate-100 active:scale-95"
                                         title="Bắt đầu cuộc gọi thoại"
+                                        onClick={() => {
+                                            const recipientId = isDoctor ? activeConversation.patient?.id : activeConversation.doctor?.id;
+                                            if (recipientId) {
+                                                let rName = "Người dùng";
+                                                if (isDoctor) {
+                                                    rName = activeConversation.patient?.fullName || "Bệnh nhân";
+                                                } else {
+                                                    const doc = activeConversation.doctor;
+                                                    if (doc) {
+                                                        const docProfile = (doc as any)?.doctorProfile;
+                                                        rName = docProfile?.qualifications ? `${docProfile.qualifications} ${doc.fullName}` : `BS. ${doc.fullName}`;
+                                                    } else {
+                                                        rName = "Bác sĩ tư vấn";
+                                                    }
+                                                }
+                                                initiateVoiceCall(recipientId, rName, activeConversation.id);
+                                            }
+                                        }}
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-600 transition-colors group-hover:text-dermcare">
                                             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.19-1.28a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
@@ -1209,6 +1370,24 @@ export default function ChatPage() {
                                     <button
                                         className="group flex h-10 w-10 items-center justify-center rounded-full bg-dermcare/10 transition-all hover:bg-dermcare hover:shadow-md active:scale-95"
                                         title="Bắt đầu cuộc gọi video"
+                                        onClick={() => {
+                                            const recipientId = isDoctor ? activeConversation.patient?.id : activeConversation.doctor?.id;
+                                            if (recipientId) {
+                                                let rName = "Người dùng";
+                                                if (isDoctor) {
+                                                    rName = activeConversation.patient?.fullName || "Bệnh nhân";
+                                                } else {
+                                                    const doc = activeConversation.doctor;
+                                                    if (doc) {
+                                                        const docProfile = (doc as any)?.doctorProfile;
+                                                        rName = docProfile?.qualifications ? `${docProfile.qualifications} ${doc.fullName}` : `BS. ${doc.fullName}`;
+                                                    } else {
+                                                        rName = "Bác sĩ tư vấn";
+                                                    }
+                                                }
+                                                initiateVideoCall(recipientId, rName, activeConversation.id);
+                                            }
+                                        }}
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-dermcare transition-colors group-hover:text-white">
                                             <path d="m22 8-6 4 6 4V8Z" />
@@ -1222,7 +1401,7 @@ export default function ChatPage() {
                 </div>
 
                 {/* Messages Area */}
-                <div className="flex-1 overflow-y-auto px-4 py-6">
+                <div className="flex-1 overflow-y-auto custom-scrollbar px-4 py-6">
                     {!activeConversation ? (
                         <div className="flex h-full flex-col items-center justify-center text-center">
                             <div className="mb-4 text-6xl">🤖</div>
@@ -1264,31 +1443,57 @@ export default function ChatPage() {
                                 return (
                                     <div key={message.clientId || message.id} className={`flex ${isCurrentUser ? "justify-end" : "justify-start"}`}>
                                         {!isCurrentUser && (
-                                            <div className="mr-2 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-dermcare to-dermcare-dark text-sm text-white overflow-hidden">
+                                            <div className="mr-2 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-dermcare to-dermcare-dark text-sm text-white shadow-soft overflow-hidden">
                                                 {message.isAiMessage ? (
                                                     "🤖"
+                                                ) : (activeConversation?.doctor && String(message.sender?.id) === String(activeConversation.doctor?.id)) ? (
+                                                    (activeConversation.doctor as any)?.doctorProfile?.avatar ? (
+                                                        <img src={(activeConversation.doctor as any).doctorProfile.avatar} alt="Doctor" className="h-full w-full object-cover" />
+                                                    ) : (
+                                                        "👨‍⚕️"
+                                                    )
                                                 ) : (message.sender as any)?.avatar ? (
-                                                    <img src={(message.sender as any).avatar} alt={message.sender.fullName} className="h-full w-full object-cover" />
+                                                    <img src={(message.sender as any).avatar} alt="Sender" className="h-full w-full object-cover" />
                                                 ) : (message.sender as any)?.doctorProfile?.avatar ? (
-                                                    <img src={(message.sender as any).doctorProfile.avatar} alt={message.sender.fullName} className="h-full w-full object-cover" />
-                                                ) : activeConversation?.status === "DOCTOR_CONSULTING" && String(message.sender?.id) === String(activeConversation.doctor?.id) ? (
-                                                    "👨‍⚕️"
+                                                    <img src={(message.sender as any).doctorProfile.avatar} alt="Doctor Profile" className="h-full w-full object-cover" />
                                                 ) : (
                                                     "👤"
                                                 )}
                                             </div>
                                         )}
                                         <div className={`max-w-[75%] rounded-2xl px-4 py-3 ${isCurrentUser
-                                            ? "bg-dermcare text-white"
-                                            : "bg-white border border-slate-200 text-slate-900"
+                                            ? "bg-dermcare text-white shadow-sm"
+                                            : "bg-white border border-slate-200 text-slate-900 shadow-sm"
                                             }`}>
                                             {!isCurrentUser && (
-                                                <p className="mb-1 text-xs font-semibold text-dermcare">
-                                                    {message.isAiMessage ? "DARA AI" : message.sender?.fullName || "Bác sĩ"}
+                                                <p className="mb-1 text-[11px] font-bold text-dermcare">
+                                                    {message.isAiMessage ? (
+                                                        "DARA AI"
+                                                    ) : (activeConversation?.doctor && String(message.sender?.id) === String(activeConversation.doctor?.id)) ? (
+                                                        // Fallback to activeConversation.doctor info for reliability
+                                                        `${(activeConversation.doctor as any)?.doctorProfile?.qualifications || ""} ${activeConversation.doctor?.fullName || "Bác sĩ"}`.trim()
+                                                    ) : (message.sender as any)?.doctorProfile?.qualifications ? (
+                                                        `${(message.sender as any).doctorProfile.qualifications} ${message.sender?.fullName || "Bác sĩ"}`
+                                                    ) : (
+                                                        message.sender?.fullName || "Người dùng"
+                                                    )}
                                                 </p>
                                             )}
                                             {message.type === 'image' ? (
                                                 <img src={message.content} alt="Uploaded attachment" className="max-w-full sm:max-w-md w-auto rounded-xl mt-1 object-cover cursor-pointer hover:opacity-90 transition shadow-sm border border-slate-100" onClick={() => window.open(message.content, "_blank")} />
+                                            ) : message.type === 'medical_record' ? (
+                                                <div className="bg-white border-2 border-slate-100 rounded-2xl p-6 my-2 shadow-sm flex flex-col items-center text-center">
+                                                    <h4 className="font-bold text-slate-800 text-sm mb-4">Hồ sơ bệnh án điện tử</h4>
+                                                    <button 
+                                                        onClick={() => {
+                                                            setViewingMedicalRecord(JSON.parse(message.content));
+                                                            setShowViewMedicalRecordModal(true);
+                                                        }}
+                                                        className="px-8 py-2.5 bg-dermcare text-white text-xs font-bold rounded-full hover:bg-dermcare-dark transition-all shadow-md shadow-dermcare/20 active:scale-[0.98]"
+                                                    >
+                                                        Xem chi tiết bệnh án
+                                                    </button>
+                                                </div>
                                             ) : (
                                                 <div className="whitespace-pre-wrap text-sm" dangerouslySetInnerHTML={{ __html: message.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
                                             )}
@@ -1529,18 +1734,154 @@ export default function ChatPage() {
                                     ➤
                                 </button>
                             </div>
-
                         </div>
                     </div>
                 ) : activeConversation && activeConversation.status === "COMPLETED" ? (
-                    <div className="border-t border-slate-200 bg-slate-50 px-4 py-3 text-center flex-shrink-0">
-                        <div className="mx-auto max-w-lg rounded-full border border-slate-200 bg-white px-6 py-2 shadow-sm flex items-center justify-center gap-2">
-                            <span className="text-green-500 text-sm">✅</span>
-                            <span className="text-sm font-semibold text-slate-700">Phiên tư vấn đã kết thúc.</span>
-                            <span className="text-xs text-slate-500">Ca khám này đã được bác sĩ xác nhận hoàn thành.</span>
+                    <div className="border-t border-slate-200 bg-slate-50 px-4 py-3 text-center flex-shrink-0 animate-in slide-in-from-bottom-2 duration-300">
+                        <div className="mx-auto max-w-lg rounded-2xl border border-slate-200 bg-white px-6 py-4 shadow-sm">
+                            <div className="flex items-center justify-center gap-2 mb-2">
+                                <span className="text-green-500 text-lg">✅</span>
+                                <span className="text-sm font-bold text-slate-800">Phiên tư vấn đã kết thúc</span>
+                            </div>
+                            <p className="text-xs text-slate-500 mb-3">Ca khám này đã được bác sĩ xác nhận hoàn thành.</p>
+                            
+                            {!isDoctor && !activeConversation.appointment?.feedback && (
+                                <button
+                                    onClick={() => setIsRatingModalOpen(true)}
+                                    className="inline-flex items-center gap-2 rounded-full bg-dermcare px-6 py-2 text-xs font-bold text-white shadow-md transition hover:bg-dermcare-dark active:scale-95"
+                                >
+                                    ⭐ Đánh giá ngay
+                                </button>
+                            )}
+
+                            {!isDoctor && activeConversation.appointment?.feedback && (
+                                <div className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-amber-50 rounded-full border border-amber-100">
+                                    <span className="text-xs font-bold text-amber-600">Bạn đã đánh giá {activeConversation.appointment.feedback.rate}⭐</span>
+                                </div>
+                            )}
                         </div>
                     </div>
                 ) : null}
+            </div>
+
+            {/* Rating Modal */}
+            <RatingModal
+                isOpen={isRatingModalOpen}
+                onClose={() => setIsRatingModalOpen(false)}
+                onSubmit={handleRatingSubmit}
+                doctorName={activeConversation?.doctor?.fullName}
+                isSubmitting={isSubmittingRating}
+            />
+        </div>
+    );
+}
+
+// Component hiển thị chi tiết bệnh án
+function ViewMedicalRecordModal({ 
+    isOpen, 
+    onClose, 
+    record, 
+    patientName 
+}: { 
+    isOpen: boolean; 
+    onClose: () => void; 
+    record: any; 
+    patientName?: string;
+}) {
+    if (!isOpen || !record) return null;
+
+    return (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4 animate-in fade-in duration-300">
+            <div className="relative w-full max-w-2xl max-h-[90vh] overflow-hidden rounded-2xl bg-white shadow-2xl flex flex-col animate-in zoom-in-95 duration-300 border border-slate-200">
+                {/* Header - Clean Medical Look */}
+                <div className="bg-slate-50 border-b border-slate-200 px-8 py-6 flex-shrink-0">
+                    <div className="relative flex items-center justify-between">
+                        <div className="flex items-center gap-4">
+                            <div className="p-2.5 bg-blue-50 rounded-xl text-blue-600 border border-blue-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                    <line x1="16" y1="13" x2="8" y2="13" />
+                                    <line x1="16" y1="17" x2="8" y2="17" />
+                                    <line x1="10" y1="9" x2="8" y2="9" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-bold text-slate-900 uppercase tracking-tight">Hồ sơ bệnh án điện tử</h3>
+                            </div>
+                        </div>
+                        <button onClick={onClose} className="rounded-lg p-2 hover:bg-slate-200 transition-colors text-slate-400 hover:text-slate-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div className="flex-1 overflow-y-auto custom-scrollbar bg-white">
+                    <div className="p-8 space-y-8">
+                        {/* Info Header Card */}
+                        <div className="grid grid-cols-2 gap-8 bg-slate-50 p-6 rounded-xl border border-slate-100">
+                            <div className="space-y-1">
+                                <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Bệnh nhân</p>
+                                <p className="text-base font-bold text-slate-900">
+                                    {patientName || record.patientInfo?.fullName || "N/A"}
+                                </p>
+                            </div>
+                            <div className="space-y-1 text-right">
+                                <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Ngày khám</p>
+                                <p className="text-base font-bold text-slate-900">
+                                    {new Date(record.created_at || Date.now()).toLocaleDateString('vi-VN')}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="space-y-6">
+                            <section>
+                                <header className="flex items-center gap-2 mb-3">
+                                    <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500">Phác đồ điều trị</h4>
+                                </header>
+                                <div className="bg-white border border-slate-200 rounded-xl p-5 text-slate-700 leading-relaxed text-sm font-medium">
+                                    {record.treatment || "Không có thông tin điều trị."}
+                                </div>
+                            </section>
+
+                            <section>
+                                <header className="flex items-center gap-2 mb-3">
+                                    <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500">Lời khuyên của bác sĩ</h4>
+                                </header>
+                                <div className="bg-blue-50 border border-blue-100 rounded-xl p-5 text-blue-800/80 leading-relaxed text-sm font-medium">
+                                    {record.note || record.advice || "Bác sĩ chưa có lời khuyên cụ thể."}
+                                </div>
+                            </section>
+
+                            {record.images && record.images.length > 0 && (
+                                <section>
+                                    <header className="flex items-center gap-2 mb-3">
+                                        <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500">Hình ảnh đính kèm</h4>
+                                    </header>
+                                    <div className="grid grid-cols-3 gap-4">
+                                        {record.images.map((img: string, idx: number) => (
+                                            <div key={idx} className="group relative aspect-square rounded-lg overflow-hidden border border-slate-200 cursor-pointer hover:border-blue-400 transition-all" onClick={() => window.open(img, '_blank')}>
+                                                <img src={img} alt={`Attachment ${idx + 1}`} className="w-full h-full object-cover transition-transform group-hover:scale-105" />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+                            )}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Footer - Clean */}
+                <div className="px-8 py-5 bg-slate-50 border-t border-slate-200 flex items-center justify-end flex-shrink-0">
+                    <button
+                        onClick={onClose}
+                        className="rounded-xl bg-slate-900 px-10 py-3 text-sm font-bold text-white transition-all hover:bg-slate-800 active:scale-95 shadow-md flex-shrink-0"
+                    >
+                        Đóng
+                    </button>
+                </div>
             </div>
         </div>
     );

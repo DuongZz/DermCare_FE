@@ -133,17 +133,18 @@ export default function LoginPage() {
     return (
         <div className="flex min-h-screen">
             {/* Left side - Branding/Hero */}
-            <div className="hidden lg:flex lg:w-1/2 h-screen sticky top-0 bg-gradient-to-br from-dermcare to-dermcare-dark p-12 pl-20 items-center justify-center relative overflow-hidden pb-60">
+            <div className="hidden lg:flex lg:flex-col lg:w-1/2 h-screen sticky top-0 p-12 pl-24 pt-32 items-start justify-start relative overflow-hidden">
+                {/* Background Image with Overlay */}
+                <div
+                    className="absolute inset-0 bg-cover bg-[85%_center]"
+                    style={{ backgroundImage: 'url("/auth_bg.png")' }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-dermcare/60 to-dermcare-dark/75" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.15),_transparent_60%)]" />
+
                 <div className="relative z-10 text-white space-y-6 max-w-md">
-                    <Link href="/" className="inline-block">
-                        <Image
-                            src="/kma_logo.jpg"
-                            alt="KMA - Academy of Cryptography Techniques"
-                            width={200}
-                            height={200}
-                            className="h-32 w-32 rounded-full"
-                        />
+                    <Link href="/" className="inline-block mb-8">
+                        {/* No logo here as requested, just a clean spacer or branding text if needed */}
                     </Link>
                     <h1 className="text-4xl font-bold">
                         Chăm sóc da liễu <br />

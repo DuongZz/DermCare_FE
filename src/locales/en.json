@@ -1,0 +1,114 @@
+{
+  "header": {
+    "nav": {
+      "services": "Services",
+      "doctors": "Doctors",
+      "specialties": "Specialties",
+      "reviews": "Reviews",
+      "partners": "Partners",
+      "about": "About Us"
+    },
+    "actions": {
+      "login": "Login",
+      "book_now": "Book Now",
+      "manage_shifts": "Manage Shifts"
+    },
+    "user_menu": {
+      "profile": "Personal Profile",
+      "schedule": "Work Schedule",
+      "appointments": "Manage Appointments",
+      "logout": "Logout"
+    }
+  },
+  "footer": {
+    "description": "Virtual dermatology platform with clinical AI assistance",
+    "quick_links": "Quick Links",
+    "contact": "Contact",
+    "follow": "Follow",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "profile": {
+    "stats": {
+      "title": "Account Statistics",
+      "appointments": "Checkups",
+      "medical_records": "Medical Records",
+      "followed_doctors": "Supervising Doctors"
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "Online Dermatology Care • 24/7",
+      "title": "Online Dermatology Clinic System",
+      "description": "Book appointments quickly, connect with top dermatologists, track treatment progress, and store your skin records all in one place.",
+      "cta": "View Consultation Process",
+      "benefits": "✓ No Queuing • ✓ Secure Patient Information"
+    },
+    "ai": {
+      "assistant": "AI Assistant • 24/7",
+      "title": "Consult with Virtual Assistant",
+      "description": "Smart AI assistant, ready to consult and providing preliminary diagnoses for your skin conditions 24/7",
+      "features": {
+        "instant": "Instant Free Consultation",
+        "diagnosis": "Preliminary AI Diagnosis",
+        "seconds": "Response in Seconds"
+      },
+      "cta": {
+        "start": "Start Diagnosis",
+        "start_now": "Start Diagnosis Now",
+        "messages": "View Chats & Messages",
+        "login_save": "Log in to save your consultation history"
+      }
+    },
+    "services": {
+      "title": "Skin Care Services",
+      "subtitle": "AI Diagnosis and Scheduling with Dermatologists",
+      "ai_diagnosis": {
+        "title": "AI Diagnosis",
+        "description": "DARA AI - A smart virtual assistant trained on millions of real-world dermatology cases.",
+        "benefit1": "Analyze images and symptoms in seconds",
+        "benefit2": "High accuracy of 85% or more depending on condition",
+        "benefit3": "Preliminary advice and treatment suggestions",
+        "benefit4": "Completely free, unlimited usage"
+      },
+      "doctor_consultation": {
+        "title": "Consult with Specialists",
+        "description": "A team of leading dermatologists with years of experience, ready for online consultation 24/7.",
+        "benefit1": "Online video call connection with specialists",
+        "benefit2": "Detailed consultation and accurate expert diagnosis",
+        "benefit3": "Receive e-prescriptions and specific treatment guides",
+        "benefit4": "Track progress and convenient periodic follow-ups"
+      },
+      "medical_records": {
+        "title": "Track Medical Records",
+        "description": "Manage your personal health records scientifically, easy to look up anytime, anywhere.",
+        "benefit1": "Store visit history and diagnostic results",
+        "benefit2": "Track disease progression via photos and notes",
+        "benefit3": "Manage prescriptions and medication reminders",
+        "benefit4": "Absolute security, only accessible by you and your doctor"
+      }
+    },
+    "doctors": {
+      "title": "Featured Doctors",
+      "subtitle": "A team of leading, experienced dermatologists",
+      "view_all": "View All Doctors",
+      "loading": "Loading doctor list..."
+    },
+    "specialties": {
+      "title": "Specialties",
+      "subtitle": "List of popular dermatology specialties",
+      "doctor_count": "doctors",
+      "loading": "Loading specialties..."
+    },
+    "reviews": {
+      "title": "Patient Reviews",
+      "subtitle": "Thousands of patients satisfied with our services",
+      "patient": "Patient",
+      "empty": "No reviews from patients yet. Be the first to experience our service!"
+    },
+    "partners": {
+      "title": "Partners & Collaboration",
+      "subtitle": "Trusted by leading organizations"
+    }
+  }
+}

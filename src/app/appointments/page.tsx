@@ -2,15 +2,20 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { getMyAppointments, Appointment, getOrCreateConversation } from "@/services/appointmentService";
 import LoadingOverlay from "@/components/LoadingOverlay";
 
 export default function AppointmentsPage() {
+    const searchParams = useSearchParams();
+    const highlightId = searchParams.get("id");
+
     const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
     const [upcomingData, setUpcomingData] = useState<{ items: Appointment[], total: number, hasMore: boolean }>({ items: [], total: 0, hasMore: true });
     const [pastData, setPastData] = useState<{ items: Appointment[], total: number, hasMore: boolean }>({ items: [], total: 0, hasMore: true });
     const [isLoading, setIsLoading] = useState(true);
     const [isLoadingMore, setIsLoadingMore] = useState(false);
+    const [highlightedId, setHighlightedId] = useState<string | null>(null);
 
     const LIMIT = 10;
 
@@ -33,6 +38,34 @@ export default function AppointmentsPage() {
     useEffect(() => {
         fetchInitialData();
     }, []);
+
+    // Xử lý Highlight
+    useEffect(() => {
+        if (!isLoading && highlightId) {
+            // Kiểm tra xem ID có trong danh sách hiện tại không
+            const isUpcoming = upcomingData.items.some(item => item.id === highlightId);
+            const isPast = pastData.items.some(item => item.id === highlightId);
+
+            if (isUpcoming || isPast) {
+                if (isPast && activeTab !== "past") {
+                    setActiveTab("past");
+                } else if (isUpcoming && activeTab !== "upcoming") {
+                    setActiveTab("upcoming");
+                }
+
+                // Đợi render xong tab mới cuộn
+                setTimeout(() => {
+                    const element = document.getElementById(`appointment-${highlightId}`);
+                    if (element) {
+                        element.scrollIntoView({ behavior: "smooth", block: "center" });
+                        setHighlightedId(highlightId);
+                        // Tắt highlight sau 3 giây
+                        setTimeout(() => setHighlightedId(null), 3000);
+                    }
+                }, 300);
+            }
+        }
+    }, [isLoading, highlightId, upcomingData.items, pastData.items]);
 
     const loadMore = async () => {
         if (isLoadingMore) return;
@@ -82,7 +115,14 @@ export default function AppointmentsPage() {
     };
 
     const AppointmentCard = ({ appointment }: { appointment: Appointment }) => (
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft hover:border-dermcare transition">
+        <div 
+            id={`appointment-${appointment.id}`}
+            className={`rounded-2xl border bg-white p-6 shadow-soft transition-all duration-500 ${
+                highlightedId === appointment.id 
+                ? "border-dermcare ring-2 ring-dermcare/20 shadow-lg scale-[1.02] bg-blue-50/30" 
+                : "border-slate-200 hover:border-dermcare"
+            }`}
+        >
             <div className="flex items-start justify-between mb-4">
                 {/* Thông tin bác sĩ */}
                 <div className="flex items-center gap-4">

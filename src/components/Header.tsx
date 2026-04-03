@@ -5,13 +5,14 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { notificationService } from "@/services/notificationService";
 import { io, Socket } from "socket.io-client";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Header() {
     const { isLoggedIn, isDoctor, user, logout } = useAuth();
+    const { language, setLanguage, t } = useLanguage();
     const router = useRouter();
     const [showUserMenu, setShowUserMenu] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
-    const [language, setLanguage] = useState<'vn' | 'en'>('vn');
     const [showLangMenu, setShowLangMenu] = useState(false);
 
     const [notifications, setNotifications] = useState<any[]>([]);
@@ -144,22 +145,22 @@ export default function Header() {
                 {/* 2. Navigation */}
                 <nav className="hidden gap-8 text-sm text-slate-600 md:flex ml-auto whitespace-nowrap">
                     <Link href="/#services" className="hover:text-dermcare">
-                        Dịch vụ
+                        {t('header.nav.services')}
                     </Link>
                     <Link href="/#doctors" className="hover:text-dermcare">
-                        Bác sĩ
+                        {t('header.nav.doctors')}
                     </Link>
                     <Link href="/#specialties" className="hover:text-dermcare">
-                        Chuyên khoa
+                        {t('header.nav.specialties')}
                     </Link>
                     <Link href="/#reviews" className="hover:text-dermcare">
-                        Đánh giá
+                        {t('header.nav.reviews')}
                     </Link>
                     <Link href="/#partners" className="hover:text-dermcare">
-                        Hợp tác
+                        {t('header.nav.partners')}
                     </Link>
                     <Link href="/#footer" className="hover:text-dermcare">
-                        Về chúng tôi
+                        {t('header.nav.about')}
                     </Link>
                 </nav>
 
@@ -172,13 +173,13 @@ export default function Header() {
                                 href="/login"
                                 className="hidden rounded-full border border-slate-200 px-4 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50 md:inline-flex whitespace-nowrap"
                             >
-                                Đăng nhập
+                                {t('header.actions.login')}
                             </Link>
                             <Link
                                 href="/doctors"
-                                className="inline-flex rounded-full bg-dermcare px-4 py-1.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark whitespace-nowrap"
+                                className="inline-flex rounded-full bg-dermcare px-4 py-1.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark whitespace-nowrap cursor-pointer"
                             >
-                                Đặt lịch ngay
+                                {t('header.actions.book_now')}
                             </Link>
                         </>
                     )}
@@ -190,16 +191,16 @@ export default function Header() {
                             {isDoctor ? (
                                 <Link
                                     href="/doctor/shifts"
-                                    className="hidden lg:inline-flex rounded-full bg-dermcare px-4 py-1.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark transition whitespace-nowrap"
+                                    className="hidden lg:inline-flex rounded-full bg-dermcare px-4 py-1.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark transition whitespace-nowrap cursor-pointer"
                                 >
-                                    Quản lý ca khám
+                                    {t('header.actions.manage_shifts')}
                                 </Link>
                             ) : (
                                 <Link
                                     href="/doctors"
-                                    className="hidden lg:inline-flex rounded-full bg-dermcare px-4 py-1.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark transition whitespace-nowrap"
+                                    className="hidden lg:inline-flex rounded-full bg-dermcare px-4 py-1.5 text-sm font-semibold text-white shadow-soft hover:bg-dermcare-dark transition whitespace-nowrap cursor-pointer"
                                 >
-                                    Đặt lịch ngay
+                                    {t('header.actions.book_now')}
                                 </Link>
                             )}
 
@@ -253,7 +254,7 @@ export default function Header() {
                                                         </div>
                                                         <div className="flex-1 flex flex-col items-start">
                                                             <div className="flex justify-between items-start w-full">
-                                                                <p className={`text-sm text-left ${!notif.isRead ? 'font-bold text-slate-900' : 'font-medium text-slate-700'}`}>
+                                                                 <p className={`text-sm text-left ${!notif.isRead ? 'font-bold text-slate-900' : 'font-medium text-slate-700'}`}>
                                                                     {notif.title}
                                                                 </p>
                                                                 {!notif.isRead && <span className="h-2 w-2 rounded-full bg-blue-500 mt-1.5 flex-shrink-0 ml-2"></span>}
@@ -318,7 +319,7 @@ export default function Header() {
                                             className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
                                         >
                                             <span>👤</span>
-                                            <span>Hồ sơ cá nhân</span>
+                                            <span>{t('header.user_menu.profile')}</span>
                                         </Link>
                                         {isDoctor && (
                                             <>
@@ -327,14 +328,14 @@ export default function Header() {
                                                     className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
                                                 >
                                                     <span>📅</span>
-                                                    <span>Lịch làm việc</span>
+                                                    <span>{t('header.user_menu.schedule')}</span>
                                                 </Link>
                                                 <Link
                                                     href="/doctor/appointments"
                                                     className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
                                                 >
                                                     <span>📝</span>
-                                                    <span>Quản lý lịch hẹn</span>
+                                                    <span>{t('header.user_menu.appointments')}</span>
                                                 </Link>
 
                                             </>
@@ -346,14 +347,14 @@ export default function Header() {
                                                     className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
                                                 >
                                                     <span>📅</span>
-                                                    <span>Lịch hẹn</span>
+                                                    <span>{t('header.user_menu.appointments')}</span>
                                                 </Link>
                                                 <Link
                                                     href="/medical-records"
                                                     className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
                                                 >
                                                     <span>📋</span>
-                                                    <span>Hồ sơ y tế</span>
+                                                    <span>{t('profile.stats.medical_records')}</span>
                                                 </Link>
                                             </>
                                         )}
@@ -363,7 +364,7 @@ export default function Header() {
                                                 className="flex w-full items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50"
                                             >
                                                 <span>🚪</span>
-                                                <span>Đăng xuất</span>
+                                                <span>{t('header.user_menu.logout')}</span>
                                             </button>
                                         </div>
                                     </div>
@@ -380,11 +381,11 @@ export default function Header() {
                         >
                             <div className="flex items-center gap-2">
                                 <img
-                                    src={language === 'vn' ? "https://flagcdn.com/w40/vn.png" : "https://flagcdn.com/w40/gb.png"}
+                                    src={language === 'vi' ? "https://flagcdn.com/w40/vn.png" : "https://flagcdn.com/w40/gb.png"}
                                     alt="flag"
                                     className="h-3.5 w-5 object-cover rounded-sm border border-slate-100"
                                 />
-                                <span className="text-sm font-medium text-slate-600 truncate">{language === 'vn' ? 'Vietnamese' : 'English'}</span>
+                                <span className="text-sm font-medium text-slate-600 truncate">{language === 'vi' ? 'Tiếng Việt' : 'English'}</span>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-3.5 w-3.5 text-slate-400 flex-shrink-0">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -394,15 +395,15 @@ export default function Header() {
                         {showLangMenu && (
                             <div className="absolute right-0 mt-2 w-40 rounded-xl border border-slate-200 bg-white shadow-lg py-1 z-50 animate-in fade-in zoom-in-95 duration-200">
                                 <button
-                                    onClick={() => { setLanguage('vn'); setShowLangMenu(false); }}
-                                    className={`flex w-full items-center gap-3 px-4 py-2 text-sm hover:bg-slate-50 ${language === 'vn' ? 'bg-slate-50 font-medium text-dermcare' : 'text-slate-700'}`}
+                                    onClick={() => { setLanguage('vi'); setShowLangMenu(false); }}
+                                    className={`flex w-full items-center gap-3 px-4 py-2 text-sm hover:bg-slate-50 ${language === 'vi' ? 'bg-slate-50 font-medium text-dermcare' : 'text-slate-700'}`}
                                 >
                                     <img
                                         src="https://flagcdn.com/w40/vn.png"
                                         alt="VN"
                                         className="h-3.5 w-5 object-cover rounded-sm border border-slate-100"
                                     />
-                                    <span>Vietnamese</span>
+                                    <span>Tiếng Việt</span>
                                 </button>
                                 <button
                                     onClick={() => { setLanguage('en'); setShowLangMenu(false); }}

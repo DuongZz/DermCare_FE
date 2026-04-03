@@ -4,12 +4,14 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 import userService from "@/services/userService";
 import apiClient from "@/lib/apiClient";
 
 export default function ProfilePage() {
     const { user, isDoctor, fetchUser } = useAuth();
+    const { t } = useLanguage();
     const [isEditing, setIsEditing] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [profileData, setProfileData] = useState({
@@ -25,6 +27,12 @@ export default function ProfilePage() {
         medications: "",
         skinType: "",
         chronicConditions: ""
+    });
+
+    const [stats, setStats] = useState({
+        appointmentsCount: 0,
+        medicalRecordsCount: 0,
+        doctorsCount: 0
     });
 
     // Doctor-specific edit state (column 2 only)
@@ -76,6 +84,24 @@ export default function ProfilePage() {
             fetchMedicalInfo();
         }
     }, [user]);
+
+    // Fetch account statistics
+    useEffect(() => {
+        const fetchStats = async () => {
+            try {
+                const res = await userService.getUserStatistics();
+                if (res.success) {
+                    setStats(res.data);
+                }
+            } catch (error) {
+                console.error("Failed to fetch statistics:", error);
+            }
+        };
+
+        if (user && !isDoctor) {
+            fetchStats();
+        }
+    }, [user, isDoctor]);
 
     useEffect(() => {
         console.log("ProfilePage: user updated", user);
@@ -576,9 +602,9 @@ export default function ProfilePage() {
                         </div>
 
                         {/* Account Stats */}
-                        <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-dermcare-light to-white p-5 shadow-soft flex-1 flex flex-col justify-center">
-                            <h3 className="mb-3 font-semibold text-slate-900">{isDoctor ? 'Thống kê hoạt động' : 'Thống kê tài khoản'}</h3>
-                            <div className="space-y-2.5">
+                        <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-dermcare-light to-white p-5 shadow-soft flex-1 flex flex-col justify-start">
+                            <h3 className="mb-4 font-semibold text-slate-900">{t('profile.stats.title')}</h3>
+                            <div className="space-y-4">
                                 {isDoctor ? (
                                     <>
                                         <div className="flex items-center justify-between">
@@ -597,16 +623,16 @@ export default function ProfilePage() {
                                 ) : (
                                     <>
                                         <div className="flex items-center justify-between">
-                                            <span className="text-sm text-slate-600">Lượt khám</span>
-                                            <span className="text-lg font-bold text-dermcare">12</span>
+                                            <span className="text-sm text-slate-600">{t('profile.stats.appointments')}</span>
+                                            <span className="text-lg font-bold text-dermcare">{stats.appointmentsCount}</span>
                                         </div>
                                         <div className="flex items-center justify-between">
-                                            <span className="text-sm text-slate-600">Hồ sơ y tế</span>
-                                            <span className="text-lg font-bold text-dermcare">8</span>
+                                            <span className="text-sm text-slate-600">{t('profile.stats.medical_records')}</span>
+                                            <span className="text-lg font-bold text-dermcare">{stats.medicalRecordsCount}</span>
                                         </div>
                                         <div className="flex items-center justify-between">
-                                            <span className="text-sm text-slate-600">Bác sĩ theo dõi</span>
-                                            <span className="text-lg font-bold text-dermcare">3</span>
+                                            <span className="text-sm text-slate-600">{t('profile.stats.followed_doctors')}</span>
+                                            <span className="text-lg font-bold text-dermcare">{stats.doctorsCount}</span>
                                         </div>
                                     </>
                                 )}

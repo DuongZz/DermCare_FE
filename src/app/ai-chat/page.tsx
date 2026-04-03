@@ -183,7 +183,7 @@ export default function AIChat() {
             </header>
 
             {/* Chat Messages */}
-            <div className="flex-1 overflow-y-auto px-4 py-6">
+            <div className="flex-1 overflow-y-auto custom-scrollbar px-4 py-6">
                 <div className="mx-auto max-w-4xl space-y-4">
 
                     {/* Test Info Banner */}
