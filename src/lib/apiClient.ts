@@ -29,6 +29,10 @@ apiClient.interceptors.request.use(
             console.log(`[API Request] No Token attached`);
         }
 
+        // Add Accept-Language header
+        const language = typeof window !== 'undefined' ? localStorage.getItem('language') || 'vi' : 'vi';
+        config.headers['Accept-Language'] = language;
+
         console.log(`[API Request] ${config.method?.toUpperCase()} ${config.baseURL}${config.url}`);
 
         return config;
@@ -37,6 +41,19 @@ apiClient.interceptors.request.use(
         return Promise.reject(error);
     }
 );
+
+// State for managing concurrent refresh requests
+let isRefreshing = false;
+let refreshSubscribers: ((token: string) => void)[] = [];
+
+const onRefreshed = (token: string) => {
+    refreshSubscribers.forEach((callback) => callback(token));
+    refreshSubscribers = [];
+};
+
+const addRefreshSubscriber = (callback: (token: string) => void) => {
+    refreshSubscribers.push(callback);
+};
 
 // Response interceptor - Handle errors globally
 apiClient.interceptors.response.use(
@@ -51,7 +68,19 @@ apiClient.interceptors.response.use(
         if (error.response?.status === 401 && !originalRequest._retry &&
             !originalRequest.url?.includes('/auth/logout') &&
             !originalRequest.url?.includes('/auth/wash')) {
+
+            if (isRefreshing) {
+                // Wait for the first request to finish refreshing and retry with new token
+                return new Promise((resolve) => {
+                    addRefreshSubscriber((token: string) => {
+                        originalRequest.headers.Authorization = `Bearer ${token}`;
+                        resolve(apiClient(originalRequest));
+                    });
+                });
+            }
+
             originalRequest._retry = true;
+            isRefreshing = true;
 
             try {
                 // Call wash endpoint (uses cookie automatically)
@@ -63,13 +92,20 @@ apiClient.interceptors.response.use(
                     const newAccessToken = data.data.accessToken;
                     setAccessToken(newAccessToken);
 
+                    // Notify subscibers waiting for new token
+                    isRefreshing = false;
+                    onRefreshed(newAccessToken);
+
                     // Retry original request with new token
                     originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
                     return apiClient(originalRequest);
                 }
             } catch (refreshError) {
                 // Refresh failed, logout user
+                isRefreshing = false;
+                refreshSubscribers = [];
                 setAccessToken(null);
+
                 // Also clear storage if anything remains
                 removeToken('accessToken'); // Just in case
                 removeToken('refreshToken');

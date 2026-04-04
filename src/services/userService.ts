@@ -32,6 +32,29 @@ const userService = {
         const response = await apiClient.patch<{ success: boolean; data: MedicalInfo }>('/users/me/medical-info', data);
         return response.data;
     },
+
+    updateProfile: async (data: {
+        fullName?: string;
+        phone?: string;
+        gender?: string;
+        dateOfBirth?: string;
+        address?: string;
+    }) => {
+        const response = await apiClient.patch<{ success: boolean; message: string }>('/users/me', data);
+        return response.data;
+    },
+
+    getSpecializations: async (): Promise<{ specialization: string; doctorCount: number }[]> => {
+        const response = await apiClient.get<{ success: boolean; data: { specialization: string; doctorCount: number }[] }>('/users/public-specialization');
+        return response.data.data;
+    },
+
+    getUserStatistics: async () => {
+        const response = await apiClient.get<{ success: boolean; data: { appointmentsCount: number; medicalRecordsCount: number; doctorsCount: number } }>('/users/me/statistics');
+        return response.data;
+    },
 };
+
+
 
 export default userService;

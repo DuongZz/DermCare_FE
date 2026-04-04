@@ -1,0 +1,22 @@
+{
+  "user_id": "ce93ea53-2a53-4dd4-8228-01699862e22b",
+  "avatar": "https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg",
+  "specialization": "Da liễu nội khoa",
+  "qualifications": "BS.CKII",
+  "workPlace": "Bệnh viện Da Liễu Hà Nội",
+  "rating": null,
+  "created_at": "2026-02-21T11:27:14.888Z",
+  "updated_at": "2026-02-22T01:35:00.416Z",
+  "user": {
+    "id": "ce93ea53-2a53-4dd4-8228-01699862e22b",
+    "fullName": "Đào Quang Dương",
+    "email": "duongdaoq@gmail.com",
+    "gender": "MALE",
+    "dateOfBirth": "2003-06-13T00:00:00.000Z",
+    "phone": "0943192828",
+    "address": "Phú Minh, Phú Xuyên, Hà Nội",
+    "role": "DOCTOR",
+    "created_at": "2026-02-11T09:08:00.905Z",
+    "updated_at": "2026-02-22T03:35:19.781Z"
+  }
+}

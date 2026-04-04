@@ -1,130 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import BookingModal from "@/components/BookingModal";
-
-// Mock data - sẽ thay bằng API call sau này
-interface Doctor {
-    id: string;
-    name: string;
-    specialty: string[];
-    image: string;
-    rating: number;
-    reviewCount: number;
-    experience: number;
-    education: string;
-    hospital: string;
-    price: string;
-    availableSlots: number;
-}
+import { getAllDoctors, PublicDoctor } from "@/services/doctorService";
 
 const SPECIALTIES = [
     { id: "all", name: "Tất cả" },
-    { id: "viem-da", name: "Viêm da" },
-    { id: "mun", name: "Mụn trứng cá" },
-    { id: "ung-thu", name: "Ung thư da" },
-    { id: "nam-da", name: "Nấm da" },
-    { id: "vay-nen", name: "Vẩy nến" },
-    { id: "tham-my", name: "Thẩm mỹ da" },
-    { id: "nhay-cam", name: "Da nhạy cảm" },
-];
-
-const MOCK_DOCTORS: Doctor[] = [
-    {
-        id: "1",
-        name: "BS. Cù Thị Hải Nê",
-        specialty: ["viem-da", "nhay-cam"],
-        image: "/yen.jpg",
-        rating: 3.6,
-        reviewCount: 234,
-        experience: 12,
-        education: "Đại học Phương Đông",
-        hospital: "Bệnh viện Da liễu Trung ương",
-        price: "300.000 - 500.000đ",
-        availableSlots: 8,
-    },
-    {
-        id: "2",
-        name: "BS. Đào Quang Yê",
-        specialty: ["mun", "tham-my"],
-        image: "/duong.jpg",
-        rating: 5.0,
-        reviewCount: 189,
-        experience: 15,
-        education: "Đại học Password",
-        hospital: "Phòng khám Da liễu Sài Gòn",
-        price: "400.000 - 600.000đ",
-        availableSlots: 5,
-    },
-    {
-        id: "3",
-        name: "TS.BS. Đào Quang Dương",
-        specialty: ["ung-thu", "viem-da"],
-        image: "/duongtro.jpg",
-        rating: 5.0,
-        reviewCount: 312,
-        experience: 20,
-        education: "Học Viện Kỹ thuật Mật mã",
-        hospital: "Bệnh viện Ung bướu TP.HCM",
-        price: "500.000 - 800.000đ",
-        availableSlots: 3,
-    },
-    {
-        id: "4",
-        name: "BS. Cao Khuê Béo",
-        specialty: ["nam-da", "viem-da"],
-        image: "/khuebeo.jpg",
-        rating: 3.8,
-        reviewCount: 156,
-        experience: 10,
-        education: "Đại học Y Nghệ An",
-        hospital: "Phòng khám Da liễu Khuê Múp",
-        price: "250.000 - 400.000đ",
-        availableSlots: 12,
-    },
-    {
-        id: "5",
-        name: "BS. Tốt Chiến",
-        specialty: ["vay-nen", "nhay-cam"],
-        image: "/ganarcho.jpg",
-        rating: 0.1,
-        reviewCount: 203,
-        experience: 14,
-        education: "Đại học Y Dược Manchester",
-        hospital: "Bệnh viện Da liễu Hà Nội",
-        price: "350.000 - 550.000đ",
-        availableSlots: 6,
-    },
-    {
-        id: "6",
-        name: "BS. Đỗ Ngọc Đức",
-        specialty: ["mun", "viem-da"],
-        image: "/duc.jpg",
-        rating: 1.8,
-        reviewCount: 142,
-        experience: 8,
-        education: "Đại học Y Nem Định",
-        hospital: "Phòng khám Hai Ngón",
-        price: "300.000 - 450.000đ",
-        availableSlots: 35,
-    },
-    {
-        id: "7",
-        name: "PGS.TS. Phạm Tuấn Hịp",
-        specialty: ["ung-thu", "tham-my"],
-        image: "/hiepdan.jpg",
-        rating: 3.6,
-        reviewCount: 428,
-        experience: 25,
-        education: "Đại học Y Thanh Hóa, Hà Nội",
-        hospital: "Bệnh viện Da liễu Trung ương Ba Sáu",
-        price: "600.000 - 1.000.000đ",
-        availableSlots: 36,
-    },
+    { id: "tham-my", name: "Da liễu Thẩm mỹ" },
+    { id: "benh-ly", name: "Da liễu Bệnh lý & Miễn dịch" },
+    { id: "ngoai-khoa", name: "Ngoại khoa Da liễu" },
+    { id: "noi-khoa", name: "Da liễu Nội khoa" },
+    { id: "ung-thu", name: "U & Ung thư da" },
+    { id: "nhiem-trung", name: "Nhiễm trùng da & Ký sinh trùng" },
 ];
 
 export default function DoctorsPage() {
@@ -132,33 +23,67 @@ export default function DoctorsPage() {
     const { isLoggedIn } = useAuth();
     const [selectedSpecialty, setSelectedSpecialty] = useState("all");
     const [showBookingModal, setShowBookingModal] = useState(false);
-    const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
+    const [selectedDoctor, setSelectedDoctor] = useState<{ id: string, name: string, specialty: string, avatar: string, qualifications?: string } | null>(null);
+
+    const [doctors, setDoctors] = useState<PublicDoctor[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchDoctors = async () => {
+            try {
+                const data = await getAllDoctors();
+                setDoctors(data);
+            } catch (error) {
+                console.error("Failed to fetch doctors:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchDoctors();
+    }, []);
 
     // Filter doctors based on selected specialty
+    const getFilterKeyword = (id: string) => {
+        switch (id) {
+            case "tham-my": return "thẩm mỹ";
+            case "benh-ly": return "bệnh lý";
+            case "ngoai-khoa": return "ngoại khoa";
+            case "noi-khoa": return "nội khoa";
+            case "ung-thu": return "ung thư";
+            case "nhiem-trung": return "nhiễm trùng";
+            default: return "";
+        }
+    };
+
     const filteredDoctors =
         selectedSpecialty === "all"
-            ? MOCK_DOCTORS
-            : MOCK_DOCTORS.filter((doctor) =>
-                doctor.specialty.includes(selectedSpecialty)
-            );
+            ? doctors
+            : doctors.filter((doctor) => {
+                const keyword = getFilterKeyword(selectedSpecialty).toLowerCase();
+                return doctor.specialization?.toLowerCase().includes(keyword);
+            });
 
-    const handleBookClick = (doctor: Doctor) => {
-        // Check if user is logged in
+    const handleBookClick = (doctor: PublicDoctor) => {
         if (!isLoggedIn) {
-            // Redirect to login if not authenticated
             router.push("/login");
             return;
         }
 
-        // If logged in, show booking modal
-        setSelectedDoctor(doctor);
+        setSelectedDoctor({
+            id: doctor.user_id,
+            name: doctor.user.fullName,
+            specialty: doctor.specialization || "Chưa cập nhật",
+            avatar: doctor.avatar || "/default-avatar.png",
+            qualifications: doctor.qualifications ?? undefined
+        });
         setShowBookingModal(true);
     };
 
     return (
-        <div className="mx-auto max-w-7xl px-4 py-8 md:py-12">
+        <div className="mx-auto max-w-7xl px-4 pt-4 pb-8 md:pt-6 md:pb-12 text-center md:text-left">
             {/* Header */}
-            <div className="mb-8">
+            <div className="mb-6">
                 <h1 className="text-3xl font-bold text-slate-900 md:text-4xl">
                     Đội ngũ bác sĩ da liễu
                 </h1>
@@ -183,86 +108,73 @@ export default function DoctorsPage() {
                         </button>
                     ))}
                 </div>
-                <p className="mt-3 text-sm text-slate-500">
-                    Tìm thấy {filteredDoctors.length} bác sĩ
-                </p>
+                {!isLoading && (
+                    <p className="mt-3 text-sm text-slate-500">
+                        Tìm thấy {filteredDoctors.length} bác sĩ
+                    </p>
+                )}
             </div>
 
             {/* Doctors Grid */}
-            {filteredDoctors.length > 0 ? (
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {isLoading ? (
+                <div className="py-20 text-center text-slate-500">Đang tải danh sách bác sĩ...</div>
+            ) : filteredDoctors.length > 0 ? (
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                     {filteredDoctors.map((doctor) => (
                         <div
-                            key={doctor.id}
-                            className="card-elevated overflow-hidden transition hover:shadow-lg"
+                            key={doctor.user_id}
+                            className="card-elevated overflow-hidden transition hover:shadow-lg flex flex-col h-full rounded-2xl"
                         >
                             {/* Doctor Image */}
-                            <div className="relative h-48 bg-gradient-to-br from-dermcare-light to-slate-100 overflow-hidden">
+                            <div className="relative h-72 bg-gradient-to-br from-dermcare-light to-slate-100 overflow-hidden group">
                                 <Image
-                                    src={doctor.image}
-                                    alt={doctor.name}
+                                    src={doctor.avatar || "/default-avatar.png"}
+                                    alt={doctor.user.fullName || "Bác sĩ"}
                                     fill
-                                    className="object-cover"
+                                    className="object-cover object-top transition duration-500 group-hover:scale-105"
                                 />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </div>
 
                             {/* Doctor Info */}
-                            <div className="p-5">
-                                <h3 className="text-lg font-semibold text-slate-900">
-                                    {doctor.name}
-                                </h3>
-                                <p className="mt-1 text-sm text-slate-600">{doctor.hospital}</p>
-
-                                {/* Specialties */}
-                                <div className="mt-3 flex flex-wrap gap-1.5">
-                                    {doctor.specialty.map((spec) => {
-                                        const specialtyName = SPECIALTIES.find(
-                                            (s) => s.id === spec
-                                        )?.name;
-                                        return (
-                                            <span
-                                                key={spec}
-                                                className="rounded-full bg-dermcare-light px-2.5 py-0.5 text-xs font-medium text-dermcare-dark"
-                                            >
-                                                {specialtyName}
-                                            </span>
-                                        );
-                                    })}
+                            <div className="p-4 flex-1 flex flex-col">
+                                <div className="min-h-[3.2rem] mb-1 flex items-start">
+                                    <h3 className="text-lg font-bold text-slate-900 leading-tight line-clamp-2">
+                                        {doctor.qualifications ? `${doctor.qualifications} ${doctor.user.fullName}` : (doctor.user.fullName || 'Bác sĩ')}
+                                    </h3>
                                 </div>
+                                <p className="text-xs font-medium text-dermcare mb-1.5 truncate">{doctor.workPlace || "Đang cập nhật"}</p>
 
                                 {/* Stats */}
-                                <div className="mt-4 flex items-center gap-4 text-sm">
+                                <div className="mb-2.5 flex items-center gap-2 text-sm border-b border-slate-100 pb-1.5">
                                     <div className="flex items-center gap-1">
                                         <span className="text-amber-500">★</span>
-                                        <span className="font-semibold text-slate-900">
-                                            {doctor.rating}
-                                        </span>
-                                        <span className="text-slate-500">
-                                            ({doctor.reviewCount})
+                                        <span className="font-bold text-slate-900">
+                                            {doctor.rating ? doctor.rating : "--"} / 5
                                         </span>
                                     </div>
-                                    <div className="text-slate-600">
-                                        {doctor.experience} năm KN
+                                </div>
+
+                                {/* Specialties & Conditions Sections */}
+                                <div className="space-y-1.5 mb-2.5">
+                                    <div>
+                                        <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                                            Chuyên khoa
+                                        </p>
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {doctor.specialization ? (
+                                                <span className="inline-flex items-center rounded bg-blue-50 px-2 py-0.5 text-[11px] font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                                                    {doctor.specialization}
+                                                </span>
+                                            ) : (
+                                                <span className="text-[11px] text-slate-400 italic">Chưa cập nhật</span>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
-
-                                {/* Education & Price */}
-                                <div className="mt-3 space-y-1 text-sm text-slate-600">
-                                    <p>🎓 {doctor.education}</p>
-                                    <p className="font-medium text-dermcare">{doctor.price}</p>
-                                </div>
-
-                                {/* Available Slots */}
-                                <div className="mt-3 text-sm">
-                                    <span className="text-emerald-600">
-                                        ✓ {doctor.availableSlots} khung giờ còn trống
-                                    </span>
-                                </div>
-
-                                {/* Action Button */}
                                 <button
                                     onClick={() => handleBookClick(doctor)}
-                                    className="mt-4 w-full rounded-lg bg-dermcare py-2.5 text-sm font-semibold text-white transition hover:bg-dermcare-dark"
+                                    className="mt-auto w-full rounded-xl bg-dermcare py-2 text-sm font-bold text-white shadow-soft transition hover:bg-dermcare-dark hover:shadow-lg active:scale-[0.98]"
                                 >
                                     Đặt lịch khám
                                 </button>
@@ -300,9 +212,11 @@ export default function DoctorsPage() {
                         setSelectedDoctor(null);
                     }}
                     doctor={{
+                        id: selectedDoctor.id,
                         name: selectedDoctor.name,
-                        specialty: selectedDoctor.hospital,
-                        avatar: selectedDoctor.image
+                        specialty: selectedDoctor.specialty,
+                        avatar: selectedDoctor.avatar,
+                        qualifications: selectedDoctor.qualifications
                     }}
                 />
             )}
