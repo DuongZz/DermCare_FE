@@ -306,35 +306,48 @@ export default function HomePage() {
             {doctors.length > 0 ? doctors.slice(0, 5).map((doctor, idx) => (
               <div
                 key={idx}
-                className="card-elevated flex flex-col overflow-hidden text-center transition hover:shadow-lg h-full"
+                className="card-elevated flex flex-col overflow-hidden text-center transition hover:shadow-lg h-full rounded-2xl"
               >
-                <div className="relative h-44 overflow-hidden bg-gradient-to-br from-dermcare-light to-slate-100 flex-shrink-0">
+                {/* Doctor Image - Slightly shorter */}
+                <div className="relative h-56 overflow-hidden bg-gradient-to-br from-dermcare-light to-slate-100 flex-shrink-0">
                   <img
                     src={doctor.avatar || '/default-avatar.png'}
                     alt={doctor.user?.fullName || 'Bác sĩ'}
-                    className="h-full w-full object-cover object-top rounded-t-2xl"
+                    className="h-full w-full object-cover object-top"
                   />
                 </div>
-                <div className="flex flex-col flex-1 p-4 pb-5">
-                  <h3 className="mb-1 text-base font-bold text-slate-900 line-clamp-2">
-                    {doctor.qualifications ? `${doctor.qualifications} ${doctor.user.fullName}` : (doctor.user.fullName || 'Bác sĩ')}
-                  </h3>
-                  <div className="flex-1">
-                    <p className="mb-1.5 text-sm text-dermcare font-medium line-clamp-2">
-                      {doctor.specialization || "Chưa cập nhật"}
-                    </p>
-                    <p className="mb-3 text-xs text-slate-500 line-clamp-1 flex items-center justify-center">
-                      {doctor.workPlace || "Đang cập nhật"}
+                
+                {/* Doctor Info - Larger text, very tight spacing */}
+                <div className="flex flex-col flex-1 p-3 pb-4 text-center">
+                  {/* 1. Name Section - Top Aligned */}
+                  <div className="min-h-[2.4rem] mb-0.5 flex items-start justify-center pt-1">
+                    <h3 className="text-base font-bold text-slate-900 leading-tight line-clamp-2 uppercase">
+                      {doctor.qualifications ? `${doctor.qualifications} ${doctor.user.fullName}` : (doctor.user.fullName || 'Bác sĩ')}
+                    </h3>
+                  </div>
+
+                  {/* 2. Specialization Section - Top Aligned */}
+                  <div className="min-h-[1.4rem] mb-0 flex items-start justify-center">
+                    <p className="text-[13px] text-dermcare font-medium line-clamp-1 leading-tight">
+                       {doctor.specialization || "Chuyên khoa chưa cập nhật"}
                     </p>
                   </div>
-                  <div className="mt-auto">
-                    <div className="mb-3 flex items-center justify-center gap-1 text-sm bg-slate-50 py-1.5 rounded-lg border border-slate-100">
+
+                  {/* 3. WorkPlace Section - Top Aligned */}
+                  <div className="min-h-[1rem] mb-2 flex items-start justify-center">
+                    <p className="text-[11.5px] text-slate-500 line-clamp-1 px-1">
+                      {doctor.workPlace || "Nơi công tác chưa cập nhật"}
+                    </p>
+                  </div>
+                  
+                  <div className="mt-auto space-y-2.5">
+                    <div className="flex items-center justify-center gap-1 text-[12px] bg-slate-50 py-1.5 rounded-lg border border-slate-100">
                       <span className="text-amber-500">★</span>
                       <span className="font-bold text-slate-900">
-                        {doctor.rating ? doctor.rating : '--'} / 5
+                        {doctor.rating !== undefined && doctor.rating !== null ? Number(doctor.rating).toFixed(1) : '0.0'} / 5
                       </span>
                     </div>
-                    <button className="w-full rounded-xl bg-dermcare py-2 text-sm font-semibold text-white transition hover:bg-dermcare-dark shadow-soft">
+                    <button className="w-full rounded-xl bg-dermcare py-2 text-sm font-bold text-white transition hover:bg-dermcare-dark shadow-soft active:scale-95">
                       {t('header.actions.book_now')}
                     </button>
                   </div>

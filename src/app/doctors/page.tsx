@@ -150,7 +150,7 @@ export default function DoctorsPage() {
                                     <div className="flex items-center gap-1">
                                         <span className="text-amber-500">★</span>
                                         <span className="font-bold text-slate-900">
-                                            {doctor.rating ? doctor.rating : "--"} / 5
+                                            {doctor.rating !== undefined && doctor.rating !== null ? Number(doctor.rating).toFixed(1) : "0.0"} / 5
                                         </span>
                                     </div>
                                 </div>

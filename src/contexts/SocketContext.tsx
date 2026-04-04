@@ -38,8 +38,9 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         if (!token) return;
 
         if (!socketRef.current) {
+            console.log("[SocketContext] 🛠️ Initializing socket connection...");
             const socket = io(BACKEND_URL, {
-                auth: { token },
+                auth: { token: `Bearer ${token}` }, // Use Bearer prefix for consistency
                 transports: ["polling", "websocket"],
                 reconnection: true,
                 reconnectionAttempts: 5,
