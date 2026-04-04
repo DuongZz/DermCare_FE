@@ -3,7 +3,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { User, getCurrentUser, washToken, logout as logoutService } from "@/services/authService";
-import { clearTokens, removeToken } from "@/utils/storage";
+import { clearTokens, removeToken, getToken } from "@/utils/storage";
 import { setAccessToken } from "@/lib/tokenStore";
 
 export interface AuthContextType {
@@ -35,12 +35,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
 
     const initializeAuth = async () => {
-        // Clear legacy tokens from local storage to enforce cookie flow
-        removeToken('accessToken');
-        removeToken('refreshToken');
-
         try {
-            // Try to refresh token using cookie
+            // Kiểm tra xem có token cũ không trước khi thử wash
+            const hasRefreshToken = getToken('refreshToken');
+            
+            // Nếu không có token và không có cookie (giả định ở local), dừng sớm
+            if (!hasRefreshToken && window.location.hostname === 'localhost') {
+                setIsLoggedIn(false);
+                setLoading(false);
+                return;
+            }
+
             console.log("AuthContext: initializing auth...");
             const response = await washToken();
             if (response.success && response.data.accessToken) {
@@ -49,9 +54,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 setIsLoggedIn(true);
                 await fetchUser();
             }
-        } catch (error) {
-            console.error("AuthContext: Valid session not found (wash failed or fetchUser failed)", error);
-            // Valid session not found
+        } catch (error: any) {
+            // Nếu lỗi 401 nghĩa là chưa đăng nhập, không cần log error to tướng
+            if (error.response?.status !== 401) {
+                console.error("AuthContext: Unexpected error during auth init", error);
+            }
             setIsLoggedIn(false);
         } finally {
             setLoading(false);

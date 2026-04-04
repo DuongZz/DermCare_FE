@@ -63,9 +63,13 @@ export const login = async (credentials: LoginCredentials): Promise<AuthResponse
         // Set Access Token in Memory
         setAccessToken(data.data.accessToken);
 
+        // Store refreshToken in storage as a fallback
+        if (data.data.refreshToken) {
+            setToken('refreshToken', data.data.refreshToken, remember);
+        }
+
         // Clear legacy tokens from storage if they exist
         removeToken('accessToken');
-        removeToken('refreshToken');
 
         // We don't store refreshToken in localStorage/sessionStorage anymore because it is HttpOnly Cookie
         // But we might want to store "isLoggedIn" flag or clientId
@@ -123,7 +127,8 @@ export const resendVerifyEmail = async (): Promise<AuthResponse> => {
 
 // Wash Token (Refresh)
 export const washToken = async (): Promise<AuthResponse> => {
-    const { data } = await apiClient.post('/auth/wash');
+    const refreshToken = getToken('refreshToken');
+    const { data } = await apiClient.post('/auth/wash', { refreshToken });
     return data;
 };
 

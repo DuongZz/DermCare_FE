@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getToken, removeToken } from '@/utils/storage';
+import { getToken, setToken, removeToken } from '@/utils/storage';
 import { getAccessToken, setAccessToken } from '@/lib/tokenStore';
 
 // Get API URL from environment variables
@@ -83,15 +83,26 @@ apiClient.interceptors.response.use(
             isRefreshing = true;
 
             try {
-                // Call wash endpoint (uses cookie automatically)
-                const { data } = await axios.post(`${API_URL}/auth/wash`, {}, {
+                // Call wash endpoint (uses cookie automatically, sending token in body as fallback)
+                const refreshToken = getToken('refreshToken');
+                const { data } = await axios.post(`${API_URL}/auth/wash`, { refreshToken }, {
                     withCredentials: true // Important to send cookies
                 });
 
                 if (data.data && data.data.accessToken) {
                     const newAccessToken = data.data.accessToken;
+                    const newRefreshToken = data.data.refreshToken;
+                    
                     setAccessToken(newAccessToken);
-
+                    
+                    // Save new refreshToken to storage as fallback (Local only)
+                    if (newRefreshToken) {
+                        setToken('refreshToken', newRefreshToken, true);
+                    } else {
+                        // In production, we don't clear the storage because we might be falling back from a migration
+                        console.log("[API Interceptor] Refresh successful via Cookie (Production)");
+                    }
+ 
                     // Notify subscibers waiting for new token
                     isRefreshing = false;
                     onRefreshed(newAccessToken);

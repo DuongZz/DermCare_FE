@@ -437,24 +437,30 @@ export default function HomePage() {
                     ].flat().map((review, idx) => (
                       <div
                         key={`${review.id}-${idx}`}
-                        className="min-w-[280px] max-w-[280px] rounded-2xl border border-slate-200 bg-white p-5 shadow-sm flex-shrink-0"
+                        className="min-w-[280px] max-w-[280px] rounded-2xl border border-slate-200 bg-white p-5 shadow-sm flex-shrink-0 flex flex-col h-[220px]"
                       >
-                        <div className="mb-3 flex gap-1">
-                          {[...Array(review.rate)].map((_, i) => (
-                            <span key={i} className="text-amber-400">★</span>
-                          ))}
+                        {/* Phần trên: Sao đánh giá + Nội dung */}
+                        <div className="flex-1 overflow-hidden">
+                          <div className="mb-2 flex gap-1">
+                            {[...Array(review.rate)].map((_, i) => (
+                              <span key={i} className="text-amber-400">★</span>
+                            ))}
+                          </div>
+                          <p className="text-sm leading-relaxed text-slate-700 line-clamp-4">
+                            &quot;{review.comment}&quot;
+                          </p>
                         </div>
-                        <p className="mb-4 text-sm leading-relaxed text-slate-700">
-                          "{review.comment}"
-                        </p>
+                        {/* Đường phân cách */}
+                        <div className="border-t border-slate-100 my-3" />
+                        {/* Phần dưới: Thông tin bệnh nhân */}
                         <div className="flex items-center gap-3">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-dermcare text-white font-semibold">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-dermcare text-white font-semibold text-sm flex-shrink-0">
                             {review.patientName.charAt(0).toUpperCase()}
                           </div>
-                          <div>
-                            <p className="font-semibold text-slate-900">{review.patientName}</p>
+                          <div className="min-w-0">
+                            <p className="font-semibold text-slate-900 text-sm truncate">{review.patientName}</p>
                             <p className="text-xs text-slate-500">
-                              {t('home.reviews.patient')} • {new Date(review.created_at).toLocaleDateString(language === 'vi' ? 'vi-VN' : 'en-US')}
+                              {new Date(review.created_at).toLocaleDateString(language === 'vi' ? 'vi-VN' : 'en-US')}
                             </p>
                           </div>
                         </div>
@@ -471,24 +477,30 @@ export default function HomePage() {
                     ].flat().map((review, idx) => (
                       <div
                         key={`${review.id}-${idx}`}
-                        className="min-w-[280px] max-w-[280px] rounded-2xl border border-slate-200 bg-white p-5 shadow-sm flex-shrink-0"
+                        className="min-w-[280px] max-w-[280px] rounded-2xl border border-slate-200 bg-white p-5 shadow-sm flex-shrink-0 flex flex-col h-[220px]"
                       >
-                        <div className="mb-3 flex gap-1">
-                          {[...Array(review.rate)].map((_, i) => (
-                            <span key={i} className="text-amber-400">★</span>
-                          ))}
+                        {/* Phần trên: Sao đánh giá + Nội dung */}
+                        <div className="flex-1 overflow-hidden">
+                          <div className="mb-2 flex gap-1">
+                            {[...Array(review.rate)].map((_, i) => (
+                              <span key={i} className="text-amber-400">★</span>
+                            ))}
+                          </div>
+                          <p className="text-sm leading-relaxed text-slate-700 line-clamp-4">
+                            &quot;{review.comment}&quot;
+                          </p>
                         </div>
-                        <p className="mb-4 text-sm leading-relaxed text-slate-700">
-                          "{review.comment}"
-                        </p>
+                        {/* Đường phân cách */}
+                        <div className="border-t border-slate-100 my-3" />
+                        {/* Phần dưới: Thông tin bệnh nhân */}
                         <div className="flex items-center gap-3">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-dermcare text-white font-semibold">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-dermcare text-white font-semibold text-sm flex-shrink-0">
                             {review.patientName.charAt(0).toUpperCase()}
                           </div>
-                          <div>
-                            <p className="font-semibold text-slate-900">{review.patientName}</p>
+                          <div className="min-w-0">
+                            <p className="font-semibold text-slate-900 text-sm truncate">{review.patientName}</p>
                             <p className="text-xs text-slate-500">
-                              {t('home.reviews.patient')} • {new Date(review.created_at).toLocaleDateString(language === 'vi' ? 'vi-VN' : 'en-US')}
+                              {new Date(review.created_at).toLocaleDateString(language === 'vi' ? 'vi-VN' : 'en-US')}
                             </p>
                           </div>
                         </div>
