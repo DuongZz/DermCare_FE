@@ -4,12 +4,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { notificationService } from "@/services/notificationService";
-import { io, Socket } from "socket.io-client";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useSocket } from "@/contexts/SocketContext";
 
 export default function Header() {
     const { isLoggedIn, isDoctor, user, logout } = useAuth();
     const { language, setLanguage, t } = useLanguage();
+    const { socket } = useSocket();
     const router = useRouter();
     const [showUserMenu, setShowUserMenu] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
@@ -17,7 +18,6 @@ export default function Header() {
 
     const [notifications, setNotifications] = useState<any[]>([]);
     const [unreadCount, setUnreadCount] = useState(0);
-    const socketRef = useRef<Socket | null>(null);
 
     const notifRef = useRef<HTMLDivElement>(null);
     const userMenuRef = useRef<HTMLDivElement>(null);
@@ -39,27 +39,18 @@ export default function Header() {
 
         fetchNotifications();
 
-        // Setup Socket.io
-        const token = localStorage.getItem('token');
-        const socket = io('http://localhost:4000', {
-            auth: { token: `Bearer ${token}` }
-        });
-
-        socketRef.current = socket;
-
-        socket.on('connect', () => {
-            console.log('[Socket] Connected to server');
-        });
+        if (!socket) return;
 
         socket.on('new_notification', (notification: any) => {
+            console.log('[Header] New notification received:', notification);
             setNotifications(prev => [notification, ...prev]);
             setUnreadCount(prev => prev + 1);
         });
 
         return () => {
-            socket.disconnect();
+            socket.off('new_notification');
         };
-    }, [isLoggedIn]);
+    }, [isLoggedIn, socket]);
 
     const handleMarkAsRead = async (id: string) => {
         try {
@@ -91,10 +82,10 @@ export default function Header() {
             if (isDoctor) {
                 router.push(`/doctor/shifts?id=${notif.referenceId}`);
             } else {
-                router.push(`/appointments/${notif.referenceId}`);
+                router.push(`/appointments?id=${notif.referenceId}`);
             }
-        } else if (notif.type === 'NOTI_MESSAGE') {
-            router.push('/chat');
+        } else if (notif.type === 'NOTI_MESSAGE' || notif.type === 'NOTI_AI_RESULT') {
+            router.push(`/chat?id=${notif.referenceId}`);
         }
     };
 

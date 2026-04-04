@@ -56,10 +56,10 @@ export default function NotificationsPage() {
             if (isDoctor) {
                 router.push(`/doctor/shifts?id=${notif.referenceId}`);
             } else {
-                router.push(`/appointments/${notif.referenceId}`);
+                router.push(`/appointments?id=${notif.referenceId}`);
             }
-        } else if (notif.type === 'NOTI_MESSAGE') {
-            router.push('/chat');
+        } else if (notif.type === 'NOTI_MESSAGE' || notif.type === 'NOTI_AI_RESULT') {
+            router.push(`/chat?id=${notif.referenceId}`);
         }
     };
 

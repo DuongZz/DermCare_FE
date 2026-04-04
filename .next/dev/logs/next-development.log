@@ -1,1 +1,72 @@
 {"timestamp":"00:00:02.892","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:15:39.843","source":"Server","level":"LOG","message":"✓ Compiled in 3.2s"}
+{"timestamp":"00:16:23.377","source":"Browser","level":"LOG","message":"[SocketContext] ❌ Disconnected"}
+{"timestamp":"00:16:27.372","source":"Browser","level":"ERROR","message":"[SocketContext] Connection error: Authentication error: Invalid token"}
+{"timestamp":"00:36:56.764","source":"Server","level":"ERROR","message":"[browser] \"[SocketContext] Connection error:\" \"Authentication error: Invalid token\" \"\\n\\u001b[31m    at SocketProvider.useEffect (src/contexts/SocketContext.tsx:60:25)\\u001b[39m\\n  \\u001b[90m58 |\\u001b[0m\\n  \\u001b[90m59 |\\u001b[0m             socket.on(\\u001b[32m\\\"connect_error\\\"\\u001b[0m, (err) => {\\n\\u001b[31m\\u001b[1m>\\u001b[0m \\u001b[90m60 |\\u001b[0m                 console.error(\\u001b[32m\\\"[SocketContext] Connection error:\\\"\\u001b[0m, err.message);\\n  \\u001b[90m   |\\u001b[0m                         \\u001b[31m\\u001b[1m^\\u001b[0m\\n  \\u001b[90m61 |\\u001b[0m             });\\n  \\u001b[90m62 |\\u001b[0m\\n  \\u001b[90m63 |\\u001b[0m             socketRef.current = socket;\" \"\\u001b[2m(src/contexts/SocketContext.tsx:60:25)\\u001b[22m\""}
+{"timestamp":"00:36:56.768","source":"Browser","level":"ERROR","message":"[SocketContext] Connection error: \"Authentication error: Invalid token\" \"\\n\\u001b[31m    at SocketProvider.useEffect (src/contexts/SocketContext.tsx:60:25)\\u001b[39m\\n  \\u001b[90m58 |\\u001b[0m\\n  \\u001b[90m59 |\\u001b[0m             socket.on(\\u001b[32m\\\"connect_error\\\"\\u001b[0m, (err) => {\\n\\u001b[31m\\u001b[1m>\\u001b[0m \\u001b[90m60 |\\u001b[0m                 console.error(\\u001b[32m\\\"[SocketContext] Connection error:\\\"\\u001b[0m, err.message);\\n  \\u001b[90m   |\\u001b[0m                         \\u001b[31m\\u001b[1m^\\u001b[0m\\n  \\u001b[90m61 |\\u001b[0m             });\\n  \\u001b[90m62 |\\u001b[0m\\n  \\u001b[90m63 |\\u001b[0m             socketRef.current = socket;\" \"\\u001b[2m(src/contexts/SocketContext.tsx:60:25)\\u001b[22m\""}
+{"timestamp":"00:40:22.065","source":"Server","level":"LOG","message":"✓ Compiled in 1800ms"}
+{"timestamp":"00:40:24.212","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:40:25.364","source":"Browser","level":"LOG","message":"AuthContext: initializing auth..."}
+{"timestamp":"00:40:25.364","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:40:25.364","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/auth/wash"}
+{"timestamp":"00:40:25.364","source":"Browser","level":"LOG","message":"content script: Katalon Waiter v.2 is up and running !"}
+{"timestamp":"00:40:26.487","source":"Server","level":"WARN","message":"⚠ Fast Refresh had to perform a full reload due to a runtime error."}
+{"timestamp":"00:40:26.487","source":"Browser","level":"LOG","message":"AuthContext: washToken success"}
+{"timestamp":"00:40:26.487","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:26.488","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/me"}
+{"timestamp":"00:40:26.488","source":"Browser","level":"LOG","message":"AuthContext: fetchUser success {\"address\":\"Phú Xuyên\",\"created_at\":\"2026-02-28T09:07:14.883Z\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\",\"role\":\"PATIENT\",\"updated_at\":\"2026-04-04T09:09:34.771Z\"}"}
+{"timestamp":"00:40:26.488","source":"Browser","level":"ERROR","message":"uncaughtError: ReferenceError: unreadCount is not defined"}
+{"timestamp":"00:40:26.744","source":"Server","level":"LOG","message":"✓ Compiled in 276ms"}
+{"timestamp":"00:40:27.659","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:40:28.361","source":"Browser","level":"LOG","message":"AuthContext: initializing auth..."}
+{"timestamp":"00:40:28.361","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:40:28.361","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/auth/wash"}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"AuthContext: washToken success"}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/me"}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"AuthContext: fetchUser success {\"address\":\"Phú Xuyên\",\"created_at\":\"2026-02-28T09:07:14.883Z\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\",\"role\":\"PATIENT\",\"updated_at\":\"2026-04-04T09:09:36.913Z\"}"}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/feedbacks/public"}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/feedbacks/public"}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[SocketContext] ✅ Connected: -PPAdENkEWuF22aTAAAD"}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
+{"timestamp":"00:40:33.121","source":"Server","level":"LOG","message":"✓ Compiled in 126ms"}
+{"timestamp":"00:40:33.362","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
+{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/feedbacks/public"}
+{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
+{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
+{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/feedbacks/public"}
+{"timestamp":"00:40:50.372","source":"Browser","level":"LOG","message":"[SocketContext] ❌ Disconnected"}
+{"timestamp":"00:40:56.361","source":"Browser","level":"ERROR","message":"[SocketContext] Connection error: xhr poll error"}
+{"timestamp":"00:41:01.360","source":"Browser","level":"LOG","message":"[SocketContext] ✅ Connected: hX_PDFlQkMT9QcEZAAAB"}
+{"timestamp":"00:41:41.363","source":"Browser","level":"LOG","message":"[SocketContext] ❌ Disconnected"}
+{"timestamp":"00:41:45.374","source":"Browser","level":"ERROR","message":"[SocketContext] Connection error: xhr poll error"}
+{"timestamp":"00:41:53.374","source":"Browser","level":"ERROR","message":"[SocketContext] Connection error: xhr poll error"}
+{"timestamp":"00:42:01.374","source":"Browser","level":"ERROR","message":"[SocketContext] Connection error: xhr poll error"}
+{"timestamp":"00:42:09.369","source":"Browser","level":"ERROR","message":"[SocketContext] Connection error: xhr poll error"}
+{"timestamp":"00:42:17.375","source":"Browser","level":"ERROR","message":"[SocketContext] Connection error: xhr poll error"}

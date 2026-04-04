@@ -7,3 +7,13 @@ node_modules
 out/
 build/
 .turbo/
+
+# Logs và Debug
+*.log
+log.txt
+log_utf8.txt
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+trace

@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { io, Socket } from "socket.io-client";
 import { useSocket } from "@/contexts/SocketContext";
 import { useVideoCall } from "@/contexts/VideoCallContext";
@@ -48,6 +48,7 @@ Tôi sẽ phân tích và đưa ra gợi ý phù hợp!
 export default function ChatPage() {
     const { isLoggedIn, user: currentUser } = useAuth();
     const router = useRouter();
+    const searchParams = useSearchParams();
     const { showToast } = useToast();
     const [conversations, setConversations] = useState<Conversation[]>([]);
     const [activeConversation, setActiveConversation] = useState<Conversation | null>(null);
@@ -373,6 +374,25 @@ export default function ChatPage() {
         loadConversations(activeTab, 1, false);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isLoggedIn, activeTab]);
+
+    // Lắng nghe sự thay đổi của id trên URL
+    useEffect(() => {
+        const id = searchParams.get('id');
+        if (id && isLoggedIn) {
+            if (activeConversation?.id !== id) {
+                getConversationById(id).then(targetConv => {
+                    if (targetConv) {
+                        if (targetConv.status !== activeTab) {
+                            setActiveTab(targetConv.status);
+                        } else {
+                            handleSelectConversation(targetConv);
+                        }
+                    }
+                }).catch(console.error);
+            }
+        }
+    }, [searchParams, isLoggedIn]); // Bỏ activeConversation, activeTab khỏi deps để tránh loop
+
 
     const [isDeleting, setIsDeleting] = useState<string | null>(null);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
