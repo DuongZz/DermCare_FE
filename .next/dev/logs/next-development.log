@@ -1,72 +1,67 @@
-{"timestamp":"00:00:02.892","source":"Server","level":"LOG","message":""}
-{"timestamp":"00:15:39.843","source":"Server","level":"LOG","message":"✓ Compiled in 3.2s"}
-{"timestamp":"00:16:23.377","source":"Browser","level":"LOG","message":"[SocketContext] ❌ Disconnected"}
-{"timestamp":"00:16:27.372","source":"Browser","level":"ERROR","message":"[SocketContext] Connection error: Authentication error: Invalid token"}
-{"timestamp":"00:36:56.764","source":"Server","level":"ERROR","message":"[browser] \"[SocketContext] Connection error:\" \"Authentication error: Invalid token\" \"\\n\\u001b[31m    at SocketProvider.useEffect (src/contexts/SocketContext.tsx:60:25)\\u001b[39m\\n  \\u001b[90m58 |\\u001b[0m\\n  \\u001b[90m59 |\\u001b[0m             socket.on(\\u001b[32m\\\"connect_error\\\"\\u001b[0m, (err) => {\\n\\u001b[31m\\u001b[1m>\\u001b[0m \\u001b[90m60 |\\u001b[0m                 console.error(\\u001b[32m\\\"[SocketContext] Connection error:\\\"\\u001b[0m, err.message);\\n  \\u001b[90m   |\\u001b[0m                         \\u001b[31m\\u001b[1m^\\u001b[0m\\n  \\u001b[90m61 |\\u001b[0m             });\\n  \\u001b[90m62 |\\u001b[0m\\n  \\u001b[90m63 |\\u001b[0m             socketRef.current = socket;\" \"\\u001b[2m(src/contexts/SocketContext.tsx:60:25)\\u001b[22m\""}
-{"timestamp":"00:36:56.768","source":"Browser","level":"ERROR","message":"[SocketContext] Connection error: \"Authentication error: Invalid token\" \"\\n\\u001b[31m    at SocketProvider.useEffect (src/contexts/SocketContext.tsx:60:25)\\u001b[39m\\n  \\u001b[90m58 |\\u001b[0m\\n  \\u001b[90m59 |\\u001b[0m             socket.on(\\u001b[32m\\\"connect_error\\\"\\u001b[0m, (err) => {\\n\\u001b[31m\\u001b[1m>\\u001b[0m \\u001b[90m60 |\\u001b[0m                 console.error(\\u001b[32m\\\"[SocketContext] Connection error:\\\"\\u001b[0m, err.message);\\n  \\u001b[90m   |\\u001b[0m                         \\u001b[31m\\u001b[1m^\\u001b[0m\\n  \\u001b[90m61 |\\u001b[0m             });\\n  \\u001b[90m62 |\\u001b[0m\\n  \\u001b[90m63 |\\u001b[0m             socketRef.current = socket;\" \"\\u001b[2m(src/contexts/SocketContext.tsx:60:25)\\u001b[22m\""}
-{"timestamp":"00:40:22.065","source":"Server","level":"LOG","message":"✓ Compiled in 1800ms"}
-{"timestamp":"00:40:24.212","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:40:25.364","source":"Browser","level":"LOG","message":"AuthContext: initializing auth..."}
-{"timestamp":"00:40:25.364","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
-{"timestamp":"00:40:25.364","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/auth/wash"}
-{"timestamp":"00:40:25.364","source":"Browser","level":"LOG","message":"content script: Katalon Waiter v.2 is up and running !"}
-{"timestamp":"00:40:26.487","source":"Server","level":"WARN","message":"⚠ Fast Refresh had to perform a full reload due to a runtime error."}
-{"timestamp":"00:40:26.487","source":"Browser","level":"LOG","message":"AuthContext: washToken success"}
-{"timestamp":"00:40:26.487","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:26.488","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/me"}
-{"timestamp":"00:40:26.488","source":"Browser","level":"LOG","message":"AuthContext: fetchUser success {\"address\":\"Phú Xuyên\",\"created_at\":\"2026-02-28T09:07:14.883Z\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\",\"role\":\"PATIENT\",\"updated_at\":\"2026-04-04T09:09:34.771Z\"}"}
-{"timestamp":"00:40:26.488","source":"Browser","level":"ERROR","message":"uncaughtError: ReferenceError: unreadCount is not defined"}
-{"timestamp":"00:40:26.744","source":"Server","level":"LOG","message":"✓ Compiled in 276ms"}
-{"timestamp":"00:40:27.659","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:40:28.361","source":"Browser","level":"LOG","message":"AuthContext: initializing auth..."}
-{"timestamp":"00:40:28.361","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
-{"timestamp":"00:40:28.361","source":"Browser","level":"LOG","message":"[API Request] POST http://localhost:4000/v1/auth/wash"}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"AuthContext: washToken success"}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/me"}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"AuthContext: fetchUser success {\"address\":\"Phú Xuyên\",\"created_at\":\"2026-02-28T09:07:14.883Z\",\"dateOfBirth\":\"2003-06-13T00:00:00.000Z\",\"email\":\"duongdaoqq@gmail.com\",\"fullName\":\"Đào Quang Nê\",\"gender\":\"MALE\",\"id\":\"8879ddd1-43b6-4692-ba63-3b57dac23239\",\"phone\":\"0943142828\",\"role\":\"PATIENT\",\"updated_at\":\"2026-04-04T09:09:36.913Z\"}"}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/feedbacks/public"}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/feedbacks/public"}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[SocketContext] ✅ Connected: -PPAdENkEWuF22aTAAAD"}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:29.370","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
-{"timestamp":"00:40:33.121","source":"Server","level":"LOG","message":"✓ Compiled in 126ms"}
-{"timestamp":"00:40:33.362","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
-{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
-{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
-{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/feedbacks/public"}
-{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/notifications"}
-{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
-{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
-{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] Attached Token: eyJhbGciOi..."}
-{"timestamp":"00:40:33.363","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/feedbacks/public"}
-{"timestamp":"00:40:50.372","source":"Browser","level":"LOG","message":"[SocketContext] ❌ Disconnected"}
-{"timestamp":"00:40:56.361","source":"Browser","level":"ERROR","message":"[SocketContext] Connection error: xhr poll error"}
-{"timestamp":"00:41:01.360","source":"Browser","level":"LOG","message":"[SocketContext] ✅ Connected: hX_PDFlQkMT9QcEZAAAB"}
-{"timestamp":"00:41:41.363","source":"Browser","level":"LOG","message":"[SocketContext] ❌ Disconnected"}
-{"timestamp":"00:41:45.374","source":"Browser","level":"ERROR","message":"[SocketContext] Connection error: xhr poll error"}
-{"timestamp":"00:41:53.374","source":"Browser","level":"ERROR","message":"[SocketContext] Connection error: xhr poll error"}
-{"timestamp":"00:42:01.374","source":"Browser","level":"ERROR","message":"[SocketContext] Connection error: xhr poll error"}
-{"timestamp":"00:42:09.369","source":"Browser","level":"ERROR","message":"[SocketContext] Connection error: xhr poll error"}
-{"timestamp":"00:42:17.375","source":"Browser","level":"ERROR","message":"[SocketContext] Connection error: xhr poll error"}
+{"timestamp":"00:00:02.810","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:09.296","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:09.954","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:00:09.954","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:00:09.954","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:00:09.954","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:00:09.954","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:00:09.954","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/feedbacks/public"}
+{"timestamp":"00:00:09.954","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:00:09.954","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:00:09.954","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:00:09.954","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:00:09.954","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:00:09.954","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/feedbacks/public"}
+{"timestamp":"00:00:10.177","source":"Browser","level":"LOG","message":"content script: Katalon Waiter v.2 is up and running !"}
+{"timestamp":"00:07:17.492","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:07:17.974","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:07:17.974","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:07:17.974","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:07:17.974","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:07:17.974","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:07:17.974","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/feedbacks/public"}
+{"timestamp":"00:07:17.974","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:07:17.974","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:07:17.974","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:07:17.974","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:07:17.974","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:07:17.974","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/feedbacks/public"}
+{"timestamp":"00:07:18.220","source":"Browser","level":"LOG","message":"content script: Katalon Waiter v.2 is up and running !"}
+{"timestamp":"00:07:25.066","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:07:25.066","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/doctors/all"}
+{"timestamp":"00:07:25.066","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:07:25.066","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/doctors/all"}
+{"timestamp":"00:07:25.216","source":"Browser","level":"WARN","message":"Image with src \"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg\" has \"fill\" but is missing \"sizes\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"00:07:25.216","source":"Browser","level":"WARN","message":"Image with src \"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg\" has \"fill\" but is missing \"sizes\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"00:07:25.236","source":"Browser","level":"WARN","message":"Image with src \"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg\" has \"fill\" but is missing \"sizes\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"00:07:25.236","source":"Browser","level":"WARN","message":"Image with src \"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg\" has \"fill\" but is missing \"sizes\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"00:07:25.236","source":"Browser","level":"WARN","message":"Image with src \"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg\" has \"fill\" but is missing \"sizes\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"00:07:25.315","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mImage with src \\\"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg\\\" has \\\"fill\\\" but is missing \\\"sizes\\\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\\u001b[39m\""}
+{"timestamp":"00:07:25.316","source":"Browser","level":"WARN","message":"\u001b[33mImage with src \"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/haine.jpg\" has \"fill\" but is missing \"sizes\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\u001b[39m"}
+{"timestamp":"00:07:25.317","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mImage with src \\\"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg\\\" has \\\"fill\\\" but is missing \\\"sizes\\\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\\u001b[39m\""}
+{"timestamp":"00:07:25.317","source":"Browser","level":"WARN","message":"\u001b[33mImage with src \"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/ce93ea53-2a53-4dd4-8228-01699862e22b-956c1d4e-b281-4634-aac6-ef33b007cd51.jpg\" has \"fill\" but is missing \"sizes\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\u001b[39m"}
+{"timestamp":"00:07:25.318","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mImage with src \\\"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg\\\" has \\\"fill\\\" but is missing \\\"sizes\\\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\\u001b[39m\""}
+{"timestamp":"00:07:25.318","source":"Browser","level":"WARN","message":"\u001b[33mImage with src \"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/cong.jpg\" has \"fill\" but is missing \"sizes\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\u001b[39m"}
+{"timestamp":"00:07:25.319","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mImage with src \\\"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg\\\" has \\\"fill\\\" but is missing \\\"sizes\\\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\\u001b[39m\""}
+{"timestamp":"00:07:25.320","source":"Browser","level":"WARN","message":"\u001b[33mImage with src \"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/thang.jpg\" has \"fill\" but is missing \"sizes\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\u001b[39m"}
+{"timestamp":"00:07:25.320","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mImage with src \\\"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg\\\" has \\\"fill\\\" but is missing \\\"sizes\\\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\\u001b[39m\""}
+{"timestamp":"00:07:25.320","source":"Browser","level":"WARN","message":"\u001b[33mImage with src \"https://jvhfabzcenmvgitakipt.supabase.co/storage/v1/object/public/avatars/duc.jpg\" has \"fill\" but is missing \"sizes\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\u001b[39m"}
+{"timestamp":"00:08:58.292","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:08:58.292","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:08:58.292","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:08:58.292","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:08:58.292","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:08:58.292","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/feedbacks/public"}
+{"timestamp":"00:08:58.292","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:08:58.292","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-doctors"}
+{"timestamp":"00:08:58.292","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:08:58.292","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/users/public-specialization"}
+{"timestamp":"00:08:58.292","source":"Browser","level":"LOG","message":"[API Request] No Token attached"}
+{"timestamp":"00:08:58.292","source":"Browser","level":"LOG","message":"[API Request] GET http://localhost:4000/v1/feedbacks/public"}
+{"timestamp":"00:10:01.340","source":"Server","level":"LOG","message":"✓ Compiled in 3.9s"}
+{"timestamp":"00:10:16.027","source":"Server","level":"LOG","message":"✓ Compiled in 206ms"}
+{"timestamp":"00:11:51.275","source":"Server","level":"LOG","message":"✓ Compiled in 230ms"}
+{"timestamp":"00:12:53.077","source":"Server","level":"LOG","message":"✓ Compiled in 182ms"}
+{"timestamp":"00:13:36.217","source":"Server","level":"LOG","message":"✓ Compiled in 153ms"}
+{"timestamp":"00:14:34.929","source":"Server","level":"LOG","message":"✓ Compiled in 138ms"}
+{"timestamp":"00:15:26.895","source":"Server","level":"LOG","message":"✓ Compiled in 82ms"}
