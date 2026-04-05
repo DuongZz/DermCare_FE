@@ -101,6 +101,15 @@ textarea {
   height: 6px !important;
 }
 
+/* Utility to completely hide scrollbar but keep scrollability */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+
 /* Auto-scrolling reviews animations - 2 directions */
 @keyframes scroll-ltr {
   0% {

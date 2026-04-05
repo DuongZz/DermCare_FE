@@ -206,7 +206,7 @@ export default function BookingModal({ isOpen, onClose, doctor, conversationId, 
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-            <div className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto custom-scrollbar rounded-2xl bg-white shadow-xl">
+            <div className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto scrollbar-hide rounded-2xl bg-white shadow-xl">
                 {/* Header */}
                 <div className="sticky top-0 z-10 border-b border-slate-200 bg-white px-6 py-4">
                     <div className="flex items-center justify-between">
@@ -358,7 +358,7 @@ export default function BookingModal({ isOpen, onClose, doctor, conversationId, 
                                             rows={3}
                                             value={formData.notes}
                                             onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                                            className="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20 pointer-events-auto"
+                                            className="w-full resize-none scrollbar-hide rounded-lg border border-slate-300 px-4 py-2 focus:border-dermcare focus:outline-none focus:ring-2 focus:ring-dermcare/20 pointer-events-auto"
                                             placeholder="Triệu chứng, thời gian bị, tiền sử bệnh..."
                                         />
                                     </div>
