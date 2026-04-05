@@ -7,7 +7,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { getPublicDoctors, PublicDoctor } from "@/services/doctorService";
 import userService from "@/services/userService";
 import { getPublicFeedbacks, PublicFeedback } from "@/services/feedbackService";
-
+import { useRouter } from "next/navigation";
+import BookingModal from "@/components/BookingModal";
 
 export default function HomePage() {
   const { isLoggedIn, isDoctor } = useAuth();
@@ -15,6 +16,25 @@ export default function HomePage() {
   const [doctors, setDoctors] = useState<PublicDoctor[]>([]);
   const [specializations, setSpecializations] = useState<{ specialization: string; doctorCount: number }[]>([]);
   const [feedbacks, setFeedbacks] = useState<PublicFeedback[]>([]);
+  const router = useRouter();
+  const [showBookingModal, setShowBookingModal] = useState(false);
+  const [selectedDoctor, setSelectedDoctor] = useState<{ id: string, name: string, specialty: string, avatar: string, qualifications?: string } | null>(null);
+
+  const handleBookClick = (doctor: PublicDoctor) => {
+    if (!isLoggedIn) {
+      router.push("/login");
+      return;
+    }
+
+    setSelectedDoctor({
+      id: doctor.user_id,
+      name: doctor.user?.fullName || 'Bác sĩ',
+      specialty: doctor.specialization || "Chưa cập nhật",
+      avatar: doctor.avatar || "/default-avatar.png",
+      qualifications: doctor.qualifications ?? undefined
+    });
+    setShowBookingModal(true);
+  };
 
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -28,7 +48,24 @@ export default function HomePage() {
     const fetchSpecializations = async () => {
       try {
         const data = await userService.getSpecializations();
-        setSpecializations(data);
+        const MASTER_SPECIALTIES = [
+          "Da liễu Thẩm mỹ",
+          "Da liễu Bệnh lý & Miễn dịch",
+          "Ngoại khoa Da liễu",
+          "Da liễu Nội khoa",
+          "U & Ung thư da",
+          "Nhiễm trùng da & Ký sinh trùng"
+        ];
+        
+        const completeSpecializations = MASTER_SPECIALTIES.map(name => {
+          const found = data.find(item => item.specialization.trim().toLowerCase() === name.trim().toLowerCase());
+          return {
+            specialization: found ? found.specialization : name,
+            doctorCount: found ? found.doctorCount : 0
+          };
+        });
+        
+        setSpecializations(completeSpecializations);
       } catch (error) {
         console.error("Failed to fetch specializations:", error);
       }
@@ -347,7 +384,9 @@ export default function HomePage() {
                         {doctor.rating !== undefined && doctor.rating !== null ? Number(doctor.rating).toFixed(1) : '0.0'} / 5
                       </span>
                     </div>
-                    <button className="w-full rounded-xl bg-dermcare py-2 text-sm font-bold text-white transition hover:bg-dermcare-dark shadow-soft active:scale-95">
+                    <button 
+                      onClick={() => handleBookClick(doctor)}
+                      className="w-full rounded-xl bg-dermcare py-2 text-sm font-bold text-white transition hover:bg-dermcare-dark shadow-soft active:scale-95">
                       {t('header.actions.book_now')}
                     </button>
                   </div>
@@ -567,6 +606,24 @@ export default function HomePage() {
 
         </div>
       </section>
+
+      {/* Booking Modal */}
+      {selectedDoctor && (
+        <BookingModal
+          isOpen={showBookingModal}
+          onClose={() => {
+            setShowBookingModal(false);
+            setSelectedDoctor(null);
+          }}
+          doctor={{
+            id: selectedDoctor.id,
+            name: selectedDoctor.name,
+            specialty: selectedDoctor.specialty,
+            avatar: selectedDoctor.avatar,
+            qualifications: selectedDoctor.qualifications
+          }}
+        />
+      )}
     </div>
   );
 }
