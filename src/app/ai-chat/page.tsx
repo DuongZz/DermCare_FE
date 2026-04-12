@@ -130,6 +130,22 @@ export default function AIChat() {
         }
     };
 
+    const handlePaste = (e: React.ClipboardEvent) => {
+        const items = e.clipboardData.items;
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].type.indexOf("image") !== -1) {
+                const file = items[i].getAsFile();
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (ev) => setImagePreview(ev.target?.result as string);
+                    reader.readAsDataURL(file);
+                    e.preventDefault();
+                }
+                break;
+            }
+        }
+    };
+
     const handleSuggestDoctors = async () => {
         setIsFetchingDoctors(true);
         setShowDoctors(false);
@@ -391,6 +407,7 @@ export default function AIChat() {
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyPress={handleKeyPress}
+                            onPaste={handlePaste}
                             placeholder="Mô tả triệu chứng của bạn..."
                             className="flex-1 rounded-full border border-slate-200 px-6 py-3 text-sm outline-none transition focus:border-dermcare focus:ring-2 focus:ring-dermcare/20"
                         />
