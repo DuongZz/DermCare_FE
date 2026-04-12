@@ -466,12 +466,31 @@ export default function ChatPage() {
     const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            setSelectedImageFile(file);
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setSelectedImage(reader.result as string);
-            };
-            reader.readAsDataURL(file);
+            processImageFile(file);
+        }
+    };
+
+    const processImageFile = (file: File) => {
+        setSelectedImageFile(file);
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setSelectedImage(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+    };
+
+    const handlePaste = (e: React.ClipboardEvent) => {
+        const items = e.clipboardData.items;
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].type.indexOf("image") !== -1) {
+                const file = items[i].getAsFile();
+                if (file) {
+                    processImageFile(file);
+                    // Prevent pasting the image as text if the browser tries to
+                    e.preventDefault();
+                }
+                break; // Handle only one image at a time
+            }
         }
     };
 
@@ -1731,6 +1750,7 @@ export default function ChatPage() {
                                         value={inputText}
                                         onChange={(e) => setInputText(e.target.value)}
                                         onKeyDown={handleKeyPress}
+                                        onPaste={handlePaste}
                                         placeholder={activeConversation?.status === "DOCTOR_CONSULTING"
                                             ? "Nhập tin nhắn..."
                                             : chatMode === "diagnosis"
