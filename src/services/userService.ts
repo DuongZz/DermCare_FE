@@ -45,8 +45,13 @@ const userService = {
     },
 
     getSpecializations: async (): Promise<{ specialization: string; doctorCount: number }[]> => {
-        const response = await apiClient.get<{ success: boolean; data: { specialization: string; doctorCount: number }[] }>('/users/public-specialization');
-        return response.data.data;
+        try {
+            const response = await apiClient.get<{ success: boolean; data: { specialization: string; doctorCount: number }[] }>('/users/public-specialization');
+            return response.data?.data || [];
+        } catch (error) {
+            console.error('Failed to fetch specializations:', error);
+            return [];
+        }
     },
 
     getUserStatistics: async () => {

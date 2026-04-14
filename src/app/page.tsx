@@ -58,14 +58,14 @@ export default function HomePage() {
         ];
         
         const completeSpecializations = MASTER_SPECIALTIES.map(name => {
-          const found = data.find(item => item.specialization.trim().toLowerCase() === name.trim().toLowerCase());
+          const found = Array.isArray(data) ? data.find(item => item.specialization?.trim().toLowerCase() === name.trim().toLowerCase()) : null;
           return {
             specialization: found ? found.specialization : name,
             doctorCount: found ? found.doctorCount : 0
           };
         });
         
-        setSpecializations(completeSpecializations);
+        setSpecializations(completeSpecializations || []);
       } catch (error) {
         console.error("Failed to fetch specializations:", error);
       }
@@ -340,7 +340,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-            {doctors.length > 0 ? doctors.slice(0, 5).map((doctor, idx) => (
+            {doctors?.length > 0 ? doctors.slice(0, 5).map((doctor, idx) => (
               <div
                 key={idx}
                 className="card-elevated flex flex-col overflow-hidden text-center transition hover:shadow-lg h-full rounded-2xl"
@@ -436,7 +436,7 @@ export default function HomePage() {
 
           {/* Grid Container */}
           <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
-            {specializations.length > 0 ? specializations.map((specialty, idx) => {
+            {specializations?.length > 0 ? specializations.map((specialty, idx) => {
               const colorPalette = [
                 "bg-pink-50 text-pink-700 border-pink-100 group-hover:border-pink-300",
                 "bg-blue-50 text-blue-700 border-blue-100 group-hover:border-blue-300",
@@ -479,7 +479,7 @@ export default function HomePage() {
           </div>
 
           <div className="space-y-6">
-            {feedbacks.length > 0 ? (
+            {feedbacks?.length > 0 ? (
               <>
                 {/* Row 1 - Scroll Left to Right */}
                 <div className="relative">
