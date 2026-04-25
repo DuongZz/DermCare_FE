@@ -1171,41 +1171,43 @@ export default function ChatPage() {
                                 onClick={() => handleTabChange("DOCTOR_CONSULTING")}
                                 className={`relative z-10 flex-1 rounded-md py-1.5 text-xs font-bold transition-all duration-300 ${activeTab === "DOCTOR_CONSULTING" ? "text-dermcare scale-100" : "text-slate-500 hover:text-slate-700 active:scale-95"}`}
                             >
-                                Đang khám
+                                👨‍⚕️ Đang khám
                             </button>
                             {!isDoctor && (
                                 <button
                                     onClick={() => handleTabChange("AI_CONSULTING")}
                                     className={`relative z-10 flex-1 rounded-md py-1.5 text-xs font-bold transition-all duration-300 ${activeTab === "AI_CONSULTING" ? "text-dermcare scale-100" : "text-slate-500 hover:text-slate-700 active:scale-95"}`}
                                 >
-                                    AI
+                                    🤖 AI
                                 </button>
                             )}
                             <button
                                 onClick={() => handleTabChange("COMPLETED")}
                                 className={`relative z-10 flex-1 rounded-md py-1.5 text-xs font-bold transition-all duration-300 ${activeTab === "COMPLETED" ? "text-dermcare scale-100" : "text-slate-500 hover:text-slate-700 active:scale-95"}`}
                             >
-                                Đã xong
+                                ✅ Đã xong
                             </button>
                         </div>
 
-                        <div className="mb-3 px-3 flex items-center gap-2">
-                            <span className="h-[1px] flex-1 bg-slate-100"></span>
-                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em]">
-                                {activeTab === "AI_CONSULTING" ? "🤖 AI Tư vấn" : activeTab === "DOCTOR_CONSULTING" ? "👨‍⚕️ Đang khám" : "✅ Hoàn thành"}
-                            </p>
-                            <span className="h-[1px] flex-1 bg-slate-100"></span>
-                        </div>
-
                         {isLoadingConversations && conversations.length === 0 ? (
-                            <div className="flex flex-col items-center justify-center py-12 animate-in fade-in duration-500">
-                                <div className="relative">
-                                    <div className="h-10 w-10 animate-spin rounded-full border-4 border-dermcare/10 border-t-dermcare" />
+                            <div className="flex flex-col items-center justify-center py-16 animate-in fade-in duration-700">
+                                <div className="relative h-12 w-12">
+                                    <div className="absolute inset-0 rounded-full border-[3px] border-dermcare/10"></div>
+                                    <div className="absolute inset-0 rounded-full border-[3px] border-t-dermcare animate-spin"></div>
                                     <div className="absolute inset-0 flex items-center justify-center">
-                                         <div className="h-2.5 w-2.5 rounded-full bg-dermcare animate-pulse" />
+                                        <div className="h-1.5 w-1.5 rounded-full bg-dermcare animate-ping"></div>
                                     </div>
                                 </div>
-                                <p className="mt-4 text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] animate-pulse">Đang tải...</p>
+                                <div className="mt-6 flex flex-col items-center gap-1">
+                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.3em] animate-pulse">
+                                        Đang tải dữ liệu
+                                    </p>
+                                    <div className="flex gap-1">
+                                        <div className="h-1 w-1 rounded-full bg-dermcare/40 animate-bounce [animation-delay:-0.3s]"></div>
+                                        <div className="h-1 w-1 rounded-full bg-dermcare/40 animate-bounce [animation-delay:-0.15s]"></div>
+                                        <div className="h-1 w-1 rounded-full bg-dermcare/40 animate-bounce"></div>
+                                    </div>
+                                </div>
                             </div>
                         ) : conversations.length === 0 ? (
                             <div className="px-3 py-10 text-center animate-in fade-in slide-in-from-bottom-2 duration-500">
