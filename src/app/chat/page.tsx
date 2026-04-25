@@ -1171,21 +1171,21 @@ export default function ChatPage() {
                                 onClick={() => handleTabChange("DOCTOR_CONSULTING")}
                                 className={`relative z-10 flex-1 rounded-md py-1.5 text-xs font-bold transition-all duration-300 ${activeTab === "DOCTOR_CONSULTING" ? "text-dermcare scale-100" : "text-slate-500 hover:text-slate-700 active:scale-95"}`}
                             >
-                                👨‍⚕️ Đang khám
+                                Đang khám
                             </button>
                             {!isDoctor && (
                                 <button
                                     onClick={() => handleTabChange("AI_CONSULTING")}
                                     className={`relative z-10 flex-1 rounded-md py-1.5 text-xs font-bold transition-all duration-300 ${activeTab === "AI_CONSULTING" ? "text-dermcare scale-100" : "text-slate-500 hover:text-slate-700 active:scale-95"}`}
                                 >
-                                    🤖 AI
+                                    AI
                                 </button>
                             )}
                             <button
                                 onClick={() => handleTabChange("COMPLETED")}
                                 className={`relative z-10 flex-1 rounded-md py-1.5 text-xs font-bold transition-all duration-300 ${activeTab === "COMPLETED" ? "text-dermcare scale-100" : "text-slate-500 hover:text-slate-700 active:scale-95"}`}
                             >
-                                ✅ Đã xong
+                                Đã xong
                             </button>
                         </div>
 
