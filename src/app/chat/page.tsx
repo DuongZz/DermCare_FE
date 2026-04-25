@@ -1156,32 +1156,46 @@ export default function ChatPage() {
                     {/* Conversation List */}
                     <div className="flex-1 overflow-y-auto custom-scrollbar p-3">
                         {/* Tabs */}
-                        <div className="mb-4 flex rounded-lg bg-slate-100 p-1">
+                        <div className="mb-4 flex rounded-lg bg-slate-100 p-1 relative">
+                            {/* Sliding highlight background */}
+                            <div
+                                className="absolute bottom-1 top-1 rounded-md bg-white shadow-sm transition-all duration-300 ease-out"
+                                style={{
+                                    width: isDoctor ? "calc(50% - 4px)" : "calc(33.333% - 4px)",
+                                    left: isDoctor
+                                        ? (activeTab === "DOCTOR_CONSULTING" ? "4px" : "calc(50%)")
+                                        : (activeTab === "DOCTOR_CONSULTING" ? "4px" : activeTab === "AI_CONSULTING" ? "calc(33.333% + 2px)" : "calc(66.666% + 2px)"),
+                                }}
+                            />
                             <button
                                 onClick={() => handleTabChange("DOCTOR_CONSULTING")}
-                                className={`flex-1 rounded-md py-1.5 text-xs font-bold transition-all duration-300 ${activeTab === "DOCTOR_CONSULTING" ? "bg-white text-dermcare shadow-sm scale-100" : "text-slate-500 hover:text-slate-700 active:scale-95"}`}
+                                className={`relative z-10 flex-1 rounded-md py-1.5 text-xs font-bold transition-all duration-300 ${activeTab === "DOCTOR_CONSULTING" ? "text-dermcare scale-100" : "text-slate-500 hover:text-slate-700 active:scale-95"}`}
                             >
                                 Đang khám
                             </button>
                             {!isDoctor && (
                                 <button
                                     onClick={() => handleTabChange("AI_CONSULTING")}
-                                    className={`flex-1 rounded-md py-1.5 text-xs font-bold transition-all duration-300 ${activeTab === "AI_CONSULTING" ? "bg-white text-dermcare shadow-sm scale-100" : "text-slate-500 hover:text-slate-700 active:scale-95"}`}
+                                    className={`relative z-10 flex-1 rounded-md py-1.5 text-xs font-bold transition-all duration-300 ${activeTab === "AI_CONSULTING" ? "text-dermcare scale-100" : "text-slate-500 hover:text-slate-700 active:scale-95"}`}
                                 >
                                     AI
                                 </button>
                             )}
                             <button
                                 onClick={() => handleTabChange("COMPLETED")}
-                                className={`flex-1 rounded-md py-1.5 text-xs font-bold transition-all duration-300 ${activeTab === "COMPLETED" ? "bg-white text-dermcare shadow-sm scale-100" : "text-slate-500 hover:text-slate-700 active:scale-95"}`}
+                                className={`relative z-10 flex-1 rounded-md py-1.5 text-xs font-bold transition-all duration-300 ${activeTab === "COMPLETED" ? "text-dermcare scale-100" : "text-slate-500 hover:text-slate-700 active:scale-95"}`}
                             >
                                 Đã xong
                             </button>
                         </div>
 
-                        <p className="mb-2 px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                            {activeTab === "AI_CONSULTING" ? "🤖 AI Tư vấn" : activeTab === "DOCTOR_CONSULTING" ? "👨‍⚕️ Đang khám" : "✅ Hoàn thành"}
-                        </p>
+                        <div className="mb-3 px-3 flex items-center gap-2">
+                            <span className="h-[1px] flex-1 bg-slate-100"></span>
+                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em]">
+                                {activeTab === "AI_CONSULTING" ? "🤖 AI Tư vấn" : activeTab === "DOCTOR_CONSULTING" ? "👨‍⚕️ Đang khám" : "✅ Hoàn thành"}
+                            </p>
+                            <span className="h-[1px] flex-1 bg-slate-100"></span>
+                        </div>
 
                         {isLoadingConversations && conversations.length === 0 ? (
                             <div className="flex flex-col items-center justify-center py-12 animate-in fade-in duration-500">
@@ -1203,10 +1217,10 @@ export default function ChatPage() {
                                 {conversations.map((conv) => {
                                     const isActive = activeConversation?.id === conv.id;
                                     return (
-                                        <button
+                                        <div
                                             key={conv.id}
                                             onClick={() => handleSelectConversation(conv)}
-                                            className={`group w-full rounded-xl px-3 py-3 text-left transition ${isActive
+                                            className={`group w-full rounded-xl px-3 py-3 text-left transition cursor-pointer ${isActive
                                                 ? "bg-white border border-dermcare/30 shadow-sm"
                                                 : "hover:bg-slate-50 border border-transparent"
                                                 }`}
@@ -1245,17 +1259,27 @@ export default function ChatPage() {
                                                     <span className="h-1.5 w-1.5 rounded-full bg-dermcare animate-pulse" />
                                                 )}
                                             </div>
-                                        </button>
+                                        </div>
                                     );
                                 })}
 
                                 {hasMore && (
-                                    <button
-                                        onClick={() => loadConversations(activeTab, currentPage + 1, true)}
-                                        className="mt-2 w-full rounded-lg py-2 text-xs font-bold text-dermcare hover:bg-dermcare/5 transition"
-                                    >
-                                        {isLoadingConversations ? "Đang tải..." : "🔽 Xem thêm"}
-                                    </button>
+                                    <div className="flex justify-center mt-4 mb-2">
+                                        <button
+                                            onClick={() => loadConversations(activeTab, currentPage + 1, true)}
+                                            className="group flex items-center gap-2 rounded-full bg-slate-50 px-6 py-2 text-[11px] font-bold text-dermcare hover:bg-dermcare hover:text-white transition-all duration-300 shadow-sm border border-slate-100"
+                                            disabled={isLoadingConversations}
+                                        >
+                                            {isLoadingConversations ? (
+                                                <div className="h-3 w-3 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                                            ) : (
+                                                <svg className="transition-transform group-hover:translate-y-0.5" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+                                                </svg>
+                                            )}
+                                            {isLoadingConversations ? "ĐANG TẢI..." : "XEM THÊM"}
+                                        </button>
+                                    </div>
                                 )}
                             </div>
                         )}
@@ -1484,7 +1508,7 @@ export default function ChatPage() {
                             )}
                         </div>
                     ) : (
-                        <div className="mx-auto max-w-5xl space-y-4">
+                        <div key={activeConversation.id} className="mx-auto max-w-5xl space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700 ease-out">
                             {messages.map((message) => {
                                 // Logic căn lề: 
                                 // - Nếu là AI -> Bên trái
