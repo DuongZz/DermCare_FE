@@ -176,7 +176,7 @@ export default function ChatPage() {
 
         socket.on("conversation_updated", (data: { id: string; status: string; title: string }) => {
             console.log("[Chat] Conversation updated:", data);
-            
+
             if (data.id === activeConversation?.id && data.status === "COMPLETED") {
                 setActiveTab("COMPLETED");
             }
@@ -228,7 +228,7 @@ export default function ChatPage() {
         try {
             console.log("[Chat] Fetching messages for:", conv.id);
             const msgs = await getConversationMessages(conv.id);
-            
+
             if (!msgs || msgs.length === 0) {
                 const welcomeMsg: ConversationMessage = {
                     id: `welcome-${Date.now()}`,
@@ -267,12 +267,12 @@ export default function ChatPage() {
     // Xử lý gửi đánh giá
     const handleRatingSubmit = async (rating: number, comment: string) => {
         if (!activeConversation || isSubmittingRating) return;
-        
+
         setIsSubmittingRating(true);
         try {
             const feedback = await submitFeedback(activeConversation.id, rating, comment);
             showToast("Cảm ơn bạn đã gửi đánh giá!", "success");
-            
+
             // Cập nhật state để ẩn nút đánh giá và hiển thị sao
             const updatedConv = {
                 ...activeConversation,
@@ -281,7 +281,7 @@ export default function ChatPage() {
                     feedback: feedback
                 }
             };
-            
+
             setActiveConversation(updatedConv as any);
             setConversations(prev => prev.map(c => c.id === activeConversation.id ? {
                 ...c,
@@ -290,7 +290,7 @@ export default function ChatPage() {
                     feedback: feedback
                 }
             } as any : c));
-            
+
             setIsRatingModalOpen(false);
         } catch (err) {
             console.error("Lỗi gửi đánh giá:", err);
@@ -439,11 +439,27 @@ export default function ChatPage() {
         }
     };
 
+    // Chuyển tab hội thoại với hiệu ứng reset mượt mà
+    const handleTabChange = useCallback((newTab: string) => {
+        if (newTab === activeTab) return;
+        
+        // Cập nhật URL tab parameter
+        const url = new URL(window.location.href);
+        url.searchParams.set("tab", newTab);
+        window.history.replaceState({}, "", url);
+        
+        setActiveTab(newTab);
+        setConversations([]); // Xóa danh sách cũ ngay lập tức để hiện loading
+        setIsLoadingConversations(true);
+        setCurrentPage(1);
+        setHasMore(true);
+    }, [activeTab]);
+
     // Tạo cuộc hội thoại mới với AI
     const handleNewConversation = useCallback(async () => {
         try {
             // Chuyển sang tab AI trước để người dùng thấy danh sách được cập nhật
-            setActiveTab("AI_CONSULTING");
+            handleTabChange("AI_CONSULTING");
 
             const newConv = await createAiConversation();
 
@@ -459,7 +475,7 @@ export default function ChatPage() {
         } catch (err) {
             console.error("Failed to create ai conversation:", err);
         }
-    }, [activeTab, handleSelectConversation]);
+    }, [activeTab, handleSelectConversation, handleTabChange]);
 
 
     // Upload ảnh
@@ -663,7 +679,7 @@ export default function ChatPage() {
                 // Optimistic UI for text
                 let tempTextMsg: ConversationMessage | null = null;
                 if (content && !imageFile) {
-                     tempTextMsg = {
+                    tempTextMsg = {
                         id: `temp-${Date.now()}`,
                         content,
                         type: "text",
@@ -947,21 +963,21 @@ export default function ChatPage() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <label className="block text-sm font-bold text-slate-700 mb-2">Họ và tên</label>
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             value={medicalRecordData.fullName}
-                                            onChange={(e) => setMedicalRecordData({...medicalRecordData, fullName: e.target.value})}
-                                            placeholder="Nhập họ và tên bệnh nhân" 
+                                            onChange={(e) => setMedicalRecordData({ ...medicalRecordData, fullName: e.target.value })}
+                                            placeholder="Nhập họ và tên bệnh nhân"
                                             className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-dermcare focus:bg-white focus:outline-none focus:ring-4 focus:ring-dermcare/10 transition-all font-medium"
                                         />
                                     </div>
                                     <div>
                                         <label className="block text-sm font-bold text-slate-700 mb-2">Số điện thoại</label>
-                                        <input 
-                                            type="tel" 
+                                        <input
+                                            type="tel"
                                             value={medicalRecordData.phone}
-                                            onChange={(e) => setMedicalRecordData({...medicalRecordData, phone: e.target.value})}
-                                            placeholder="Nhập số điện thoại" 
+                                            onChange={(e) => setMedicalRecordData({ ...medicalRecordData, phone: e.target.value })}
+                                            placeholder="Nhập số điện thoại"
                                             className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-dermcare focus:bg-white focus:outline-none focus:ring-4 focus:ring-dermcare/10 transition-all font-medium"
                                         />
                                     </div>
@@ -969,33 +985,33 @@ export default function ChatPage() {
 
                                 <div>
                                     <label className="block text-sm font-bold text-slate-700 mb-2">Email</label>
-                                    <input 
-                                        type="email" 
+                                    <input
+                                        type="email"
                                         value={medicalRecordData.email}
-                                        onChange={(e) => setMedicalRecordData({...medicalRecordData, email: e.target.value})}
-                                        placeholder="Nhập email" 
+                                        onChange={(e) => setMedicalRecordData({ ...medicalRecordData, email: e.target.value })}
+                                        placeholder="Nhập email"
                                         className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-dermcare focus:bg-white focus:outline-none focus:ring-4 focus:ring-dermcare/10 transition-all font-medium"
                                     />
                                 </div>
 
                                 <div>
                                     <label className="block text-sm font-bold text-slate-700 mb-2">Phương pháp điều trị</label>
-                                    <textarea 
+                                    <textarea
                                         value={medicalRecordData.treatment}
-                                        onChange={(e) => setMedicalRecordData({...medicalRecordData, treatment: e.target.value})}
-                                        rows={3} 
-                                        placeholder="Nhập phác đồ điều trị, đơn thuốc..." 
+                                        onChange={(e) => setMedicalRecordData({ ...medicalRecordData, treatment: e.target.value })}
+                                        rows={3}
+                                        placeholder="Nhập phác đồ điều trị, đơn thuốc..."
                                         className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-dermcare focus:bg-white focus:outline-none focus:ring-4 focus:ring-dermcare/10 transition-all min-h-[100px]"
                                     />
                                 </div>
 
                                 <div>
                                     <label className="block text-sm font-bold text-slate-700 mb-2">Ghi chú ( Lời khuyên )</label>
-                                    <textarea 
+                                    <textarea
                                         value={medicalRecordData.advice}
-                                        onChange={(e) => setMedicalRecordData({...medicalRecordData, advice: e.target.value})}
-                                        rows={3} 
-                                        placeholder="Dặn dò thêm cho bệnh nhân..." 
+                                        onChange={(e) => setMedicalRecordData({ ...medicalRecordData, advice: e.target.value })}
+                                        rows={3}
+                                        placeholder="Dặn dò thêm cho bệnh nhân..."
                                         className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-dermcare focus:bg-white focus:outline-none focus:ring-4 focus:ring-dermcare/10 transition-all"
                                     />
                                 </div>
@@ -1014,17 +1030,16 @@ export default function ChatPage() {
                                             {chatImages.map((img, idx) => {
                                                 const isSelected = medicalRecordData.images.includes(img);
                                                 return (
-                                                    <div 
-                                                        key={idx} 
+                                                    <div
+                                                        key={idx}
                                                         onClick={() => {
-                                                            const newImages = isSelected 
+                                                            const newImages = isSelected
                                                                 ? medicalRecordData.images.filter(i => i !== img)
                                                                 : [...medicalRecordData.images, img];
-                                                            setMedicalRecordData({...medicalRecordData, images: newImages});
+                                                            setMedicalRecordData({ ...medicalRecordData, images: newImages });
                                                         }}
-                                                        className={`relative aspect-square rounded-xl overflow-hidden border-2 cursor-pointer transition-all ${
-                                                            isSelected ? "border-dermcare ring-2 ring-dermcare/20" : "border-slate-100 opacity-60 hover:opacity-100"
-                                                        }`}
+                                                        className={`relative aspect-square rounded-xl overflow-hidden border-2 cursor-pointer transition-all ${isSelected ? "border-dermcare ring-2 ring-dermcare/20" : "border-slate-100 opacity-60 hover:opacity-100"
+                                                            }`}
                                                     >
                                                         <img src={img} alt="Chat image" className="h-full w-full object-cover" />
                                                         {isSelected && (
@@ -1054,7 +1069,7 @@ export default function ChatPage() {
                             >
                                 Đóng
                             </button>
-                             <button
+                            <button
                                 onClick={async () => {
                                     if (!activeConversation) return;
                                     setIsSavingMedicalRecord(true);
@@ -1076,7 +1091,7 @@ export default function ChatPage() {
                                         });
                                         showToast("Đã lưu bệnh án thành công!", "success");
                                         setShowMedicalRecordModal(false);
-                                        
+
                                         // Cập nhật activeConversation để nút chuyển sang "Xem hồ sơ"
                                         setActiveConversation(prev => prev ? {
                                             ...prev,
@@ -1141,48 +1156,71 @@ export default function ChatPage() {
                     {/* Conversation List */}
                     <div className="flex-1 overflow-y-auto custom-scrollbar p-3">
                         {/* Tabs */}
-                        <div className="mb-4 flex rounded-lg bg-slate-100 p-1">
+                        <div className="mb-4 flex rounded-lg bg-slate-100 p-1 relative">
+                            {/* Sliding highlight background */}
+                            <div
+                                className="absolute bottom-1 top-1 rounded-md bg-white shadow-sm transition-all duration-300 ease-out"
+                                style={{
+                                    width: isDoctor ? "calc(50% - 4px)" : "calc(33.333% - 4px)",
+                                    left: isDoctor
+                                        ? (activeTab === "DOCTOR_CONSULTING" ? "4px" : "calc(50%)")
+                                        : (activeTab === "DOCTOR_CONSULTING" ? "4px" : activeTab === "AI_CONSULTING" ? "calc(33.333% + 2px)" : "calc(66.666% + 2px)"),
+                                }}
+                            />
                             <button
-                                onClick={() => setActiveTab("DOCTOR_CONSULTING")}
-                                className={`flex-1 rounded-md py-1.5 text-xs font-bold transition ${activeTab === "DOCTOR_CONSULTING" ? "bg-white text-dermcare shadow-sm" : "text-slate-500 hover:text-slate-700"}`}
+                                onClick={() => handleTabChange("DOCTOR_CONSULTING")}
+                                className={`relative z-10 flex-1 rounded-md py-1.5 text-xs font-bold transition-all duration-300 ${activeTab === "DOCTOR_CONSULTING" ? "text-dermcare scale-100" : "text-slate-500 hover:text-slate-700 active:scale-95"}`}
                             >
                                 Đang khám
                             </button>
                             {!isDoctor && (
                                 <button
-                                    onClick={() => setActiveTab("AI_CONSULTING")}
-                                    className={`flex-1 rounded-md py-1.5 text-xs font-bold transition ${activeTab === "AI_CONSULTING" ? "bg-white text-dermcare shadow-sm" : "text-slate-500 hover:text-slate-700"}`}
+                                    onClick={() => handleTabChange("AI_CONSULTING")}
+                                    className={`relative z-10 flex-1 rounded-md py-1.5 text-xs font-bold transition-all duration-300 ${activeTab === "AI_CONSULTING" ? "text-dermcare scale-100" : "text-slate-500 hover:text-slate-700 active:scale-95"}`}
                                 >
                                     AI
                                 </button>
                             )}
                             <button
-                                onClick={() => setActiveTab("COMPLETED")}
-                                className={`flex-1 rounded-md py-1.5 text-xs font-bold transition ${activeTab === "COMPLETED" ? "bg-white text-dermcare shadow-sm" : "text-slate-500 hover:text-slate-700"}`}
+                                onClick={() => handleTabChange("COMPLETED")}
+                                className={`relative z-10 flex-1 rounded-md py-1.5 text-xs font-bold transition-all duration-300 ${activeTab === "COMPLETED" ? "text-dermcare scale-100" : "text-slate-500 hover:text-slate-700 active:scale-95"}`}
                             >
                                 Đã xong
                             </button>
                         </div>
 
-                        <p className="mb-2 px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                            {activeTab === "AI_CONSULTING" ? "🤖 AI Tư vấn" : activeTab === "DOCTOR_CONSULTING" ? "👨‍⚕️ Đang khám" : "✅ Hoàn thành"}
-                        </p>
+                        <div className="mb-3 px-3 flex items-center gap-2">
+                            <span className="h-[1px] flex-1 bg-slate-100"></span>
+                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em]">
+                                {activeTab === "AI_CONSULTING" ? "🤖 AI Tư vấn" : activeTab === "DOCTOR_CONSULTING" ? "👨‍⚕️ Đang khám" : "✅ Hoàn thành"}
+                            </p>
+                            <span className="h-[1px] flex-1 bg-slate-100"></span>
+                        </div>
 
                         {isLoadingConversations && conversations.length === 0 ? (
-                            <div className="flex justify-center py-8">
-                                <div className="h-6 w-6 animate-spin rounded-full border-2 border-dermcare border-t-transparent" />
+                            <div className="flex flex-col items-center justify-center py-12 animate-in fade-in duration-500">
+                                <div className="relative">
+                                    <div className="h-10 w-10 animate-spin rounded-full border-4 border-dermcare/10 border-t-dermcare" />
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                         <div className="h-2.5 w-2.5 rounded-full bg-dermcare animate-pulse" />
+                                    </div>
+                                </div>
+                                <p className="mt-4 text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] animate-pulse">Đang tải...</p>
                             </div>
                         ) : conversations.length === 0 ? (
-                            <p className="px-3 py-6 text-center text-sm text-slate-400">Chưa có cuộc hội thoại nào</p>
+                            <div className="px-3 py-10 text-center animate-in fade-in slide-in-from-bottom-2 duration-500">
+                                <div className="mb-3 text-3xl opacity-20">💬</div>
+                                <p className="text-sm font-medium text-slate-400">Chưa có cuộc hội thoại nào</p>
+                            </div>
                         ) : (
-                            <div className="space-y-1">
+                            <div className="space-y-1 animate-in fade-in slide-in-from-bottom-2 duration-500">
                                 {conversations.map((conv) => {
                                     const isActive = activeConversation?.id === conv.id;
                                     return (
-                                        <button
+                                        <div
                                             key={conv.id}
                                             onClick={() => handleSelectConversation(conv)}
-                                            className={`group w-full rounded-xl px-3 py-3 text-left transition ${isActive
+                                            className={`group w-full rounded-xl px-3 py-3 text-left transition cursor-pointer ${isActive
                                                 ? "bg-white border border-dermcare/30 shadow-sm"
                                                 : "hover:bg-slate-50 border border-transparent"
                                                 }`}
@@ -1221,17 +1259,27 @@ export default function ChatPage() {
                                                     <span className="h-1.5 w-1.5 rounded-full bg-dermcare animate-pulse" />
                                                 )}
                                             </div>
-                                        </button>
+                                        </div>
                                     );
                                 })}
 
                                 {hasMore && (
-                                    <button
-                                        onClick={() => loadConversations(activeTab, currentPage + 1, true)}
-                                        className="mt-2 w-full rounded-lg py-2 text-xs font-bold text-dermcare hover:bg-dermcare/5 transition"
-                                    >
-                                        {isLoadingConversations ? "Đang tải..." : "🔽 Xem thêm"}
-                                    </button>
+                                    <div className="flex justify-center mt-4 mb-2">
+                                        <button
+                                            onClick={() => loadConversations(activeTab, currentPage + 1, true)}
+                                            className="group flex items-center gap-2 rounded-full bg-slate-50 px-6 py-2 text-[11px] font-bold text-dermcare hover:bg-dermcare hover:text-white transition-all duration-300 shadow-sm border border-slate-100"
+                                            disabled={isLoadingConversations}
+                                        >
+                                            {isLoadingConversations ? (
+                                                <div className="h-3 w-3 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                                            ) : (
+                                                <svg className="transition-transform group-hover:translate-y-0.5" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+                                                </svg>
+                                            )}
+                                            {isLoadingConversations ? "ĐANG TẢI..." : "XEM THÊM"}
+                                        </button>
+                                    </div>
                                 )}
                             </div>
                         )}
@@ -1460,7 +1508,7 @@ export default function ChatPage() {
                             )}
                         </div>
                     ) : (
-                        <div className="mx-auto max-w-5xl space-y-4">
+                        <div key={activeConversation.id} className="mx-auto max-w-5xl space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700 ease-out">
                             {messages.map((message) => {
                                 // Logic căn lề: 
                                 // - Nếu là AI -> Bên trái
@@ -1523,7 +1571,7 @@ export default function ChatPage() {
                                             ) : message.type === 'medical_record' ? (
                                                 <div className="bg-white border-2 border-slate-100 rounded-2xl p-6 my-2 shadow-sm flex flex-col items-center text-center">
                                                     <h4 className="font-bold text-slate-800 text-sm mb-4">Hồ sơ bệnh án điện tử</h4>
-                                                    <button 
+                                                    <button
                                                         onClick={() => {
                                                             setViewingMedicalRecord(JSON.parse(message.content));
                                                             setShowViewMedicalRecordModal(true);
@@ -1784,7 +1832,7 @@ export default function ChatPage() {
                                 <span className="text-sm font-bold text-slate-800">Phiên tư vấn đã kết thúc</span>
                             </div>
                             <p className="text-xs text-slate-500 mb-3">Ca khám này đã được bác sĩ xác nhận hoàn thành.</p>
-                            
+
                             {!isDoctor && !activeConversation.appointment?.feedback && (
                                 <button
                                     onClick={() => setIsRatingModalOpen(true)}
@@ -1817,15 +1865,15 @@ export default function ChatPage() {
 }
 
 // Component hiển thị chi tiết bệnh án
-function ViewMedicalRecordModal({ 
-    isOpen, 
-    onClose, 
-    record, 
-    patientName 
-}: { 
-    isOpen: boolean; 
-    onClose: () => void; 
-    record: any; 
+function ViewMedicalRecordModal({
+    isOpen,
+    onClose,
+    record,
+    patientName
+}: {
+    isOpen: boolean;
+    onClose: () => void;
+    record: any;
     patientName?: string;
 }) {
     if (!isOpen || !record) return null;
