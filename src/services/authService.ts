@@ -201,7 +201,7 @@ export const forgotPassword = async (email: string): Promise<AuthResponse> => {
 export const resetPassword = async (otp: string, newPassword: string): Promise<{ success: boolean; message: string }> => {
     const preAccessToken = getToken('preAccessToken');
 
-    const { data } = await apiClient.post('/auth/reset-password', { otp, newPassword }, {
+    const { data } = await apiClient.post('/auth/password/reset', { otp, newPassword }, {
         headers: {
             Authorization: `Bearer ${preAccessToken}`,
         },

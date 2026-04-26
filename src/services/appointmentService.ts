@@ -66,7 +66,7 @@ export const getAppointmentById = async (id: string): Promise<Appointment> => {
 
 // Book an appointment (Patient books a doctor)
 export const bookAppointment = async (doctorId: string, payload: { appointmentDate: string; appointmentTime: string; conversationId?: string }): Promise<Appointment> => {
-    const { data } = await apiClient.post(`/users/booking/${doctorId}`, payload);
+    const { data } = await apiClient.post(`/users/appointments/booking/${doctorId}`, payload);
     return data;
 };
 

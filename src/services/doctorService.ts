@@ -57,7 +57,7 @@ export const getDoctors = async (): Promise<Doctor[]> => {
 // Get public doctors catalog
 export const getPublicDoctors = async (): Promise<PublicDoctor[]> => {
     try {
-        const { data } = await apiClient.get('/users/public-doctors');
+        const { data } = await apiClient.get('/users/doctors/public');
         return data?.data || [];
     } catch (error) {
         console.error('Failed to fetch public doctors:', error);
@@ -68,7 +68,7 @@ export const getPublicDoctors = async (): Promise<PublicDoctor[]> => {
 // Get ALL doctors (public)
 export const getAllDoctors = async (): Promise<PublicDoctor[]> => {
     try {
-        const { data } = await apiClient.get('/doctors/all');
+        const { data } = await apiClient.get('/doctors');
         return data?.data || [];
     } catch (error) {
         console.error('Failed to fetch all doctors:', error);
