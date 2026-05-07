@@ -46,7 +46,7 @@ const userService = {
 
     getSpecializations: async (): Promise<{ specialization: string; doctorCount: number }[]> => {
         try {
-            const response = await apiClient.get<{ success: boolean; data: { specialization: string; doctorCount: number }[] }>('/users/specializations');
+            const response = await apiClient.get<{ success: boolean; data: { specialization: string; doctorCount: number }[] }>('/specializations');
             return response.data?.data || [];
         } catch (error) {
             console.error('Failed to fetch specializations:', error);

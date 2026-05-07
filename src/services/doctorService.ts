@@ -57,7 +57,7 @@ export const getDoctors = async (): Promise<Doctor[]> => {
 // Get public doctors catalog
 export const getPublicDoctors = async (): Promise<PublicDoctor[]> => {
     try {
-        const { data } = await apiClient.get('/users/doctors/public');
+        const { data } = await apiClient.get('/doctors');
         return data?.data || [];
     } catch (error) {
         console.error('Failed to fetch public doctors:', error);
