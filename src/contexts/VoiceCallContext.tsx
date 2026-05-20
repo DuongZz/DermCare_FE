@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useEffect, useRef, useState, useCallback } from "react";
 import { useSocket } from "./SocketContext";
 import { useAuth } from "./AuthContext";
+import apiClient from "@/lib/apiClient";
 
 type VoiceCallState = "idle" | "dialing" | "incoming" | "on-call";
 
@@ -28,28 +29,11 @@ export const useVoiceCall = () => {
     return context;
 };
 
-const ICE_SERVERS: RTCConfiguration = {
+// Fallback ICE servers khi chưa fetch được từ API
+const FALLBACK_ICE_SERVERS: RTCConfiguration = {
     iceServers: [
-        // STUN — phát hiện IP public
         { urls: "stun:stun.l.google.com:19302" },
         { urls: "stun:stun1.l.google.com:19302" },
-        // TURN — relay dữ liệu khi NAT/firewall ngăn kết nối P2P trực tiếp
-        // (bắt buộc để hoạt động qua các mạng/ISP khác nhau)
-        {
-            urls: "turn:openrelay.metered.ca:80",
-            username: "openrelayproject",
-            credential: "openrelayproject",
-        },
-        {
-            urls: "turn:openrelay.metered.ca:443",
-            username: "openrelayproject",
-            credential: "openrelayproject",
-        },
-        {
-            urls: "turns:openrelay.metered.ca:443?transport=tcp",
-            username: "openrelayproject",
-            credential: "openrelayproject",
-        },
     ],
     iceCandidatePoolSize: 10,
 };
@@ -67,6 +51,26 @@ export const VoiceCallProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     const [startTime, setStartTime] = useState<number | null>(null);
 
     const peerConnection = useRef<RTCPeerConnection | null>(null);
+    const iceConfigRef = useRef<RTCConfiguration>(FALLBACK_ICE_SERVERS);
+
+    // Fetch TURN credentials từ backend API khi mount
+    useEffect(() => {
+        const fetchTurnCredentials = async () => {
+            try {
+                const { data } = await apiClient.get('/webrtc/turn-credentials');
+                if (data.success && data.data) {
+                    iceConfigRef.current = {
+                        iceServers: data.data,
+                        iceCandidatePoolSize: 10,
+                    };
+                    console.log('[VoiceCall] ✅ TURN credentials loaded:', data.data.length, 'servers');
+                }
+            } catch (err) {
+                console.warn('[VoiceCall] ⚠️ Failed to fetch TURN credentials, using fallback STUN only');
+            }
+        };
+        fetchTurnCredentials();
+    }, []);
 
     const stopStreams = useCallback(() => {
         if (localStream) {
@@ -78,7 +82,7 @@ export const VoiceCallProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
     const createPeerConnection = useCallback((targetId: string) => {
         if (peerConnection.current) peerConnection.current.close();
-        const pc = new RTCPeerConnection(ICE_SERVERS);
+        const pc = new RTCPeerConnection(iceConfigRef.current);
         
         pc.onicecandidate = (event) => {
             if (event.candidate && socket) {
@@ -91,6 +95,26 @@ export const VoiceCallProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
         pc.ontrack = (event) => {
             setRemoteStream(event.streams[0]);
+        };
+
+        // Monitor ICE connection state — key for debugging cross-network issues
+        pc.oniceconnectionstatechange = () => {
+            console.log(`[VoiceCall] ICE connection state: ${pc.iceConnectionState}`);
+            if (pc.iceConnectionState === 'failed') {
+                console.error('[VoiceCall] ❌ ICE connection FAILED — TURN server might be unreachable');
+                pc.restartIce();
+            }
+            if (pc.iceConnectionState === 'disconnected') {
+                console.warn('[VoiceCall] ⚠️ ICE disconnected — peer may have lost network');
+            }
+            if (pc.iceConnectionState === 'connected' || pc.iceConnectionState === 'completed') {
+                console.log('[VoiceCall] ✅ ICE connected successfully!');
+            }
+        };
+
+        // Log ICE gathering progress
+        pc.onicegatheringstatechange = () => {
+            console.log(`[VoiceCall] ICE gathering state: ${pc.iceGatheringState}`);
         };
 
         peerConnection.current = pc;
