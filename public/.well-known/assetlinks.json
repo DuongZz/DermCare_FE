@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.example.dermcare",
+      "sha256_cert_fingerprints": [
+        "F8:B1:98:95:FB:20:B9:9C:C1:CF:32:05:65:57:A8:CF:81:E9:51:28:7A:D9:46:38:E9:06:A4:66:B4:F5:DD:D4"
+      ]
+    }
+  }
+]
