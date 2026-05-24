@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useRef, useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { useSocket } from "./SocketContext";
 import { useAuth } from "./AuthContext";
 import apiClient from "@/lib/apiClient";
@@ -39,6 +40,7 @@ const FALLBACK_ICE_SERVERS: RTCConfiguration = {
 };
 
 export const VideoCallProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const router = useRouter();
     const { socket } = useSocket();
     const { user } = useAuth();
     const [callState, setCallState] = useState<CallState>("idle");
@@ -209,6 +211,8 @@ export const VideoCallProvider: React.FC<{ children: React.ReactNode }> = ({ chi
             });
         }
 
+        const activeConvId = conversationId;
+
         setCallState("idle");
         setCaller(null);
         setRecipientId(null);
@@ -221,7 +225,11 @@ export const VideoCallProvider: React.FC<{ children: React.ReactNode }> = ({ chi
             peerConnection.current.close();
             peerConnection.current = null;
         }
-    }, [stopStreams, startTime, conversationId, socket, isCaller]);
+
+        if (activeConvId) {
+            router.push(`/chat?id=${activeConvId}`);
+        }
+    }, [stopStreams, startTime, conversationId, socket, isCaller, router]);
 
     // --- Socket Event Handlers ---
 

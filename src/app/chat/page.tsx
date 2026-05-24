@@ -32,6 +32,7 @@ import { useToast } from "@/components/Toast";
 import { queryKnowledgeBase } from "@/services/knowledgeService";
 import BookingModal from "@/components/BookingModal";
 import RatingModal from "@/components/RatingModal";
+import { motion } from "framer-motion";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/v1\/?$/, "") || "http://localhost:4000";
 
@@ -172,6 +173,46 @@ export default function ChatPage() {
                 setIsLoading(false);
                 return null;
             });
+
+            setConversations((prev) => {
+                const targetId = msg.conversationId || activeConversation?.id;
+                if (!targetId) return prev;
+                const index = prev.findIndex((c) => c.id === targetId);
+                if (index !== -1) {
+                    const updatedConversations = [...prev];
+                    const isUnread = targetId !== activeConversation?.id && String(msg.sender?.id) !== String(currentUser?.id);
+                    updatedConversations[index] = {
+                        ...updatedConversations[index],
+                        lastMessage: msg.type === "image" ? "[Hình ảnh]" : msg.content,
+                        updated_at: new Date().toISOString(),
+                        unread: isUnread || updatedConversations[index].unread
+                    };
+                    return updatedConversations.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
+                } else {
+                    // Nếu hội thoại chưa có trong danh sách hiện tại, nạp nó từ server
+                    setTimeout(async () => {
+                        try {
+                            const newConv = await getConversationById(targetId);
+                            if (newConv && newConv.status === activeTab) {
+                                setConversations((current) => {
+                                    if (current.some(c => c.id === targetId)) return current;
+                                    const isUnread = targetId !== activeConversation?.id && String(msg.sender?.id) !== String(currentUser?.id);
+                                    const updatedConv = {
+                                        ...newConv,
+                                        lastMessage: msg.type === "image" ? "[Hình ảnh]" : msg.content,
+                                        updated_at: new Date().toISOString(),
+                                        unread: isUnread
+                                    };
+                                    return [updatedConv, ...current].sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
+                                });
+                            }
+                        } catch (err) {
+                            console.error("[Socket] Failed to fetch missing conversation:", err);
+                        }
+                    }, 0);
+                }
+                return prev;
+            });
         });
 
         socket.on("conversation_updated", (data: { id: string; status: string; title: string }) => {
@@ -196,9 +237,28 @@ export default function ChatPage() {
                 if (data.status !== activeTab) {
                     return prev.filter(c => c.id !== data.id);
                 }
-                return prev.map(c =>
-                    c.id === data.id ? { ...c, status: data.status as any, title: data.title } : c
-                );
+                const index = prev.findIndex(c => c.id === data.id);
+                if (index !== -1) {
+                    return prev.map(c =>
+                        c.id === data.id ? { ...c, status: data.status as any, title: data.title } : c
+                    );
+                } else {
+                    // Nếu trạng thái mới khớp với tab hiện tại nhưng chưa có trong danh sách, nạp nó từ server
+                    setTimeout(async () => {
+                        try {
+                            const newConv = await getConversationById(data.id);
+                            if (newConv && newConv.status === activeTab) {
+                                setConversations(current => {
+                                    if (current.some(c => c.id === data.id)) return current;
+                                    return [newConv, ...current].sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
+                                });
+                            }
+                        } catch (err) {
+                            console.error("[Socket] Failed to fetch missing updated conversation:", err);
+                        }
+                    }, 0);
+                }
+                return prev;
             });
         });
 
@@ -222,6 +282,7 @@ export default function ChatPage() {
         }
 
         setActiveConversation(conv);
+        setConversations(prev => prev.map(c => c.id === conv.id ? { ...c, unread: false } : c));
         setMessages([]);
         setIsLoading(true);
 
@@ -554,6 +615,20 @@ export default function ChatPage() {
                 sender: { id: "dara", fullName: "DARA AI", role: "AI" }
             };
             setMessages(prev => [...prev, aiMsg]);
+
+            setConversations((prev) => {
+                const index = prev.findIndex((c) => c.id === activeConversation.id);
+                if (index !== -1) {
+                    const updatedConversations = [...prev];
+                    updatedConversations[index] = {
+                        ...updatedConversations[index],
+                        lastMessage: aiMsg.content,
+                        updated_at: new Date().toISOString()
+                    };
+                    return updatedConversations.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
+                }
+                return prev;
+            });
         } catch (error: any) {
             console.error("RAG Error Details:", error);
             const errMsg = error.response?.data?.message || error.message || "Lỗi không xác định";
@@ -859,7 +934,6 @@ export default function ChatPage() {
                 </div>
             )}
 
-            {/* Booking Modal */}
             {isBookingModalOpen && selectedSlot && bookingDoctorId && (
                 <BookingModal
                     isOpen={isBookingModalOpen}
@@ -876,6 +950,17 @@ export default function ChatPage() {
                     initialDate={selectedSlot.date}
                     initialTime={selectedSlot.startTime}
                     initialPrice={selectedSlot.price}
+                    onSuccess={async (appointment) => {
+                        if (activeConversation) {
+                            try {
+                                const updatedConv = await getConversationById(activeConversation.id);
+                                setActiveConversation(updatedConv);
+                                setConversations(prev => prev.map(c => c.id === updatedConv.id ? updatedConv : c));
+                            } catch (err) {
+                                console.error("Error refreshing active conversation after booking:", err);
+                            }
+                        }
+                    }}
                 />
             )}
 
@@ -1219,8 +1304,14 @@ export default function ChatPage() {
                                 {conversations.map((conv) => {
                                     const isActive = activeConversation?.id === conv.id;
                                     return (
-                                        <div
+                                        <motion.div
                                             key={conv.id}
+                                            layout
+                                            transition={{
+                                                type: "spring",
+                                                stiffness: 350,
+                                                damping: 28
+                                            }}
                                             onClick={() => handleSelectConversation(conv)}
                                             className={`group w-full rounded-xl px-3 py-3 text-left transition cursor-pointer ${isActive
                                                 ? "bg-white border border-dermcare/30 shadow-sm"
@@ -1229,7 +1320,7 @@ export default function ChatPage() {
                                         >
                                             <div className="flex items-center justify-between gap-2">
                                                 <div className="flex items-center justify-between gap-2 flex-1 min-w-0">
-                                                    <p className={`text-sm font-bold truncate ${isActive ? "text-dermcare" : "text-slate-900"}`}>
+                                                    <p className={`text-sm font-bold truncate ${isActive ? "text-dermcare" : "text-slate-900"} ${conv.unread ? "text-blue-600 font-extrabold" : ""}`}>
                                                         {conv.title || conv.lastMessage || "Hội thoại mới"}
                                                     </p>
                                                     {conv.appointment?.feedback && (
@@ -1238,22 +1329,27 @@ export default function ChatPage() {
                                                         </span>
                                                     )}
                                                 </div>
-                                                {activeTab === "AI_CONSULTING" && (
-                                                    <button
-                                                        onClick={(e) => openDeleteModal(e, conv.id)}
-                                                        className="invisible group-hover:visible rounded-md p-1 text-slate-400 hover:bg-red-50 hover:text-red-500 transition-all"
-                                                        title="Xóa hội thoại"
-                                                        disabled={isDeleting === conv.id}
-                                                    >
-                                                        {isDeleting === conv.id ? (
-                                                            <div className="h-3 w-3 animate-spin rounded-full border-2 border-red-500 border-t-transparent" />
-                                                        ) : (
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                                <path d="M3 6h18m-2 0v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6m3 0V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-                                                            </svg>
-                                                        )}
-                                                    </button>
-                                                )}
+                                                <div className="flex items-center gap-1.5">
+                                                    {conv.unread && (
+                                                        <span className="h-2.5 w-2.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.7)] animate-pulse flex-shrink-0" />
+                                                    )}
+                                                    {activeTab === "AI_CONSULTING" && (
+                                                        <button
+                                                            onClick={(e) => openDeleteModal(e, conv.id)}
+                                                            className="invisible group-hover:visible rounded-md p-1 text-slate-400 hover:bg-red-50 hover:text-red-500 transition-all"
+                                                            title="Xóa hội thoại"
+                                                            disabled={isDeleting === conv.id}
+                                                        >
+                                                            {isDeleting === conv.id ? (
+                                                                <div className="h-3 w-3 animate-spin rounded-full border-2 border-red-500 border-t-transparent" />
+                                                            ) : (
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                                    <path d="M3 6h18m-2 0v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6m3 0V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                                                                </svg>
+                                                            )}
+                                                        </button>
+                                                    )}
+                                                </div>
                                             </div>
                                             <div className="mt-1.5 flex items-center justify-between">
                                                 <p className="text-[10px] font-medium text-slate-400">{formatDate(conv.updated_at)}</p>
@@ -1261,7 +1357,7 @@ export default function ChatPage() {
                                                     <span className="h-1.5 w-1.5 rounded-full bg-dermcare animate-pulse" />
                                                 )}
                                             </div>
-                                        </div>
+                                        </motion.div>
                                     );
                                 })}
 
@@ -1367,9 +1463,27 @@ export default function ChatPage() {
                                                 <span className="text-xs text-slate-500">
                                                     {isGlobalConnected ? "Đang trực tuyến" : "Ngoại tuyến"}
                                                 </span>
+                                                {activeConversation.appointment && activeConversation.appointment.appointmentDate && (
+                                                    <>
+                                                        <span className="text-slate-300 text-xs">•</span>
+                                                        <span className="inline-flex items-center gap-1 text-xs text-dermcare font-medium bg-dermcare/5 px-2 py-0.5 rounded-md border border-dermcare/10">
+                                                            📅 Lịch khám: {activeConversation.appointment.appointmentTime} - {new Date(activeConversation.appointment.appointmentDate).toLocaleDateString('vi-VN')}
+                                                        </span>
+                                                    </>
+                                                )}
                                             </>
                                         ) : (
-                                            <span className="text-xs text-slate-500">Trợ lý da liễu thông minh • 24/7</span>
+                                            <span className="text-xs text-slate-500 flex flex-wrap items-center gap-1">
+                                                <span>Trợ lý da liễu thông minh • 24/7</span>
+                                                {activeConversation?.appointment && activeConversation.appointment.appointmentDate && (
+                                                    <>
+                                                        <span className="text-slate-300">•</span>
+                                                        <span className="inline-flex items-center gap-1 text-[11px] text-dermcare font-medium bg-dermcare/5 px-1.5 py-0.5 rounded-md border border-dermcare/10">
+                                                            📅 Đã hẹn: {activeConversation.appointment.appointmentTime} - {new Date(activeConversation.appointment.appointmentDate).toLocaleDateString('vi-VN')}
+                                                        </span>
+                                                    </>
+                                                )}
+                                            </span>
                                         )}
                                     </div>
                                 </div>
@@ -1801,6 +1915,7 @@ export default function ChatPage() {
                                         onChange={(e) => setInputText(e.target.value)}
                                         onKeyDown={handleKeyPress}
                                         onPaste={handlePaste}
+                                        disabled={isLoading}
                                         placeholder={activeConversation?.status === "DOCTOR_CONSULTING"
                                             ? "Nhập tin nhắn..."
                                             : chatMode === "diagnosis"

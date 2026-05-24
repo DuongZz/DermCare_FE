@@ -44,6 +44,7 @@ export interface Conversation {
     status: string;
     lastMessage?: string;
     title?: string;
+    unread?: boolean;
     diagnosisInfo?: any;
     created_at: string;
     updated_at: string;
@@ -51,6 +52,8 @@ export interface Conversation {
     doctor?: ConversationSender;
     appointment?: {
         id: string;
+        appointmentDate?: string;
+        appointmentTime?: string;
         medicalRecord?: any;
         feedback?: {
             id: string;

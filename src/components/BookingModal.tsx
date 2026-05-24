@@ -32,9 +32,10 @@ interface BookingModalProps {
     initialDate?: string;
     initialTime?: string;
     initialPrice?: number;
+    onSuccess?: (appointment: any) => void;
 }
 
-export default function BookingModal({ isOpen, onClose, doctor, conversationId, initialDate, initialTime, initialPrice }: BookingModalProps) {
+export default function BookingModal({ isOpen, onClose, doctor, conversationId, initialDate, initialTime, initialPrice, onSuccess }: BookingModalProps) {
     const { user } = useAuth();
     const PAYMENT_TIMEOUT = {
         momo: 6000,  // 100 phút (MoMo Sandbox default)
@@ -49,9 +50,9 @@ export default function BookingModal({ isOpen, onClose, doctor, conversationId, 
     const [selectedDate, setSelectedDate] = useState<string>(initialDate || "");
     const [selectedTime, setSelectedTime] = useState<string>(initialTime || "");
     const [formData, setFormData] = useState({
-        fullName: user?.fullName || "",
-        phone: user?.phone || "",
-        email: user?.email || "",
+        fullName: "",
+        phone: "",
+        email: "",
         notes: ""
     });
 
@@ -162,6 +163,7 @@ export default function BookingModal({ isOpen, onClose, doctor, conversationId, 
             if (appointment && appointment.id) {
                 setCreatedAppointmentId(appointment.id);
             }
+            onSuccess?.(appointment);
 
             setShowConfirm(false);
             setShowSuccess(true);
@@ -186,19 +188,16 @@ export default function BookingModal({ isOpen, onClose, doctor, conversationId, 
             setCreatedAppointmentId(null);
             setShowSuccess(false);
             setShowConfirm(false);
+            setFormData({
+                fullName: "",
+                phone: "",
+                email: "",
+                notes: ""
+            });
         } else if (initialDate && initialTime) {
             setSelectedDate(initialDate);
             setSelectedTime(initialTime);
             setStep(2);
-            // Pre-fill user data if available
-            if (user) {
-                setFormData(prev => ({
-                    ...prev,
-                    fullName: user.fullName || prev.fullName,
-                    phone: user.phone || prev.phone,
-                    email: user.email || prev.email
-                }));
-            }
         }
     }, [isOpen, initialDate, initialTime, user]);
 

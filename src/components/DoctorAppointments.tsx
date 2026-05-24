@@ -224,10 +224,10 @@ export default function DoctorAppointments() {
         try {
             const data = await getDoctorAppointments();
             console.log("Fetched Appointments:", data);
-            setAppointments(data.length > 0 ? data : MOCK_APPOINTMENTS);
+            setAppointments(data);
         } catch (err) {
-            console.error("Failed to load appointments, using mock data:", err);
-            setAppointments(MOCK_APPOINTMENTS);
+            console.error("Failed to load appointments:", err);
+            setAppointments([]);
         } finally {
             setLoading(false);
         }

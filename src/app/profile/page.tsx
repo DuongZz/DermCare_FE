@@ -144,7 +144,7 @@ export default function ProfilePage() {
         try {
             if (isDoctor) {
                 // Doctor: save doctor-specific fields (column 2)
-                const res = await apiClient.patch('/doctors/update-info', doctorEditData);
+                const res = await apiClient.patch('/doctors/profile', doctorEditData);
                 await fetchUser(); // Re-fetch user data to update UI
                 setIsEditing(false);
                 showToast(res.data?.message || "Cập nhật thông tin thành công!");
@@ -208,7 +208,7 @@ export default function ProfilePage() {
         try {
             const formData = new FormData();
             formData.append('avatar', file);
-            const response = await apiClient.patch('/doctors/update-avatar', formData, {
+            const response = await apiClient.patch('/doctors/avatar', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             await fetchUser();
