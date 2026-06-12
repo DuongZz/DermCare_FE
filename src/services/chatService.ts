@@ -184,7 +184,7 @@ export const getDoctorsBySpecialization = async (specialization: string): Promis
 /** Lấy lịch khám công khai của một bác sĩ */
 export const getPublicDoctorSchedule = async (doctorId: string): Promise<DoctorSchedule[]> => {
     const response = await apiClient.get<{ success: boolean; data: any[] }>(
-        `/users/doctor-schedule/${doctorId}`
+        `/users/doctors/${doctorId}/schedule`
     );
     // Map dữ liệu trả về từ backend (DoctorSchedule entity) sang DoctorSchedule interface FE
     const data = response.data.data || response.data;
